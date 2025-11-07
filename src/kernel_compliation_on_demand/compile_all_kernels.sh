@@ -2,6 +2,8 @@
 
 # Script to compile all kernels in the LS-CAT repository
 # Usage: ./compile_all_kernels.sh [options]
+# Example: bash \compile_all_kernels.sh --max-sucess 300
+# Successful kernels will be stored in bin/compilation_success.txt
 # Options:
 #   -d, --kernels-dir DIR    Directory containing kernels (default: LS-CAT/data/kernels)
 #   -o, --output-dir DIR     Output directory for compiled binaries (default: bin)
@@ -17,6 +19,9 @@ NVCC_FLAGS="-gencode=arch=compute_52,code=sm_52"
 JOBS=1
 VERBOSE=false
 SKIP_EXISTING=false
+WORKING_DIR=""
+MAX_SUCCESS=0
+STOPPED_EARLY=false
 
 # Colors for output
 RED='\033[0;31m'
@@ -52,6 +57,14 @@ while [[ $# -gt 0 ]]; do
             SKIP_EXISTING=true
             shift
             ;;
+        -W|--working-dir)
+            WORKING_DIR="$2"
+            shift 2
+            ;;
+        -M|--max-success)
+            MAX_SUCCESS="$2"
+            shift 2
+            ;;
         -h|--help)
             echo "Usage: $0 [options]"
             echo "Options:"
@@ -60,6 +73,8 @@ while [[ $# -gt 0 ]]; do
             echo "  -f, --flags FLAGS       Additional nvcc flags (default: -gencode=arch=compute_52,code=sm_52)"
             echo "  -j, --jobs N            Number of parallel compilation jobs (default: 1)"
             echo "  -s, --skip-existing     Skip kernels that already have compiled binaries"
+            echo "  -W, --working-dir DIR   Copy kernels that compile successfully to DIR"
+            echo "  -M, --max-success N     Stop after N successful kernels (sequential mode only)"
             echo "  -v, --verbose           Verbose output"
             echo "  -h, --help              Show this help message"
             exit 0
@@ -87,6 +102,15 @@ if [ ! -d "$KERNELS_DIR" ]; then
     exit 1
 fi
 
+if ! [[ "$MAX_SUCCESS" =~ ^[0-9]+$ ]]; then
+    echo -e "${RED}Error: --max-success must be a non-negative integer.${NC}"
+    exit 1
+fi
+if [ "$MAX_SUCCESS" -gt 0 ] && [ "$JOBS" -gt 1 ]; then
+    echo -e "${YELLOW}Warning:${NC} --max-success requires sequential mode. Forcing --jobs 1."
+    JOBS=1
+fi
+
 # Create output directory
 mkdir -p "$OUTPUT_DIR"
 
@@ -96,6 +120,7 @@ SUCCESS=0
 FAILED=0
 SKIPPED=0
 FAILED_KERNELS=()
+SUCCESS_LIST=""
 
 # Log file
 LOG_FILE="$OUTPUT_DIR/compilation_log.txt"
@@ -104,6 +129,8 @@ ERROR_LOG="$OUTPUT_DIR/compilation_errors.txt"
 # Initialize log files
 echo "Compilation started at $(date)" > "$LOG_FILE"
 echo "" > "$ERROR_LOG"
+SUCCESS_LIST="$OUTPUT_DIR/compilation_success.txt"
+echo "" > "$SUCCESS_LIST"
 
 # Function to compile a single kernel
 compile_kernel() {
@@ -212,7 +239,23 @@ compile_kernel() {
     
     if [ $compile_exit_code -eq 0 ]; then
         echo -e "${GREEN}Success${NC} $relative_path" | tee -a "$LOG_FILE"
+        echo "$relative_path" >> "$SUCCESS_LIST"
         ((SUCCESS++))
+
+        if [ -n "$WORKING_DIR" ]; then
+            local working_path="$WORKING_DIR/$relative_path"
+            mkdir -p "$(dirname "$working_path")"
+            if command -v rsync &> /dev/null; then
+                if ! rsync -a --delete "$kernel_dir/" "$working_path/"; then
+                    echo -e "${YELLOW}Warning:${NC} Failed to copy $relative_path to working directory" | tee -a "$LOG_FILE"
+                fi
+            else
+                if ! cp -a "$kernel_dir/." "$working_path/"; then
+                    echo -e "${YELLOW}Warning:${NC} Failed to copy $relative_path to working directory" | tee -a "$LOG_FILE"
+                fi
+            fi
+        fi
+
         return 0
     else
         echo -e "${RED}Failed${NC}  $relative_path" | tee -a "$LOG_FILE"
@@ -227,7 +270,7 @@ compile_kernel() {
 
 # Export function for parallel execution
 export -f compile_kernel
-export KERNELS_DIR OUTPUT_DIR NVCC_FLAGS VERBOSE SKIP_EXISTING
+export KERNELS_DIR OUTPUT_DIR NVCC_FLAGS VERBOSE SKIP_EXISTING WORKING_DIR SUCCESS_LIST MAX_SUCCESS
 export RED GREEN YELLOW BLUE NC
 
 # Find all kernel directories (directories containing main.cu)
@@ -241,6 +284,10 @@ while IFS= read -r dir; do
 done < <(find "$KERNELS_DIR" -type f -name "main.cu" -exec dirname {} \; | sort -u)
 
 echo -e "${BLUE}Found $TOTAL kernels${NC}"
+if [ -n "$WORKING_DIR" ]; then
+    mkdir -p "$WORKING_DIR"
+    echo -e "${BLUE}Working kernels will be copied to:${NC} $WORKING_DIR"
+fi
 echo -e "${BLUE}Starting compilation...${NC}"
 echo ""
 
@@ -252,6 +299,11 @@ else
     # Sequential compilation
     for kernel_dir in "${kernel_dirs[@]}"; do
         compile_kernel "$kernel_dir"
+        if [ "$MAX_SUCCESS" -gt 0 ] && [ "$SUCCESS" -ge "$MAX_SUCCESS" ]; then
+            STOPPED_EARLY=true
+            echo -e "${YELLOW}Reached maximum successful kernels (${MAX_SUCCESS}). Stopping early.${NC}" | tee -a "$LOG_FILE"
+            break
+        fi
     done
 fi
 
@@ -266,9 +318,24 @@ echo -e "Failed:           ${RED}$FAILED${NC}"
 if [ "$SKIP_EXISTING" = true ]; then
     echo -e "Skipped:          ${YELLOW}$SKIPPED${NC}"
 fi
+if [ "$STOPPED_EARLY" = true ]; then
+    echo -e "Stopped early:    ${YELLOW}Yes (max success ${MAX_SUCCESS})${NC}"
+fi
+if [ -s "$SUCCESS_LIST" ]; then
+    echo ""
+    echo -e "${GREEN}Working kernels:${NC}"
+    while IFS= read -r kernel; do
+        [ -n "$kernel" ] && echo "  $kernel"
+    done < "$SUCCESS_LIST"
+    if [ -n "$WORKING_DIR" ]; then
+        echo ""
+        echo -e "${GREEN}Copied working kernels to:${NC} $WORKING_DIR"
+    fi
+fi
 echo ""
 echo -e "Log file:         $LOG_FILE"
 echo -e "Error log:        $ERROR_LOG"
+echo -e "Success list:     $SUCCESS_LIST"
 
 if [ $FAILED -gt 0 ]; then
     echo ""
@@ -287,4 +354,3 @@ if [ $FAILED -gt 0 ]; then
 else
     exit 0
 fi
-
