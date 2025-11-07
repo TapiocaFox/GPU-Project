@@ -1,0 +1,196 @@
+
+=== 1000/28 ===
+./cuda_runtime.h(7): error: identifier "cudaEvent_t" is undefined
+      cudaEvent_t start;
+      ^
+
+./cuda_runtime.h(8): error: identifier "cudaEvent_t" is undefined
+      cudaEvent_t stop;
+      ^
+
+./cuda_runtime.h(24): error: identifier "cudaStream_t" is undefined
+      void Start(cudaStream_t stream) { cudaEventRecord(start, stream); }
+                 ^
+
+./cuda_runtime.h(26): error: identifier "cudaStream_t" is undefined
+      void Stop(cudaStream_t stream) { cudaEventRecord(stop, stream); }
+                ^
+
+./cuda_runtime.h(11): error: identifier "cudaEventCreate" is undefined
+          cudaEventCreate(&start);
+          ^
+
+./cuda_runtime.h(16): error: identifier "cudaEventDestroy" is undefined
+          cudaEventDestroy(start);
+          ^
+
+./cuda_runtime.h(20): error: identifier "cudaEventRecord" is undefined
+      void Start() { cudaEventRecord(start, 0); }
+                     ^
+
+./cuda_runtime.h(22): error: identifier "cudaEventRecord" is undefined
+      void Stop() { cudaEventRecord(stop, 0); }
+                    ^
+
+./cuda_runtime.h(24): error: identifier "cudaEventRecord" is undefined
+      void Start(cudaStream_t stream) { cudaEventRecord(start, stream); }
+                                        ^
+
+./cuda_runtime.h(26): error: identifier "cudaEventRecord" is undefined
+      void Stop(cudaStream_t stream) { cudaEventRecord(stop, stream); }
+                                       ^
+
+./cuda_runtime.h(30): error: identifier "cudaEventSynchronize" is undefined
+          cudaEventSynchronize(stop);
+          ^
+
+./cuda_runtime.h(32): error: identifier "cudaEventQuery" is undefined
+          while (cudaEventQuery(stop) == cudaErrorNotReady) {
+                 ^
+
+./cuda_runtime.h(32): error: identifier "cudaErrorNotReady" is undefined
+          while (cudaEventQuery(stop) == cudaErrorNotReady) {
+                                         ^
+
+./cuda_runtime.h(34): error: identifier "printf" is undefined
+              printf("Waiting for the Device to finish: %d\n", counter);
+              ^
+
+./cuda_runtime.h(36): error: identifier "cudaEventElapsedTime" is undefined
+          cudaEventElapsedTime(&elapsed, start, stop);
+          ^
+
+15 errors detected in the compilation of "main.cu".
+
+=== 1000/30 ===
+./cuda_runtime.h(7): error: identifier "cudaEvent_t" is undefined
+      cudaEvent_t start;
+      ^
+
+./cuda_runtime.h(8): error: identifier "cudaEvent_t" is undefined
+      cudaEvent_t stop;
+      ^
+
+./cuda_runtime.h(24): error: identifier "cudaStream_t" is undefined
+      void Start(cudaStream_t stream) { cudaEventRecord(start, stream); }
+                 ^
+
+./cuda_runtime.h(26): error: identifier "cudaStream_t" is undefined
+      void Stop(cudaStream_t stream) { cudaEventRecord(stop, stream); }
+                ^
+
+./cuda_runtime.h(11): error: identifier "cudaEventCreate" is undefined
+          cudaEventCreate(&start);
+          ^
+
+./cuda_runtime.h(16): error: identifier "cudaEventDestroy" is undefined
+          cudaEventDestroy(start);
+          ^
+
+./cuda_runtime.h(20): error: identifier "cudaEventRecord" is undefined
+      void Start() { cudaEventRecord(start, 0); }
+                     ^
+
+./cuda_runtime.h(22): error: identifier "cudaEventRecord" is undefined
+      void Stop() { cudaEventRecord(stop, 0); }
+                    ^
+
+./cuda_runtime.h(24): error: identifier "cudaEventRecord" is undefined
+      void Start(cudaStream_t stream) { cudaEventRecord(start, stream); }
+                                        ^
+
+./cuda_runtime.h(26): error: identifier "cudaEventRecord" is undefined
+      void Stop(cudaStream_t stream) { cudaEventRecord(stop, stream); }
+                                       ^
+
+./cuda_runtime.h(30): error: identifier "cudaEventSynchronize" is undefined
+          cudaEventSynchronize(stop);
+          ^
+
+./cuda_runtime.h(32): error: identifier "cudaEventQuery" is undefined
+          while (cudaEventQuery(stop) == cudaErrorNotReady) {
+                 ^
+
+./cuda_runtime.h(32): error: identifier "cudaErrorNotReady" is undefined
+          while (cudaEventQuery(stop) == cudaErrorNotReady) {
+                                         ^
+
+./cuda_runtime.h(34): error: identifier "printf" is undefined
+              printf("Waiting for the Device to finish: %d\n", counter);
+              ^
+
+./cuda_runtime.h(36): error: identifier "cudaEventElapsedTime" is undefined
+          cudaEventElapsedTime(&elapsed, start, stop);
+          ^
+
+15 errors detected in the compilation of "main.cu".
+
+=== 1000/5 ===
+./cuda_runtime.h(7): error: identifier "cudaEvent_t" is undefined
+      cudaEvent_t start;
+      ^
+
+./cuda_runtime.h(8): error: identifier "cudaEvent_t" is undefined
+      cudaEvent_t stop;
+      ^
+
+./cuda_runtime.h(24): error: identifier "cudaStream_t" is undefined
+      void Start(cudaStream_t stream) { cudaEventRecord(start, stream); }
+                 ^
+
+./cuda_runtime.h(26): error: identifier "cudaStream_t" is undefined
+      void Stop(cudaStream_t stream) { cudaEventRecord(stop, stream); }
+                ^
+
+./cuda_runtime.h(11): error: identifier "cudaEventCreate" is undefined
+          cudaEventCreate(&start);
+          ^
+
+./cuda_runtime.h(16): error: identifier "cudaEventDestroy" is undefined
+          cudaEventDestroy(start);
+          ^
+
+./cuda_runtime.h(20): error: identifier "cudaEventRecord" is undefined
+      void Start() { cudaEventRecord(start, 0); }
+                     ^
+
+./cuda_runtime.h(22): error: identifier "cudaEventRecord" is undefined
+      void Stop() { cudaEventRecord(stop, 0); }
+                    ^
+
+./cuda_runtime.h(24): error: identifier "cudaEventRecord" is undefined
+      void Start(cudaStream_t stream) { cudaEventRecord(start, stream); }
+                                        ^
+
+./cuda_runtime.h(26): error: identifier "cudaEventRecord" is undefined
+      void Stop(cudaStream_t stream) { cudaEventRecord(stop, stream); }
+                                       ^
+
+./cuda_runtime.h(30): error: identifier "cudaEventSynchronize" is undefined
+          cudaEventSynchronize(stop);
+          ^
+
+./cuda_runtime.h(32): error: identifier "cudaEventQuery" is undefined
+          while (cudaEventQuery(stop) == cudaErrorNotReady) {
+                 ^
+
+./cuda_runtime.h(32): error: identifier "cudaErrorNotReady" is undefined
+          while (cudaEventQuery(stop) == cudaErrorNotReady) {
+                                         ^
+
+./cuda_runtime.h(34): error: identifier "printf" is undefined
+              printf("Waiting for the Device to finish: %d\n", counter);
+              ^
+
+./cuda_runtime.h(36): error: identifier "cudaEventElapsedTime" is undefined
+          cudaEventElapsedTime(&elapsed, start, stop);
+          ^
+
+15 errors detected in the compilation of "main.cu".
+
+=== 10051/7 ===
+radixsort_cta.cu:10:10: fatal error: cudpp_globals.h: No such file or directory
+   10 | #include <cudpp_globals.h>
+      |          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+
