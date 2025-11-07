@@ -35,7 +35,7 @@ def categorize_with_llm(client, kernels, batch_index=0):
     """Use LLM to categorize a batch of kernel names with full info."""
     os.makedirs(RAW_DIR, exist_ok=True)
 
-    # Keep full row info: function name, args, path, etc.
+    # Keep full row info
     kernel_text = "\n".join([f"- {row}" for row in [", ".join(k) for k in kernels]])
 
     prompt = f"""
@@ -99,17 +99,31 @@ def main():
         reader = csv.reader(csvfile)
         next(reader, None)  # skip header
         for row in reader:
-            if len(row) >= 3:  # ensure at least function name exists
+            if len(row) >= 3:
                 kernels.append(row)
 
     print(f"📦 Loaded {len(kernels)} kernels.")
 
+    # Load checkpoint if exists
     all_results = {}
+    processed_rows = set()
+    if os.path.exists(OUTPUT_FILE):
+        with open(OUTPUT_FILE, "r") as f:
+            all_results = json.load(f)
+            # Keep track of already processed rows
+            for rows in all_results.values():
+                processed_rows.update(rows)
+        print(f"🔄 Resuming from existing checkpoint with {len(processed_rows)} kernels already categorized.")
+
     for i in range(0, len(kernels), BATCH_SIZE):
         batch_idx = i // BATCH_SIZE + 1
-        batch = kernels[i:i + BATCH_SIZE]
-        print(f"\n🧠 Processing batch {batch_idx} ({len(batch)} kernels)...")
+        batch = [k for k in kernels[i:i + BATCH_SIZE] if ", ".join(k) not in processed_rows]
 
+        if not batch:
+            print(f"➡️ Batch {batch_idx} already processed, skipping.")
+            continue
+
+        print(f"\n🧠 Processing batch {batch_idx} ({len(batch)} kernels)...")
         batch_result = categorize_with_llm(client, batch, batch_index=batch_idx)
         if not batch_result:
             continue
@@ -117,13 +131,14 @@ def main():
         # Merge valid categories
         for cat, rows in batch_result.items():
             all_results.setdefault(cat, []).extend(rows)
+            processed_rows.update(rows)
 
         # Save intermediate checkpoint
         with open(OUTPUT_FILE, "w") as f:
             json.dump(all_results, f, indent=4)
 
         print(f"💾 Saved checkpoint after batch {batch_idx}.")
-        time.sleep(1.5)  # throttle
+        time.sleep(1.5)
 
     print(f"\n✅ Categorization complete. Final saved to {OUTPUT_FILE}.")
     print("\n=== Summary ===")

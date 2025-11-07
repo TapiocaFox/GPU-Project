@@ -1,0 +1,135 @@
+```json
+{
+  "Arithmetic Kernels": [
+    "11647, 0, add, runs, [('double *', 'in'), ('double *', 'out'), ('int', 'offset'), ('int', 'n')]",
+    "11647, 1, add, runs, [('int *', 'in'), ('int', 'offset'), ('int', 'n')]",
+    "11647, 2, add, runs, [('int *', 'in'), ('int *', 'out'), ('int', 'offset'), ('int', 'n')]",
+    "11647, 3, add, runs, [('double *', 'in'), ('double *', 'out'), ('int', 'offset'), ('int', 'n')]",
+    "11647, 4, add, runs, [('int *', 'in'), ('int *', 'out'), ('int', 'offset'), ('int', 'n')]",
+    "11647, 10, add, runs, [('int *', 'in'), ('int *', 'out'), ('int', 'offset'), ('int', 'n')]",
+    "11647, 11, add, runs, [('double *', 'in'), ('double *', 'out'), ('int', 'offset'), ('int', 'n')]",
+    "11647, 12, add, runs, [('int *', 'in'), ('int *', 'out'), ('int', 'n')]",
+    "11647, 14, add, runs, [('double *', 'in'), ('double *', 'out'), ('int', 'offset'), ('int', 'n')]",
+    "11647, 15, add, runs, [('long *', 'in'), ('long *', 'out'), ('int', 'offset'), ('int', 'n')]",
+    "11647, 16, add, runs, [('int *', 'in'), ('int *', 'out'), ('int', 'n')]",
+    "11647, 17, add, runs, [('int *', 'in'), ('int', 'd'), ('int', 'n')]",
+    "11647, 18, add, runs, [('int *', 'in'), ('int *', 'out'), ('int', 'offset'), ('int', 'n')]",
+    "11647, 19, add, runs, [('long *', 'in'), ('long *', 'out'), ('int', 'offset'), ('int', 'n')]",
+    "11647, 20, add, runs, [('double *', 'in'), ('double *', 'out'), ('int', 'offset'), ('int', 'n')]",
+    "11647, 21, add, runs, [('double *', 'in'), ('double *', 'out'), ('int', 'offset'), ('int', 'n')]",
+    "11684, 0, add, runs, [('int', 'n'), ('float *', 'a'), ('float *', 'b'), ('float *', 'sum')]",
+    "11684, 16, add, runs, [('int', 'n'), ('float *', 'a'), ('float *', 'b'), ('float *', 'result')]",
+    "11684, 22, addProduct, runs, [('int', 'n'), ('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('float *', 'result')]",
+    "11684, 23, addProduct_vs, runs, [('int', 'n'), ('float *', 'a'), ('float *', 'b'), ('float', 'c'), ('float *', 'result')]",
+    "11684, 24, addRatio, runs, [('int', 'n'), ('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('float *', 'result')]",
+    "11684, 25, subRatio, runs, [('int', 'n'), ('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('float *', 'result')]"
+  ],
+  "Matrix Operations": [
+    "11647, 6, matrix_multiply_cuda, runs, [('int *', 'd_a'), ('int *', 'd_b'), ('int *', 'd_c'), ('int', 'm'), ('int', 'n')]",
+    "11647, 7, matrix_multiply_tiling_cuda, runs, [('int *', 'A'), ('int *', 'B'), ('int *', 'C'), ('int', 'm'), ('int', 'n')]",
+    "11652, 0, matrixVectMultKernel, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'n')]",
+    "11652, 1, matrixAddKernel, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'n')]",
+    "11652, 2, MatrixMulKernelV1, runs, [('float *', 'M'), ('float *', 'N'), ('float *', 'P'), ('int', 'Width')]",
+    "11652, 3, MatrixMulKernelV2, runs, [('float *', 'd_M'), ('float *', 'd_N'), ('float *', 'd_P'), ('int', 'Width')]",
+    "11652, 4, MatrixMulKernelV3, runs, [('float *', 'd_M'), ('float *', 'd_N'), ('float *', 'd_P'), ('int', 'Width')]"
+  ],
+  "Distance Kernels": [
+    "11654, 0, euclidean_kernel, runs, [('const float *', 'vg_a'), ('size_t', 'pitch_a'), ('size_t', 'n_a'), ('const float *', 'vg_b'), ('size_t', 'pitch_b'), ('size_t', 'n_b'), ('size_t', 'k'), ('float *', 'd'), ('size_t', 'pitch_d')]",
+    "11654, 1, euclidean_kernel_same, runs, [('const float *', 'vg_a'), ('size_t', 'pitch_a'), ('size_t', 'n_a'), ('const float *', 'vg_b'), ('size_t', 'pitch_b'), ('size_t', 'n_b'), ('size_t', 'k'), ('float *', 'd'), ('size_t', 'pitch_d'), ('float', 'p')]",
+    "11654, 2, minkowski_kernel, runs, [('const float *', 'vg_a'), ('size_t', 'pitch_a'), ('size_t', 'n_a'), ('const float *', 'vg_b'), ('size_t', 'pitch_b'), ('size_t', 'n_b'), ('size_t', 'k'), ('float *', 'd'), ('size_t', 'pitch_d'), ('float', 'p')]",
+    "11654, 3, canberra_kernel, runs, [('const float *', 'vg_a'), ('size_t', 'pitch_a'), ('size_t', 'n_a'), ('const float *', 'vg_b'), ('size_t', 'pitch_b'), ('size_t', 'n_b'), ('size_t', 'k'), ('float *', 'd'), ('size_t', 'pitch_d'), ('float', 'p')]",
+    "11654, 4, dnorm_kernel, runs, [('float *', 'vals'), ('int', 'N'), ('float', 'mu'), ('float', 'sigma')]",
+    "11654, 7, dnorm_kernel, runs, [('float *', 'vals'), ('int', 'N'), ('float', 'mu'), ('float', 'sigma')]",
+    "11654, 13, euclidean_kernel, runs, [('const float *', 'vg_a'), ('size_t', 'pitch_a'), ('size_t', 'n_a'), ('const float *', 'vg_b'), ('size_t', 'pitch_b'), ('size_t', 'n_b'), ('size_t', 'k'), ('float *', 'd'), ('size_t', 'pitch_d')]",
+    "11654, 14, euclidean_kernel_same, runs, [('const float *', 'vg_a'), ('size_t', 'pitch_a'), ('size_t', 'n_a'), ('const float *', 'vg_b'), ('size_t', 'pitch_b'), ('size_t', 'n_b'), ('size_t', 'k'), ('float *', 'd'), ('size_t', 'pitch_d'), ('float', 'p')]",
+    "11654, 15, minkowski_kernel, runs, [('const float *', 'vg_a'), ('size_t', 'pitch_a'), ('size_t', 'n_a'), ('const float *', 'vg_b'), ('size_t', 'pitch_b'), ('size_t', 'n_b'), ('size_t', 'k'), ('float *', 'd'), ('size_t', 'pitch_d'), ('float', 'p')]",
+    "11654, 16, canberra_kernel, runs, [('const float *', 'vg_a'), ('size_t', 'pitch_a'), ('size_t', 'n_a'), ('const float *', 'vg_b'), ('size_t', 'pitch_b'), ('size_t', 'n_b'), ('size_t', 'k'), ('float *', 'd'), ('size_t', 'pitch_d'), ('float', 'p')]"
+  ],
+  "Image Processing Kernels": [
+    "11652, 5, imageBNKernel, runs, [('unsigned char *', 'd_image'), ('int', 'h'), ('int', 'w')]",
+    "11652, 6, imageBlurKernel, runs, [('unsigned char *', 'd_image'), ('int', 'h'), ('int', 'w')]"
+  ],
+  "Statistical Kernels": [
+    "11654, 10, dset_kernel, runs, [('double *', 'vals'), ('int', 'N'), ('double', 'mu')]",
+    "11654, 11, dset_both_kernel, runs, [('double *', 'vals'), ('int', 'N'), ('double', 'mu'), ('float', 'sd')]",
+    "11654, 12, dset_array_kernel, runs, [('double *', 'vals'), ('int', 'N'), ('double *', 'mu')]",
+    "11654, 21, addOne, runs, [('double *', 'vals'), ('int', 'N')]",
+    "11654, 22, addOneFloat, runs, [('double *', 'vals'), ('int', 'N'), ('float *', 'out')]",
+    "11654, 23, dnorm_kernel, runs, [('float *', 'vals'), ('int', 'N'), ('float', 'mu'), ('float', 'sigma'), ('float *', 'out')]",
+    "11654, 24, dnorm_kernel, runs, [('float *', 'vals'), ('int', 'N'), ('float', 'mu'), ('float', 'sigma')]",
+    "11654, 26, truncNorm, runs, [('float *', 'out'), ('float *', 'unifVals'), ('int', 'N')]",
+    "11654, 27, log_truncNorm, runs, [('float *', 'out'), ('float *', 'unifVals'), ('int', 'N')]"
+  ],
+  "Random Number Generation Kernels": [
+    "11654, 32, runif_kernel, runs, [('curandState *', 'state'), ('float *', 'vals'), ('int', 'n'), ('float', 'lo'), ('float', 'hi')]",
+    "11654, 33, rexpo_kernel, runs, [('curandState *', 'state'), ('float *', 'vals'), ('int', 'n'), ('float', 'lambda')]",
+    "11654, 34, rnorm_kernel, runs, [('curandState *', 'state'), ('float *', 'vals'), ('int', 'n'), ('float', 'mu'), ('float', 'sigma')]",
+    "11654, 35, rpois_kernel, runs, [('curandState *', 'state'), ('int *', 'vals'), ('int', 'n'), ('double', 'lambda')]",
+    "11654, 36, rnorm_all_in_one_kernel, runs, [('float *', 'vals'), ('int', 'n'), ('float', 'mu'), ('float', 'sigma')]",
+    "11654, 38, setup_kernel, runs, [('curandState *', 'state'), ('int *', 'seeds'), ('int', 'n')]",
+    "11654, 39, rgamma_kernel, runs, [('curandState *', 'state'), ('int', 'state_len'), ('float *', 'vals'), ('int', 'n'), ('float', 'a'), ('float', 'scale')]"
+  ],
+  "Sorting Kernels": [
+    "11796, 2, cuInsertionSort, runs, [('float *', 'dist'), ('int', 'dist_pitch'), ('int *', 'ind'), ('int', 'ind_pitch'), ('int', 'width'), ('int', 'height'), ('int', 'k')]"
+  ],
+  "Convolution Kernels": [
+    "1169, 3, convolutionRows3DKernel, runs, [('float *', 'd_Dst'), ('float *', 'd_Src'), ('int', 'imageW'), ('int', 'imageH'), ('int', 'imageD'), ('int', 'kernel_index'), ('int', 'kernel_radius')]",
+    "1169, 4, convolutionColumns3DKernel, runs, [('float *', 'd_Dst'), ('float *', 'd_Src'), ('int', 'imageW'), ('int', 'imageH'), ('int', 'imageD'), ('int', 'kernel_index'), ('int', 'kernel_radius')]",
+    "1169, 5, convolutionLayers3DKernel, runs, [('float *', 'd_Dst'), ('float *', 'd_Src'), ('int', 'imageW'), ('int', 'imageH'), ('int', 'imageD'), ('int', 'kernel_index'), ('int', 'kernel_radius')]"
+  ],
+  "Utility Kernels": [
+    "1167, 5, show, runs, []",
+    "11695, 0, pw_copy_rc_cu_z, runs, [('const double *', 'din'), ('double *', 'zout'), ('const int', 'n')]",
+    "11695, 1, pw_copy_cr_cu_z, runs, [('const double *', 'zin'), ('double *', 'dout'), ('const int', 'n')]",
+    "11695, 2, pw_gather_cu_z, runs, [('double *', 'pwcc'), ('const double *', 'c'), ('const double', 'scale'), ('const int', 'ngpts'), ('const int *', 'ghatmap')]",
+    "11695, 3, pw_scatter_cu_z, runs, [('double *', 'c'), ('const double *', 'pwcc'), ('const double', 'scale'), ('const int', 'ngpts'), ('const int', 'nmaps'), ('const int *', 'ghatmap')]",
+    "11710, 0, addToKPlus, runs, [('int', 'msize'), ('double *', 'a'), ('double *', 'b'), ('double *', 'c'), ('double *', 'd')]",
+    "11728, 0, even, runs, [('int *', 'darr'), ('int', 'n')]",
+    "11728, 1, odd, runs, [('int *', 'darr'), ('int', 'n')]",
+    "11744, 32, wipe, runs, [('int *', 'buffer'), ('int', 'length')]",
+    "11744, 35, setValueSomestupidlylongnamefoobarfoobarfoobar, runs, [('float *', 'data'), ('int', 'idx'), ('float', 'value')]",
+    "11744, 40, getValue, runs, [('float *', 'outdata'), ('float *', 'indata')]",
+    "11744, 42, getValue, runs, [('float *', 'outdata'), ('float *', 'indata')]",
+    "11744, 43, mykernel, runs, [('float *', 'd1'), ('float *', 'd2'), ('float *', 'd3'), ('float *', 'd4'), ('float *', 'd5')]",
+    "11744, 44, getValue, runs, [('float *', 'outdata'), ('float *', 'indata')]",
+    "11744, 46, getValue, runs, [('float *', 'outdata'), ('float *', 'indata')]",
+    "11744, 47, setValue, runs, [('float *', 'data'), ('int', 'idx'), ('float', 'value')]",
+    "11744, 59, getValue, runs, [('float4 *', 'outdata'), ('float *', 'indata')]",
+    "11744, 60, setValue, runs, [('float *', 'data'), ('int', 'idx'), ('float', 'value')]",
+    "11744, 61, longKernel, runs, [('float *', 'data'), ('int', 'N'), ('float', 'value')]",
+    "11744, 63, incrValue, runs, [('float *', 'data'), ('int', 'idx'), ('float', 'value')]",
+    "11744, 64, mykernel, runs, [('int *', 'int1'), ('float *', 'f1'), ('int *', 'int2')]",
+    "11744, 65, floattoint, runs, [('int *', 'out'), ('float *', 'in')]",
+    "11744, 66, inttofloat, runs, [('float *', 'out'), ('int *', 'in')]",
+    "11744, 67, longKernel, runs, [('float *', 'data'), ('int', 'N'), ('float', 'value')]",
+    "11744, 69, getValue, runs, [('float *', 'outdata'), ('float *', 'indata')]",
+    "11744, 70, getValueChar, runs, [('char *', 'outdata'), ('char *', 'indata')]",
+    "11744, 71, longKernel, runs, [('float *', 'data'), ('int', 'N'), ('float', 'value')]",
+    "11744, 74, main_set, runs, [('float *', 'data'), ('float', 'val')]",
+    "11744, 75, k2_mul, runs, [('float *', 'data'), ('float', 'val')]",
+    "11744, 76, k1_incr, runs, [('float *', 'data'), ('float', 'val')]",
+    "11744, 77, setValue, runs, [('float *', 'data'), ('int', 'idx'), ('float', 'value')]",
+    "11744, 78, setValue, runs, [('float *', 'data'), ('int', 'idx'), ('float', 'value')]"
+  ],
+  "Graphical Kernels": [
+    "11780, 0, square_array, runs, [('float *', 'a'), ('int', 'N')]",
+    "11788, 95, ForwardWarpKernel_PSF2x2, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'normalization_factor'), ('float *', 'dst')]",
+    "11788, 96, ForwardWarpKernel_PSF1x1, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'dst')]",
+    "11788, 97, NormalizeKernel, runs, [('const float *', 'normalization_factor'), ('int', 'w'), ('int', 'h'), ('int', 's'), ('float *', 'image')]",
+    "11788, 98, MemsetKernel, runs, [('const float', 'value'), ('int', 'w'), ('int', 'h'), ('float *', 'image')]",
+    "11788, 169, mergeLocation, runs, [('const short2 *', 'loc_'), ('float *', 'x'), ('float *', 'y'), ('const int', 'npoints'), ('float', 'scale')]"
+  ],
+  "Pathfinding Kernels": [
+    "11713, 0, ShortestPath3, runs, [('float *', 'Arr1'), ('float *', 'Arr2'), ('int', 'N')]",
+    "11713, 1, ShortestPath2, runs, [('float *', 'Arr1'), ('float *', 'Arr2'), ('int', 'N')]",
+    "11713, 2, ShortestPath1, runs, [('float *', 'Arr1'), ('float *', 'Arr2'), ('int', 'N')]",
+    "11713, 3, ShortestPath2, runs, [('float *', 'Arr1'), ('float *', 'Arr2'), ('float *', 'recv'), ('int', 'N'), ('int', 'rows'), ('int', 'k'), ('int', 'rank'), ('int', 'owner')]",
+    "11713, 4, ShortestPath1, runs, [('float *', 'Arr1'), ('float *', 'Arr2'), ('int', 'N'), ('int', 'rows'), ('int', 'rank')]"
+  ],
+  "Kernel Initialization": [
+    "11717, 37, init_rng, runs, [('curandState *', 'states'), ('int', 'seed')]",
+    "11810, 4, InitComputeAccelKernel, runs, [('double *', 'CellAbscissa'), ('double *', 'CellOrdinate'), ('double *', 'Rmed'), ('int', 'nsec'), ('int', 'nrad')]",
+    "11810, 8, InitLabelKernel, runs, [('double *', 'Label'), ('double', 'xp'), ('double', 'yp'), ('double', 'rhill'), ('double *', 'Rmed'), ('int', 'nrad'), ('int', 'nsec')]"
+  ]
+}
+```

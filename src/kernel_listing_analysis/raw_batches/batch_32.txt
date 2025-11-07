@@ -1,0 +1,143 @@
+```json
+{
+  "Initialization Kernels": [
+    "2166, 7, initializeElementsTo, runs, [('int', 'initialValue'), ('int *', 'a'), ('int', 'N')]",
+    "2166, 8, initializeElementsTo, runs, [('int', 'initialValue'), ('int *', 'a'), ('int', 'N')]"
+  ],
+  "Loop Kernels": [
+    "2166, 9, loop, runs, []"
+  ],
+  "SAXPY Kernels": [
+    "2166, 13, saxpy, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "2166, 14, saxpy, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "2166, 15, saxpy, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]"
+  ],
+  "Matrix Multiplication Kernels": [
+    "2171, 0, gpu_square_matrix_mult, runs, [('float *', 'd_a'), ('float *', 'd_b'), ('float *', 'd_result'), ('int', 'n')]",
+    "2171, 1, gpu_matrix_mult, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('int', 'm'), ('int', 'n'), ('int', 'k')]",
+    "2231, 0, gpu_matrix_mult, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'm'), ('int', 'n'), ('int', 'k')]",
+    "2231, 1, gpu_square_matrix_mult, runs, [('int *', 'd_a'), ('int *', 'd_b'), ('int *', 'd_result'), ('int', 'n')]"
+  ],
+  "Identity and Initialization Kernels": [
+    "2171, 2, set_identity_kernel, runs, [('float *', 'a'), ('int', 'm'), ('int', 'n')]"
+  ],
+  "Binarization Kernels": [
+    "2172, 1, binarize_input_kernel, runs, [('float *', 'input'), ('int', 'n'), ('int', 'size'), ('float *', 'binary')]",
+    "2172, 2, binarize_weights_kernel, runs, [('float *', 'weights'), ('int', 'n'), ('int', 'size'), ('float *', 'binary')]",
+    "2272, 0, binarize_kernel, runs, [('float *', 'x'), ('int', 'n'), ('float *', 'binary')]"
+  ],
+  "Smoothing Kernels": [
+    "2172, 3, smooth_kernel, runs, [('float *', 'x'), ('int', 'n'), ('int', 'w'), ('int', 'h'), ('int', 'c'), ('int', 'size'), ('float', 'rate'), ('float *', 'delta')]",
+    "2272, 3, smooth_kernel, runs, [('float *', 'x'), ('int', 'n'), ('int', 'w'), ('int', 'h'), ('int', 'c'), ('int', 'size'), ('float', 'rate'), ('float *', 'delta')]"
+  ],
+  "Pooling Kernels": [
+    "2172, 5, backward_avgpool_layer_kernel, runs, [('int', 'n'), ('int', 'w'), ('int', 'h'), ('int', 'c'), ('float *', 'in_delta'), ('float *', 'out_delta')]",
+    "2272, 4, forward_avgpool_layer_kernel, runs, [('int', 'n'), ('int', 'w'), ('int', 'h'), ('int', 'c'), ('float *', 'input'), ('float *', 'output')]",
+    "2272, 5, backward_avgpool_layer_kernel, runs, [('int', 'n'), ('int', 'w'), ('int', 'h'), ('int', 'c'), ('float *', 'in_delta'), ('float *', 'out_delta')]",
+    "2272, 59, forward_maxpool_layer_kernel, runs, [('int', 'n'), ('int', 'in_h'), ('int', 'in_w'), ('int', 'in_c'), ('int', 'stride'), ('int', 'size'), ('int', 'pad'), ('float *', 'input'), ('float *', 'output'), ('int *', 'indexes')]",
+    "2272, 60, backward_maxpool_layer_kernel, runs, [('int', 'n'), ('int', 'in_h'), ('int', 'in_w'), ('int', 'in_c'), ('int', 'stride'), ('int', 'size'), ('int', 'pad'), ('float *', 'delta'), ('float *', 'prev_delta'), ('int *', 'indexes')]"
+  ],
+  "Dot Product Kernels": [
+    "2172, 12, dot_kernel, runs, [('float *', 'output'), ('float', 'scale'), ('int', 'batch'), ('int', 'n'), ('int', 'size'), ('float *', 'delta')]"
+  ],
+  "Normalization Kernels": [
+    "2172, 14, normalize_kernel, runs, [('int', 'N'), ('float *', 'x'), ('float *', 'mean'), ('float *', 'variance'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial')]",
+    "2272, 14, normalize_kernel, runs, [('int', 'N'), ('float *', 'x'), ('float *', 'mean'), ('float *', 'variance'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial')]"
+  ],
+  "Activation Kernels": [
+    "2313, 93, relu_gpu_forward, runs, [('float *', 'out'), ('float *', 'in'), ('int64_t', 'N')]",
+    "2313, 94, relu_gpu_backward, runs, [('float *', 'ingrad'), ('float *', 'outgrad'), ('float *', 'indata'), ('int64_t', 'N')]"
+  ],
+  "Reduction Kernels": [
+    "2266, 4, reduction, runs, [('int *', 'input'), ('int *', 'output')]",
+    "237, 1, reduce, runs, [('unsigned int *', 'd_out_shared'), ('const unsigned int *', 'd_in')]",
+    "237, 20, global_reduce_kernel, runs, [('float *', 'd_out'), ('float *', 'd_in')]",
+    "237, 21, shmem_reduce_kernel, runs, [('float *', 'd_out'), ('const float *', 'd_in')]"
+  ],
+  "Sorting Kernels": [
+    "218, 0, bitonic_sort_step, runs, [('float *', 'dev_values'), ('int', 'j'), ('int', 'k')]",
+    "237, 0, batcherBitonicMergesort64, runs, [('float *', 'd_out'), ('const float *', 'd_in')]"
+  ],
+  "Utility Kernels": [
+    "219, 0, gen_matvec, runs, [('float *', 'A'), ('float *', 'x'), ('float *', 'y'), ('const int', 'm'), ('const int', 'n')]",
+    "219, 1, gen_matvecT, runs, [('float *', 'A'), ('float *', 'x'), ('float *', 'y'), ('const int', 'm'), ('const int', 'n')]",
+    "219, 2, transpose, runs, [('float *', 'odata'), ('float *', 'idata'), ('int', 'width'), ('int', 'height')]",
+    "219, 3, transpose_naive, runs, [('float *', 'odata'), ('float *', 'idata'), ('int', 'width'), ('int', 'height')]",
+    "219, 6, threshold_one, runs, [('float *', 'vec'), ('float *', 'vec_thres'), ('int *', 'bin'), ('const int', 'k_bin'), ('const int', 'n')]",
+    "219, 7, threshold, runs, [('float *', 'vec'), ('int *', 'bin'), ('const int', 'k_bin'), ('const int', 'n')]",
+    "219, 8, threshold_and_support, runs, [('float *', 'vec'), ('int *', 'support'), ('const int', 'n'), ('const float', 'T')]",
+    "219, 9, zero_vector_float, runs, [('float *', 'vec'), ('const int', 'n')]",
+    "219, 10, zero_vector_int, runs, [('int *', 'vec'), ('const int', 'n')]",
+    "219, 11, one_vector_float, runs, [('float *', 'vec'), ('const int', 'n')]",
+    "219, 12, one_vector_int, runs, [('int *', 'vec'), ('const int', 'n')]",
+    "219, 13, LinearBinning, runs, [('float *', 'vec'), ('int *', 'bin'), ('int *', 'bin_counters'), ('const int', 'num_bins'), ('const int', 'MaxBin'), ('const int', 'n'), ('const float', 'slope'), ('const float', 'intercept')]",
+    "219, 14, check_support, runs, [('float *', 'vec_input'), ('float *', 'vec'), ('const int', 'n'), ('int *', 'support_counter')]",
+    "219, 15, magnitudeCopy, runs, [('float *', 'mag_vec'), ('float *', 'vec'), ('const int', 'n')]",
+    "219, 16, make_bins, runs, [('float *', 'vec'), ('int *', 'bin'), ('const int', 'num_bins'), ('const int', 'n'), ('const float', 'slope'), ('const float', 'intercept')]",
+    "219, 17, count_bins, runs, [('int *', 'bin'), ('int *', 'bin_counters'), ('const int', 'num_bins'), ('const int', 'n')]",
+    "219, 18, make_and_count_bins, runs, [('float *', 'vec'), ('int *', 'bin'), ('int *', 'bin_counters'), ('const int', 'num_bins'), ('const int', 'n'), ('const float', 'slope'), ('const float', 'intercept')]",
+    "219, 19, count_zero_one, runs, [('float *', 'vec'), ('float *', 'data'), ('const int', 'n')]",
+    "219, 20, countRest, runs, [('int *', 'bin'), ('int *', 'bin_counters'), ('const int', 'num_bins'), ('const int', 'maxBin'), ('const int', 'n')]",
+    "219, 22, update_bins, runs, [('float *', 'vec'), ('int *', 'bin'), ('int *', 'bin_counters'), ('const int', 'num_bins'), ('const int', 'n'), ('const float', 'slope'), ('const float', 'intercept')]",
+    "219, 23, dyadicAdd, runs, [('int *', 'counter'), ('const int', 'length'), ('const int', 'shift')]",
+    "219, 24, __soft, runs, [('float *', 'y'), ('const float *', 'x'), ('float', 'T'), ('int', 'm')]",
+    "219, 25, halve_bins, runs, [('int *', 'bin'), ('const int', 'n')]",
+    "219, 26, add_adjacent, runs, [('int *', 'vec'), ('int *', 'vec_shorter'), ('const int', 'n')]",
+    "219, 27, int_copy, runs, [('int *', 'vec_to'), ('int *', 'vec_from'), ('const int', 'n')]",
+    "219, 28, segmentMax, runs, [('float *', 'd_vec'), ('float *', 'segmentMaxes'), ('const int', 'length'), ('const int', 'HighLength'), ('const int', 'HighSegmentLength'), ('const int', 'threadsHigh'), ('const int', 'LowSegmentLength')]",
+    "219, 30, make_and_count_seg, runs, [('float *', 'vec'), ('int *', 'bin'), ('int *', 'segcounter'), ('const int', 'length'), ('const int', 'countlength'), ('const int', 'HighLength'), ('const int', 'HighSegmentLength'), ('const int', 'threadsHigh'), ('const int', 'LowSegmentLength'), ('const float', 'low'), ('const float', 'high'), ('const float', 'slope')]",
+    "219, 31, make_and_count_seg_sharedAtomic, runs, [('float *', 'vec'), ('int *', 'bin'), ('int *', 'segcounter'), ('const int', 'length'), ('const int', 'countlength'), ('const int', 'HighLength'), ('const int', 'HighSegmentLength'), ('const int', 'threadsHigh'), ('const int', 'LowSegmentLength'), ('const float', 'low'), ('const float', 'high'), ('const float', 'slope')]",
+    "219, 32, segCountSum, runs, [('int *', 'counter'), ('int *', 'segcounter'), ('const int', 'countlength')]",
+    "219, 33, segCountSum_shared, runs, [('int *', 'counter'), ('int *', 'segcounter'), ('const int', 'countlength')]",
+    "219, 34, magnitude, runs, [('float *', 'vec'), ('const int', 'n')]"
+  ],
+  "Image Processing Kernels": [
+    "2277, 2, Passthru, runs, [('uint32_t *', 'srcImage'), ('size_t', 'nSourcePitch'), ('uint32_t *', 'dstImage'), ('size_t', 'nDestPitch'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "2277, 3, NV12ToARGB, runs, [('uint32_t *', 'srcImage'), ('size_t', 'nSourcePitch'), ('uint32_t *', 'dstImage'), ('size_t', 'nDestPitch'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "2277, 4, NV12ToRGBAf, runs, [('uint32_t *', 'srcImage'), ('size_t', 'nSourcePitch'), ('float4 *', 'dstImage'), ('size_t', 'nDestPitch'), ('uint32_t', 'width'), ('uint32_t', 'height')]"
+  ],
+  "Kernel Operations": [
+    "236, 0, add, runs, [('int *', 'a'), ('int *', 'c')]",
+    "236, 1, hola, runs, []",
+    "236, 2, elevar_al_cuadrado, runs, [('float *', 'd_salida'), ('float *', 'd_entrada')]"
+  ],
+  "Miscellaneous Kernels": [
+    "224, 5, neighbor_kernel, runs, [('double *', 'cellStatePtr'), ('double *', 'cellVDendPtr')]",
+    "224, 6, compute_kernel, runs, [('double *', 'cellStatePtr'), ('double *', 'iApp'), ('double *', 'cellVDendPtr')]",
+    "2245, 0, double_value, runs, [('double *', 'x'), ('double *', 'y')]",
+    "2249, 1, empty, runs, []",
+    "2249, 3, kernel, runs, []",
+    "2254, 177, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "2254, 318, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "2260, 170, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "2260, 312, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "2266, 0, simple_add, runs, [('float *', 'a'), ('float *', 'b'), ('int', 'n')]",
+    "2266, 8, null_kernel, runs, []",
+    "2272, 58, yoloswag420blazeit360noscope, runs, [('float *', 'input'), ('int', 'size'), ('float *', 'rand'), ('float', 'prob'), ('float', 'scale')]",
+    "2300, 21, analyze, runs, [('const float *', 'input'), ('float *', 'sum'), ('int', 'numElements')]",
+    "2300, 22, sum, runs, [('const float *', 'input'), ('float *', 'output'), ('int', 'numElements')]",
+    "2304, 1, local_sols, runs, [('float *', 'Le'), ('float *', 'be'), ('float *', 'ue'), ('float *', 'up_glob'), ('int *', 'cells'), ('int', 'num_cells')]",
+    "2304, 2, glob_sols, runs, [('float *', 'Le'), ('float *', 'w'), ('float *', 'u_glob'), ('float *', 'ue'), ('int *', 'cells'), ('int', 'num_cells')]",
+    "2305, 0, GaussianKernelSimple, runs, [('const uint8_t *', 'src'), ('uint8_t *', 'dst'), ('int', 'width'), ('int', 'height'), ('int', 'step')]",
+    "2305, 1, GaussianKernelArray, runs, [('const uint8_t *', 'src'), ('uint8_t *', 'dst'), ('int', 'width'), ('int', 'height'), ('int', 'step'), ('int', 'ks')]",
+    "2305, 10, TransposeKernelSimple, runs, [('const uint8_t *', 'src'), ('uint8_t *', 'dst'), ('int', 'width'), ('int', 'height')]",
+    "2305, 11, TransposeKernelShared, runs, [('const uint8_t *', 'src'), ('uint8_t *', 'dst'), ('int', 'width'), ('int', 'height')]",
+    "2305, 12, TransposeKernelFast, runs, [('const uint8_t *', 'src'), ('uint8_t *', 'dst'), ('int', 'width'), ('int', 'height')]",
+    "2305, 13, TransposeKernelFast2, runs, [('const uint8_t *', 'src'), ('uint8_t *', 'dst'), ('int', 'width'), ('int', 'height')]",
+    "2305, 14, ReduceHKernelSimple, runs, [('const uint8_t *', 'src'), ('float *', 'dst'), ('int', 'width'), ('int', 'height')]",
+    "2305, 15, ReduceInitKernel, runs, [('float *', 'dst'), ('int', 'length')]",
+    "2305, 16, ReduceHKernelFast, runs, [('const uint8_t *', 'src'), ('float *', 'dst'), ('int', 'width'), ('int', 'height')]",
+    "2305, 17, ReduceWKernelSimple, runs, [('const uint8_t *', 'src'), ('float *', 'dst'), ('int', 'width'), ('int', 'height')]",
+    "2305, 18, ReduceWKernelFast, runs, [('const uint8_t *', 'src'), ('float *', 'dst'), ('int', 'width'), ('int', 'height')]",
+    "231, 1, conv2genericrev, runs, [('float *', 'input'), ('float *', 'kernel'), ('float *', 'output'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'kernel_n'), ('int', 'kernel_h'), ('int', 'kernel_w'), ('float', 'alpha'), ('int', 'stride_h'), ('int', 'stride_w')]",
+    "2387, 0, stencil_kernel, runs, [('float *', 'x_new'), ('float *', 'x_old')]",
+    "2387, 6, cn_pnpoly, runs, [('int *', 'bitmap'), ('float2 *', 'points'), ('int', 'n')]",
+    "2387, 7, cn_pnpoly_naive, runs, [('int *', 'bitmap'), ('float2 *', 'points'), ('int', 'n')]",
+    "2387, 13, matmul_kernel, runs, [('float *', 'C'), ('float *', 'A'), ('float *', 'B')]",
+    "2387, 14, matmul_kernel, runs, [('float *', 'C'), ('float *', 'A'), ('float *', 'B')]",
+    "2387, 15, matmul_kernel, runs, [('float *', 'C'), ('float *', 'A'), ('float *', 'B')]",
+    "2387, 16, matmul_kernel, runs, [('float *', 'C'), ('float *', 'A'), ('float *', 'B')]",
+    "2389, 2, kernelCalculateHistogram, runs, [('unsigned int *', 'histogram'), ('unsigned char *', 'rawPixels'), ('long', 'chunkSize'), ('long', 'totalPixels')]"
+  ]
+}
+```

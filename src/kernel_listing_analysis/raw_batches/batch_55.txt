@@ -1,0 +1,71 @@
+```json
+{
+  "Softmax Kernels": [
+    "7053, 350, softmax_gradient_kernel, runs, [('const int', 'dim'), ('const float *', 'Y'), ('const float *', 'dY'), ('float *', 'dX')]",
+    "7056, 171, softmax_gradient_kernel, runs, [('const int', 'dim'), ('const float *', 'Y'), ('const float *', 'dY'), ('float *', 'dX')]",
+    "7064, 13, gSoftmaxGrad, runs, [('float *', 'grad'), ('const float *', 'adj'), ('const float *', 'val'), ('const int', 'rows'), ('const int', 'cols')]",
+    "7064, 14, gLogSoftmaxGrad, runs, [('float *', 'grad'), ('const float *', 'adj'), ('const float *', 'val'), ('const int', 'rows'), ('const int', 'cols')]",
+    "7086, 337, softmax_gradient_kernel, runs, [('const int', 'dim'), ('const float *', 'Y'), ('const float *', 'dY'), ('float *', 'dX')]",
+    "7094, 171, softmax_gradient_kernel, runs, [('const int', 'dim'), ('const float *', 'Y'), ('const float *', 'dY'), ('float *', 'dX')]",
+    "7160, 53, softmax_kernel, runs, [('float *', 'input'), ('int', 'n'), ('int', 'batch'), ('int', 'batch_offset'), ('int', 'groups'), ('int', 'group_offset'), ('int', 'stride'), ('float', 'temp'), ('float *', 'output')]"
+  ],
+  "Accuracy Kernels": [
+    "7053, 355, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "7056, 176, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "7086, 342, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "7094, 176, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "7164, 311, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "7173, 354, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]"
+  ],
+  "Downscale Kernels": [
+    "7056, 10, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "7086, 166, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "7089, 166, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "7094, 10, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "7164, 170, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "7173, 168, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]"
+  ],
+  "Matrix Operations": [
+    "707, 7, matrix_multiply, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('int', 'num'), ('size_t', 'width')]",
+    "7071, 0, mysgemm, runs, [('int', 'm'), ('int', 'n'), ('int', 'k'), ('const float *', 'A'), ('const float *', 'B'), ('float *', 'C')]",
+    "7071, 1, vecAddKernel, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'n')]",
+    "7071, 2, vecAddKernel, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'n')]",
+    "7071, 3, mysgemm, runs, [('int', 'm'), ('int', 'n'), ('int', 'k'), ('const float *', 'A'), ('const float *', 'B'), ('float *', 'C')]",
+    "7146, 1, kMartixByMatrixElementwise, runs, [('const int', 'nThreads'), ('const float *', 'm1'), ('const float *', 'm2'), ('float *', 'output')]",
+    "7146, 2, kMartixSubstractMatrix, runs, [('const int', 'nThreads'), ('const float *', 'm1'), ('const float *', 'm2'), ('float *', 'output')]",
+    "7146, 5, kDot, runs, [('const int', 'nThreads'), ('const float *', 'm1'), ('const float *', 'm2'), ('float *', 'output'), ('const int', 'm1_rows'), ('const int', 'm1_columns'), ('const int', 'm2_columns')]"
+  ],
+  "Reduction Kernels": [
+    "7058, 3, reduction, runs, [('int *', 'in'), ('int *', 'out')]",
+    "7058, 4, reduction, runs, [('int *', 'in'), ('int *', 'out')]",
+    "707, 9, vecSum, runs, [('double *', 'devIn'), ('int', 'pow_step'), ('int', 'n')]",
+    "716, 2, gpu_mergesort, runs, [('long *', 'source'), ('long *', 'dest'), ('long', 'size'), ('long', 'width'), ('long', 'slices'), ('dim3 *', 'threads'), ('dim3 *', 'blocks')]"
+  ],
+  "Distance Kernels": [
+    "710, 0, cuComputeDistanceGlobal, runs, [('float *', 'A'), ('int', 'wA'), ('float *', 'B'), ('int', 'wB'), ('int', 'dim'), ('float *', 'AB')]",
+    "7184, 0, distanceArrCalc, runs, [('int', 'pointsCounter'), ('int', 'threads'), ('double *', 'distanceFromPointToCluster'), ('double *', 'pointsInGpu'), ('double *', 'clustersInGpu')]",
+    "7184, 1, minimumClusterDistance, runs, [('int', 'threads'), ('double *', 'pointToClusterDistance'), ('int *', 'minimumPointToCluster'), ('int', 'pointsCounter'), ('int', 'clusterCounter')]"
+  ],
+  "Image Processing Kernels": [
+    "707, 0, imgBlur, runs, [('float *', 'imgIn'), ('float *', 'imgOut'), ('int', 'imageWidth'), ('int', 'imageHeight')]",
+    "7136, 6, ConvolutionRowGPU, runs, [('double *', 'd_Dst'), ('double *', 'd_Src'), ('double *', 'd_Filter'), ('int', 'imageW'), ('int', 'imageH'), ('int', 'filterR')]",
+    "7136, 7, ConvolutionColGPU, runs, [('double *', 'd_Dst'), ('double *', 'd_Src'), ('double *', 'd_Filter'), ('int', 'imageW'), ('int', 'imageH'), ('int', 'filterR')]"
+  ],
+  "Utility Kernels": [
+    "7058, 5, cudahello, runs, []",
+    "71, 1, kernel, runs, []",
+    "7074, 0, analyze_id, runs, [('Person *', 'people'), ('int *', 'statResults')]",
+    "7074, 1, analyze_age, runs, [('Person *', 'people'), ('int *', 'statResults')]",
+    "7074, 2, analyze_height, runs, [('Person *', 'people'), ('int *', 'statResults')]",
+    "707, 1, vectorAdd, runs, [('const float *', 'A'), ('const float *', 'B'), ('float *', 'C'), ('int', 'n')]"
+  ],
+  "Sorting Kernels": [
+    "714, 1, d_count_kernel, runs, [('unsigned int *', 'd_pivots'), ('int *', 'r_buckets'), ('int', 'pivotsLength'), ('unsigned int *', 'r_indices'), ('unsigned int *', 'r_sublist'), ('unsigned int *', 'd_in'), ('int', 'itemCount')]",
+    "714, 2, d_bucketsort, runs, [('unsigned int *', 'd_in'), ('unsigned int *', 'd_indices'), ('unsigned int *', 'd_sublist'), ('unsigned int *', 'r_outputlist'), ('unsigned int *', 'd_bucketoffsets'), ('int', 'itemCount')]"
+  ],
+  "Activation Functions": [
+    "7162, 89, relu_gpu_forward, runs, [('float *', 'out'), ('float *', 'in'), ('int64_t', 'N')]",
+    "7162, 90, relu_gpu_backward, runs, [('float *', 'ingrad'), ('float *', 'outgrad'), ('float *', 'indata'), ('int64_t', 'N')]"
+  ]
+}
+```

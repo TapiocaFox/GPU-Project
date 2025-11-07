@@ -1,0 +1,120 @@
+```json
+{
+  "Dot Kernels": [
+    "6710, 226, kDotProduct_r, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'target'), ('const uint', 'numElements')]",
+    "6722, 12, dot_kernel, runs, [('float *', 'output'), ('float', 'scale'), ('int', 'batch'), ('int', 'n'), ('int', 'size'), ('float *', 'delta')]",
+    "7048, 229, kDotProduct_r, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'target'), ('const uint', 'numElements')]",
+    "7051, 220, kDotProduct_r, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'target'), ('const uint', 'numElements')]",
+    "7052, 220, kDotProduct_r, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'target'), ('const uint', 'numElements')]",
+    "7053, 229, kDotProduct_r, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'target'), ('const uint', 'numElements')]"
+  ],
+  "Softmax Kernels": [
+    "6710, 337, softmax_gradient_kernel, runs, [('const int', 'dim'), ('const float *', 'Y'), ('const float *', 'dY'), ('float *', 'dX')]",
+    "6722, 48, softmax_tree_kernel, runs, [('float *', 'input'), ('int', 'spatial'), ('int', 'batch'), ('int', 'stride'), ('float', 'temp'), ('float *', 'output'), ('int', 'groups'), ('int *', 'group_size'), ('int *', 'group_offset')]",
+    "6722, 49, softmax_kernel, runs, [('float *', 'input'), ('int', 'n'), ('int', 'batch'), ('int', 'batch_offset'), ('int', 'groups'), ('int', 'group_offset'), ('int', 'stride'), ('float', 'temp'), ('float *', 'output')]",
+    "7048, 341, softmax_gradient_kernel, runs, [('const int', 'dim'), ('const float *', 'Y'), ('const float *', 'dY'), ('float *', 'dX')]",
+    "7051, 336, softmax_gradient_kernel, runs, [('const int', 'dim'), ('const float *', 'Y'), ('const float *', 'dY'), ('float *', 'dX')]",
+    "7052, 333, softmax_gradient_kernel, runs, [('const int', 'dim'), ('const float *', 'Y'), ('const float *', 'dY'), ('float *', 'dX')]"
+  ],
+  "Accuracy Kernels": [
+    "6710, 342, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "6722, 349, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "7051, 344, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "7052, 341, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]"
+  ],
+  "Matrix Operations": [
+    "6718, 3, naive_matrix_transpose, runs, [('float *', 'input'), ('int', 'axis_0'), ('int', 'axis_1'), ('float *', 'output')]",
+    "6718, 4, naive_bias_add, runs, [('float *', 'in'), ('int', 'size'), ('float *', 'bias'), ('int', 'bias_size')]",
+    "6718, 5, naive_sum, runs, [('float *', 'input'), ('int', 'size'), ('float *', 'out')]",
+    "6718, 6, naive_backward_cross_entropy, runs, [('float *', 'in'), ('int *', 'one_hot_classes'), ('float', 'batches'), ('int', 'size'), ('float *', 'out')]",
+    "6797, 0, maxi, runs, [('int *', 'a'), ('int *', 'b'), ('int', 'n')]",
+    "6797, 1, sum, runs, [('int *', 'a'), ('int *', 'b'), ('int', 'n')]",
+    "6797, 2, var, runs, [('int *', 'a'), ('int *', 'b'), ('int', 'n'), ('float', 'mean')]",
+    "6797, 3, sum, runs, [('int *', 'a'), ('int *', 'b'), ('int', 'n')]",
+    "6797, 4, mini1, runs, [('int *', 'a'), ('int *', 'b'), ('int', 'n')]",
+    "6804, 1, reduce, runs, [('double *', 'a'), ('double *', 'z'), ('int', 'sizeOut')]",
+    "6804, 2, reduce, runs, [('double *', 'a'), ('double *', 'z'), ('int', 'sizeOut')]",
+    "691, 0, histogram_kernel, runs, [('float *', 'I'), ('float *', 'minI'), ('float *', 'maxI'), ('float *', 'mask'), ('int', 'nbins'), ('int', 'c'), ('int', 'h'), ('int', 'w'), ('float *', 'hist')]",
+    "691, 1, hist_remap2_kernel, runs, [('float *', 'I'), ('int', 'nI'), ('float *', 'mI'), ('float *', 'histJ'), ('float *', 'cumJ'), ('float *', '_minJ'), ('float *', '_maxJ'), ('int', 'nbins'), ('float *', '_sortI'), ('int *', '_idxI'), ('float *', 'R'), ('int', 'c'), ('int', 'h'), ('int', 'w')]",
+    "691, 4, avg_vote_kernel, runs, [('float *', 'A'), ('float *', 'B'), ('int *', 'corrAB'), ('int', 'patch'), ('int', 'c'), ('int', 'h'), ('int', 'w')]",
+    "691, 5, blend_kernel, runs, [('float *', 'A'), ('float *', 'BP'), ('float *', 'M'), ('float *', 'AP'), ('float', 'alpha'), ('int', 'c'), ('int', 'h'), ('int', 'w')]",
+    "691, 6, patchmatch2_conv_kernel, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'AP'), ('float *', 'BP'), ('float *', 'conv'), ('int *', 'prev_corrAB_upsampled'), ('int', 'patch'), ('int', 's_rad'), ('int', 'c'), ('int', 'h'), ('int', 'w')]",
+    "691, 7, patchmatch2_argmax_kernel, runs, [('float *', 'conv'), ('int *', 'prev_corrAB_upsampled'), ('int *', 'corrAB'), ('int', 's_rad'), ('int', 'c'), ('int', 'h'), ('int', 'w')]"
+  ],
+  "Utility Kernels": [
+    "6710, 227, kSetupCurand, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "674, 17, randInitGpu, runs, [('curandState_t *', 'state'), ('const uint', 'seed'), ('const uint', 'rank'), ('const uint', 'size')]",
+    "6745, 3, gpu_check, runs, [('int', 'threads'), ('uint64_t *', 'data'), ('uint32_t *', 'results'), ('uint64_t', 'target')]",
+    "6804, 0, basicRun, runs, [('double *', 'a'), ('double *', 'z')]",
+    "7041, 24, KernelMemset, runs, [('bool *', 'p'), ('int', 'len'), ('bool', 'value')]",
+    "7041, 49, KernelSelfPlusIters, runs, [('const bool *', 'indexers'), ('int *', 'iters'), ('int', 'count')]"
+  ],
+  "Binarization Kernels": [
+    "6722, 0, binarize_kernel, runs, [('float *', 'x'), ('int', 'n'), ('float *', 'binary')]",
+    "6722, 1, binarize_input_kernel, runs, [('float *', 'input'), ('int', 'n'), ('int', 'size'), ('float *', 'binary')]",
+    "6722, 2, binarize_weights_kernel, runs, [('float *', 'weights'), ('int', 'n'), ('int', 'size'), ('float *', 'binary')]",
+    "6824, 0, binarize_kernel, runs, [('float *', 'x'), ('int', 'n'), ('float *', 'binary')]",
+    "6824, 1, binarize_input_kernel, runs, [('float *', 'input'), ('int', 'n'), ('int', 'size'), ('float *', 'binary')]",
+    "6824, 2, binarize_weights_kernel, runs, [('float *', 'weights'), ('int', 'n'), ('int', 'size'), ('float *', 'binary')]"
+  ],
+  "Pooling Kernels": [
+    "6722, 4, forward_avgpool_layer_kernel, runs, [('int', 'n'), ('int', 'w'), ('int', 'h'), ('int', 'c'), ('float *', 'input'), ('float *', 'output')]",
+    "6722, 5, backward_avgpool_layer_kernel, runs, [('int', 'n'), ('int', 'w'), ('int', 'h'), ('int', 'c'), ('float *', 'in_delta'), ('float *', 'out_delta')]",
+    "6824, 4, forward_avgpool_layer_kernel, runs, [('int', 'n'), ('int', 'w'), ('int', 'h'), ('int', 'c'), ('float *', 'input'), ('float *', 'output')]",
+    "6824, 5, backward_avgpool_layer_kernel, runs, [('int', 'n'), ('int', 'w'), ('int', 'h'), ('int', 'c'), ('float *', 'in_delta'), ('float *', 'out_delta')]",
+    "6722, 54, forward_maxpool_layer_kernel, runs, [('int', 'n'), ('int', 'in_h'), ('int', 'in_w'), ('int', 'in_c'), ('int', 'stride'), ('int', 'size'), ('int', 'pad'), ('float *', 'input'), ('float *', 'output'), ('int *', 'indexes')]",
+    "6722, 55, backward_maxpool_layer_kernel, runs, [('int', 'n'), ('int', 'in_h'), ('int', 'in_w'), ('int', 'in_c'), ('int', 'stride'), ('int', 'size'), ('int', 'pad'), ('float *', 'delta'), ('float *', 'prev_delta'), ('int *', 'indexes')]"
+  ],
+  "Normalization Kernels": [
+    "6722, 14, normalize_kernel, runs, [('int', 'N'), ('float *', 'x'), ('float *', 'mean'), ('float *', 'variance'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial')]",
+    "6722, 15, normalize_delta_kernel, runs, [('int', 'N'), ('float *', 'x'), ('float *', 'mean'), ('float *', 'variance'), ('float *', 'mean_delta'), ('float *', 'variance_delta'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial'), ('float *', 'delta')]",
+    "6824, 14, normalize_kernel, runs, [('int', 'N'), ('float *', 'x'), ('float *', 'mean'), ('float *', 'variance'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial')]",
+    "6824, 15, normalize_delta_kernel, runs, [('int', 'N'), ('float *', 'x'), ('float *', 'mean'), ('float *', 'variance'), ('float *', 'mean_delta'), ('float *', 'variance_delta'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial'), ('float *', 'delta')]"
+  ],
+  "Gradient Kernels": [
+    "7024, 0, cudaComputeXGradient, runs, [('int *', 'x_gradient'), ('unsigned char *', 'channel'), ('int', 'image_width'), ('int', 'image_height')]",
+    "7024, 1, cudaComputeYGradient, runs, [('int *', 'y_gradient'), ('unsigned char *', 'channel'), ('int', 'image_width'), ('int', 'image_height')]",
+    "7024, 2, cudaComputeAndNormalizeGradientLength, runs, [('unsigned char *', 'channel_values'), ('int *', 'x_gradient'), ('int *', 'y_gradient')]",
+    "7033, 0, cudaComputeXGradient, runs, [('int *', 'x_gradient'), ('unsigned char *', 'channel'), ('int', 'image_width'), ('int', 'image_height')]",
+    "7033, 1, cudaComputeYGradient, runs, [('int *', 'y_gradient'), ('unsigned char *', 'channel'), ('int', 'image_width'), ('int', 'image_height')]",
+    "7033, 2, cudaComputeAndNormalizeGradientLength, runs, [('unsigned char *', 'channel_values'), ('int *', 'x_gradient'), ('int *', 'y_gradient')]"
+  ],
+  "Image Processing Kernels": [
+    "686, 0, da_peaks, runs, [('float *', 'd_i1'), ('float', 'thresh'), ('int', 'm'), ('int', 'n'), ('int', 'o')]",
+    "686, 17, xcorr, runs, [('float *', 'd_i1'), ('float *', 'd_i2'), ('float *', 'd_icorr'), ('int', 'm1'), ('int', 'n1'), ('int', 'm2'), ('int', 'n2')]",
+    "686, 18, drift, runs, [('float *', 'd_i1'), ('float *', 'd_icorr'), ('int', 'm1'), ('int', 'n1'), ('int', 'o1')]",
+    "686, 19, xcorr, runs, [('float *', 'd_i1'), ('float *', 'd_i2'), ('float *', 'd_icorr'), ('int', 'm1'), ('int', 'n1'), ('int', 'm2'), ('int', 'n2')]",
+    "686, 20, xcorr, runs, [('float *', 'd_i1'), ('float *', 'd_i2'), ('float *', 'd_icorr'), ('int', 'm1'), ('int', 'n1'), ('int', 'm2'), ('int', 'n2')]",
+    "686, 21, xcorr, runs, [('float *', 'd_i1'), ('float *', 'd_i2'), ('float *', 'd_icorr'), ('int', 'm1'), ('int', 'n1'), ('int', 'm2'), ('int', 'n2')]"
+  ],
+  "Miscellaneous Kernels": [
+    "6710, 3, kLogregCost, runs, [('float *', 'probs'), ('float *', 'labels'), ('float *', 'maxProbs'), ('float *', 'labelLogProbs'), ('float *', 'correctProbs'), ('const int', 'numCases'), ('const int', 'numOut')]",
+    "6718, 6, naive_backward_cross_entropy, runs, [('float *', 'in'), ('int *', 'one_hot_classes'), ('float', 'batches'), ('int', 'size'), ('float *', 'out')]",
+    "6809, 0, Split, runs, [('float *', 'xf'), ('bool *', 'xb'), ('size_t', 'idxf'), ('size_t', 'idxb'), ('size_t', 'N'), ('float', 'threshold')]",
+    "6809, 1, Split, runs, [('int *', 'xi'), ('bool *', 'xb'), ('size_t', 'idxi'), ('size_t', 'idxb'), ('size_t', 'N'), ('float', 'threshold')]",
+    "6809, 3, ConstantB, runs, [('bool *', 'x'), ('bool', 'value'), ('size_t', 'idx'), ('size_t', 'N')]",
+    "6809, 5, Sign, runs, [('float *', 'x'), ('size_t', 'idx'), ('size_t', 'N')]",
+    "6809, 7, Sin, runs, [('float *', 'x'), ('size_t', 'idx'), ('size_t', 'N'), ('float', 'W0')]",
+    "6809, 9, Sqrt, runs, [('float *', 'x'), ('size_t', 'idx'), ('size_t', 'N'), ('float', 'W0')]",
+    "6809, 11, Divide, runs, [('float *', 'x'), ('size_t', 'idx'), ('size_t', 'N'), ('float', 'W0'), ('float', 'W1')]",
+    "6809, 12, Float, runs, [('float *', 'x'), ('bool *', 'y'), ('size_t', 'idxf'), ('size_t', 'idxb'), ('size_t', 'N')]",
+    "6809, 13, Float, runs, [('float *', 'x'), ('int *', 'y'), ('size_t', 'idxf'), ('size_t', 'idxi'), ('size_t', 'N')]",
+    "6809, 14, Add, runs, [('float *', 'x'), ('size_t', 'idx'), ('size_t', 'N'), ('float', 'W0'), ('float', 'W1')]",
+    "6809, 15, Step, runs, [('float *', 'x'), ('size_t', 'idx'), ('size_t', 'N')]",
+    "6809, 17, Relu, runs, [('float *', 'x'), ('size_t', 'idx'), ('size_t', 'N'), ('float', 'W0')]",
+    "6809, 23, Cos, runs, [('float *', 'x'), ('size_t', 'idx'), ('size_t', 'N'), ('float', 'W0')]",
+    "6809, 24, Subtract, runs, [('float *', 'x'), ('size_t', 'idx'), ('size_t', 'N'), ('float', 'W0'), ('float', 'W1')]",
+    "6809, 25, If, runs, [('bool *', 'xb'), ('float *', 'xf'), ('size_t', 'idxf'), ('size_t', 'idxb'), ('size_t', 'N')]",
+    "6809, 26, IfThenElse, runs, [('bool *', 'b'), ('float *', 'x'), ('size_t', 'idxb'), ('size_t', 'idxf'), ('size_t', 'N')]",
+    "6809, 27, Equal, runs, [('float *', 'xf'), ('bool *', 'xb'), ('size_t', 'idxf'), ('size_t', 'idxb'), ('size_t', 'N')]",
+    "6809, 28, LessThan, runs, [('float *', 'xf'), ('bool *', 'xb'), ('size_t', 'idxf'), ('size_t', 'idxb'), ('size_t', 'N')]",
+    "6809, 29, LEQ, runs, [('float *', 'xf'), ('bool *', 'xb'), ('size_t', 'idxf'), ('size_t', 'idxb'), ('size_t', 'N')]",
+    "6809, 30, GreaterThan, runs, [('float *', 'xf'), ('bool *', 'xb'), ('size_t', 'idxf'), ('size_t', 'idxb'), ('size_t', 'N')]",
+    "6809, 31, Xor, runs, [('bool *', 'x'), ('size_t', 'idx'), ('size_t', 'N')]",
+    "6809, 32, And, runs, [('bool *', 'x'), ('size_t', 'idx'), ('size_t', 'N')]",
+    "6809, 33, Not, runs, [('bool *', 'x'), ('size_t', 'idx'), ('size_t', 'N')]",
+    "6809, 34, Or, runs, [('bool *', 'x'), ('size_t', 'idx'), ('size_t', 'N')]",
+    "6809, 35, GEQ, runs, [('float *', 'xf'), ('bool *', 'xb'), ('size_t', 'idxf'), ('size_t', 'idxb'), ('size_t', 'N')]"
+  ]
+}
+```

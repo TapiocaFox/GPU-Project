@@ -1,0 +1,66 @@
+```json
+{
+  "Warp Kernels": [
+    "7859, 96, ForwardWarpKernel_PSF2x2, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'normalization_factor'), ('float *', 'dst')]",
+    "7859, 97, ForwardWarpKernel_PSF1x1, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'dst')]"
+  ],
+  "Normalization Kernels": [
+    "7859, 98, NormalizeKernel, runs, [('const float *', 'normalization_factor'), ('int', 'w'), ('int', 'h'), ('int', 's'), ('float *', 'image')]",
+    "7953, 97, NormalizeKernel, runs, [('const float *', 'normalization_factor'), ('int', 'w'), ('int', 'h'), ('int', 's'), ('float *', 'image')]",
+    "350, 0, softmax_gradient_kernel, runs, [('const int', 'dim'), ('const float *', 'Y'), ('const float *', 'dY'), ('float *', 'dX')]"
+  ],
+  "Matrix Operations": [
+    "7862, 0, dotProd, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "7862, 1, dotProd, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "7862, 2, mult, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "7862, 3, shared_mult, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "7862, 5, copy, runs, [('int *', 'src'), ('int *', 'dest')]",
+    "7862, 7, traspose, runs, [('int *', 'src'), ('int *', 'dest')]",
+    "7862, 9, matrixAddPitch, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'pitch')]",
+    "7862, 10, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "7862, 11, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "7892, 0, matrixMult, runs, [('const double *', 'Md'), ('const double *', 'Nd'), ('double *', 'Pd'), ('int', 'size')]",
+    "7928, 1, matrixMultiply, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'numARows'), ('int', 'numAColumns'), ('int', 'numBRows'), ('int', 'numBColumns'), ('int', 'numCRows'), ('int', 'numCColumns')]"
+  ],
+  "Reduction Kernels": [
+    "799, 20, global_reduce_kernel, runs, [('float *', 'd_out'), ('float *', 'd_in')]",
+    "799, 21, shmem_reduce_kernel, runs, [('float *', 'd_out'), ('const float *', 'd_in')]",
+    "810, 9, simple_reduction, runs, [('int *', 'shared_var'), ('int *', 'input_values'), ('int', 'N'), ('int', 'iters')]"
+  ],
+  "Image Processing Kernels": [
+    "787, 0, histogram_kernel, runs, [('float *', 'I'), ('float *', 'minI'), ('float *', 'maxI'), ('float *', 'mask'), ('int', 'nbins'), ('int', 'c'), ('int', 'h'), ('int', 'w'), ('float *', 'hist')]",
+    "787, 1, hist_remap2_kernel, runs, [('float *', 'I'), ('int', 'nI'), ('float *', 'mI'), ('float *', 'histJ'), ('float *', 'cumJ'), ('float *', '_minJ'), ('float *', '_maxJ'), ('int', 'nbins'), ('float *', '_sortI'), ('int *', '_idxI'), ('float *', 'R'), ('int', 'c'), ('int', 'h'), ('int', 'w')]",
+    "787, 5, blend_kernel, runs, [('float *', 'A'), ('float *', 'BP'), ('float *', 'M'), ('float *', 'AP'), ('float', 'alpha'), ('int', 'c'), ('int', 'h'), ('int', 'w')]",
+    "8002, 1, edgeDetect, runs, [('unsigned char *', 'device_input_data'), ('unsigned char *', 'device_output_data'), ('int', 'height'), ('int', 'width')]"
+  ],
+  "Utility Kernels": [
+    "7856, 1, kernel_SUM, runs, [('unsigned char *', 'voxelData'), ('int', 'pixelDepth')]",
+    "7859, 99, MemsetKernel, runs, [('const float', 'value'), ('int', 'w'), ('int', 'h'), ('float *', 'image')]",
+    "7956, 1, helloFromGPU, runs, []",
+    "810, 11, helloFromGPU, runs, []"
+  ],
+  "Kernel Initialization": [
+    "789, 2, initCurand, runs, [('curandState *', 'state'), ('unsigned long', 'seed'), ('int', 'n_rows')]",
+    "7951, 0, init_render_buffer_wrapper, runs, [('int64_t *', 'render_buffer'), ('const uint32_t', 'qw_count')]",
+    "807, 1, setup_kernel, runs, [('curandState *', 'state'), ('unsigned long', 'seed')]"
+  ],
+  "Convolution Kernels": [
+    "80, 0, convolutionX_63_Kernel, runs, [('float *', 'd_Dst'), ('float *', 'd_Src'), ('int', 'imageW'), ('int', 'imageH'), ('int', 'imageD'), ('int', 'outofbounds'), ('float', 'outofboundsvalue')]",
+    "80, 1, convolutionY_63_Kernel, runs, [('float *', 'd_Dst'), ('float *', 'd_Src'), ('int', 'imageW'), ('int', 'imageH'), ('int', 'imageD'), ('int', 'outofbounds'), ('float', 'outofboundsvalue')]",
+    "80, 2, convolutionZ_63_Kernel, runs, [('float *', 'd_Dst'), ('float *', 'd_Src'), ('int', 'imageW'), ('int', 'imageH'), ('int', 'imageD'), ('int', 'outofbounds'), ('float', 'outofboundsvalue')]"
+  ],
+  "Sorting Kernels": [
+    "800, 0, MergeRank, runs, [('float *', 'd_input'), ('float *', 'd_output')]",
+    "800, 2, BitonicMergeSort, runs, [('float *', 'd_output'), ('float *', 'd_input'), ('int', 'subarray_size')]",
+    "799, 0, batcherBitonicMergesort64, runs, [('float *', 'd_out'), ('const float *', 'd_in')]"
+  ],
+  "Reduction Kernels": [
+    "799, 20, global_reduce_kernel, runs, [('float *', 'd_out'), ('float *', 'd_in')]",
+    "799, 21, shmem_reduce_kernel, runs, [('float *', 'd_out'), ('const float *', 'd_in')]"
+  ],
+  "Random Number Generation": [
+    "789, 2, initCurand, runs, [('curandState *', 'state'), ('unsigned long', 'seed'), ('int', 'n_rows')]",
+    "7952, 222, kSetupCurand, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]"
+  ]
+}
+```

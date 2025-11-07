@@ -1,0 +1,102 @@
+```json
+{
+  "Matrix Addition Kernels": [
+    "18210, 12, matadd, runs, [('const float *', 'a'), ('const float *', 'b'), ('float *', 'c'), ('int', 'n'), ('int', 'm')]",
+    "18210, 13, matadd_1d, runs, [('const float *', 'a'), ('const float *', 'b'), ('float *', 'c'), ('int', 'n'), ('int', 'm')]",
+    "18210, 14, matadd_2d, runs, [('const float *', 'a'), ('const float *', 'b'), ('float *', 'c'), ('int', 'n'), ('int', 'm')]",
+    "18210, 15, add, runs, [('const float *', 'a'), ('const float *', 'b'), ('float *', 'c'), ('int', 'n')]",
+    "18210, 16, matadd, runs, [('const float *', 'a'), ('const float *', 'b'), ('float *', 'c'), ('int', 'n'), ('int', 'm')]"
+  ],
+  "Grid Display Kernels": [
+    "18210, 18, showgrid, runs, []"
+  ],
+  "Non-Maximum Suppression Kernels": [
+    "18210, 19, nms_kernel, runs, [('float *', 'bbox_dev'), ('unsigned long long *', 'mask_dev'), ('int', 'num_boxes'), ('int', 'col_blocks'), ('float', 'threshold')]"
+  ],
+  "Histogram Kernels": [
+    "18213, 0, histogram_kernel, runs, [('float *', 'I'), ('float *', 'minI'), ('float *', 'maxI'), ('float *', 'mask'), ('int', 'nbins'), ('int', 'c'), ('int', 'h'), ('int', 'w'), ('float *', 'hist')]",
+    "18213, 1, hist_remap2_kernel, runs, [('float *', 'I'), ('int', 'nI'), ('float *', 'mI'), ('float *', 'histJ'), ('float *', 'cumJ'), ('float *', '_minJ'), ('float *', '_maxJ'), ('int', 'nbins'), ('float *', '_sortI'), ('int *', '_idxI'), ('float *', 'R'), ('int', 'c'), ('int', 'h'), ('int', 'w')]",
+    "1823, 0, compute_histogram, runs, [('unsigned char *', 'data'), ('unsigned int *', 'histogram')]",
+    "1823, 4, compute_histogram, runs, [('unsigned char *', 'data'), ('unsigned int *', 'histogram')]",
+    "1823, 29, histo_kernel, runs, [('unsigned char *', 'buffer'), ('long', 'size'), ('unsigned int *', 'histo')]",
+    "1823, 30, histo_kernel, runs, [('unsigned char *', 'buffer'), ('long', 'size'), ('unsigned int *', 'histo')]",
+    "18363, 22, naive_histo, runs, [('int *', 'd_bins'), ('const int *', 'd_in'), ('const int', 'BIN_COUNT')]",
+    "18363, 23, simple_histo, runs, [('int *', 'd_bins'), ('const int *', 'd_in'), ('const int', 'BIN_COUNT')]"
+  ],
+  "Voting Kernels": [
+    "18213, 4, avg_vote_kernel, runs, [('float *', 'A'), ('float *', 'B'), ('int *', 'corrAB'), ('int', 'patch'), ('int', 'c'), ('int', 'h'), ('int', 'w')]"
+  ],
+  "Blending Kernels": [
+    "18213, 5, blend_kernel, runs, [('float *', 'A'), ('float *', 'BP'), ('float *', 'M'), ('float *', 'AP'), ('float', 'alpha'), ('int', 'c'), ('int', 'h'), ('int', 'w')]"
+  ],
+  "Patch Matching Kernels": [
+    "18213, 6, patchmatch2_conv_kernel, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'AP'), ('float *', 'BP'), ('float *', 'conv'), ('int *', 'prev_corrAB_upsampled'), ('int', 'patch'), ('int', 's_rad'), ('int', 'c'), ('int', 'h'), ('int', 'w')]",
+    "18213, 7, patchmatch2_argmax_kernel, runs, [('float *', 'conv'), ('int *', 'prev_corrAB_upsampled'), ('int *', 'corrAB'), ('int', 's_rad'), ('int', 'c'), ('int', 'h'), ('int', 'w')]",
+    "18213, 12, patchmatch_r_conv_kernel, runs, [('float *', 'input'), ('float *', 'target'), ('float *', 'conv'), ('int', 'patch'), ('int', 'stride'), ('int', 'c1'), ('int', 'h1'), ('int', 'w1'), ('int', 'h2'), ('int', 'w2')]",
+    "18213, 13, patchmatch_r_argmax_kernel, runs, [('float *', 'conv'), ('float *', 'target'), ('float *', 'match'), ('int *', 'correspondence'), ('int', 'c1'), ('int', 'h1'), ('int', 'w1'), ('int', 'h2'), ('int', 'w2')]"
+  ],
+  "Downscale Kernels": [
+    "18215, 197, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "18277, 196, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "18386, 197, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "18387, 197, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "18440, 199, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "18469, 170, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]"
+  ],
+  "Accuracy Kernels": [
+    "18215, 338, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "18277, 337, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "18386, 338, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "18440, 344, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "18469, 312, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]"
+  ],
+  "Utility Kernels": [
+    "18257, 2, setup_state, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "18257, 22, ComputeOffsetOfMatrixAB, runs, [('const int32_t *', 'row_sum'), ('const int32_t *', 'col_sum'), ('int32_t *', 'output'), ('int32_t', 'K_A_B'), ('int32_t', 'N')]",
+    "18257, 23, ComputeOffsetOfMatrixA, runs, [('const int32_t *', 'col_sum'), ('int32_t *', 'output'), ('int32_t', 'N')]",
+    "18257, 24, ComputeOffsetOfMatrixB, runs, [('const int32_t *', 'row_sum'), ('int32_t *', 'output'), ('int32_t', 'N')]",
+    "18257, 32, NormalizeOutput, runs, [('const int', 'num_elements'), ('const int *', 'original'), ('int64_t *', 'to_normalize'), ('int64_t', 'batch_index'), ('int64_t', 'class_index')]"
+  ],
+  "Vector Addition Kernels": [
+    "18231, 0, VecAddInt32, runs, [('int32_t *', 'in0'), ('int32_t *', 'in1'), ('int32_t *', 'out'), ('int', 'cnt')]",
+    "18231, 1, VecAddFp32, runs, [('float *', 'in0'), ('float *', 'in1'), ('float *', 'out'), ('int', 'cnt')]"
+  ],
+  "Distance Kernels": [
+    "18239, 4, NmDistanceKernel, runs, [('int', 'b'), ('int', 'n'), ('const float *', 'xyz'), ('int', 'm'), ('const float *', 'xyz2'), ('float *', 'result'), ('int *', 'result_i')]",
+    "18239, 5, NmDistanceGradKernel, runs, [('int', 'b'), ('int', 'n'), ('const float *', 'xyz1'), ('int', 'm'), ('const float *', 'xyz2'), ('const float *', 'grad_dist1'), ('const int *', 'idx1'), ('float *', 'grad_xyz1'), ('float *', 'grad_xyz2')]"
+  ],
+  "Matrix Multiplication Kernels": [
+    "18267, 0, matrixMulGPU, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "18395, 3, matrixMul, runs, [('float *', 'M'), ('float *', 'N'), ('float *', 'P'), ('int', 'width')]",
+    "18395, 4, matrixMul_sharedMemory, runs, [('float *', 'M'), ('float *', 'N'), ('float *', 'P'), ('int', 'm'), ('int', 'j'), ('int', 'n')]",
+    "18468, 0, mmul, runs, [('const float *', 'A'), ('const float *', 'B'), ('float *', 'C'), ('int', 'ds')]",
+    "18468, 21, mmul, runs, [('const float *', 'A'), ('const float *', 'B'), ('float *', 'C'), ('int', 'ds')]"
+  ],
+  "Activation Functions": [
+    "1830, 93, relu_gpu_forward, runs, [('float *', 'out'), ('float *', 'in'), ('int64_t', 'N')]",
+    "1830, 94, relu_gpu_backward, runs, [('float *', 'ingrad'), ('float *', 'outgrad'), ('float *', 'indata'), ('int64_t', 'N')]",
+    "1850, 93, relu_gpu_forward, runs, [('float *', 'out'), ('float *', 'in'), ('int64_t', 'N')]",
+    "1850, 94, relu_gpu_backward, runs, [('float *', 'ingrad'), ('float *', 'outgrad'), ('float *', 'indata'), ('int64_t', 'N')]"
+  ],
+  "Image Processing Kernels": [
+    "18472, 0, convertBGR2RGBfloatKernel, runs, [('uchar3 *', 'src'), ('float3 *', 'dst'), ('int', 'width'), ('int', 'height')]",
+    "18472, 1, imageNormalizationKernel, runs, [('float3 *', 'ptr'), ('int', 'width'), ('int', 'height')]",
+    "18472, 2, imageSplitKernel, runs, [('float3 *', 'ptr'), ('float *', 'dst'), ('int', 'width'), ('int', 'height')]",
+    "18472, 6, imagePaddingKernel, runs, [('float3 *', 'ptr'), ('float3 *', 'dst'), ('int', 'width'), ('int', 'height'), ('int', 'top'), ('int', 'bottom'), ('int', 'left'), ('int', 'right')]",
+    "18472, 7, calcPReLUKernel, runs, [('const float *', 'input'), ('float *', 'output'), ('const float *', 'weights'), ('int', 'width'), ('int', 'height'), ('int', 'channels')]"
+  ],
+  "Kernel Operations": [
+    "1844, 0, Inc1, runs, [('float *', 'Ad'), ('float *', 'Bd')]",
+    "1844, 1, Inc2, runs, [('float *', 'Ad'), ('float *', 'Bd')]"
+  ],
+  "Kernel Utilities": [
+    "18449, 7, emptyMarkerKernel, runs, []",
+    "18449, 9, postprocess_matrix, runs, [('float *', 'matrix'), ('long *', 'long_indices'), ('int *', 'indices'), ('unsigned int', 'N_POINTS'), ('unsigned int', 'K')]",
+    "18449, 11, to_float, runs, [('float *', 'out'), ('int *', 'in'), ('int', 'size')]",
+    "18449, 12, build_actual_output, runs, [('int *', 'output'), ('int', 'n_rows'), ('int', 'k'), ('const int *', 'idx_labels'), ('const int64_t *', 'indices')]",
+    "18449, 13, build_expected_output, runs, [('int *', 'output'), ('int', 'n_rows'), ('int', 'k'), ('const int *', 'labels')]",
+    "18449, 14, nan_kernel, runs, [('float *', 'data'), ('const bool *', 'mask'), ('int', 'len'), ('float', 'nan')]",
+    "18449, 26, naiveHistKernel, runs, [('int *', 'bins'), ('int', 'nbins'), ('int *', 'in'), ('int', 'nrows')]"
+  ]
+}
+```

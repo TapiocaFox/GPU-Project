@@ -1,0 +1,56 @@
+```json
+{
+  "Matrix Multiplication Kernels": [
+    "186, 1, cuda_matmul, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('size_t', 'n')]",
+    "1989, 3, matrix_mult_kernel, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'm'), ('int', 'n'), ('int', 'k')]",
+    "1989, 4, matrix_mult_kernel_tiled, runs, [('int *', 'd_m'), ('int *', 'd_n'), ('int *', 'd_p'), ('int', 'm'), ('int', 'n'), ('int', 'k')]",
+    "2166, 0, matrixMulGPU, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "2166, 1, matrixMulGPU, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]"
+  ],
+  "Image Processing Kernels": [
+    "206, 2, AdjustImageIntensityKernel, runs, [('float *', 'imgOut'), ('float *', 'imgIn'), ('int', 'width'), ('int', 'height'), ('float', 'lowin'), ('float', 'lowout'), ('float', 'scale')]",
+    "206, 3, ImageScalingKernel, runs, [('float *', 'imgOut'), ('float *', 'imgIn'), ('int', 'width'), ('int', 'height')]",
+    "206, 4, AdjustGammaKernel, runs, [('float *', 'imgOut'), ('float *', 'imgIn'), ('int', 'width'), ('int', 'height'), ('float', 'gamma'), ('float', 'minVal'), ('float', 'maxVal')]",
+    "1943, 96, ForwardWarpKernel_PSF2x2, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'normalization_factor'), ('float *', 'dst')]",
+    "1943, 97, ForwardWarpKernel_PSF1x1, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'dst')]"
+  ],
+  "Reduction Kernels": [
+    "189, 13, AddToFloat, runs, [('float *', 'sum'), ('float *', 'out'), ('const float *', 'pIn')]",
+    "189, 15, AddTo32, runs, [('int *', 'sum'), ('int *', 'out'), ('const int *', 'pIn')]",
+    "2007, 1, global_scan, runs, [('float *', 'd_out'), ('float *', 'd_in')]",
+    "2007, 2, shmem_scan, runs, [('float *', 'd_out'), ('float *', 'd_in')]"
+  ],
+  "Utility Kernels": [
+    "1874, 0, initDeviceMemory, runs, [('const int', 'nbrOfGrids'), ('double *', 'd_u1'), ('double *', 'd_u2'), ('double *', 'd_u3'), ('double *', 'd_vol'), ('double *', 'd_h'), ('double *', 'd_length'), ('double *', 'd_gama'), ('double *', 'd_cfl'), ('double *', 'd_nu'), ('double *', 'd_tau'), ('double *', 'd_cMax'), ('double *', 'd_t')]",
+    "1874, 1, updateTau, runs, [('const int', 'nbrOfGrids'), ('const double *', 'd_u1'), ('const double *', 'd_u2'), ('const double *', 'd_u3'), ('const double *', 'd_gama'), ('double *', 'd_cMax'), ('const double *', 'd_h'), ('const double *', 'd_cfl'), ('double *', 'd_tau')]",
+    "1874, 2, boundaryCondition, runs, [('const int', 'nbrOfGrids'), ('double *', 'd_u1'), ('double *', 'd_u2'), ('double *', 'd_u3')]",
+    "1874, 3, laxWendroffStep, runs, [('const int', 'nbrOfGrids'), ('double *', 'd_u1'), ('double *', 'd_u2'), ('double *', 'd_u3'), ('double *', 'd_u1Temp'), ('double *', 'd_u2Temp'), ('double *', 'd_u3Temp'), ('double *', 'd_f1'), ('double *', 'd_f2'), ('double *', 'd_f3'), ('const double *', 'd_tau'), ('const double *', 'd_h'), ('const double *', 'd_gama')]"
+  ],
+  "Statistical Kernels": [
+    "199, 18, stats_kernel, runs, [('int', 'half_samps'), ('float *', 'd_sum'), ('float *', 'd_sum_square'), ('float *', 'd_signal_power')]",
+    "199, 22, SNR_GPU_limited, runs, [('float *', 'd_FIR_input'), ('float *', 'd_SNR_output'), ('ushort *', 'd_SNR_taps'), ('float *', 'd_MSD'), ('int', 'x_steps'), ('int', 'nTaps'), ('int', 'nColumns'), ('int', 'offset')]"
+  ],
+  "Kernel Initialization Kernels": [
+    "187, 48, kSetupCurand, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "1965, 2, setup_state, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]"
+  ],
+  "Convolution Kernels": [
+    "1976, 0, convolution1Kernel, runs, [('int *', 'dst'), ('int *', 'src'), ('int', 'rows'), ('int', 'cols'), ('int *', 'filter')]",
+    "208, 0, convKernel, runs, [('const float *', 'source'), ('const float *', 'kernel'), ('float *', 'target'), ('const int', 'len')]"
+  ],
+  "Binning Kernels": [
+    "198, 0, binning, runs, [('float *', 'xd'), ('float *', 'yd'), ('float *', 'zd'), ('float *', 'ZZ'), ('int', 'number_lines'), ('int', 'points_per_degree'), ('int', 'number_of_degrees')]",
+    "198, 1, binning_mix, runs, [('float *', 'xd_real'), ('float *', 'yd_real'), ('float *', 'zd_real'), ('float *', 'xd_sim'), ('float *', 'yd_sim'), ('float *', 'zd_sim'), ('float *', 'ZY'), ('int', 'lines_number_1'), ('int', 'lines_number_2'), ('int', 'points_per_degree'), ('int', 'number_of_degrees')]"
+  ],
+  "Distance Kernels": [
+    "1917, 5, addForces_k, runs, [('float2 *', 'v'), ('int', 'dx'), ('int', 'dy'), ('int', 'spx'), ('int', 'spy'), ('float', 'fx'), ('float', 'fy'), ('int', 'r'), ('size_t', 'pitch')]",
+    "1917, 7, diffuseProject_k, runs, [('float2 *', 'vx'), ('float2 *', 'vy'), ('int', 'dx'), ('int', 'dy'), ('float', 'dt'), ('float', 'visc'), ('int', 'lb')]"
+  ],
+  "Kernel Testing Kernels": [
+    "1983, 0, kernel, runs, []",
+    "1983, 1, kernel, runs, []",
+    "1983, 2, kernel, runs, []",
+    "1983, 3, kernel, runs, []"
+  ]
+}
+```

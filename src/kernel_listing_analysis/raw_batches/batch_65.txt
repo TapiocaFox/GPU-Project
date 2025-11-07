@@ -1,0 +1,86 @@
+```json
+{
+  "Interpolation Kernels": [
+    "8925, 10, kernelInterpolationRow, runs, [('double *', 'original'), ('double *', 'result'), ('int', 'rows'), ('int', 'cols'), ('int', 'factor')]",
+    "8925, 11, kernelInterpolationCol, runs, [('double *', 'result'), ('int', 'rows'), ('int', 'cols'), ('int', 'factor')]"
+  ],
+  "Initialization Kernels": [
+    "8929, 0, initTempNodeArray, runs, [('const int', 'hitNum'), ('const int', 'allowableGap'), ('int *', 'tempNodeArray_score'), ('int *', 'tempNodeArray_vertical'), ('int *', 'tempNodeArray_horizontal'), ('int *', 'tempNodeArray_matchNum')]"
+  ],
+  "Search Kernels": [
+    "8929, 7, binarySearch, runs, [('const int', 'limit'), ('const int', 'databaseSize'), ('const long *', 'databaseArray'), ('const long *', 'inputArray'), ('int *', 'outputArray')]"
+  ],
+  "Basic Arithmetic Kernels": [
+    "893, 1, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'n')]",
+    "8946, 0, addKernel, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]",
+    "8946, 1, addKernel, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]",
+    "8946, 3, addKernel, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]",
+    "8946, 4, addKernel, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]",
+    "8946, 5, addKernel, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]",
+    "8946, 6, addKernel, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]",
+    "8965, 1, vector_add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "9004, 6, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "9058, 2, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]"
+  ],
+  "Matrix Multiplication Kernels": [
+    "8952, 26, square_matrix_kernel, runs, [('int32_t', 'num_rows'), ('int32_t', 'num_cols'), ('const float *', 'feats'), ('int32_t', 'ldf'), ('float *', 'feats_sq'), ('int32_t', 'lds')]",
+    "9068, 2, squareMatrixMulKernel, runs, [('int *', 'c'), ('int *', 'a'), ('int *', 'b'), ('int', 'arrayWidth')]",
+    "9068, 4, squareMatrixMulKernel, runs, [('int *', 'c'), ('int *', 'a'), ('int *', 'b'), ('int', 'arrayWidth')]",
+    "9056, 0, MatrixMul, runs, [('float *', 'Md'), ('float *', 'Nd'), ('float *', 'Pd'), ('const int', 'WIDTH')]",
+    "9056, 1, MatrixMul, runs, [('float *', 'Md'), ('float *', 'Nd'), ('float *', 'Pd'), ('const int', 'WIDTH')]",
+    "912, 9, matrix_multiply, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('int', 'num'), ('size_t', 'width')]",
+    "912, 10, matrixMul, runs, [('int *', 'A'), ('int *', 'B'), ('int *', 'C'), ('int', 'n')]",
+    "9229, 0, gemm, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'm'), ('int', 'n'), ('int', 'k')]"
+  ],
+  "Convolution Kernels": [
+    "90, 0, convolution_forward_kernel, runs, [('float *', 'input'), ('float *', 'filters'), ('float *', 'feature_map'), ('float *', 'hbias'), ('int', 'input_size'), ('int', 'channel_num'), ('int', 'feature_map_size'), ('int', 'filter_size'), ('int', 'filter_num'), ('int', 'lu_padding'), ('float', 'sigma')]",
+    "90, 2, convolution_backward_kernel, runs, [('float *', 'y_h'), ('float *', 'filters'), ('float *', 'vbias'), ('float *', 'target'), ('float *', 'y_v'), ('int', 'input_size'), ('int', 'lu_padding'), ('int', 'channel_num'), ('int', 'feature_map_size'), ('int', 'filter_num'), ('int', 'filter_size'), ('float *', 'rnd_array'), ('int', 'rnd_num')]",
+    "9206, 12, convolution2D, runs, [('const float *', 'd_arr'), ('const float *', 'd_mask'), ('float *', 'd_result'), ('int', 'N')]",
+    "9206, 10, convolution1D, runs, [('const int *', 'd_arr'), ('const int *', 'd_conv'), ('int *', 'd_result'), ('int', 'N'), ('int', 'M')]"
+  ],
+  "Reduction Kernels": [
+    "9090, 9, reduction, runs, [('const int', 'N'), ('float *', 'a'), ('float *', 'result')]",
+    "915, 20, prefix_sum_reduce, runs, [('uint *', 'dev_main_array'), ('uint *', 'dev_auxiliary_array'), ('const uint', 'array_size')]",
+    "915, 26, prefix_sum_scan, runs, [('uint *', 'dev_main_array'), ('uint *', 'dev_auxiliary_array'), ('const uint', 'array_size')]",
+    "9117, 2, reduce, runs, [('float *', 'a'), ('int', 'size'), ('int', 'c')]",
+    "9117, 4, reduce, runs, [('float *', 'a'), ('int', 'size'), ('int', 'c')]",
+    "9206, 24, ReduceRowMajor, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('int', 'size')]",
+    "9206, 25, ReduceRowMajor, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('int', 'size')]",
+    "9206, 26, ReduceRowMajor2, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('int', 'size')]",
+    "9206, 27, ReduceRowMajor3, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('int', 'size')]",
+    "9206, 28, ReduceRowMajor5, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('int', 'size')]"
+  ],
+  "Distance Kernels": [
+    "9078, 4, NmDistanceKernel, runs, [('int', 'b'), ('int', 'n'), ('const float *', 'xyz'), ('int', 'm'), ('const float *', 'xyz2'), ('float *', 'result'), ('int *', 'result_i')]",
+    "9078, 5, NmDistanceGradKernel, runs, [('int', 'b'), ('int', 'n'), ('const float *', 'xyz1'), ('int', 'm'), ('const float *', 'xyz2'), ('const float *', 'grad_dist1'), ('const int *', 'idx1'), ('float *', 'grad_xyz1'), ('float *', 'grad_xyz2')]"
+  ],
+  "Activation Kernels": [
+    "9020, 89, relu_gpu_forward, runs, [('float *', 'out'), ('float *', 'in'), ('int64_t', 'N')]",
+    "9020, 90, relu_gpu_backward, runs, [('float *', 'ingrad'), ('float *', 'outgrad'), ('float *', 'indata'), ('int64_t', 'N')]",
+    "9193, 89, relu_gpu_forward, runs, [('float *', 'out'), ('float *', 'in'), ('int64_t', 'N')]",
+    "9193, 90, relu_gpu_backward, runs, [('float *', 'ingrad'), ('float *', 'outgrad'), ('float *', 'indata'), ('int64_t', 'N')]"
+  ],
+  "Utility Kernels": [
+    "893, 0, mykernel, runs, []",
+    "8958, 21, sync_deconv_groups, runs, []",
+    "8958, 37, sync_conv_groups, runs, []",
+    "9085, 1, kernel, runs, []",
+    "9090, 2, kernelHelloWorld, runs, []",
+    "9034, 21, sync_deconv_groups, runs, []",
+    "9034, 37, sync_conv_groups, runs, []"
+  ],
+  "Image Processing Kernels": [
+    "912, 2, imgBlur, runs, [('float *', 'imgIn'), ('float *', 'imgOut'), ('int', 'imageWidth'), ('int', 'imageHeight')]",
+    "9142, 0, rgb2yuv_kernel, runs, [('int', 'img_size'), ('unsigned char *', 'img_r'), ('unsigned char *', 'img_g'), ('unsigned char *', 'img_b'), ('unsigned char *', 'img_y'), ('unsigned char *', 'img_u'), ('unsigned char *', 'img_v')]",
+    "9142, 1, yuv2rgb_kernel, runs, [('int', 'img_size'), ('unsigned char *', 'img_r'), ('unsigned char *', 'img_g'), ('unsigned char *', 'img_b'), ('unsigned char *', 'img_y'), ('unsigned char *', 'img_u'), ('unsigned char *', 'img_v')]",
+    "9142, 2, rgb2hsl_kernel, runs, [('int', 'img_size'), ('unsigned char *', 'img_r'), ('unsigned char *', 'img_g'), ('unsigned char *', 'img_b'), ('float *', 'img_h'), ('float *', 'img_s'), ('unsigned char *', 'img_l')]"
+  ],
+  "Random Number Generation Kernels": [
+    "8957, 227, kSetupCurand, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "8984, 231, kSetupCurand, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "8990, 229, kSetupCurand, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "9109, 227, kSetupCurand, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "9211, 227, kSetupCurand, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]"
+  ]
+}
+```

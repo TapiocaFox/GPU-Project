@@ -1,0 +1,59 @@
+```json
+{
+  "MinMax Kernels": [
+    "9846, 16, Find3DMinMax, runs, [('int *', 'd_Result'), ('float *', 'd_Data1'), ('float *', 'd_Data2'), ('float *', 'd_Data3'), ('int', 'width'), ('int', 'pitch'), ('int', 'height')]",
+    "9846, 25, FindMinMax, runs, [('float *', 'd_MinMax'), ('float *', 'd_Data'), ('int', 'width'), ('int', 'height')]",
+    "9846, 26, Find3DMinMax, runs, [('int *', 'd_Result'), ('float *', 'd_Data1'), ('float *', 'd_Data2'), ('float *', 'd_Data3'), ('int', 'width'), ('int', 'height')]"
+  ],
+  "Pointer Unpacking Kernels": [
+    "9846, 17, UnpackPointers, runs, [('int *', 'minmax'), ('int *', 'ptrs'), ('int', 'w'), ('int', 'h'), ('int', 'maxPts')]",
+    "9846, 27, UnpackPointers, runs, [('int *', 'minmax'), ('int *', 'ptrs'), ('int', 'w'), ('int', 'h'), ('int', 'maxPts')]"
+  ],
+  "Orientation Computation Kernels": [
+    "9846, 19, ComputeOrientations, runs, [('float *', 'g_Data'), ('int *', 'd_Ptrs'), ('float *', 'd_Orient'), ('int', 'maxPts'), ('int', 'w'), ('int', 'h')]",
+    "9846, 29, ComputeOrientations, runs, [('float *', 'g_Data'), ('int *', 'd_Ptrs'), ('float *', 'd_Orient'), ('int', 'maxPts'), ('int', 'w'), ('int', 'h')]"
+  ],
+  "Arithmetic Kernels": [
+    "9846, 23, Subtract, runs, [('float *', 'd_Result'), ('float *', 'd_Data1'), ('float *', 'd_Data2'), ('int', 'width'), ('int', 'height')]",
+    "9846, 24, MultiplyAdd, runs, [('float *', 'd_Result'), ('float *', 'd_Data'), ('int', 'width'), ('int', 'height')]"
+  ],
+  "Distance Kernels": [
+    "9865, 8, computeSphereVertexDistancesKernel, runs, [('float4 *', 'V'), ('float *', 'dist'), ('unsigned int *', 'NEIGHBOR'), ('unsigned int *', 'NBOFFSETS'), ('unsigned int *', 'nNeighbors'), ('unsigned int', 'nVertices'), ('float', 'circumference')]",
+    "9865, 9, GradientAverageKernel, runs, [('float4 *', 'D'), ('float4 *', 'TD'), ('unsigned int *', 'NEIGHBOR'), ('unsigned int *', 'NBOFFSETS'), ('unsigned int *', 'nNeighbors'), ('unsigned int', 'nVertices')]"
+  ],
+  "Acoustic Update Kernels": [
+    "9878, 1, update_veloc_acoustic_kernel, runs, [('float *', 'veloc'), ('const float *', 'accel'), ('const int', 'size'), ('const float', 'deltatover2')]",
+    "9878, 4, assemble_boundary_potential_on_device, runs, [('float *', 'd_potential_dot_dot_acoustic'), ('const float *', 'd_send_potential_dot_dot_buffer'), ('const int', 'num_interfaces'), ('const int', 'max_nibool_interfaces'), ('const int *', 'd_nibool_interfaces'), ('const int *', 'd_ibool_interfaces')]"
+  ],
+  "Elastic Update Kernels": [
+    "9878, 15, update_veloc_elastic_kernel, runs, [('float *', 'veloc'), ('const float *', 'accel'), ('const int', 'size'), ('const float', 'deltatover2')]",
+    "9878, 36, update_accel_elastic_kernel, runs, [('float *', 'accel'), ('const float *', 'veloc'), ('const int', 'size'), ('const float', 'two_omega_earth'), ('const float *', 'rmassx'), ('const float *', 'rmassy'), ('const float *', 'rmassz')]"
+  ],
+  "Matrix Operations": [
+    "990, 0, cuda_mat_multiply, runs, [('const double *', 'A'), ('const double *', 'B'), ('double *', 'C'), ('int', 'rowsa'), ('int', 'colsa'), ('int', 'rowsb'), ('int', 'colsb'), ('int', 'rowsc'), ('int', 'colsc')]",
+    "990, 1, cu_addition, runs, [('const double *', 'A'), ('const double *', 'B'), ('double *', 'C'), ('const int', 'n')]"
+  ],
+  "Convolution Kernels": [
+    "9959, 14, cuda_conv2D_ff, runs, [('double *', 'pA'), ('double *', 'pNet'), ('const double *', 'in'), ('const double *', 'pKernels'), ('const double *', 'pBias'), ('size_t', 'kernelCount'), ('size_t', 'kernelRows'), ('size_t', 'kernelCols'), ('size_t', 'outputRows'), ('size_t', 'outputCols'), ('size_t', 'inputRows'), ('size_t', 'inputCols'), ('size_t', 'inputChannels'), ('size_t', 'padding'), ('size_t', 'stride')]",
+    "9959, 15, cuda_conv2D_deactivate, runs, [('double *', 'err'), ('const double *', 'net'), ('const double *', 'activation'), ('size_t', 'outputs')]"
+  ],
+  "Normalization Kernels": [
+    "9887, 97, NormalizeKernel, runs, [('const float *', 'normalization_factor'), ('int', 'w'), ('int', 'h'), ('int', 's'), ('float *', 'image')]",
+    "9967, 96, NormalizeKernel, runs, [('const float *', 'normalization_factor'), ('int', 'w'), ('int', 'h'), ('int', 's'), ('float *', 'image')]"
+  ],
+  "Utility Kernels": [
+    "992, 14, doNothing, runs, []",
+    "992, 15, fillZeros, runs, [('float *', 'buf'), ('int', 'size')]"
+  ],
+  "Empty Kernels": [
+    "989, 4, step_1_row_sub, runs, []",
+    "989, 5, step_1_col_sub, runs, []",
+    "989, 6, compress_matrix, runs, []",
+    "9920, 0, kernel, runs, []",
+    "993, 0, kernel, runs, []",
+    "993, 2, kernel, runs, []",
+    "994, 2, dense_add, runs, [('size_t', 'sz'), ('float_t *', 'src'), ('float_t *', 'dest')]",
+    "994, 4, dense_add_conv, runs, [('size_t', 'sz'), ('float_t *', 'src'), ('float_t *', 'dest'), ('size_t', 'bias_dim')]"
+  ]
+}
+```

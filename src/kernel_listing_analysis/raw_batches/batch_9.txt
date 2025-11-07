@@ -1,0 +1,62 @@
+```json
+{
+  "Arithmetic Kernels": [
+    "11992, 2, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "11992, 3, multiply, runs, [('int', 'a'), ('int', 'b'), ('int *', 'c')]",
+    "11992, 8, addKernel, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]",
+    "12010, 22, axpy_kernel, runs, [('int', 'N'), ('float', 'ALPHA'), ('float *', 'X'), ('int', 'OFFX'), ('int', 'INCX'), ('float *', 'Y'), ('int', 'OFFY'), ('int', 'INCY')]",
+    "12010, 23, pow_kernel, runs, [('int', 'N'), ('float', 'ALPHA'), ('float *', 'X'), ('int', 'INCX'), ('float *', 'Y'), ('int', 'INCY')]",
+    "12010, 40, mult_add_into_kernel, runs, [('int', 'n'), ('float *', 'a'), ('float *', 'b'), ('float *', 'c')]",
+    "121, 111, kAdd, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'dest'), ('unsigned int', 'numEls')]",
+    "121, 112, kSubtract, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'dest'), ('unsigned int', 'numEls')]",
+    "121, 113, kDivide, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'dest'), ('unsigned int', 'numEls')]",
+    "121, 114, kMult, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'dest'), ('unsigned int', 'numEls'), ('float', 'scale_targets')]"
+  ],
+  "Dot Product Kernels": [
+    "11992, 4, dot, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c')]",
+    "120, 43, kDotProduct_r, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'target'), ('const uint', 'numElements')]",
+    "12030, 0, dot_product, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c')]",
+    "12010, 10, dot_kernel, runs, [('float *', 'output'), ('float', 'scale'), ('int', 'batch'), ('int', 'n'), ('int', 'size'), ('float *', 'delta')]"
+  ],
+  "Reduction Kernels": [
+    "12009, 2, sieveOfEratosthenes, runs, [('char *', 'primes'), ('uint64_t', 'max')]",
+    "12009, 3, segmentSieve, runs, [('char *', 'primes'), ('uint64_t', 'max')]",
+    "12086, 0, reduceNeighbored, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "12086, 4, sumMatrixOnGPU2D, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'NX'), ('int', 'NY')]",
+    "1212, 39, reduction_kernel, runs, [('float *', 'd_out'), ('float *', 'd_in'), ('unsigned int', 'size')]",
+    "1212, 43, atomic_reduction_kernel, runs, [('float *', 'data_out'), ('float *', 'data_in'), ('int', 'size')]"
+  ],
+  "Matrix Multiplication Kernels": [
+    "1212, 2, sgemm_gpu_kernel, runs, [('const float *', 'A'), ('const float *', 'B'), ('float *', 'C'), ('int', 'N'), ('int', 'M'), ('int', 'K'), ('float', 'alpha'), ('float', 'beta')]",
+    "1212, 59, sgemm_kernel, runs, [('const float *', 'A'), ('const float *', 'B'), ('float *', 'C'), ('int', 'N'), ('int', 'M'), ('int', 'K'), ('float', 'alpha'), ('float', 'beta')]"
+  ],
+  "Convolution Kernels": [
+    "1212, 77, convolution_kernel_v1, runs, [('float *', 'd_output'), ('float *', 'd_input'), ('float *', 'd_filter'), ('int', 'num_row'), ('int', 'num_col'), ('int', 'filter_size')]"
+  ],
+  "Utility Kernels": [
+    "11992, 5, kernel, runs, []",
+    "11992, 6, kernel, runs, [('unsigned char *', 'ptr'), ('int', 'ticks')]",
+    "120, 44, kSetupCurand, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "12025, 28, sync_conv_groups, runs, []",
+    "1204, 1, kernel, runs, [('float *', 'array'), ('int', 'size')]",
+    "1204, 6, kernel, runs, [('float *', 'array'), ('int', 'size')]",
+    "1212, 46, idx_print, runs, []",
+    "1212, 90, print_from_gpu, runs, []"
+  ],
+  "Image Processing Kernels": [
+    "1200, 0, kRgb2CIELab, runs, [('const cudaTextureObject_t', 'texFrameBGRA'), ('cudaSurfaceObject_t', 'surfFrameLab'), ('int', 'width'), ('int', 'height')]",
+    "1200, 1, kInitClusters, runs, [('const cudaSurfaceObject_t', 'surfFrameLab'), ('float *', 'clusters'), ('int', 'width'), ('int', 'height'), ('int', 'nSpxPerRow'), ('int', 'nSpxPerCol')]",
+    "1212, 4, createResizedImage, runs, [('unsigned char *', 'imageScaledData'), ('int', 'scaled_width'), ('float', 'scale_factor'), ('cudaTextureObject_t', 'texObj')]"
+  ],
+  "Random Number Generation Kernels": [
+    "120, 45, kMultiSoftmaxCost, runs, [('float *', 'probs'), ('float *', 'labels'), ('float *', 'maxProbs'), ('float *', 'labelLogProbs'), ('float *', 'correctProbs'), ('float *', 'top5Probs'), ('const int', 'numCases'), ('const int', 'numOut'), ('const int', 'setSize')]",
+    "1212, 102, generate_kernel, runs, [('unsigned int *', 'generated_out'), ('curandState_t *', 'state')]",
+    "1212, 103, generate_uniform_kernel, runs, [('float *', 'generated_out'), ('curandState_t *', 'state')]"
+  ],
+  "Activation Functions Kernels": [
+    "121, 78, kApplySigmoid, runs, [('float *', 'mat'), ('float *', 'target'), ('unsigned int', 'len')]",
+    "121, 79, kApplyTanh, runs, [('float *', 'mat'), ('float *', 'target'), ('unsigned int', 'len')]",
+    "121, 90, kCrossEntropy, runs, [('float *', 'mat'), ('float *', 'p'), ('float *', 'target'), ('unsigned int', 'len'), ('float', 'tiny')]"
+  ]
+}
+```

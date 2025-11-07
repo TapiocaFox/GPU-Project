@@ -1,0 +1,97 @@
+```json
+{
+  "Indexing Kernels": [
+    "5508, 1, getIndex, runs, [('unsigned int *', 'd_index'), ('unsigned int *', 'd_scan'), ('unsigned int *', 'd_mask'), ('unsigned int', 'in_size'), ('unsigned int', 'total_pre')]",
+    "5508, 2, scatter, runs, [('unsigned int *', 'd_in'), ('unsigned int *', 'd_index'), ('unsigned int *', 'd_out'), ('unsigned int', 'in_size')]"
+  ],
+  "Evolution Kernels": [
+    "5511, 0, periodicityPreservationGPU, runs, [('int', 'N'), ('char *', 'cells')]",
+    "5511, 1, evovle_kernel, runs, [('int', 'N'), ('char *', 'oldGen'), ('char *', 'newGen'), ('int *', 'allzeros'), ('int *', 'change')]",
+    "5511, 2, evovle_kernel_shared, runs, [('int', 'N'), ('char *', 'oldGen'), ('char *', 'newGen'), ('int *', 'allzeros'), ('int *', 'change')]",
+    "5511, 3, periodicityPreservationGPU, runs, [('int', 'N'), ('char *', 'cells')]",
+    "5511, 4, evovle_kernel, runs, [('int', 'N'), ('char *', 'oldGen'), ('char *', 'newGen'), ('int *', 'allzeros'), ('int *', 'change')]",
+    "5511, 5, evovle_kernel_shared, runs, [('int', 'N'), ('char *', 'oldGen'), ('char *', 'newGen'), ('int *', 'allzeros'), ('int *', 'change')]",
+    "5511, 6, periodicityPreservationGPU, runs, [('int', 'N'), ('char *', 'cells')]",
+    "5511, 7, evovle_kernel, runs, [('int', 'N'), ('char *', 'oldGen'), ('char *', 'newGen'), ('int *', 'allzeros'), ('int *', 'change')]",
+    "5511, 8, evovle_kernel_shared, runs, [('int', 'N'), ('char *', 'oldGen'), ('char *', 'newGen'), ('int *', 'allzeros'), ('int *', 'change')]",
+    "5511, 9, periodicityPreservationGPU, runs, [('int', 'N'), ('char *', 'cells')]",
+    "5511, 10, evovle_kernel, runs, [('int', 'N'), ('char *', 'oldGen'), ('char *', 'newGen'), ('int *', 'allzeros'), ('int *', 'change')]",
+    "5511, 11, evovle_kernel_shared, runs, [('int', 'N'), ('char *', 'oldGen'), ('char *', 'newGen'), ('int *', 'allzeros'), ('int *', 'change')]",
+    "5511, 12, periodicityPreservationGPU, runs, [('int', 'N'), ('char *', 'cells')]",
+    "5511, 13, evovle_kernel, runs, [('int', 'N'), ('char *', 'oldGen'), ('char *', 'newGen'), ('int *', 'allzeros'), ('int *', 'change')]",
+    "5511, 14, evovle_kernel_shared, runs, [('int', 'N'), ('char *', 'oldGen'), ('char *', 'newGen'), ('int *', 'allzeros'), ('int *', 'change')]"
+  ],
+  "Kernel Testing": [
+    "5512, 16, kernel_move_inv_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'pattern')]",
+    "5512, 19, kernel_test0_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'pattern'), ('unsigned int *', 'err'), ('unsigned long *', 'err_addr'), ('unsigned long *', 'err_expect'), ('unsigned long *', 'err_current'), ('unsigned long *', 'err_second_read')]",
+    "5512, 21, kernel_test0_global_write, runs, [('char *', '_ptr'), ('char *', '_end_ptr')]",
+    "5512, 23, kernel_test0_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "5512, 25, kernel_test1_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int *', 'err')]",
+    "5512, 27, kernel_test5_init, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "5512, 28, kernel_test5_move, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "5512, 30, kernel_movinv32_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'pattern'), ('unsigned int', 'lb'), ('unsigned int', 'sval'), ('unsigned int', 'offset')]",
+    "5512, 33, kernel_test7_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('char *', '_start_ptr'), ('unsigned int *', 'err')]",
+    "5512, 36, kernel_modtest_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'offset'), ('unsigned int', 'p1'), ('unsigned int', 'p2')]"
+  ],
+  "Matrix Operations": [
+    "5524, 26, square_matrix_kernel, runs, [('int32_t', 'num_rows'), ('int32_t', 'num_cols'), ('const float *', 'feats'), ('int32_t', 'ldf'), ('float *', 'feats_sq'), ('int32_t', 'lds')]",
+    "5524, 29, update_linear_and_quadratic_terms_kernel, runs, [('int32_t', 'n'), ('float', 'prior_offset'), ('float *', 'cur_tot_weight'), ('int32_t', 'max_count'), ('float *', 'quadratic'), ('float *', 'linear')]",
+    "5524, 30, apply_lifter_and_floor_energy, runs, [('int', 'num_frames'), ('int', 'num_cols'), ('float', 'cepstral_lifter'), ('bool', 'use_energy'), ('float', 'energy_floor'), ('float *', 'log_energy'), ('float *', 'lifter_coeffs'), ('float *', 'features'), ('int32_t', 'ldf')]",
+    "5524, 31, power_spectrum_kernel, runs, [('int', 'row_length'), ('float *', 'A_in'), ('int32_t', 'ldi'), ('float *', 'A_out'), ('int32_t', 'ldo'), ('bool', 'use_power')]"
+  ],
+  "Vector Operations": [
+    "5526, 88, uniformAdd, runs, [('int *', 'g_data'), ('int *', 'uniforms'), ('int', 'n'), ('int', 'blockOffset'), ('int', 'baseIndex')]",
+    "5529, 0, add, runs, [('std::size_t', 'n'), ('const float *', 'x'), ('float *', 'y')]",
+    "5556, 0, addKernel, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]",
+    "5556, 1, VecAdd, runs, [('const float *', 'A'), ('const float *', 'B'), ('float *', 'C')]",
+    "5556, 2, VecAdd, runs, []",
+    "5575, 3, vsub, runs, [('const float *', 'a'), ('const float *', 'b'), ('float *', 'c')]",
+    "5575, 4, vmul, runs, [('const float *', 'a'), ('const float *', 'b'), ('float *', 'c')]",
+    "5575, 5, vdiv, runs, [('const float *', 'a'), ('const float *', 'b'), ('float *', 'c')]",
+    "5586, 3, vectorAddKernel, runs, [('float *', 'inputA'), ('float *', 'inputB'), ('float *', 'output'), ('int', 'length')]",
+    "5587, 0, binarize_kernel, runs, [('float *', 'x'), ('int', 'n'), ('float *', 'binary')]",
+    "5587, 1, binarize_input_kernel, runs, [('float *', 'input'), ('int', 'n'), ('int', 'size'), ('float *', 'binary')]",
+    "5587, 2, binarize_weights_kernel, runs, [('float *', 'weights'), ('int', 'n'), ('int', 'size'), ('float *', 'binary')]",
+    "5587, 3, smooth_kernel, runs, [('float *', 'x'), ('int', 'n'), ('int', 'w'), ('int', 'h'), ('int', 'c'), ('int', 'size'), ('float', 'rate'), ('float *', 'delta')]",
+    "5587, 4, forward_avgpool_layer_kernel, runs, [('int', 'n'), ('int', 'w'), ('int', 'h'), ('int', 'c'), ('float *', 'input'), ('float *', 'output')]",
+    "5587, 5, backward_avgpool_layer_kernel, runs, [('int', 'n'), ('int', 'w'), ('int', 'h'), ('int', 'c'), ('float *', 'in_delta'), ('float *', 'out_delta')]"
+  ],
+  "Debugging Kernels": [
+    "556, 0, KernelVersionShim, runs, []",
+    "5566, 0, kernel, runs, []",
+    "5566, 1, kernel, runs, []",
+    "5566, 2, kernel, runs, []",
+    "5781, 204, cuda_debug_kernel, runs, []",
+    "579, 204, cuda_debug_kernel, runs, []"
+  ],
+  "Gradient Kernels": [
+    "5581, 351, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "5587, 20, CalculateDiffSample, runs, [('float *', 'cur'), ('float *', 'pre'), ('const int', 'wts'), ('const int', 'hts')]",
+    "5587, 21, CalculateTransSample, runs, [('const float *', 'input'), ('float *', 'output'), ('const int', 'wtss'), ('const int', 'htss'), ('const int', 'wts'), ('const int', 'hts'), ('const int', 'ratio')]"
+  ],
+  "Distance Kernels": [
+    "5686, 3, euclideanDistanceCuda, runs, [('float3 *', 'pDotProducts'), ('size_t', 'pSize'), ('float *', 'results')]",
+    "5686, 4, cosineSimilarityCuda, runs, [('float3 *', 'pDotProducts'), ('size_t', 'pSize'), ('float *', 'results')]"
+  ],
+  "Utility Kernels": [
+    "5665, 1, randoms, runs, [('curandState_t *', 'states'), ('float *', 'numbers'), ('float', 'lower'), ('float', 'higher')]",
+    "5665, 3, sigmoidForward, runs, [('float *', 'R'), ('float *', 'V'), ('int', 'x'), ('int', 'y')]",
+    "5665, 4, sigmoidBackward, runs, [('float *', 'R'), ('float *', 'V'), ('int', 'x'), ('int', 'y')]",
+    "5665, 5, binaryCrossEntropyCost, runs, [('float *', 'cost'), ('float *', 'predictions'), ('float *', 'target'), ('int', 'size')]",
+    "5665, 6, dBinaryCrossEntropyCost, runs, [('float *', 'predictions'), ('float *', 'target'), ('float *', 'dY'), ('int', 'x')]",
+    "5665, 7, reluForward, runs, [('float *', 'R'), ('float *', 'V'), ('int', 'x'), ('int', 'y')]",
+    "5665, 8, reluBackward, runs, [('float *', 'dZ'), ('float *', 'top_diff'), ('float *', 'V'), ('int', 'x'), ('int', 'y')]"
+  ],
+  "Image Processing Kernels": [
+    "5585, 1, sobelCuda, runs, [('byte *', 'image'), ('byte *', 'edged'), ('int', 'width'), ('int', 'height')]",
+    "5710, 0, grayscale, runs, [('float4 *', 'imagem'), ('int', 'width'), ('int', 'height')]"
+  ],
+  "Sparse-Dense Kernels": [
+    "5735, 0, ker_dense_to_sparse_assign, runs, [('int', 'n'), ('const unsigned int *', 'idx'), ('float *', 'src'), ('float *', 'trg')]",
+    "5735, 1, ker_sparse_to_dense_assign, runs, [('int', 'n'), ('const unsigned int *', 'idx'), ('float *', 'src'), ('float *', 'trg')]",
+    "5735, 2, ker_dense_to_sparse_subtract, runs, [('int', 'n'), ('const unsigned int *', 'idx'), ('float *', 'src'), ('float *', 'trg')]",
+    "5735, 3, ker_sparse_to_dense_block_assign_and_multiply, runs, [('int', 'n'), ('const unsigned *', 'idx'), ('int', 'bsize'), ('float', 'mult'), ('float *', 'src'), ('float *', 'trg')]",
+    "5735, 6, ker_dense_to_sparse_block_add, runs, [('int', 'n'), ('const unsigned *', 'idx'), ('int', 'bsize'), ('float *', 'src'), ('float *', 'trg')]"
+  ]
+}
+```

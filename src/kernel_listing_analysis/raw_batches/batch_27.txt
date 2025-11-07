@@ -1,0 +1,62 @@
+```json
+{
+  "Random Number Generation Kernels": [
+    "17185, 2, setup_state, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "17204, 4, setup_rands, runs, [('curandState *', 'rand'), ('unsigned long', 'seed'), ('unsigned long', 'N')]",
+    "17355, 2, gpu_RNG_setup, runs, [('curandState *', 'state'), ('unsigned long', 'seed'), ('int', 'N')]",
+    "17388, 0, initCurandStates, runs, [('curandState *', 'randStates'), ('int', 'numThreads'), ('int', 'seed')]"
+  ],
+  "Matrix Computation Kernels": [
+    "17185, 22, ComputeOffsetOfMatrixAB, runs, [('const int32_t *', 'row_sum'), ('const int32_t *', 'col_sum'), ('int32_t *', 'output'), ('int32_t', 'K_A_B'), ('int32_t', 'N')]",
+    "17185, 23, ComputeOffsetOfMatrixA, runs, [('const int32_t *', 'col_sum'), ('int32_t *', 'output'), ('int32_t', 'N')]",
+    "17185, 24, ComputeOffsetOfMatrixB, runs, [('const int32_t *', 'row_sum'), ('int32_t *', 'output'), ('int32_t', 'N')]",
+    "17244, 2, Multiply_Matrix_GPU, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'BLOCK_SIZE'), ('int', 'N')]"
+  ],
+  "Normalization Kernels": [
+    "17185, 31, NormalizeOutput, runs, [('const int', 'num_elements'), ('const int *', 'original'), ('int64_t *', 'to_normalize'), ('int64_t', 'batch_index'), ('int64_t', 'class_index')]",
+    "17261, 32, NormalizeOutput, runs, [('const int', 'num_elements'), ('const int *', 'original'), ('int64_t *', 'to_normalize'), ('int64_t', 'batch_index'), ('int64_t', 'class_index')]",
+    "17245, 107, NormalizeKernel, runs, [('const float *', 'normalization_factor'), ('int', 'w'), ('int', 'h'), ('int', 's'), ('float *', 'image')]",
+    "17264, 107, NormalizeKernel, runs, [('const float *', 'normalization_factor'), ('int', 'w'), ('int', 'h'), ('int', 's'), ('float *', 'image')]"
+  ],
+  "Distance Kernels": [
+    "17202, 0, cuComputeDistanceGlobal, runs, [('float *', 'A'), ('int', 'wA'), ('float *', 'B'), ('int', 'wB'), ('int', 'dim'), ('float *', 'AB')]",
+    "17247, 6, cuSearchDoublet, runs, [('const int *', 'nSpM'), ('const float *', 'spMmat'), ('const int *', 'nSpB'), ('const float *', 'spBmat'), ('const int *', 'nSpT'), ('const float *', 'spTmat'), ('const float *', 'deltaRMin'), ('const float *', 'deltaRMax'), ('const float *', 'cotThetaMax'), ('const float *', 'collisionRegionMin'), ('const float *', 'collisionRegionMax'), ('int *', 'nSpMcomp'), ('int *', 'nSpBcompPerSpM_Max'), ('int *', 'nSpTcompPerSpM_Max'), ('int *', 'nSpBcompPerSpM'), ('int *', 'nSpTcompPerSpM'), ('int *', 'McompIndex'), ('int *', 'BcompIndex'), ('int *', 'tmpBcompIndex'), ('int *', 'TcompIndex'), ('int *', 'tmpTcompIndex')]"
+  ],
+  "Image Processing Kernels": [
+    "17204, 0, drawGray, runs, [('unsigned char *', 'optr'), ('const float *', 'outSrc')]",
+    "17204, 1, drawColor, runs, [('unsigned char *', 'optr'), ('const float *', 'red'), ('const float *', 'green'), ('const float *', 'blue')]",
+    "17205, 0, extract_boundary_kernel, runs, [('float *', 'maskIn'), ('int *', 'boundryPixelArray'), ('int', 'source_nchannel'), ('int', 'source_width'), ('int', 'source_height')]",
+    "17205, 1, merge_without_blend_kernel, runs, [('float *', 'srcimg'), ('float *', 'targetimg'), ('float *', 'outimg'), ('int *', 'boundary_array'), ('int', 'source_nchannel'), ('int', 'source_width'), ('int', 'source_height')]"
+  ],
+  "Sorting Kernels": [
+    "17202, 1, cuInsertionSort, runs, [('float *', 'dist'), ('long *', 'ind'), ('int', 'width'), ('int', 'height'), ('int', 'k')]"
+  ],
+  "Reduction Kernels": [
+    "1721, 40, gMaxPoolingForward, runs, [('float *', 'out'), ('int', 'outRows'), ('int', 'outCols'), ('float *', 'in'), ('int', 'inRows'), ('int', 'inCols'), ('float *', 'mask'), ('int', 'numKernels'), ('int', 'maskCols'), ('int', 'width'), ('int', 'lastWidth')]",
+    "1721, 41, gMaxPoolingBackward, runs, [('float *', 'adj'), ('int', 'adjRows'), ('int', 'adjCols'), ('float *', 'in'), ('float *', 'adjIn'), ('int', 'inRows'), ('int', 'inCols'), ('float *', 'mask'), ('int', 'numKernels'), ('int', 'maskCols'), ('int', 'width'), ('int', 'lastWidth')]",
+    "173, 7, timedReduction, runs, [('const float *', 'input'), ('float *', 'output'), ('clock_t *', 'timer')]"
+  ],
+  "Utility Kernels": [
+    "17204, 2, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "17204, 3, kernel, runs, [('float *', 'red'), ('float *', 'green'), ('float *', 'blue'), ('unsigned long', 'N')]",
+    "1721, 44, gGetValueByKey, runs, [('float *', 'd_in'), ('float *', 'd_out'), ('int *', 'indeces'), ('int', 'n')]",
+    "1721, 47, gScatterAdd, runs, [('float *', 'denseData'), ('float *', 'sparseData'), ('int *', 'sparseIndices'), ('int', 'denseSize'), ('int', 'sparseSize'), ('int', 'offset')]"
+  ],
+  "Kernel Initialization Kernels": [
+    "17447, 1, cuda_kernel_initRND, runs, [('unsigned long', 'seed'), ('curandState *', 'States')]"
+  ],
+  "Downscale Kernels": [
+    "17229, 197, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "17272, 196, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "17302, 186, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "17358, 199, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "17412, 196, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "17504, 201, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "17510, 170, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "17479, 187, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]"
+  ],
+  "Kernel Execution Kernels": [
+    "17363, 0, kernel_push1_atomic, runs, [('int *', 'g_left_weight'), ('int *', 'g_right_weight'), ('int *', 'g_down_weight'), ('int *', 'g_up_weight'), ('int *', 'g_sink_weight'), ('int *', 'g_push_reser'), ('int *', 'g_pull_left'), ('int *', 'g_pull_right'), ('int *', 'g_pull_down'), ('int *', 'g_pull_up'), ('int *', 'g_relabel_mask'), ('int *', 'g_graph_height'), ('int *', 'g_height_write'), ('int', 'graph_size'), ('int', 'width'), ('int', 'rows'), ('int', 'graph_size1'), ('int', 'width1'), ('int', 'rows1')]"
+  ]
+}
+```

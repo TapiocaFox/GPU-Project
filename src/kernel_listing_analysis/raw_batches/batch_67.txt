@@ -1,0 +1,92 @@
+```json
+{
+  "Arithmetic Kernels": [
+    "9438, 1, reduceVector, runs, [('float *', 'v1'), ('float *', 'v2'), ('float *', 'res')]",
+    "9438, 2, sumaVectores, runs, [('float *', 'd_a'), ('float *', 'd_b'), ('float *', 'd_c')]",
+    "9438, 4, sumaVector, runs, [('float *', 'v1'), ('float *', 'v2'), ('float *', 'res')]",
+    "9438, 5, sumaGPU, runs, [('int', 'a'), ('int', 'b'), ('int *', 'sol')]",
+    "9440, 0, cuda_cmp_kernel, runs, [('std::size_t', 'n'), ('int *', 'aptr'), ('int *', 'bptr'), ('int *', 'rptr')]",
+    "9444, 13, CUDAkernel_multiply, runs, [('float *', 'sourceA'), ('float *', 'sourceB'), ('float *', 'destination'), ('int', 'size')]",
+    "9444, 14, CUDAkernel_accumulate, runs, [('float *', 'buffer'), ('int', 'addSize'), ('int', 'size')]",
+    "9504, 0, mul, runs, [('int *', 'A'), ('int *', 'B'), ('int *', 'C')]",
+    "9504, 1, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "9504, 2, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "9504, 3, mul, runs, [('int *', 'A'), ('int *', 'B'), ('int *', 'C')]",
+    "9633, 2, MatrixMul, runs, [('float *', 'Md'), ('float *', 'Nd'), ('float *', 'Pd'), ('const int', 'WIDTH')]",
+    "9633, 3, MatrixMulSh, runs, [('float *', 'Md'), ('float *', 'Nd'), ('float *', 'Pd'), ('const int', 'WIDTH')]",
+    "9640, 0, matmul, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'ARows'), ('int', 'ACols'), ('int', 'BRows'), ('int', 'BCols'), ('int', 'CRows'), ('int', 'CCols')]",
+    "9640, 1, matmul, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'ARows'), ('int', 'ACols'), ('int', 'BRows'), ('int', 'BCols'), ('int', 'CRows'), ('int', 'CCols')]"
+  ],
+  "Reduction Kernels": [
+    "9438, 1, reduceVector, runs, [('float *', 'v1'), ('float *', 'v2'), ('float *', 'res')]",
+    "977, 4, reduce4, runs, [('int *', 'g_idata'), ('int *', 'g_odata')]",
+    "977, 5, reduce5, runs, [('int *', 'g_idata'), ('int *', 'g_odata')]",
+    "977, 6, reduce6, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('int', 'n')]",
+    "9798, 29, reduce, runs, [('double *', 'g_idata'), ('double *', 'g_odata'), ('unsigned int', 'n')]",
+    "9800, 5, HistogramKernel, runs, [('unsigned int *', 'input'), ('unsigned int', 'size'), ('unsigned int *', 'histogram'), ('unsigned int', 'pass')]",
+    "9800, 6, scan_sum_kernel, runs, [('unsigned int *', 'input_vals'), ('unsigned int', 'pass'), ('unsigned int *', 'output'), ('unsigned int *', 'output_block'), ('unsigned int', 'size'), ('unsigned int', 'block_num')]",
+    "9800, 7, scan_kernel, runs, [('unsigned int *', 'output_block'), ('unsigned int', 'block_num')]",
+    "9800, 8, scan_large_sum_kernel, runs, [('unsigned int *', 'output_block'), ('unsigned int *', 'output_val'), ('unsigned int *', 'output_pos'), ('unsigned int *', 'input_val'), ('unsigned int *', 'input_pos'), ('unsigned int *', 'histogram'), ('unsigned int', 'pass'), ('unsigned int', 'block_num'), ('unsigned int', 'size')]"
+  ],
+  "Distance Kernels": [
+    "9444, 45, FindMinSample, runs, [('float *', 'DistanceBuffer'), ('short2 *', 'IndexBuffer'), ('int', 'spread'), ('int', 'mapSizeX'), ('int', 'mapSizeY')]",
+    "9543, 0, computeDistances, runs, [('int', 'numInstances'), ('int', 'numAttributes'), ('float *', 'dataset'), ('float *', 'distances')]"
+  ],
+  "Image Processing Kernels": [
+    "9452, 9, remove_redness_from_coordinates, runs, [('const unsigned int *', 'd_coordinates'), ('unsigned char *', 'd_r'), ('unsigned char *', 'd_b'), ('unsigned char *', 'd_g'), ('unsigned char *', 'd_r_output'), ('int', 'num_coordinates'), ('int', 'num_pixels_y'), ('int', 'num_pixels_x'), ('int', 'template_half_height'), ('int', 'template_half_width')]",
+    "9452, 11, normalize_cdf, runs, [('unsigned int *', 'd_input_cdf'), ('float *', 'd_output_cdf'), ('int', 'n')]",
+    "9452, 12, tonemap, runs, [('float *', 'd_x'), ('float *', 'd_y'), ('float *', 'd_log_Y'), ('float *', 'd_cdf_norm'), ('float *', 'd_r_new'), ('float *', 'd_g_new'), ('float *', 'd_b_new'), ('float', 'min_log_Y'), ('float', 'max_log_Y'), ('float', 'log_Y_range'), ('int', 'num_bins'), ('int', 'num_pixels_y'), ('int', 'num_pixels_x')]",
+    "9694, 0, applyGaussianFilter, runs, [('unsigned char *', 'input'), ('unsigned char *', 'output'), ('float *', 'kernel'), ('int', 'iHeight'), ('int', 'iWidth'), ('int', 'kWidth')]",
+    "9694, 1, applySobelFilter, runs, [('unsigned char *', 'in'), ('unsigned char *', 'intensity'), ('float *', 'direction'), ('int', 'ih'), ('int', 'iw')]"
+  ],
+  "Utility Kernels": [
+    "9452, 0, hello, runs, []",
+    "9452, 1, hello, runs, []",
+    "9452, 6, global_reduce_kernel, runs, [('float *', 'd_out'), ('float *', 'd_in')]",
+    "9452, 7, shmem_reduce_kernel, runs, [('float *', 'd_out'), ('const float *', 'd_in')]",
+    "9454, 36, sync_conv_groups, runs, []",
+    "9457, 34, sync_conv_groups, runs, []",
+    "952, 1, gpu_poisson, runs, [('double *', 'c'), ('double *', 'fi'), ('double *', 'R')]",
+    "952, 2, gpu_efield, runs, [('double *', 'fi'), ('double *', 'ex'), ('double *', 'ey')]",
+    "952, 8, gpu_initialization, runs, [('double *', 'r'), ('double *', 'c'), ('double *', 'fi'), ('double *', 'u'), ('double *', 'v'), ('double *', 'ex'), ('double *', 'ey')]",
+    "952, 13, gpu_stream, runs, [('double *', 'f0'), ('double *', 'f1'), ('double *', 'f2'), ('double *', 'h0'), ('double *', 'h1'), ('double *', 'h2')]",
+    "952, 14, gpu_bc_charge, runs, [('double *', 'h0'), ('double *', 'h1'), ('double *', 'h2')]",
+    "9651, 1, addKernel, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]",
+    "9654, 1, matMul, runs, [('unsigned char *', 'image'), ('unsigned char *', 'resImage'), ('int', 'rows'), ('int', 'cols')]",
+    "9654, 0, matricesMul, runs, [('double *', 'm1'), ('double *', 'm2'), ('double *', 'm3')]"
+  ],
+  "Kernel Testing": [
+    "9452, 0, hello, runs, []",
+    "9452, 1, hello, runs, []",
+    "9454, 36, sync_conv_groups, runs, []",
+    "9457, 34, sync_conv_groups, runs, []",
+    "971, 0, test, runs, []",
+    "978, 0, kernel, runs, []",
+    "978, 1, helloFromGPU, runs, []",
+    "978, 2, kernel, runs, []",
+    "982, 0, kernel, runs, []",
+    "982, 1, helloFromGPU, runs, []",
+    "982, 2, kernel, runs, []"
+  ],
+  "Sorting Kernels": [
+    "9688, 0, bitonic_sort_step, runs, [('int *', 'd_pr'), ('int *', 'd_bt'), ('int', 'j'), ('int', 'k')]",
+    "9688, 1, work_efficient_scan_kernel, runs, [('int *', 'X'), ('int *', 'Y'), ('int', 'InputSize')]",
+    "9688, 2, bitonic_sort_step, runs, [('float *', 'dev_values'), ('int', 'j'), ('int', 'k')]",
+    "9688, 3, inclusive_scan, runs, [('const unsigned int *', 'X'), ('unsigned int *', 'Y'), ('int', 'N')]"
+  ],
+  "Matrix Operations": [
+    "9633, 2, MatrixMul, runs, [('float *', 'Md'), ('float *', 'Nd'), ('float *', 'Pd'), ('const int', 'WIDTH')]",
+    "9633, 3, MatrixMulSh, runs, [('float *', 'Md'), ('float *', 'Nd'), ('float *', 'Pd'), ('const int', 'WIDTH')]",
+    "9640, 0, matmul, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'ARows'), ('int', 'ACols'), ('int', 'BRows'), ('int', 'BCols'), ('int', 'CRows'), ('int', 'CCols')]",
+    "9640, 1, matmul, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'ARows'), ('int', 'ACols'), ('int', 'BRows'), ('int', 'BCols'), ('int', 'CRows'), ('int', 'CCols')]"
+  ],
+  "Neural Network Kernels": [
+    "9607, 89, relu_gpu_forward, runs, [('float *', 'out'), ('float *', 'in'), ('int64_t', 'N')]",
+    "9607, 90, relu_gpu_backward, runs, [('float *', 'ingrad'), ('float *', 'outgrad'), ('float *', 'indata'), ('int64_t', 'N')]",
+    "965, 2, relu_h, runs, [('float *', 'X'), ('float *', 'Y'), ('int', 'size_in')]",
+    "965, 3, backward_relu_h, runs, [('float *', 'X'), ('float *', 'Y'), ('int', 'size_in')]",
+    "965, 4, reduce_to_first_index_h, runs, [('float *', 'X'), ('int', 'height'), ('int', 'width')]",
+    "965, 5, forward_bias, runs, [('float *', 'X'), ('float *', 'b'), ('int', 'N'), ('int', 'ch_in'), ('int', 'h_in'), ('int', 'w_in')]"
+  ]
+}
+```

@@ -1,0 +1,63 @@
+```json
+{
+  "Distance Kernels": [
+    "14353, 122, backward_maxpool_layer_kernel, runs, [('int', 'n'), ('int', 'in_h'), ('int', 'in_w'), ('int', 'in_c'), ('int', 'stride'), ('int', 'size'), ('int', 'pad'), ('float *', 'delta'), ('float *', 'prev_delta'), ('int *', 'indexes')]",
+    "14434, 2, calculate_distances, runs, [('float *', 'sweeper_pos_v'), ('float *', 'mine_pos_v'), ('int', 'num_sweepers'), ('int', 'num_mines'), ('float *', 'distance_v'), ('float *', 'inputs'), ('int *', 'sweeper_score_v'), ('int', 'width'), ('int', 'height'), ('int', 'size')]"
+  ],
+  "Binary Kernels": [
+    "14395, 0, cu_plus, runs, [('float *', 'A'), ('const float *', 'B'), ('const int', 'n')]",
+    "14395, 1, cu_plus, runs, [('const float *', 'A'), ('const float *', 'B'), ('float *', 'C'), ('const int', 'n')]",
+    "14395, 4, cu_minus, runs, [('float *', 'A'), ('const float *', 'B'), ('const int', 'n')]",
+    "14395, 5, cu_minus, runs, [('float *', 'A'), ('const float *', 'B'), ('float *', 'C'), ('const int', 'n')]",
+    "14592, 0, vadd, runs, [('const float *', 'a'), ('const float *', 'b'), ('float *', 'c')]"
+  ],
+  "Matrix Multiplication Kernels": [
+    "14486, 0, matrixMultiply, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'numARows'), ('int', 'numAColumns'), ('int', 'numBRows'), ('int', 'numBColumns'), ('int', 'numCRows'), ('int', 'numCColumns')]",
+    "14541, 1, gpuMM, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'N')]",
+    "14541, 3, MatrixMulKernel, runs, [('float *', 'Md'), ('float *', 'Nd'), ('float *', 'Pd'), ('int', 'Width')]"
+  ],
+  "Reduction Kernels": [
+    "14408, 11, computeSumPerBlock, runs, [('int *', 'a'), ('int', 'N')]",
+    "14584, 0, reduce, runs, [('float *', 'g_idata'), ('float *', 'g_odata'), ('unsigned int', 'n')]",
+    "14548, 2, sumReduce, runs, [('int *', 'n'), ('float *', 'g_sum')]"
+  ],
+  "Convolution Kernels": [
+    "14421, 4, conv2genericrev, runs, [('float *', 'input'), ('float *', 'kernel'), ('float *', 'output'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'kernel_n'), ('int', 'kernel_h'), ('int', 'kernel_w'), ('float', 'alpha'), ('int', 'stride_h'), ('int', 'stride_w')]",
+    "14424, 5, convn_valid_kernel, runs, [('float *', 'output'), ('float *', 'data'), ('float *', 'kernel'), ('const int', 'H'), ('const int', 'W'), ('const int', 'kH'), ('const int', 'kW')]"
+  ],
+  "Activation Kernels": [
+    "14356, 0, fSigmoid, runs, [('const float *', 'arguments'), ('float *', 'results'), ('const long', 'size')]",
+    "14395, 44, cu_sigmoid, runs, [('const float *', 'src'), ('float *', 'dst'), ('int', 'n')]",
+    "14534, 34, rectified_linear_kernel, runs, [('float4 __restrict *', 'output'), ('const float4 __restrict *', 'input'), ('float', 'negative_slope'), ('int', 'elem_count')]"
+  ],
+  "Utility Kernels": [
+    "14364, 1, doGPUWork, runs, [('int', 'numData'), ('int *', 'data')]",
+    "14424, 0, setupCuRandState, runs, [('curandState *', 'state'), ('unsigned long', 'seed')]",
+    "14561, 15, cudaAcc_dev_t_funct, runs, [('float', 'PulseThresh'), ('int', 'PulseMax'), ('int', 'di'), ('float *', 'dev_t_funct_cache'), ('float', 'pulse_display_thresh')]"
+  ],
+  "Smoothing Kernels": [
+    "14448, 0, smoothGray, runs, [('unsigned char *', 'imagem'), ('unsigned char *', 'saida'), ('unsigned int', 'cols'), ('unsigned int', 'linhas')]",
+    "14448, 1, smoothColor, runs, [('unsigned char *', 'imagem'), ('unsigned char *', 'saida'), ('unsigned int', 'cols'), ('unsigned int', 'linhas')]"
+  ],
+  "Sorting Kernels": [
+    "14353, 134, sortVerifyKernel, runs, [('uint *', 'd_DstKey'), ('uint *', 'd_DstVal'), ('uint *', 'd_SrcKey'), ('uint *', 'errNum')]",
+    "14701, 1, cuSort, runs, [('float *', 'data'), ('int', 'bucketSize'), ('int *', 'startPoint')]"
+  ],
+  "Image Processing Kernels": [
+    "14393, 1, boxfilter_kernel, runs, [('int', 'iw'), ('int', 'ih'), ('unsigned char *', 'source'), ('unsigned char *', 'dest'), ('int', 'bw'), ('int', 'bh')]",
+    "14393, 2, sobelfilter_kernel, runs, [('int', 'iw'), ('int', 'ih'), ('unsigned char *', 'source'), ('unsigned char *', 'dest')]"
+  ],
+  "Random Number Generation Kernels": [
+    "14377, 1, setupRandomKernel, runs, [('curandState *', 'states'), ('unsigned long long', 'seed')]",
+    "14424, 0, setupCuRandState, runs, [('curandState *', 'state'), ('unsigned long', 'seed')]"
+  ],
+  "Testing Kernels": [
+    "14432, 3, test_num_vgpr_num_sgpr, runs, []",
+    "14624, 3, test_num_vgpr_num_sgpr, runs, []"
+  ],
+  "Empty Kernels": [
+    "1447, 6, EmptyKernel, runs, []",
+    "14598, 7, emptyKernel, runs, []"
+  ]
+}
+```

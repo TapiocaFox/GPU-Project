@@ -1,0 +1,96 @@
+```json
+{
+  "Image Processing Kernels": [
+    "11079, 2, log_motion_estimation_cuda, runs, [('uint8 *', 'current'), ('uint8 *', 'previous'), ('int *', 'vectors_x'), ('int *', 'vectors_y'), ('int *', 'M_B'), ('int *', 'N_B'), ('int *', 'B'), ('int *', 'M'), ('int *', 'N')]",
+    "11105, 3, d_sobelFilter, runs, [('unsigned char *', 'imageIn'), ('unsigned char *', 'imageOut'), ('int', 'width'), ('int', 'height'), ('int', 'maskWidth'), ('char *', 'M')]",
+    "11105, 4, rgb2gray, runs, [('unsigned char *', 'd_Pin'), ('unsigned char *', 'd_Pout'), ('int', 'width'), ('int', 'height')]",
+    "11105, 8, PictureKernell, runs, [('unsigned char *', 'd_Pin'), ('unsigned char *', 'd_Pout'), ('int', 'n'), ('int', 'm')]",
+    "11105, 12, gamma_tonemap_kernel, runs, [('float *', 'imageIn'), ('float *', 'imageOut'), ('int', 'width'), ('int', 'height'), ('int', 'channels'), ('float', 'f_stop'), ('float', 'gamma')]",
+    "11105, 13, log_tonemap_kernel, runs, [('float *', 'imageIn'), ('float *', 'imageOut'), ('int', 'width'), ('int', 'height'), ('int', 'channels'), ('float', 'k'), ('float', 'q'), ('float *', 'max')]",
+    "11105, 14, adaptive_log_tonemap_kernel, runs, [('float *', 'imageIn'), ('float *', 'imageOut'), ('int', 'width'), ('int', 'height'), ('int', 'channels'), ('float', 'b'), ('float', 'ld_max'), ('float *', 'max')]",
+    "11180, 7, mergeGPU1d, runs, [('unsigned char *', 'image1'), ('unsigned char *', 'image2'), ('unsigned char *', 'res'), ('int', 'pixels')]",
+    "11180, 11, cinzaGPU1d, runs, [('unsigned char *', 'image1'), ('unsigned char *', 'res'), ('int', 'pixels')]",
+    "11197, 45, levels_image_kernel, runs, [('float *', 'image'), ('float *', 'rand'), ('int', 'batch'), ('int', 'w'), ('int', 'h'), ('int', 'train'), ('float', 'saturation'), ('float', 'exposure'), ('float', 'translate'), ('float', 'scale'), ('float', 'shift')]"
+  ],
+  "Matrix Operations": [
+    "11105, 0, matrixMultDevice, runs, [('float *', 'd_A'), ('float *', 'd_B'), ('float *', 'd_C'), ('int', 'width')]",
+    "11105, 1, matrixMultTiled, runs, [('float *', 'd_A'), ('float *', 'd_B'), ('float *', 'd_C'), ('int', 'width')]",
+    "11105, 2, matrixMultDevice, runs, [('float *', 'd_A'), ('float *', 'd_B'), ('float *', 'd_C'), ('int', 'width')]",
+    "11228, 1, matrix_mul, runs, [('float *', 'd_A'), ('float *', 'd_B'), ('float *', 'd_C'), ('int', 'numARows'), ('int', 'numAColumns'), ('int', 'numBRows'), ('int', 'numBColumns'), ('int', 'numCRows'), ('int', 'numCColumns')]"
+  ],
+  "Dot Product Kernels": [
+    "11069, 225, kDotProduct_r, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'target'), ('const uint', 'numElements')]",
+    "11149, 229, kDotProduct_r, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'target'), ('const uint', 'numElements')]",
+    "11234, 221, kDotProduct_r, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'target'), ('const uint', 'numElements')]",
+    "11277, 235, kDotProduct_r, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'target'), ('const uint', 'numElements')]",
+    "11212, 22, dot, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c')]",
+    "11212, 28, dot, runs, [('int', 'size'), ('float *', 'a'), ('float *', 'b'), ('float *', 'c')]",
+    "11212, 29, dot, runs, [('int', 'size'), ('float *', 'a'), ('float *', 'b'), ('float *', 'c')]",
+    "11212, 30, dot, runs, [('int', 'size'), ('float *', 'a'), ('float *', 'b'), ('float *', 'c')]"
+  ],
+  "Softmax and Accuracy Kernels": [
+    "11069, 347, softmax_gradient_kernel, runs, [('const int', 'dim'), ('const float *', 'Y'), ('const float *', 'dY'), ('float *', 'dX')]",
+    "11113, 26, softmax_gradient_kernel, runs, [('const int', 'dim'), ('const float *', 'Y'), ('const float *', 'dY'), ('float *', 'dX')]",
+    "11149, 341, softmax_gradient_kernel, runs, [('const int', 'dim'), ('const float *', 'Y'), ('const float *', 'dY'), ('float *', 'dX')]",
+    "11234, 335, softmax_gradient_kernel, runs, [('const int', 'dim'), ('const float *', 'Y'), ('const float *', 'dY'), ('float *', 'dX')]",
+    "11069, 352, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "11130, 0, sortKernelSimple, runs, [('int *', 'arr'), ('int', 'arr_len'), ('int', 'odd')]",
+    "11130, 1, sortKernelMulti, runs, [('int *', 'arr'), ('int', 'arr_len'), ('int', 'num_elem'), ('int', 'oddEven')]",
+    "11149, 349, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "11234, 340, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "11164, 326, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]"
+  ],
+  "Utility Kernels": [
+    "11069, 226, kSetupCurand, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "11149, 230, kSetupCurand, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "11234, 222, kSetupCurand, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "11277, 236, kSetupCurand, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "11158, 0, initSeed, runs, [('unsigned int', 'seed'), ('curandState_t *', 'states')]",
+    "11158, 1, selectPre, runs, [('float *', 'fitness'), ('float *', 'Fitness'), ('float *', 'tmpFitness'), ('float *', 'populationArray'), ('float *', 'tmpPopulationArray')]",
+    "11158, 2, selectFcn, runs, [('float *', 'populationArray'), ('float *', 'tmpPopulationArray'), ('float *', 'fitness'), ('float *', 'Fitness'), ('float *', 'tmpFitness'), ('float', 'sumFitness'), ('float *', 'populationPro'), ('curandState_t *', 'states')]",
+    "11158, 3, crossFcn, runs, [('float *', 'populationArray'), ('curandState_t *', 'states')]",
+    "11158, 4, mutationFcn, runs, [('float *', 'populationArray'), ('curandState_t *', 'states')]"
+  ],
+  "Sorting Kernels": [
+    "11127, 0, sortKernelSimple, runs, [('int *', 'arr'), ('int', 'arr_len'), ('int', 'odd')]",
+    "11127, 1, sortKernelMulti, runs, [('int *', 'arr'), ('int', 'arr_len'), ('int', 'num_elem'), ('int', 'oddEven')]"
+  ],
+  "Kernel Testing": [
+    "11288, 0, kernel_move_inv_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'pattern')]",
+    "11288, 3, kernel_test0_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'pattern'), ('unsigned int *', 'err'), ('unsigned long *', 'err_addr'), ('unsigned long *', 'err_expect'), ('unsigned long *', 'err_current'), ('unsigned long *', 'err_second_read')]",
+    "11288, 5, kernel_test0_global_write, runs, [('char *', '_ptr'), ('char *', '_end_ptr')]",
+    "11288, 7, kernel_test0_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "11288, 9, kernel_test1_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int *', 'err')]",
+    "11288, 11, kernel_test5_init, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "11288, 12, kernel_test5_move, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]"
+  ],
+  "Statistical Kernels": [
+    "11197, 12, dot_kernel, runs, [('float *', 'output'), ('float', 'scale'), ('int', 'batch'), ('int', 'n'), ('int', 'size'), ('float *', 'delta')]",
+    "11197, 13, adam_kernel, runs, [('int', 'N'), ('float *', 'x'), ('float *', 'm'), ('float *', 'v'), ('float', 'B1'), ('float', 'B2'), ('float', 'rate'), ('float', 'eps'), ('int', 't')]",
+    "11197, 14, normalize_kernel, runs, [('int', 'N'), ('float *', 'x'), ('float *', 'mean'), ('float *', 'variance'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial')]",
+    "11197, 15, normalize_delta_kernel, runs, [('int', 'N'), ('float *', 'x'), ('float *', 'mean'), ('float *', 'variance'), ('float *', 'mean_delta'), ('float *', 'variance_delta'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial'), ('float *', 'delta')]",
+    "11197, 16, variance_delta_kernel, runs, [('float *', 'x'), ('float *', 'delta'), ('float *', 'mean'), ('float *', 'variance'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial'), ('float *', 'variance_delta')]",
+    "11197, 17, fast_mean_delta_kernel, runs, [('float *', 'delta'), ('float *', 'variance'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial'), ('float *', 'mean_delta')]",
+    "11197, 18, fast_variance_delta_kernel, runs, [('float *', 'x'), ('float *', 'delta'), ('float *', 'mean'), ('float *', 'variance'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial'), ('float *', 'variance_delta')]",
+    "11197, 19, mean_delta_kernel, runs, [('float *', 'delta'), ('float *', 'variance'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial'), ('float *', 'mean_delta')]",
+    "11197, 20, mean_kernel, runs, [('float *', 'x'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial'), ('float *', 'mean')]",
+    "11197, 21, variance_kernel, runs, [('float *', 'x'), ('float *', 'mean'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial'), ('float *', 'variance')]"
+  ],
+  "Memory Management Kernels": [
+    "1117, 0, initMemory, runs, [('size_t', 'position'), ('size_t *', 'array')]",
+    "1117, 1, AplusB, runs, [('int *', 'ret'), ('int', 'a'), ('int', 'N')]",
+    "1117, 2, AplusB_wait, runs, [('int *', 'ret'), ('int', 'a'), ('int', 'N'), ('clock_t', 'sleepInterval')]",
+    "1117, 3, sample, runs, []",
+    "1117, 7, calcPoly16, runs, []",
+    "1117, 17, vDisp, runs, [('const float *', 'A'), ('const float *', 'B'), ('int', 'ds')]"
+  ],
+  "Kernel Initialization": [
+    "1114, 0, setToOnes, runs, [('float *', 'data'), ('int', 'size')]",
+    "1114, 1, setToZeros, runs, [('float *', 'data'), ('int', 'size')]",
+    "1114, 6, set_bin, runs, [('int *', 'd_row_nz'), ('int *', 'd_bin_size'), ('int *', 'd_max'), ('int', 'M'), ('int', 'min'), ('int', 'mmin')]",
+    "1114, 7, init_row_perm, runs, [('int *', 'd_permutation'), ('int', 'M')]",
+    "1114, 8, set_row_perm, runs, [('int *', 'd_bin_size'), ('int *', 'd_bin_offset'), ('int *', 'd_max_row_nz'), ('int *', 'd_row_perm'), ('int', 'M'), ('int', 'min'), ('int', 'mmin')]",
+    "1114, 10, init_check, runs, [('int *', 'd_check'), ('int', 'nz')]"
+  ]
+}
+```

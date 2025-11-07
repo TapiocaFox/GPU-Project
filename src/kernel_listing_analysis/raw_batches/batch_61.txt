@@ -1,0 +1,77 @@
+```json
+{
+  "Distance Kernels": [
+    "8192, 194, ComputeDistanceKernel, runs, [('int', 'inputSize'), ('float *', 'distance'), ('float *', 'dimensionWeight'), ('int', 'maxCells'), ('float *', 'difference')]",
+    "8192, 199, ComputeBiasedDistanceKernel, runs, [('float *', 'distance'), ('float *', 'biasedDistance'), ('float *', 'biasTerm'), ('int', 'maxCells')]",
+    "8192, 208, TwoNodesDifferenceKernel, runs, [('int', 'nodeOne'), ('int', 'nodeTwo'), ('int', 'vectorLength'), ('float *', 'referenceVector'), ('float *', 'twoNodesDifference')]",
+    "8192, 209, TwoNodesDistanceKernel, runs, [('float *', 'twoNodesDifference'), ('float *', 'twoNodesDistance'), ('int', 'vectorLength')]",
+    "8292, 6, NmDistanceKernel, runs, [('int', 'b'), ('int', 'n'), ('const float *', 'xyz'), ('int', 'm'), ('const float *', 'xyz2'), ('float *', 'result'), ('int *', 'result_i')]",
+    "8292, 7, NmDistanceGradKernel, runs, [('int', 'b'), ('int', 'n'), ('const float *', 'xyz1'), ('int', 'm'), ('const float *', 'xyz2'), ('const float *', 'grad_dist1'), ('const int *', 'idx1'), ('float *', 'grad_xyz1'), ('float *', 'grad_xyz2')]"
+  ],
+  "Utility Kernels": [
+    "8192, 196, AddUtilityKernel, runs, [('int', 's1'), ('int', 's2'), ('float *', 'distance'), ('float *', 'utility')]",
+    "8192, 211, DecreaseErrorAndUtilityKernel, runs, [('float *', 'localError'), ('float *', 'utility'), ('int *', 'activityFlag'), ('int', 'maxCells'), ('float', 'beta')]",
+    "8192, 204, RemoveNodeByUtilityKernel, runs, [('int *', 'connectionMatrix'), ('int *', 'connectionAge'), ('int *', 'activityFlag'), ('float *', 'utility'), ('float', 'utilityConstant'), ('float *', 'localError'), ('int *', 'neuronAge'), ('float *', 'winningFraction'), ('int *', 'winningCount'), ('float', 'maxError'), ('int', 'maxCells')]"
+  ],
+  "Matrix Operations": [
+    "8192, 231, MatrixCopy_naive, runs, [('const float *', 'A'), ('int', 'Acount'), ('int', 'Acols'), ('float *', 'out0'), ('int', 'out0count')]",
+    "8192, 232, Matrix_getRow_FloatId_naive, runs, [('const float *', 'A'), ('int', 'Acount'), ('int', 'Acols'), ('float *', 'out0'), ('int', 'out0count'), ('int', 'out0cols'), ('const float', 'row_id')]",
+    "8192, 233, Matrix_getRow_FloatPointer_naive, runs, [('const float *', 'A'), ('int', 'Acount'), ('int', 'Acols'), ('const float *', 'rowId'), ('int', 'empty_par1'), ('int', 'empty_par2'), ('float *', 'out0'), ('int', 'out0count'), ('int', 'out0cols')]",
+    "8192, 234, Matrix_getCol_FloatId_naive, runs, [('const float *', 'A'), ('int', 'Acount'), ('int', 'Acols'), ('float *', 'out0'), ('int', 'out0count'), ('int', 'out0cols'), ('float', 'col_id')]",
+    "8192, 235, Matrix_getCol_FloatPointer_naive, runs, [('const float *', 'A'), ('int', 'Acount'), ('int', 'Acols'), ('const float *', 'colId'), ('int', 'empty_par1'), ('int', 'empty_par2'), ('float *', 'out0'), ('int', 'out0count'), ('int', 'out0cols')]",
+    "8192, 236, Matrix_cos_naive, runs, [('const float *', 'A'), ('int', 'Acount'), ('int', 'Acols'), ('float *', 'out0'), ('int', 'out0count')]",
+    "8192, 237, Matrix_sin_naive, runs, [('const float *', 'A'), ('int', 'Acount'), ('int', 'Acols'), ('float *', 'out0'), ('int', 'out0count')]",
+    "8192, 238, Matrix_transposeFromSVDnodeCOPY, runs, [('const float *', 'A'), ('int', 'Acount'), ('int', 'Acols'), ('float *', 'out0')]",
+    "8192, 239, Matrix_MultiplElementWise_naiveOLD, runs, [('const float *', 'A'), ('int', 'Acount'), ('int', 'Acols'), ('const float *', 'B'), ('int', 'Bcount'), ('int', 'Bcols'), ('float *', 'out0'), ('int', 'out0count'), ('int', 'out0cols')]",
+    "8192, 264, MatrixCopy, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'size')]",
+    "8208, 0, matrixMultiply, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'numARows'), ('int', 'numAColumns'), ('int', 'numBRows'), ('int', 'numBColumns'), ('int', 'numCRows'), ('int', 'numCColumns')]",
+    "8411, 0, matrixMulGPU, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]"
+  ],
+  "Image Processing Kernels": [
+    "8192, 213, SetForcesToZeroKernel, runs, [('float *', 'force'), ('int', 'maxCells')]",
+    "8192, 216, UseForceKernel, runs, [('float *', 'force'), ('float', 'forceFactor'), ('float *', 'pointsCoordinates'), ('int', 'maxCells')]",
+    "8192, 374, BilinearResampleKernel, runs, [('float *', 'input'), ('float *', 'output'), ('int', 'inputWidth'), ('int', 'inputHeight'), ('int', 'outputWidth'), ('int', 'outputHeight')]",
+    "829, 0, vector_max_kernel, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'N')]",
+    "831, 8, sobelFilterShared, runs, [('unsigned char *', 'data'), ('unsigned char *', 'result'), ('int', 'width'), ('int', 'height')]",
+    "831, 9, sobelFilterShared2, runs, [('unsigned char *', 'data'), ('unsigned char *', 'result'), ('int', 'width'), ('int', 'height')]",
+    "831, 10, sobelFilterShared3, runs, [('unsigned char *', 'g_DataIn'), ('unsigned char *', 'g_DataOut'), ('unsigned int', 'width'), ('unsigned int', 'height')]"
+  ],
+  "Kernel Initialization": [
+    "8205, 5, init, runs, [('uint32_t *', 'v'), ('uint32_t', 'val'), ('uint32_t', 'n')]",
+    "8411, 1, initializeElementsTo, runs, [('int', 'initialValue'), ('int *', 'a'), ('int', 'N')]",
+    "8411, 7, helloGPU, runs, []"
+  ],
+  "Sorting Kernels": [
+    "8292, 14, selection_sort_gpu, runs, [('int', 'b'), ('int', 'n'), ('int', 'm'), ('int', 'k'), ('const float *', 'dist'), ('int *', 'outi'), ('float *', 'out')]",
+    "8390, 0, gqsort1, runs, [('block *', 'blocks'), ('int *', 'd'), ('int *', 'LT'), ('int *', 'GT')]",
+    "8390, 2, gqsort3, runs, [('block *', 'blocks'), ('int *', 'd'), ('int *', '_d')]"
+  ],
+  "Mathematical Functions": [
+    "8192, 338, PolynomialFunctionKernel, runs, [('float', 'a3'), ('float', 'a2'), ('float', 'a1'), ('float', 'a0'), ('float *', 'input'), ('float *', 'output'), ('int', 'size')]",
+    "8192, 339, PolynomialFunctionKernel_Double, runs, [('float', 'a3'), ('float', 'a2'), ('float', 'a1'), ('float', 'a0'), ('double *', 'input'), ('double *', 'output'), ('int', 'size')]",
+    "8192, 340, LinearFunctionKernelDouble, runs, [('double', 'a1'), ('double', 'a0'), ('double *', 'input'), ('double *', 'output'), ('int', 'size')]",
+    "8192, 342, GoniometricFunctionKernel, runs, [('float *', 'input'), ('float *', 'output'), ('const int', 'size'), ('const int', 'type')]",
+    "8192, 343, ExponentialFunctionKernel, runs, [('float', 'exponent'), ('float *', 'input'), ('float *', 'output'), ('int', 'size')]",
+    "8192, 344, LogarithmicFunctionKernel, runs, [('float *', 'input'), ('float *', 'output'), ('int', 'size'), ('const int', 'type')]"
+  ],
+  "Kernel Draw Operations": [
+    "8192, 313, DrawRgbBackgroundKernel, runs, [('float *', 'target'), ('int', 'inputWidth'), ('int', 'inputHeight'), ('float', 'r'), ('float', 'g'), ('float', 'b')]",
+    "8192, 315, DrawRgbaColorKernel, runs, [('float *', 'target'), ('int', 'targetWidth'), ('int', 'targetHeight'), ('int', 'inputX'), ('int', 'inputY'), ('int', 'areaWidth'), ('int', 'areaHeight'), ('float', 'r'), ('float', 'g'), ('float', 'b')]",
+    "8192, 316, DrawRgbaTextureKernel, runs, [('float *', 'target'), ('int', 'targetWidth'), ('int', 'targetHeight'), ('int', 'inputX'), ('int', 'inputY'), ('float *', 'texture'), ('int', 'textureWidth'), ('int', 'textureHeight')]"
+  ],
+  "Kernel Resampling": [
+    "8192, 375, ExactResampleKernel_1toN, runs, [('float *', 'input'), ('float *', 'output'), ('int', 'inputWidth'), ('int', 'inputHeight'), ('int', 'outputWidth'), ('int', 'outputHeight')]",
+    "8192, 376, ExactResampleKernel_Nto1, runs, [('float *', 'input'), ('float *', 'output'), ('int', 'inputWidth'), ('int', 'inputHeight'), ('int', 'outputWidth'), ('int', 'outputHeight')]",
+    "8192, 377, NNResampleKernel, runs, [('float *', 'input'), ('float *', 'output'), ('int', 'inputWidth'), ('int', 'inputHeight'), ('int', 'outputWidth'), ('int', 'outputHeight')]"
+  ],
+  "Kernel Copy Operations": [
+    "8192, 210, CopyVectorKernel, runs, [('float *', 'from'), ('int', 'fromOffset'), ('float *', 'to'), ('int', 'toOffset'), ('int', 'vectorSize')]",
+    "8192, 219, CopyPointsCoordinatesKernel, runs, [('float *', 'pointsCoordinates'), ('int *', 'activityFlag'), ('float', 'xNonValid'), ('float', 'yNonValid'), ('float', 'zNonValid'), ('float *', 'dataVertex'), ('int', 'dataVertexOffset'), ('int', 'maxCells')]",
+    "8192, 220, CopyConnectionsCoordinatesKernel, runs, [('int *', 'connectionMatrix'), ('float *', 'pointsCoordinates'), ('float *', 'vertexData'), ('int *', 'connectionCount'), ('int', 'maxCells')]"
+  ],
+  "Kernel Initialization and Setup": [
+    "8201, 2, computePointHessian0, runs, [('float *', 'x'), ('float *', 'y'), ('float *', 'z'), ('int', 'points_num'), ('int *', 'valid_points'), ('int', 'valid_points_num'), ('double *', 'dh_ang'), ('double *', 'ph93'), ('double *', 'ph103'), ('double *', 'ph113'), ('double *', 'ph123'), ('double *', 'ph94'), ('double *', 'ph133'), ('double *', 'ph104'), ('double *', 'ph143'), ('double *', 'ph114'), ('double *', 'ph153'), ('double *', 'ph95'), ('double *', 'ph163'), ('double *', 'ph105'), ('double *', 'ph173'), ('double *', 'ph115')]",
+    "8201, 3, computePointHessian1, runs, [('float *', 'x'), ('float *', 'y'), ('float *', 'z'), ('int', 'points_num'), ('int *', 'valid_points'), ('int', 'valid_points_num'), ('double *', 'dh_ang'), ('double *', 'ph124'), ('double *', 'ph134'), ('double *', 'ph144'), ('double *', 'ph154'), ('double *', 'ph125'), ('double *', 'ph164'), ('double *', 'ph135'), ('double *', 'ph174'), ('double *', 'ph145')]"
+  ]
+}
+```

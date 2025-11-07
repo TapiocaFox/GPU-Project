@@ -1,0 +1,94 @@
+```json
+{
+  "Trigonometric Functions": [
+    "3007, 116, ge_acos, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]",
+    "3007, 117, ge_atan, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]",
+    "3007, 118, ge_atan2, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('const REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b'), ('REAL *', 'c'), ('const int', 'offset_c'), ('const int', 'ld_c')]",
+    "3007, 119, ge_sinh, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]",
+    "3007, 120, ge_cosh, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]",
+    "3007, 121, ge_tanh, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]",
+    "3007, 122, ge_asinh, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]",
+    "3007, 123, ge_acosh, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]",
+    "3007, 124, ge_atanh, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]"
+  ],
+  "Error Functions": [
+    "3007, 125, ge_erf, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]",
+    "3007, 126, ge_erf_inv, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]",
+    "3007, 127, ge_erfc, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]",
+    "3007, 128, ge_erfc_inv, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]"
+  ],
+  "Cumulative Distribution Functions": [
+    "3007, 129, ge_cdf_norm, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]",
+    "3007, 130, ge_cdf_norm_inv, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]"
+  ],
+  "Gamma Functions": [
+    "3007, 131, ge_gamma, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]",
+    "3007, 132, ge_lgamma, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]"
+  ],
+  "Rounding Functions": [
+    "3007, 133, ge_floor, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]",
+    "3007, 134, ge_ceil, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]",
+    "3007, 135, ge_trunc, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]",
+    "3007, 136, ge_round, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]",
+    "3007, 137, ge_modf, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b'), ('REAL *', 'c'), ('const int', 'offset_c'), ('const int', 'ld_c')]",
+    "3007, 138, ge_frac, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]"
+  ],
+  "Max/Min Functions": [
+    "3007, 139, ge_fmax, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('const REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b'), ('REAL *', 'c'), ('const int', 'offset_c'), ('const int', 'ld_c')]",
+    "3007, 140, ge_fmin, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('const REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b'), ('REAL *', 'c'), ('const int', 'offset_c'), ('const int', 'ld_c')]",
+    "3007, 141, ge_copysign, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('const REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b'), ('REAL *', 'c'), ('const int', 'offset_c'), ('const int', 'ld_c')]"
+  ],
+  "Activation Functions": [
+    "3007, 142, ge_sigmoid, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]",
+    "3007, 143, ge_ramp, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]",
+    "3007, 144, ge_relu, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL', 'alpha'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]",
+    "3007, 145, ge_elu, runs, [('const int', 'sd'), ('const int', 'fd'), ('const REAL', 'alpha'), ('const REAL *', 'a'), ('const int', 'offset_a'), ('const int', 'ld_a'), ('REAL *', 'b'), ('const int', 'offset_b'), ('const int', 'ld_b')]"
+  ],
+  "Matrix Operations": [
+    "302, 0, kernel_set_vector_to_zero, runs, [('double *', 'd_vec'), ('int', 'dimension')]",
+    "302, 3, kernel_add_regularization_term, runs, [('double *', 'd_input_vector'), ('int', 'dimension'), ('double', 'regularization_parameter'), ('double *', 'd_rv')]",
+    "302, 6, kernel_vec_equals_vec1_plus_alpha_times_vec2, runs, [('double *', 'vec'), ('double *', 'vec1'), ('double', 'alpha'), ('double *', 'd_a1'), ('double *', 'vec2'), ('int', 'numElements')]",
+    "302, 7, kernel_vec_equals_minus_vec1, runs, [('double *', 'vec'), ('double *', 'vec1'), ('int', 'numElements')]",
+    "302, 8, kernel_euclidean_norm, runs, [('const double *', 'vec'), ('int', 'numElements'), ('double *', 'answer')]",
+    "302, 9, kernel_mult_vector_by_number, runs, [('double *', 'vec'), ('double', 'alpha'), ('int', 'numElements')]",
+    "302, 10, kernel_dot_product, runs, [('const double *', 'vec1'), ('const double *', 'vec2'), ('int', 'numElements'), ('double *', 'answer')]",
+    "302, 11, floatArray2doubleArray, runs, [('const float *', 'floatArray'), ('double *', 'doubleArray'), ('const int', 'size')]",
+    "302, 12, doubleArray2floatArray, runs, [('const double *', 'doubleArray'), ('float *', 'floatArray'), ('const int', 'size')]",
+    "3064, 0, matrixMul, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'n'), ('int', 'tile_size')]",
+    "3064, 1, matrixMul, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'n')]",
+    "3064, 2, vectorAdd, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'n')]",
+    "3064, 3, vectorAdd, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'n')]",
+    "3208, 2, matrix_multiplication, runs, [('int *', 'matrix_1'), ('int *', 'matrix_2'), ('int *', 'matrix_r'), ('int', 'm'), ('int', 'n'), ('int', 'p')]"
+  ],
+  "Image Processing": [
+    "3039, 0, grayscale, runs, [('unsigned char *', 'src'), ('unsigned char *', 'dest'), ('int', 'width'), ('int', 'height'), ('int', 'nChannels')]",
+    "3039, 4, grayscale, runs, [('unsigned char *', 'src'), ('unsigned char *', 'dest'), ('int', 'width'), ('int', 'height'), ('int', 'nChannels')]",
+    "317, 0, kernSmooth, runs, [('int', 'N'), ('int', 'width'), ('int', 'height'), ('unsigned char *', 'in'), ('unsigned char *', 'out'), ('const float *', 'kernel'), ('int', 'kernSize')]",
+    "317, 1, kernGradient, runs, [('int', 'N'), ('int', 'width'), ('int', 'height'), ('unsigned char *', 'in'), ('unsigned char *', 'gradient'), ('unsigned char *', 'edgeDir'), ('float *', 'G_x'), ('float *', 'G_y')]",
+    "317, 4, kernGaussianBlur, runs, [('int', 'width'), ('int', 'height'), ('uint8_t *', 'dst'), ('uint8_t *', 'src'), ('int', 'kernSize'), ('float *', 'kernel')]",
+    "317, 5, kernGaussianBlur, runs, [('int', 'width'), ('int', 'height'), ('uint8_t *', 'dst'), ('uint8_t *', 'src')]"
+  ],
+  "Sorting and Searching": [
+    "305, 0, anyLeft, runs, [('int *', 'd_c'), ('int *', 'remaining'), ('int', 'size')]",
+    "305, 1, search, runs, [('int *', 'd_b'), ('int *', 'd_c'), ('int', 'size')]",
+    "305, 2, populate, runs, [('int *', 'd_b'), ('int *', 'copy_db'), ('int *', 'd_c'), ('int', 'size'), ('int *', 'left')]",
+    "305, 3, select, runs, [('int *', 'db'), ('int', 'size')]",
+    "305, 4, compare, runs, [('char *', 'd_a'), ('int *', 'd_b'), ('int *', 'd_c'), ('int', 'size'), ('int', 'lenString'), ('int', 'threshold')]",
+    "3025, 7, consolidateHistogram, runs, [('ulong *', 'blockHistograms'), ('ulong *', 'cudaHistogram'), ('uint', 'numBlocks')]",
+    "3072, 9, selection_sort_gpu, runs, [('int', 'b'), ('int', 'n'), ('int', 'm'), ('int', 'k'), ('const float *', 'dist'), ('int *', 'outi'), ('float *', 'out')]"
+  ],
+  "Convolution and Filtering": [
+    "3053, 0, convolve, runs, [('unsigned char *', 'source'), ('int', 'width'), ('int', 'height'), ('int', 'paddingX'), ('int', 'paddingY'), ('size_t', 'kOffset'), ('int', 'kWidth'), ('int', 'kHeight'), ('unsigned char *', 'destination')]",
+    "314, 0, convolution_sep, runs, [('float *', 'output'), ('const float *', 'input'), ('const float *', 'kernel'), ('const int', 'kernel_size'), ('const dim3', 'imsize'), ('int', 'dir')]",
+    "315, 2, conv2genericrev, runs, [('float *', 'input'), ('float *', 'kernel'), ('float *', 'output'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'kernel_n'), ('int', 'kernel_h'), ('int', 'kernel_w'), ('float', 'alpha'), ('int', 'stride_h'), ('int', 'stride_w')]"
+  ],
+  "Utility Kernels": [
+    "3020, 3, convertPixelFormat, runs, [('uint8_t *', 'inputBgra'), ('uint8_t *', 'outputYuv'), ('int', 'numPixels')]",
+    "3025, 2, test, runs, [('int *', 'input'), ('int *', 'output')]",
+    "3025, 6, multiplyVectors, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'WIDTH'), ('int', 'HEIGHT')]",
+    "3114, 3, warp_kernel, runs, [('float *', 'out'), ('const float *', 'in'), ('const int *', 'index'), ('const float *', 'weights'), ('const int', 'npixels'), ('const int', 'nchannels')]",
+    "3114, 4, ColumnReduceSimpleKernel, runs, [('const float *', 'in'), ('float *', 'out'), ('int', 'num_planes'), ('int', 'num_rows'), ('int', 'num_cols')]",
+    "3114, 5, tile_kernel, runs, [('const float *', 'in'), ('float *', 'out'), ('int', 'num_planes'), ('int', 'num_rows'), ('int', 'num_cols')]"
+  ]
+}
+```

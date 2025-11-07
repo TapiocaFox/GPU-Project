@@ -1,0 +1,55 @@
+```json
+{
+  "Warping Kernels": [
+    "4309, 98, ForwardWarpKernel_PSF1x1, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'dst')]",
+    "4433, 103, ForwardWarpKernel_PSF2x2, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'normalization_factor'), ('float *', 'dst')]",
+    "4475, 95, ForwardWarpKernel_PSF2x2, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'normalization_factor'), ('float *', 'dst')]"
+  ],
+  "Normalization Kernels": [
+    "4309, 99, NormalizeKernel, runs, [('const float *', 'normalization_factor'), ('int', 'w'), ('int', 'h'), ('int', 's'), ('float *', 'image')]",
+    "4433, 105, NormalizeKernel, runs, [('const float *', 'normalization_factor'), ('int', 'w'), ('int', 'h'), ('int', 's'), ('float *', 'image')]",
+    "4435, 301, softmax_gradient_kernel, runs, [('const int', 'dim'), ('const float *', 'Y'), ('const float *', 'dY'), ('float *', 'dX')]",
+    "4436, 312, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]"
+  ],
+  "Memory Management Kernels": [
+    "4309, 100, MemsetKernel, runs, [('const float', 'value'), ('int', 'w'), ('int', 'h'), ('float *', 'image')]",
+    "4433, 106, MemsetKernel, runs, [('const float', 'value'), ('int', 'w'), ('int', 'h'), ('float *', 'image')]",
+    "4475, 98, MemsetKernel, runs, [('const float', 'value'), ('int', 'w'), ('int', 'h'), ('float *', 'image')]"
+  ],
+  "Subtraction Kernels": [
+    "4310, 5, Subtract, runs, [('float *', 'd_Result'), ('float *', 'd_Data1'), ('float *', 'd_Data2'), ('int', 'width'), ('int', 'pitch'), ('int', 'height')]",
+    "4310, 10, SubtractMulti, runs, [('float *', 'd_Result'), ('float *', 'd_Data'), ('int', 'width'), ('int', 'pitch'), ('int', 'height')]",
+    "4310, 23, Subtract, runs, [('float *', 'd_Result'), ('float *', 'd_Data1'), ('float *', 'd_Data2'), ('int', 'width'), ('int', 'height')]"
+  ],
+  "Matrix Operations Kernels": [
+    "4340, 1, matrixMultiply, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'numARows'), ('int', 'numAColumns'), ('int', 'numBRows'), ('int', 'numBColumns'), ('int', 'numCRows'), ('int', 'numCColumns')]",
+    "4555, 0, MatMultKernel, runs, [('double *', 'array1'), ('double *', 'array2'), ('double *', 'output'), ('int', 'arr1_rows'), ('int', 'arr1_cols'), ('int', 'arr2_cols')]"
+  ],
+  "Addition Kernels": [
+    "4340, 2, addKernel, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]",
+    "4472, 1, pw_biasAdd, runs, [('float *', 'y'), ('float *', 'bias'), ('int', 'n'), ('int', 'nBias')]",
+    "456, 2, add, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c')]"
+  ],
+  "Distance Kernels": [
+    "4431, 5, query_ball_point_gpu, runs, [('int', 'b'), ('int', 'n'), ('int', 'm'), ('float', 'radius'), ('int', 'nsample'), ('const float *', 'xyz1'), ('const float *', 'xyz2'), ('int *', 'idx'), ('int *', 'pts_cnt')]",
+    "4431, 8, selection_sort_gpu, runs, [('int', 'b'), ('int', 'n'), ('int', 'm'), ('int', 'k'), ('const float *', 'dist'), ('int *', 'outi'), ('float *', 'out')]"
+  ],
+  "Utility Kernels": [
+    "4309, 173, mergeLocation, runs, [('const short2 *', 'loc_'), ('float *', 'x'), ('float *', 'y'), ('const int', 'npoints'), ('float', 'scale')]",
+    "4310, 15, FindMinMax, runs, [('float *', 'd_MinMax'), ('float *', 'd_Data'), ('int', 'width'), ('int', 'pitch'), ('int', 'height')]",
+    "4310, 16, Find3DMinMax, runs, [('int *', 'd_Result'), ('float *', 'd_Data1'), ('float *', 'd_Data2'), ('float *', 'd_Data3'), ('int', 'width'), ('int', 'pitch'), ('int', 'height')]"
+  ],
+  "Kernel Initialization Kernels": [
+    "4457, 2, setup_state, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "446, 1, calc_consts, runs, [('float *', 'fvals'), ('double *', 'dvals')]"
+  ],
+  "Image Processing Kernels": [
+    "4522, 8, RGBToRGBAf, runs, [('uchar3 *', 'srcImage'), ('float4 *', 'dstImage'), ('int', 'width'), ('int', 'height')]",
+    "4522, 9, RGBToBGRA8, runs, [('float3 *', 'srcImage'), ('uchar4 *', 'dstImage'), ('int', 'width'), ('int', 'height'), ('float', 'scaling_factor')]"
+  ],
+  "Random Walk Kernels": [
+    "4372, 0, randomWalk, runs, [('double *', 'results'), ('int *', 'crossTimes'), ('int', 'T'), ('int', 'N'), ('double', 'drift'), ('int', 'numSims'), ('double', 'lowerThreshold'), ('double', 'upperThreshold'), ('double', 'deviceID')]",
+    "4372, 1, randomWalk, runs, [('double *', 'results'), ('int *', 'crossTimes'), ('int', 'T'), ('int', 'N'), ('double', 'drift'), ('int', 'numSims'), ('double', 'lowerThreshold'), ('double', 'upperThreshold'), ('int', 'deviceID')]"
+  ]
+}
+```

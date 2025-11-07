@@ -1,0 +1,81 @@
+```json
+{
+  "Matrix Operations": [
+    "810, 37, sumMatrixOnGPU2D, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'NX'), ('int', 'NY')]",
+    "810, 65, sumArrays, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('const int', 'N')]",
+    "810, 66, sumArraysZeroCopy, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('const int', 'N')]",
+    "810, 81, sumMatrixGPU, runs, [('float *', 'MatA'), ('float *', 'MatB'), ('float *', 'MatC'), ('int', 'nx'), ('int', 'ny')]",
+    "810, 178, sumMatrixOnGPUMix, runs, [('float *', 'MatA'), ('float *', 'MatB'), ('float *', 'MatC'), ('int', 'nx'), ('int', 'ny')]",
+    "818, 5, gpu_matrix_mult, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'm'), ('int', 'n'), ('int', 'k')]",
+    "818, 22, gpu_matrix_mult, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'm'), ('int', 'n'), ('int', 'k')]",
+    "818, 23, gpu_matrix_mult_one, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'm'), ('int', 'n'), ('int', 'k')]",
+    "818, 24, gpu_matrix_mult_two, runs, [('int *', 'd_M'), ('int *', 'd_N'), ('int *', 'd_P'), ('int', 'm'), ('int', 'n'), ('int', 'k')]"
+  ],
+  "Reduction Kernels": [
+    "810, 44, reduceNeighbored, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "810, 45, reduceNeighboredLess, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "810, 46, reduceInterleaved, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "810, 47, reduceUnrolling2, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "810, 48, reduceUnrolling4, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "810, 49, reduceUnrolling8, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "810, 50, reduceUnrollWarps8, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "810, 51, reduceCompleteUnrollWarps8, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "810, 53, reduceUnrollWarps, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "810, 114, reduceSmem, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "810, 133, reduceGmem, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "810, 290, reduceSmem, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "8192, 176, ComputeHistogramKernel, runs, [('float *', 'globalMemData'), ('int *', 'globalHist')]"
+  ],
+  "Transpose Kernels": [
+    "810, 74, transposeNaiveRow, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "810, 75, transposeNaiveCol, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "810, 76, transposeUnroll4Row, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "810, 77, transposeUnroll4Col, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "810, 78, transposeDiagonalRow, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "810, 79, transposeDiagonalCol, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "810, 141, copyGmem, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "810, 214, copyRow, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "810, 215, copyCol, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]"
+  ],
+  "Random Number Generation": [
+    "810, 60, device_api_kernel, runs, [('curandState *', 'states'), ('float *', 'out'), ('int', 'N')]",
+    "810, 62, refill_randoms, runs, [('float *', 'dRand'), ('int', 'N'), ('curandState *', 'states')]",
+    "810, 64, refill_randoms, runs, [('float *', 'dRand'), ('int', 'N'), ('curandState *', 'states')]",
+    "817, 0, init_random_seed, runs, [('unsigned int', 'seed'), ('curandState_t *', 'd_curand_state')]",
+    "8179, 221, kSetupCurand, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]"
+  ],
+  "Utility Kernels": [
+    "810, 59, host_api_kernel, runs, [('float *', 'randomValues'), ('float *', 'out'), ('int', 'N')]",
+    "810, 69, warmup, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('const int', 'n'), ('int', 'offset')]",
+    "810, 84, warmup, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('const int', 'n'), ('int', 'offset')]",
+    "810, 182, warmup, runs, [('int *', 'out'), ('int', 'N')]",
+    "8192, 15, dummyKernel, runs, []"
+  ],
+  "Image Processing Kernels": [
+    "818, 9, gpu_blur, runs, [('unsigned char *', 'Pout'), ('unsigned char *', 'Pin'), ('int', 'width'), ('int', 'height')]",
+    "818, 10, gpu_grey_and_blur, runs, [('unsigned char *', 'Pout'), ('unsigned char *', 'Pin'), ('int', 'width'), ('int', 'height')]",
+    "818, 11, gpu_grey_and_thresh, runs, [('unsigned char *', 'Pout'), ('unsigned char *', 'Pin'), ('int', 'width'), ('int', 'height')]",
+    "818, 13, gpu_blur, runs, [('unsigned char *', 'Pout'), ('unsigned char *', 'Pin'), ('int', 'width'), ('int', 'height')]",
+    "818, 19, gpu_grey_and_blur, runs, [('unsigned char *', 'Pout'), ('unsigned char *', 'Pin'), ('int', 'width'), ('int', 'height')]",
+    "818, 20, gpu_grey_and_thresh, runs, [('unsigned char *', 'Pout'), ('unsigned char *', 'Pin'), ('int', 'width'), ('int', 'height')]"
+  ],
+  "Kernel Operations": [
+    "8128, 1, ker_sparse_to_dense_assign, runs, [('int', 'n'), ('const unsigned int *', 'idx'), ('float *', 'src'), ('float *', 'trg')]",
+    "8128, 2, ker_dense_to_sparse_subtract, runs, [('int', 'n'), ('const unsigned int *', 'idx'), ('float *', 'src'), ('float *', 'trg')]",
+    "8128, 3, ker_sparse_to_dense_block_assign_and_multiply, runs, [('int', 'n'), ('const unsigned *', 'idx'), ('int', 'bsize'), ('float', 'mult'), ('float *', 'src'), ('float *', 'trg')]",
+    "8128, 6, ker_dense_to_sparse_block_add, runs, [('int', 'n'), ('const unsigned *', 'idx'), ('int', 'bsize'), ('float *', 'src'), ('float *', 'trg')]",
+    "813, 0, addition, runs, [('int', 'a'), ('int', 'b'), ('int *', 'c')]",
+    "8136, 2, addKernel, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]",
+    "8136, 3, add, runs, [('int', 'a'), ('int', 'b'), ('int *', 'c')]",
+    "8136, 4, addMatrix, runs, [('int *', 'c'), ('int *', 'a'), ('int *', 'b')]"
+  ],
+  "Distance Kernels": [
+    "8192, 12, ComputeDistanceKernel, runs, [('float *', 'symbolVectors'), ('float *', 'inputVector'), ('float *', 'distance'), ('int', 'symbolSize'), ('int', 'symbols')]"
+  ],
+  "Gradient Kernels": [
+    "8192, 43, LSTMDeltaKernelBPTT, runs, [('float *', 'deltas'), ('float *', 'cellStates'), ('float *', 'previousCellStates'), ('float *', 'cellStateErrors'), ('float *', 'nextCellStateErrors'), ('float *', 'outputGateDeltas'), ('float *', 'forgetGateDeltas'), ('float *', 'nextForgetGateDeltas'), ('float *', 'inputGateDeltas'), ('float *', 'nextInputGateDeltas'), ('float *', 'cellInputDeltas'), ('float *', 'cellInputActivations'), ('float *', 'cellStateActivations'), ('float *', 'outputGateActivations'), ('float *', 'nextForgetGateActivations'), ('float *', 'inputGateActivations'), ('float *', 'cellInputActivationDerivatives'), ('float *', 'cellStateActivationDerivatives'), ('float *', 'outputGateActivationDerivatives'), ('float *', 'forgetGateActivationDerivatives'), ('float *', 'inputGateActivationDerivatives'), ('float *', 'cellInputWeights'), ('float *', 'outputGateWeights'), ('float *', 'forgetGateWeights'), ('float *', 'inputGateWeights'), ('int', 'inputCount'), ('int', 'cellCount'), ('int', 'cellsPerBlock')]",
+    "8192, 44, LSTMGateGradientKernelBPTT, runs, [('float *', 'input'), ('float *', 'previousOutput'), ('float *', 'cellStates'), ('float *', 'inputGateDeltas'), ('float *', 'forgetGateDeltas'), ('float *', 'outputGateDeltas'), ('float *', 'outputGateWeightGradient'), ('float *', 'inputGateWeightGradient'), ('float *', 'forgetGateWeightGradient'), ('int', 'inputCount'), ('int', 'previousOutputCount'), ('int', 'cellsPerBlock')]",
+    "8192, 45, LSTMCellInputGradientKernelBPTT, runs, [('float *', 'input'), ('float *', 'previousOutput'), ('float *', 'cellInputDeltas'), ('float *', 'cellInputWeightGradient'), ('int', 'inputCount'), ('int', 'previousOutputCount'), ('int', 'cellsPerBlock')]"
+  ]
+}
+```

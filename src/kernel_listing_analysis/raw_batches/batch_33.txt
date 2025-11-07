@@ -1,0 +1,68 @@
+```json
+{
+  "Matrix Multiplication Kernels": [
+    "239, 0, matrix_mult, runs, [('float *', 'dev_a'), ('float *', 'dev_b'), ('float *', 'dev_c'), ('int', 'Width')]",
+    "2461, 2, gpu_matrix_mult, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'n')]",
+    "2461, 3, MatrixMul_tileKernel, runs, [('float *', 'Md'), ('float *', 'Nd'), ('float *', 'Pd'), ('int', 'Width')]"
+  ],
+  "Copy Kernels": [
+    "2395, 0, pw_copy_rc_cu_z, runs, [('const double *', 'din'), ('double *', 'zout'), ('const int', 'n')]",
+    "2395, 1, pw_copy_cr_cu_z, runs, [('const double *', 'zin'), ('double *', 'dout'), ('const int', 'n')]",
+    "2405, 2, setup_state, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "2500, 2, setup_state, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "249, 9, THCudaTensor_kernel_indexCopy, runs, [('float *', 'res'), ('float *', 'src'), ('long *', 'res_stride'), ('float *', 'index'), ('long', 'res_nDim'), ('int', 'dim'), ('long', 'idx_size'), ('long', 'src_size'), ('long', 'size_dim')]"
+  ],
+  "Reduction Kernels": [
+    "2528, 9, reduce, runs, [('float *', 'g_idata'), ('float *', 'g_odata')]",
+    "2482, 7, reduction, runs, [('float *', 'g_data'), ('int', 'n')]"
+  ],
+  "Downscale Kernels": [
+    "2397, 199, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "2399, 170, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "2431, 196, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "2523, 180, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "253, 6, upscale, runs, [('float *', 'input'), ('float *', 'output'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]"
+  ],
+  "Accuracy Kernels": [
+    "2397, 344, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "2399, 312, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "2431, 337, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "2523, 320, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]"
+  ],
+  "Histogram Kernels": [
+    "24, 1, histKernel, runs, [('char *', 'inData'), ('long', 'size'), ('unsigned int *', 'histo')]",
+    "2562, 14, histogramCuda, runs, [('const uint8_t *', 'data'), ('uint32_t', 'rowSize'), ('uint32_t', 'width'), ('uint32_t', 'height'), ('uint32_t *', 'histogram')]"
+  ],
+  "Image Processing Kernels": [
+    "248, 0, kRgb2CIELab, runs, [('uchar4 *', 'inputImg'), ('float4 *', 'outputImg'), ('int', 'width'), ('int', 'height')]",
+    "248, 1, kRgb2XYZ, runs, [('uchar4 *', 'inputImg'), ('float4 *', 'outputImg'), ('int', 'width'), ('int', 'height')]",
+    "2530, 5, gpu_grayscale, runs, [('int', 'width'), ('int', 'height'), ('float *', 'image'), ('float *', 'image_out')]",
+    "2530, 6, gpu_gaussian, runs, [('int', 'width'), ('int', 'height'), ('float *', 'image'), ('float *', 'image_out')]",
+    "2530, 7, gpu_sobel, runs, [('int', 'width'), ('int', 'height'), ('float *', 'image'), ('float *', 'image_out')]"
+  ],
+  "Utility Kernels": [
+    "240, 3, cunnx_WindowGate2_updateOutput_kernel, runs, [('float *', 'output'), ('float *', 'centroids'), ('float *', 'normalizedCentroids'), ('float *', 'inputIndice'), ('float *', 'outputIndice'), ('const float *', 'input'), ('const float *', 'noise'), ('int', 'inputSize'), ('int', 'outputSize'), ('int', 'inputWindowSize'), ('int', 'outputWindowSize'), ('int', 'windowStride'), ('int', 'train')]",
+    "240, 4, cunnx_WindowGate2_updateGradInput_kernel, runs, [('float *', 'gradInput'), ('float *', 'error'), ('float *', 'targetCentroids'), ('const float *', 'centroids'), ('const float *', 'input'), ('const float *', 'inputIndice'), ('const float *', 'outputIndice'), ('const float *', 'output'), ('const float *', 'gradOutput'), ('int', 'inputSize'), ('int', 'outputSize'), ('int', 'inputWindowSize'), ('int', 'outputWindowSize'), ('int', 'windowStride'), ('float', 'c'), ('float', 'd'), ('float', 'e'), ('float', 'lr')]",
+    "240, 6, cunnx_WindowSparse_accGradParameters_kernel, runs, [('float *', 'gradWeight'), ('float *', 'gradBias'), ('float *', 'gradOutput'), ('float *', 'input'), ('float *', 'inputIndice'), ('float *', 'outputIndice'), ('int', 'inputWindowSize'), ('int', 'outputWindowSize'), ('int', 'inputSize'), ('int', 'outputSize'), ('float', 'scale')]"
+  ],
+  "Kernel Operations": [
+    "2416, 0, callOperation, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'res'), ('int', 'k'), ('int', 'p'), ('int', 'n')]",
+    "2416, 1, callOperationSharedStatic, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'res'), ('int', 'k'), ('int', 'p'), ('int', 'n')]",
+    "2416, 2, callOperationSharedDynamic, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'res'), ('int', 'k'), ('int', 'p'), ('int', 'n')]",
+    "2416, 7, callOperation, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'res'), ('int', 'x'), ('int', 'n')]",
+    "2416, 8, callOperationSharedStatic, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'res'), ('int', 'x'), ('int', 'n')]"
+  ],
+  "Sobel Kernels": [
+    "2482, 12, sobel, runs, [('int', 'width_d'), ('int', 'height_d'), ('int', 'threshold_d'), ('unsigned int *', 'pic_d'), ('int *', 'final_res')]",
+    "2530, 7, gpu_sobel, runs, [('int', 'width'), ('int', 'height'), ('float *', 'image'), ('float *', 'image_out')]"
+  ],
+  "Convolution Kernels": [
+    "249, 1, conv2genericrev, runs, [('float *', 'input'), ('float *', 'kernel'), ('float *', 'output'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'kernel_n'), ('int', 'kernel_h'), ('int', 'kernel_w'), ('float', 'alpha'), ('int', 'stride_h'), ('int', 'stride_w')]"
+  ],
+  "Bitwise Kernels": [
+    "2562, 5, bitwiseAndCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "2562, 6, bitwiseOrCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "2562, 7, bitwiseXorCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]"
+  ]
+}
+```

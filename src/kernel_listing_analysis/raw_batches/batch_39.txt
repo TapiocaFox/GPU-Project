@@ -1,0 +1,92 @@
+```json
+{
+  "BFS Kernels": [
+    "3491, 46, BFS_kernel_multi_block, runs, [('volatile unsigned int *', 'frontier'), ('volatile unsigned int *', 'frontier2'), ('unsigned int', 'frontier_len'), ('volatile unsigned int *', 'cost'), ('volatile int *', 'visited'), ('unsigned int *', 'edgeArray'), ('unsigned int *', 'edgeArrayAux'), ('unsigned int', 'numVertices'), ('unsigned int', 'numEdges'), ('volatile unsigned int *', 'frontier_length'), ('unsigned int', 'NUM_P_PER_MP'), ('unsigned int', 'W_Q_SIZE')]",
+    "3491, 48, Frontier_copy, runs, [('unsigned int *', 'frontier'), ('unsigned int *', 'frontier2'), ('unsigned int *', 'frontier_length')]",
+    "3491, 49, BFS_kernel_one_block_spill, runs, [('volatile unsigned int *', 'frontier'), ('unsigned int', 'frontier_len'), ('volatile unsigned int *', 'cost'), ('volatile int *', 'visited'), ('unsigned int *', 'edgeArray'), ('unsigned int *', 'edgeArrayAux'), ('unsigned int', 'numVertices'), ('unsigned int', 'numEdges'), ('volatile unsigned int *', 'frontier_length'), ('const unsigned int', 'max_mem')]",
+    "3491, 50, BFS_kernel_SM_block_spill, runs, [('volatile unsigned int *', 'frontier'), ('volatile unsigned int *', 'frontier2'), ('unsigned int', 'frontier_len'), ('volatile unsigned int *', 'cost'), ('volatile int *', 'visited'), ('unsigned int *', 'edgeArray'), ('unsigned int *', 'edgeArrayAux'), ('unsigned int', 'numVertices'), ('unsigned int', 'numEdges'), ('volatile unsigned int *', 'frontier_length'), ('const unsigned int', 'max_mem')]",
+    "3491, 51, BFS_kernel_multi_block_spill, runs, [('volatile unsigned int *', 'frontier'), ('volatile unsigned int *', 'frontier2'), ('unsigned int', 'frontier_len'), ('volatile unsigned int *', 'cost'), ('volatile int *', 'visited'), ('unsigned int *', 'edgeArray'), ('unsigned int *', 'edgeArrayAux'), ('unsigned int', 'numVertices'), ('unsigned int', 'numEdges'), ('volatile unsigned int *', 'frontier_length'), ('const unsigned int', 'max_mem')]"
+  ],
+  "Neural Network Kernels": [
+    "3491, 52, kernelUpdateBiases, runs, [('float *', 'nabla_b'), ('float *', 'biases'), ('float', 'eta'), ('float', 'mini_batch_size')]",
+    "3491, 53, kernelUpdateWeights, runs, [('float *', 'nabla_w'), ('float *', 'weights'), ('int', 'tws'), ('float', 'eta'), ('float', 'mini_batch_size')]",
+    "3491, 54, kernelUpdateNablaB, runs, [('float *', 'nabla_b'), ('float *', 'delta_nabla_b')]",
+    "3491, 55, kernelUpdateNablaW, runs, [('float *', 'nabla_w'), ('float *', 'delta_nabla_w'), ('int', 'tws')]",
+    "3491, 57, kernelInitNablaW, runs, [('float *', 'nabla_w'), ('int', 'tws')]",
+    "3491, 58, kernelBackprop3a, runs, [('float *', 'delta_nabla_b'), ('int', 'b_off'), ('int', 'bound'), ('int', 'b_off_old'), ('float *', 'weights'), ('int', 'w_off_old')]",
+    "3491, 59, kernelBackprop3b, runs, [('float *', 'delta_nabla_b'), ('int', 'b_off'), ('float *', 'zs')]",
+    "3491, 60, kernelBackprop1, runs, [('float *', 'delta_nabla_w'), ('int', 'w_off'), ('float *', 'activations'), ('float *', 'delta_nabla_b'), ('int', 'b_off')]",
+    "3491, 62, kernelFeedForward1, runs, [('float *', 'zs'), ('int', 'bound2'), ('float *', 'weights'), ('int', 'w_off'), ('float *', 'activations1')]",
+    "3491, 63, kernelFeedForward1b, runs, [('float *', 'zs'), ('int', 'bound'), ('float *', 'weights'), ('int', 'w_off'), ('float *', 'activations')]",
+    "3491, 64, kernelFeedForward3, runs, [('float *', 'zs'), ('float *', 'biases'), ('int', 'b_off'), ('float *', 'activations')]",
+    "3491, 65, kernelFeedForward2, runs, [('float *', 'zs'), ('float *', 'biases'), ('int', 'b_off'), ('float *', 'activations')]"
+  ],
+  "Utility Kernels": [
+    "3494, 0, kernel, runs, []",
+    "3494, 1, kernel, runs, []",
+    "3494, 2, kernel, runs, []",
+    "3494, 3, kernel, runs, []",
+    "3496, 0, init_render_buffer_wrapper, runs, [('int64_t *', 'render_buffer'), ('const uint32_t', 'qw_count')]",
+    "3496, 8, set_valid_pos_flag, runs, [('int32_t *', 'pos_buff'), ('const int32_t *', 'count_buff'), ('const int32_t', 'entry_count')]",
+    "3496, 9, set_valid_pos, runs, [('int32_t *', 'pos_buff'), ('int32_t *', 'count_buff'), ('const int32_t', 'entry_count')]",
+    "3496, 12, init_group, runs, [('int8_t *', 'groups'), ('const size_t', 'group_count'), ('const size_t', 'col_count'), ('const size_t *', 'col_widths'), ('const size_t *', 'init_vals')]",
+    "3496, 14, columnarize_groups, runs, [('int8_t *', 'columnar_buffer'), ('const int8_t *', 'rowwise_buffer'), ('const size_t', 'row_count'), ('const size_t', 'col_count'), ('const size_t *', 'col_widths'), ('const size_t', 'row_size')]"
+  ],
+  "Mathematical Kernels": [
+    "3503, 0, assign, runs, [('uint32_t *', 'x'), ('uint32_t', 'n')]",
+    "3503, 1, uphill1, runs, [('uint32_t *', 'd_value'), ('uint8_t *', 'd_key'), ('uint8_t *', 'd_temp'), ('int64_t', 'n'), ('int64_t', 'shift')]",
+    "3503, 2, downhill1, runs, [('uint32_t *', 'd_value'), ('uint8_t *', 'd_key'), ('uint8_t *', 'd_temp'), ('int64_t', 'n'), ('int64_t', 'shift')]",
+    "351, 0, funct, runs, [('int', 'n'), ('int', 'k'), ('float *', 'x'), ('int *', 'qx')]",
+    "351, 1, funct2, runs, [('int', 'n'), ('int', 'k'), ('float *', 'x'), ('int *', 'qx')]",
+    "3513, 4, square_array, runs, []",
+    "3522, 89, relu_gpu_forward, runs, [('float *', 'out'), ('float *', 'in'), ('int64_t', 'N')]",
+    "3522, 90, relu_gpu_backward, runs, [('float *', 'ingrad'), ('float *', 'outgrad'), ('float *', 'indata'), ('int64_t', 'N')]",
+    "3531, 0, add, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c')]",
+    "3531, 1, sub, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c')]",
+    "3531, 2, exp, runs, [('float *', 'a'), ('float *', 'c')]",
+    "3531, 3, mul, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c')]",
+    "3531, 4, pow, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c')]",
+    "3541, 0, binary_search, runs, [('int *', 'a'), ('int *', 'b'), ('bool *', 'c'), ('int', 'sizeofa')]",
+    "3541, 1, add_vector, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "355, 0, convolve, runs, [('unsigned char *', 'source'), ('int', 'width'), ('int', 'height'), ('int', 'paddingX'), ('int', 'paddingY'), ('ssize_t', 'kOffset'), ('int', 'kWidth'), ('int', 'kHeight'), ('unsigned char *', 'destination')]",
+    "355, 1, pythagoras, runs, [('unsigned char *', 'a'), ('unsigned char *', 'b'), ('unsigned char *', 'c')]",
+    "3550, 1, VecAdd, runs, [('const float *', 'A'), ('const float *', 'B'), ('float *', 'C'), ('int', 'N')]",
+    "3550, 4, square, runs, [('int *', 'array'), ('int', 'arrayCount')]",
+    "3550, 5, addForces_k, runs, [('float2 *', 'v'), ('int', 'dx'), ('int', 'dy'), ('int', 'spx'), ('int', 'spy'), ('float', 'fx'), ('float', 'fy'), ('int', 'r'), ('size_t', 'pitch')]",
+    "3550, 7, diffuseProject_k, runs, [('float2 *', 'vx'), ('float2 *', 'vy'), ('int', 'dx'), ('int', 'dy'), ('float', 'dt'), ('float', 'visc'), ('int', 'lb')]",
+    "3550, 8, updateVelocity_k, runs, [('float2 *', 'v'), ('float *', 'vx'), ('float *', 'vy'), ('int', 'dx'), ('int', 'pdx'), ('int', 'dy'), ('int', 'lb'), ('size_t', 'pitch')]",
+    "3550, 10, advectParticles_OGL, runs, [('float2 *', 'part'), ('float2 *', 'v'), ('int', 'dx'), ('int', 'dy'), ('float', 'dt'), ('int', 'lb'), ('size_t', 'pitch')]"
+  ],
+  "Image Processing Kernels": [
+    "3557, 3, cudaSGatherRP_kernel, runs, [('unsigned int', 'inputSizeX'), ('unsigned int', 'inputSizeY'), ('unsigned int', 'nbAnchors'), ('unsigned int', 'batchSize'), ('const float *', 'inputs'), ('const float *', 'i'), ('const float *', 'j'), ('const float *', 'k'), ('const float *', 'b'), ('const int *', 'mask'), ('float *', 'outputs'), ('const unsigned int', 'topN'), ('const unsigned int', 'nbProposals')]",
+    "3557, 6, cudaSNormalizeROIs_kernel, runs, [('unsigned int', 'inputSizeX'), ('unsigned int', 'inputSizeY'), ('unsigned int', 'nbProposals'), ('unsigned int', 'batchSize'), ('unsigned int', 'scoreIdx'), ('unsigned int', 'nbCls'), ('unsigned int', 'maxParts'), ('unsigned int', 'maxTemplates'), ('bool', 'keepMax'), ('bool', 'generateParts'), ('bool', 'generateTemplates'), ('const float', 'normX'), ('const float', 'normY'), ('const float *', 'means'), ('const float *', 'std'), ('const unsigned int *', 'numPartsPerClass'), ('const unsigned int *', 'numTemplatesPerClass'), ('const float *', 'ROIRef'), ('const float *', 'ROIEst'), ('const float *', 'ValuesEst'), ('const float *', 'partsEst'), ('const float *', 'partsVisibilityEst'), ('const float *', 'templatesEst'), ('float *', 'outputs'), ('int *', 'argMax'), ('float *', 'partsPrediction'), ('float *', 'partsVisibilityPrediction'), ('float *', 'templatesPrediction'), ('float', 'scoreThreshold')]",
+    "3557, 7, cudaSToOutput_kernel, runs, [('unsigned int', 'nbProposals'), ('const unsigned int', 'scoreIdx'), ('const unsigned int', 'nbCls'), ('const unsigned int', 'nbOutputs'), ('const unsigned int', 'maxParts'), ('const unsigned int', 'maxTemplates'), ('bool', 'generateParts'), ('bool', 'generateTemplates'), ('const unsigned int *', 'numPartsPerClass'), ('const unsigned int *', 'numTemplatesPerClass'), ('const int *', 'maxCls'), ('const float *', 'inputs'), ('const int *', 'predictionIndex'), ('const float *', 'partsPrediction'), ('const float *', 'partsVisibilityPrediction'), ('const float *', 'templatesPrediction'), ('float *', 'outputs')]",
+    "3557, 8, spatial_output_kernel, runs, [('unsigned int', 'nbClass'), ('unsigned int', 'targetHeight'), ('unsigned int', 'targetWidth'), ('float', 'threshold'), ('float *', 'targetData'), ('uint32_t *', 'outputEstimated')]",
+    "3557, 9, cudaSBilinearTF_kernel, runs, [('unsigned int', 'outputWidth'), ('unsigned int', 'outputHeight'), ('unsigned int', 'nbChannels'), ('unsigned int', 'batchSize'), ('unsigned int', 'inputWidth'), ('unsigned int', 'inputHeight'), ('const unsigned int *', 'yLowIdx'), ('const unsigned int *', 'yHighIdx'), ('const float *', 'yInter'), ('const unsigned int *', 'xLowIdx'), ('const unsigned int *', 'xHighIdx'), ('const float *', 'xInter'), ('const float *', 'input'), ('float *', 'outputs')]",
+    "3557, 10, cudaS_ssdToOutput_kernels, runs, [('unsigned int', 'batchSize'), ('unsigned int', 'nbClass'), ('unsigned int', 'nbAnchors'), ('unsigned int', 'channelWidth'), ('unsigned int', 'channelHeight'), ('unsigned int', 'nbProposals'), ('unsigned int *', 'nbValidROIs'), ('unsigned int', 'cls'), ('unsigned int', 'totalParts'), ('unsigned int', 'totalTemplates'), ('unsigned int', 'maxParts'), ('unsigned int', 'maxTemplates'), ('unsigned int', 'cumulParts'), ('unsigned int', 'cumulTemplates'), ('unsigned int', 'nbParts'), ('unsigned int', 'nbTemplates'), ('float', 'xRatio'), ('float', 'yRatio'), ('float', 'xOutputRatio'), ('float', 'yOutputRatio'), ('const float *', 'roi_bbox'), ('const float *', 'roi_anchors'), ('const float *', 'anchors'), ('const float *', 'inputs_parts'), ('const float *', 'inputs_templates'), ('float *', 'outputs')]",
+    "3557, 11, cudaSReduceIndex_kernel, runs, [('const unsigned int', 'inputSize'), ('const unsigned int', 'inputBatchOffset'), ('const unsigned int', 'outputBatchOffset'), ('const unsigned int', 'channelsWidth'), ('const unsigned int', 'channelsHeight'), ('const unsigned int', 'nbAnchors'), ('const float *', 'valueThreshold'), ('const float *', 'inputs'), ('int *', 'outputMap'), ('float *', 'scores')]",
+    "3557, 12, cudaSgatherI2I_kernel, runs, [('const int *', 'keys'), ('const int *', 'indicesX'), ('const int *', 'indicesY'), ('const int *', 'indicesK'), ('int *', 'outX'), ('int *', 'outY'), ('int *', 'outK'), ('unsigned int', 'nbElements')]"
+  ],
+  "Physics Simulation Kernels": [
+    "3524, 0, getForcesMag, runs, [('float4 *', 'g_pos'), ('float3 *', 'vel'), ('float3 *', 'force'), ('int', 'offset'), ('float3 *', 'g_reactor')]",
+    "3524, 1, getForces, runs, [('float4 *', 'g_pos'), ('float3 *', 'force'), ('int', 'offset'), ('int', 'device_ct')]",
+    "3524, 2, moveBodies, runs, [('float4 *', 'g_pos'), ('float4 *', 'd_pos'), ('float3 *', 'vel'), ('float3 *', 'force'), ('int', 'offset')]"
+  ],
+  "Matrix Operations Kernels": [
+    "3560, 0, cuda_sgemm, runs, [('float *', 'matrix_a'), ('float *', 'matrix_b'), ('float *', 'matrix_c'), ('size_t', 'M'), ('size_t', 'K'), ('size_t', 'N')]",
+    "3599, 10, matrix_multiply_kernel, runs, [('double *', 'matrix'), ('double *', 'vector_in'), ('double *', 'vector_out'), ('long', 'dim_mn')]"
+  ],
+  "Reduction Kernels": [
+    "3599, 4, reduction, runs, [('int *', 'input'), ('int *', 'output')]",
+    "3595, 9, add_bias_kernel, runs, [('float *', 'output'), ('float *', 'biases'), ('int', 'batch'), ('int', 'n'), ('int', 'size')]",
+    "3595, 10, backward_bias_conn_kernel, runs, [('float *', 'bias_updates'), ('float *', 'delta'), ('int', 'batch'), ('int', 'n')]"
+  ],
+  "Kernel Initialization": [
+    "3595, 0, vecInit, runs, [('float *', 'X'), ('unsigned int', 'size'), ('float', 'value')]",
+    "3595, 1, xexp, runs, [('float *', 'X'), ('float *', 'C'), ('float *', 'Y'), ('float *', 'Z'), ('unsigned int', 'size')]",
+    "3595, 2, zexp, runs, [('float *', 'Z'), ('float *', 'X'), ('float *', 'Y'), ('unsigned int', 'size')]",
+    "3595, 3, rowNorm, runs, [('float *', 'X'), ('float *', 'v'), ('unsigned int', 'size'), ('unsigned int', 'n')]",
+    "3595, 4, colNorm, runs, [('float *', 'X'), ('float *', 'v'), ('unsigned int', 'size'), ('unsigned int', 'n')]"
+  ]
+}
+```

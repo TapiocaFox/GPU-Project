@@ -1,0 +1,61 @@
+```json
+{
+  "Distance Kernels": [
+    "6497, 0, distanceKernel, runs, [('float *', 'd_out'), ('float', 'ref'), ('int', 'len')]",
+    "6530, 12, SidedDistanceKernel, runs, [('int', 'b'), ('int', 'n'), ('const float *', 'xyz'), ('int', 'm'), ('const float *', 'xyz2'), ('float *', 'result'), ('int *', 'result_i')]"
+  ],
+  "Binary Kernels": [
+    "6375, 0, binarize_kernel, runs, [('float *', 'x'), ('int', 'n'), ('float *', 'binary')]",
+    "6375, 1, binarize_input_kernel, runs, [('float *', 'input'), ('int', 'n'), ('int', 'size'), ('float *', 'binary')]",
+    "6375, 2, binarize_filters_kernel, runs, [('float *', 'filters'), ('int', 'n'), ('int', 'size'), ('float *', 'binary')]"
+  ],
+  "Dot Kernels": [
+    "6375, 12, dot_kernel, runs, [('float *', 'output'), ('float', 'scale'), ('int', 'batch'), ('int', 'n'), ('int', 'size'), ('float *', 'delta')]"
+  ],
+  "Utility Kernels": [
+    "6315, 318, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "640, 0, histogram, runs, [('unsigned int *', 'in'), ('unsigned int *', 'hist'), ('int', 'n'), ('unsigned int', 'nBins'), ('unsigned int', 'mask'), ('unsigned int', 'current_bits')]",
+    "640, 1, scanBlks, runs, [('unsigned int *', 'in'), ('unsigned int *', 'out'), ('unsigned int', 'n'), ('unsigned int *', 'blkSums')]",
+    "640, 3, exclusive_scan, runs, [('unsigned int *', 'in'), ('unsigned int *', 'out'), ('int', 'n')]"
+  ],
+  "Image Processing Kernels": [
+    "6360, 4, detect_edges, runs, [('unsigned char *', 'in'), ('unsigned char *', 'out')]",
+    "637, 3, imgGray, runs, [('unsigned char *', 'd_image'), ('unsigned char *', 'd_imagegray'), ('int', 'width'), ('int', 'height')]",
+    "637, 5, imgGray, runs, [('unsigned char *', 'd_image'), ('unsigned char *', 'd_imagegray'), ('int', 'width'), ('int', 'height')]"
+  ],
+  "Matrix Operations Kernels": [
+    "6376, 6, MultiplicarMatrices, runs, [('float *', 'm1'), ('float *', 'm2'), ('float *', 'mr'), ('int', 'columna1'), ('int', 'fila1'), ('int', 'columna2'), ('int', 'fila2')]",
+    "6457, 10, matrix_multiply_kernel, runs, [('double *', 'matrix'), ('double *', 'vector_in'), ('double *', 'vector_out'), ('long', 'dim_mn')]",
+    "6448, 1, matrixMultiplicationKernel, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'N')]"
+  ],
+  "Reduction Kernels": [
+    "6457, 4, reduction, runs, [('int *', 'input'), ('int *', 'output')]",
+    "642, 1, reduce, runs, [('unsigned int *', 'd_out_shared'), ('const unsigned int *', 'd_in')]",
+    "642, 36, global_reduce_kernel, runs, [('float *', 'd_out'), ('float *', 'd_in')]"
+  ],
+  "Normalization Kernels": [
+    "6375, 13, normalize_kernel, runs, [('int', 'N'), ('float *', 'x'), ('float *', 'mean'), ('float *', 'variance'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial')]",
+    "6375, 14, normalize_delta_kernel, runs, [('int', 'N'), ('float *', 'x'), ('float *', 'mean'), ('float *', 'variance'), ('float *', 'mean_delta'), ('float *', 'variance_delta'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial'), ('float *', 'delta')]"
+  ],
+  "Kernel Initialization Kernels": [
+    "6394, 0, setup_kernelf, runs, [('curandState *', 'state'), ('unsigned long', 'seed')]",
+    "6394, 1, initializeFloat1Dpopulation, runs, [('float *', 'population'), ('int', 'sizeofPopulation'), ('int', 'sizeofChormosome'), ('curandState *', 'globalState'), ('int', 'division')]"
+  ],
+  "Warp Kernels": [
+    "6364, 103, ForwardWarpKernel_PSF2x2, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'normalization_factor'), ('float *', 'dst')]",
+    "6364, 104, ForwardWarpKernel_PSF1x1, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'dst')]"
+  ],
+  "Sorting Kernels": [
+    "640, 4, scatter, runs, [('unsigned int *', 'in'), ('unsigned int *', 'in_pos'), ('unsigned int *', 'out'), ('unsigned int *', 'out_pos'), ('unsigned int', 'n'), ('unsigned int *', 'd_histScan'), ('unsigned int', 'mask'), ('unsigned int', 'current_bits'), ('unsigned int', 'nBins')]",
+    "640, 6, pre_sort, runs, [('unsigned int *', 'in'), ('unsigned int *', 'in_pos'), ('unsigned int *', 'out'), ('unsigned int *', 'out_pos'), ('unsigned int', 'n'), ('unsigned int', 'nBins'), ('unsigned int', 'mask'), ('unsigned int', 'current_bits'), ('unsigned int *', 'd_hist')]"
+  ],
+  "Miscellaneous Kernels": [
+    "640, 40, hello, runs, []",
+    "640, 44, hello, runs, []",
+    "6468, 0, kernel, runs, []",
+    "6468, 1, kernel, runs, []",
+    "6468, 2, kernel, runs, []",
+    "6468, 3, kernel, runs, []"
+  ]
+}
+```

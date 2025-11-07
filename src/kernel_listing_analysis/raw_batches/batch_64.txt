@@ -1,0 +1,93 @@
+```json
+{
+  "Convolution Kernels": [
+    "8666, 75, sync_conv_groups, runs, []",
+    "8681, 21, sync_deconv_groups, runs, []",
+    "8681, 37, sync_conv_groups, runs, []",
+    "8774, 21, sync_deconv_groups, runs, []",
+    "8774, 37, sync_conv_groups, runs, []",
+    "8852, 36, sync_conv_groups, runs, []"
+  ],
+  "Matrix Multiplication Kernels": [
+    "8669, 0, matrix_mul, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'a_ncolumns'), ('int', 'c_nlines'), ('int', 'c_ncolumns')]",
+    "879, 1, multMatrix, runs, [('int *', 'd1_in'), ('int *', 'd2_in'), ('int *', 'd_out'), ('int', 'n'), ('int', 'm'), ('int', 'k')]",
+    "8919, 2, matrixMulCUDA, runs, [('float *', 'C'), ('float *', 'A'), ('float *', 'B'), ('int', 'n')]",
+    "8919, 3, matrixMulCUDA2, runs, [('float *', 'C'), ('float *', 'A'), ('float *', 'B'), ('int', 'n')]",
+    "8919, 4, matrixMulCUDA3, runs, [('float *', 'C'), ('float *', 'B'), ('float *', 'A'), ('int', 'n')]",
+    "8919, 5, matrixMulCUDA4, runs, [('float *', 'C'), ('float *', 'A'), ('float *', 'B'), ('unsigned int', 'n')]",
+    "8919, 6, matrixMulCUDA5, runs, [('float *', 'C'), ('float *', 'A'), ('float *', 'B'), ('unsigned int', 'n')]"
+  ],
+  "Image Processing Kernels": [
+    "8667, 0, bilinearSamplingFromGrid, runs, [('float *', 'inputImages_data'), ('int', 'inputImages_strideBatch'), ('int', 'inputImages_strideChannels'), ('int', 'inputImages_strideHeight'), ('int', 'inputImages_strideWidth'), ('float *', 'grids_data'), ('int', 'grids_strideBatch'), ('int', 'grids_strideYX'), ('int', 'grids_strideHeight'), ('int', 'grids_strideWidth'), ('float *', 'output_data'), ('int', 'output_strideBatch'), ('int', 'output_strideChannels'), ('int', 'output_strideHeight'), ('int', 'output_strideWidth'), ('int', 'inputImages_channels'), ('int', 'inputImages_height'), ('int', 'inputImages_width'), ('int', 'output_width')]",
+    "889, 0, gpu_grayscale, runs, [('int', 'width'), ('int', 'height'), ('float *', 'image'), ('float *', 'image_out')]",
+    "889, 1, gpu_gaussian, runs, [('int', 'width'), ('int', 'height'), ('float *', 'image'), ('float *', 'image_out')]",
+    "889, 2, gpu_sobel, runs, [('int', 'width'), ('int', 'height'), ('float *', 'image'), ('float *', 'image_out')]"
+  ],
+  "Reduction Kernels": [
+    "87, 1, reduce, runs, [('unsigned int *', 'd_out_shared'), ('const unsigned int *', 'd_in')]",
+    "87, 26, global_reduce_kernel, runs, [('float *', 'd_out'), ('float *', 'd_in')]",
+    "87, 27, shmem_reduce_kernel, runs, [('float *', 'd_out'), ('const float *', 'd_in')]",
+    "8919, 0, reduceKernel, runs, [('int *', 'g_inData'), ('int *', 'g_outData'), ('int', 'inSize'), ('int', 'outSize')]"
+  ],
+  "Utility Kernels": [
+    "869, 0, checkIndex, runs, []",
+    "869, 1, printThreadIndex, runs, [('int *', 'A'), ('const int', 'nx'), ('const int', 'ny')]",
+    "869, 2, helloFromGPU, runs, []",
+    "869, 11, warmup, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "869, 12, copyRow, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "869, 13, copyCol, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "869, 14, transposeNaiveRow, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "869, 15, transposeNaiveCol, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]"
+  ],
+  "Random Walk Kernels": [
+    "8685, 0, randomWalk, runs, [('double *', 'results'), ('int *', 'crossTimes'), ('int', 'T'), ('int', 'N'), ('double', 'drift'), ('int', 'numSims'), ('double', 'lowerThreshold'), ('double', 'upperThreshold'), ('double', 'deviceID')]",
+    "8685, 1, randomWalk, runs, [('double *', 'results'), ('int *', 'crossTimes'), ('int', 'T'), ('int', 'N'), ('double', 'drift'), ('int', 'numSims'), ('double', 'lowerThreshold'), ('double', 'upperThreshold'), ('int', 'deviceID')]",
+    "8685, 2, randomWalk, runs, [('double *', 'results'), ('int *', 'crossTimes'), ('int', 'T'), ('int', 'N'), ('int', 'numSims'), ('double', 'lowerThreshold'), ('double', 'upperThreshold'), ('int *', 'dev_failCross'), ('double', 'seconds')]"
+  ],
+  "Normalization Kernels": [
+    "867, 4, normalizeL2Hys, runs, [('float *', 'in'), ('float *', 'out')]",
+    "8789, 11, normalize_kernel, runs, [('int', 'N'), ('float *', 'x'), ('float *', 'mean'), ('float *', 'variance'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial')]",
+    "8789, 12, normalize_delta_kernel, runs, [('int', 'N'), ('float *', 'x'), ('float *', 'mean'), ('float *', 'variance'), ('float *', 'mean_delta'), ('float *', 'variance_delta'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial'), ('float *', 'delta')]"
+  ],
+  "Activation Functions": [
+    "8711, 89, relu_gpu_forward, runs, [('float *', 'out'), ('float *', 'in'), ('int64_t', 'N')]",
+    "8711, 90, relu_gpu_backward, runs, [('float *', 'ingrad'), ('float *', 'outgrad'), ('float *', 'indata'), ('int64_t', 'N')]"
+  ],
+  "Sorting Kernels": [
+    "87, 0, batcherBitonicMergesort64, runs, [('float *', 'd_out'), ('const float *', 'd_in')]"
+  ],
+  "Histogram Kernels": [
+    "867, 5, myhistKernel, runs, [('unsigned char *', 'buffer'), ('unsigned int *', 'histo')]",
+    "87, 28, naive_histo, runs, [('int *', 'd_bins'), ('const int *', 'd_in'), ('const int', 'BIN_COUNT')]",
+    "87, 29, simple_histo, runs, [('int *', 'd_bins'), ('const int *', 'd_in'), ('const int', 'BIN_COUNT')]"
+  ],
+  "Kernel Initialization": [
+    "870, 0, custom_kernel, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('float *', 'd'), ('int', 'N')]",
+    "8708, 11, init_array, runs, [('int *', 'g_data'), ('int *', 'factor'), ('int', 'num_iterations')]"
+  ],
+  "Particle Simulation Kernels": [
+    "8708, 5, addForces_k, runs, [('float2 *', 'v'), ('int', 'dx'), ('int', 'dy'), ('int', 'spx'), ('int', 'spy'), ('float', 'fx'), ('float', 'fy'), ('int', 'r'), ('size_t', 'pitch')]",
+    "8708, 7, diffuseProject_k, runs, [('float2 *', 'vx'), ('float2 *', 'vy'), ('int', 'dx'), ('int', 'dy'), ('float', 'dt'), ('float', 'visc'), ('int', 'lb')]"
+  ],
+  "Downscale Kernels": [
+    "8697, 197, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "8745, 10, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "8798, 168, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "8862, 166, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "8841, 168, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]"
+  ],
+  "Debugging Kernels": [
+    "8710, 204, cuda_debug_kernel, runs, []"
+  ],
+  "Miscellaneous Kernels": [
+    "890, 20, fillArray, runs, [('int8_t *', 'dest'), ('int', 'loop')]",
+    "890, 21, PowerInterleaved, runs, [('float4 *', 'src'), ('float4 *', 'dest')]",
+    "890, 23, Accumulate, runs, [('float4 *', 'src'), ('float4 *', 'dest'), ('int', 'loop')]",
+    "890, 25, unpack8bits_kernel, runs, [('float *', 'rcp'), ('float *', 'lcp'), ('const int8_t *', 'src')]",
+    "890, 26, warmup, runs, [('float *', 'input'), ('float *', 'output')]",
+    "890, 27, pfbFilter, runs, [('float *', 'filtered'), ('float *', 'unfiltered'), ('float *', 'taps'), ('const int', 'ntaps')]",
+    "890, 28, pfbFilter4, runs, [('float *', 'filtered'), ('float *', 'unfiltered'), ('float *', 'taps'), ('const int', 'ntaps')]",
+    "890, 31, pfbFilterShared, runs, [('float *', 'filtered'), ('float *', 'unfiltered'), ('float *', 'taps'), ('const int', 'ntaps')]"
+  ]
+}
+```

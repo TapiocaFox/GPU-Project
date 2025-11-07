@@ -1,0 +1,72 @@
+```json
+{
+  "Random Number Generation": [
+    "360, 18, GenerateRandoms, runs, [('int', 'size'), ('int', 'iterations'), ('unsigned int *', 'randoms'), ('unsigned int *', 'seeds')]",
+    "360, 52, Generate_Randoms_Kernel, runs, [('int', 'size'), ('int', 'iterations'), ('unsigned int *', 'randoms'), ('unsigned int *', 'seeds')]",
+    "3725, 10, poisson_rand_kernel, runs, [('const int64_t', 'seed'), ('int32_t __restrict *', 'numbers'), ('const int64_t', 'maximum'), ('const double', 'lambda')]"
+  ],
+  "Initialization Kernels": [
+    "360, 19, PreInitialize, runs, [('int', 'size'), ('unsigned int *', 'randoms'), ('int *', 'bestSeen'), ('int *', 'origin'), ('int *', 'mis')]",
+    "360, 20, Initialize, runs, [('int', 'size'), ('unsigned int *', 'randoms'), ('int *', 'bestSeen'), ('int *', 'origin'), ('int *', 'mis'), ('int *', 'incomplete')]",
+    "360, 53, First_Initialize_Kernel, runs, [('int', 'size'), ('unsigned int *', 'randoms'), ('int *', 'bestSeen'), ('int *', 'origin')]",
+    "360, 54, Initialize_Kernel, runs, [('int', 'size'), ('unsigned int *', 'randoms'), ('int *', 'bestSeen'), ('int *', 'origin'), ('int *', 'mis'), ('int *', 'incomplete')]"
+  ],
+  "Iteration Kernels": [
+    "360, 21, Iterate, runs, [('int', 'size'), ('int *', 'originIn'), ('int *', 'originOut'), ('int *', 'bestSeenIn'), ('int *', 'bestSeenOut'), ('int *', 'adjIndexes'), ('int *', 'adjacency')]",
+    "360, 55, Iterate_Kernel, runs, [('int', 'size'), ('int *', 'originIn'), ('int *', 'originOut'), ('int *', 'bestSeenIn'), ('int *', 'bestSeenOut'), ('int *', 'adjIndexes'), ('int *', 'adjacency')]"
+  ],
+  "Finalization Kernels": [
+    "360, 22, Finalize, runs, [('int', 'size'), ('int *', 'originIn'), ('int *', 'originOut'), ('int *', 'bestSeenIn'), ('int *', 'bestSeenOut'), ('int *', 'adjIndexes'), ('int *', 'adjacency'), ('int *', 'mis'), ('int *', 'incomplete')]",
+    "360, 56, Final_Iterate_Kernel, runs, [('int', 'size'), ('int *', 'originIn'), ('int *', 'originOut'), ('int *', 'bestSeenIn'), ('int *', 'bestSeenOut'), ('int *', 'adjIndexes'), ('int *', 'adjacency'), ('int *', 'mis'), ('int *', 'incomplete')]"
+  ],
+  "Adjacency Kernels": [
+    "360, 60, findAdjacencySizesKernel, runs, [('int', 'size'), ('int *', 'adjIndexes'), ('int *', 'output')]",
+    "360, 61, allocateNodesKernel, runs, [('int', 'size'), ('int *', 'adjIndexes'), ('int *', 'adjacency'), ('int *', 'partIn'), ('int *', 'partOut'), ('int *', 'aggregated')]",
+    "360, 66, permuteInitialAdjacencyKernel, runs, [('int', 'size'), ('int *', 'adjIndexesIn'), ('int *', 'adjacencyIn'), ('int *', 'permutedAdjIndexesIn'), ('int *', 'permutedAdjacencyIn'), ('int *', 'ipermutation'), ('int *', 'fineAggregate')]",
+    "360, 67, getInducedGraphNeighborCountsKernel, runs, [('int', 'size'), ('int *', 'aggregateIdx'), ('int *', 'adjIndexesOut'), ('int *', 'permutedAdjIndexes'), ('int *', 'permutedAdjacencyIn')]"
+  ],
+  "Partitioning Kernels": [
+    "360, 69, fillPartitionLabelKernel, runs, [('int', 'size'), ('int *', 'coarseAggregate'), ('int *', 'fineAggregateSort'), ('int *', 'partitionLabel')]",
+    "360, 70, getAggregateStartIndicesKernel, runs, [('int', 'size'), ('int *', 'fineAggregateSort'), ('int *', 'aggregateRemapIndex')]",
+    "360, 71, remapAggregateIdxKernel, runs, [('int', 'size'), ('int *', 'fineAggregateSort'), ('int *', 'aggregateRemapId')]"
+  ],
+  "Graph Processing Kernels": [
+    "360, 76, findDesirabilityKernel, runs, [('int', 'size'), ('int', 'optimalSize'), ('int *', 'adjIndexes'), ('int *', 'adjacency'), ('int *', 'partition'), ('int *', 'partSizes'), ('int *', 'nodeWeights'), ('int *', 'swap_to'), ('int *', 'swap_from'), ('int *', 'swap_index'), ('float *', 'desirability')]",
+    "360, 77, makeSwapsKernel, runs, [('int', 'size'), ('int *', 'partition'), ('int *', 'partSizes'), ('int *', 'nodeWeights'), ('int *', 'swap_to'), ('int *', 'swap_from'), ('int *', 'swap_index'), ('float *', 'desirability')]"
+  ],
+  "Matrix Operations": [
+    "3633, 0, gpu_transpose, runs, [('float *', 'dst'), ('float *', 'A'), ('int', 'col'), ('int', 'row')]",
+    "3773, 9, matrix_multiply_kernel, runs, [('double *', 'matrix'), ('double *', 'vector_in'), ('double *', 'vector_out'), ('long', 'dim_mn')]",
+    "381, 0, convKernel, runs, [('const float *', 'source'), ('const float *', 'kernel'), ('float *', 'target'), ('const int', 'len')]"
+  ],
+  "Reduction Kernels": [
+    "376, 13, reduce0, runs, [('float *', 'g_idata'), ('float *', 'g_odata'), ('int', 'N')]",
+    "3837, 4, reduction, runs, [('int *', 'input'), ('int *', 'output')]"
+  ],
+  "Utility Kernels": [
+    "3620, 132, kernel_print, runs, [('int const *', 'p'), ('int', 'n')]",
+    "3620, 133, kernel_print, runs, [('long const *', 'p'), ('int', 'n')]",
+    "3620, 134, kernel_print, runs, [('size_t const *', 'p'), ('int', 'n')]",
+    "3724, 1, sum, runs, [('long int *', 'device_num'), ('long int *', 'device_den'), ('long int *', 'device_vet'), ('int', 'size'), ('int', 'x')]"
+  ],
+  "Activation Functions": [
+    "380, 3, LreluForward, runs, [('float *', 'srcData'), ('float *', 'dstData'), ('int', 'data_size')]",
+    "380, 4, LreluBackward, runs, [('float *', 'srcDiff'), ('float *', 'dstDiff'), ('float *', 'srcData'), ('int', 'data_size')]",
+    "3829, 93, relu_gpu_forward, runs, [('float *', 'out'), ('float *', 'in'), ('int64_t', 'N')]",
+    "3829, 94, relu_gpu_backward, runs, [('float *', 'ingrad'), ('float *', 'outgrad'), ('float *', 'indata'), ('int64_t', 'N')]"
+  ],
+  "Image Processing Kernels": [
+    "3679, 4, forward_avgpool_layer_kernel, runs, [('int', 'n'), ('int', 'w'), ('int', 'h'), ('int', 'c'), ('float *', 'input'), ('float *', 'output')]",
+    "3679, 59, forward_maxpool_layer_kernel, runs, [('int', 'n'), ('int', 'in_h'), ('int', 'in_w'), ('int', 'in_c'), ('int', 'stride'), ('int', 'size'), ('int', 'pad'), ('float *', 'input'), ('float *', 'output'), ('int *', 'indexes')]"
+  ],
+  "Kernel Operations": [
+    "368, 0, MyKernel, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'N')]",
+    "368, 2, _GPU_Floyd_kernel, runs, [('int', 'k'), ('int *', 'G'), ('int *', 'P'), ('int', 'N')]"
+  ],
+  "Miscellaneous": [
+    "3627, 7, initialize_skel_kernel, runs, []",
+    "3764, 38, sync_conv_groups, runs, []",
+    "3806, 1, TestDimensions, runs, []"
+  ]
+}
+```

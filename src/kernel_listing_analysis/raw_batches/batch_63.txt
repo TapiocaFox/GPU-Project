@@ -1,0 +1,89 @@
+```json
+{
+  "Initialization Kernels": [
+    "855, 36, init_check, runs, [('int *', 'd_check'), ('int', 'nz')]",
+    "855, 48, zero_fill_int, runs, [('int *', 'd_array'), ('int', 'size')]",
+    "855, 49, set_permutation, runs, [('int *', 'd_permutation'), ('int', 'M')]",
+    "855, 50, set_cl, runs, [('int *', 'nnz_num'), ('int *', 'cl'), ('int', 'chunk'), ('int', 'pad_M')]",
+    "855, 51, init_cs, runs, [('int *', 'd_cl'), ('int *', 'd_cs'), ('int', 'c_size'), ('int', 'chunk')]",
+    "855, 53, set_segmented_nnz_num, runs, [('int *', 'd_rpt'), ('int *', 'd_col'), ('int *', 'd_nnz_num'), ('int *', 'd_group_seg'), ('int *', 'd_offset'), ('size_t', 'seg_size'), ('size_t', 'seg_num'), ('int', 'M'), ('int', 'pad_M'), ('int', 'group_num_col')]",
+    "855, 54, init_segmented_rpt, runs, [('int *', 'd_nnz_num'), ('int *', 'd_seg_rpt'), ('int', 'total_pad_row_num')]",
+    "855, 62, set_packed_cl_cs, runs, [('int *', 'd_packed_cl'), ('int *', 'd_packed_cs'), ('int *', 'd_cl'), ('int *', 'd_cs'), ('int *', 'd_gcs'), ('int', 'chunk_num')]",
+    "855, 66, set_d_check_nnz, runs, [('int *', 'd_check_nnz'), ('int *', 'd_nnz_num'), ('int', 'pad_M'), ('int', 'SIGMA'), ('int', 'sigma_block_row')]"
+  ],
+  "Reduction Kernels": [
+    "8562, 20, reduce2, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'n')]",
+    "8562, 21, reduce3, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'size')]",
+    "8609, 0, reduce1, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('int', 'g_size')]",
+    "8609, 1, reduce2, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('int', 'g_size')]",
+    "8609, 2, reduce3, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('int', 'g_size')]",
+    "8609, 3, reduce4, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('int', 'g_size')]",
+    "8609, 4, reduce5, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('int', 'g_size')]",
+    "861, 1, reduce, runs, [('unsigned int *', 'd_out_shared'), ('const unsigned int *', 'd_in')]",
+    "861, 20, global_reduce_kernel, runs, [('float *', 'd_out'), ('float *', 'd_in')]",
+    "861, 21, shmem_reduce_kernel, runs, [('float *', 'd_out'), ('const float *', 'd_in')]"
+  ],
+  "Matrix Operations": [
+    "8562, 22, matrix_multiply_simple, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'ab'), ('size_t', 'width')]",
+    "8562, 23, k1, runs, [('float *', 'g_dataA'), ('float *', 'g_dataB'), ('int', 'floatpitch'), ('int', 'width')]",
+    "8562, 24, k0, runs, [('float *', 'g_dataA'), ('float *', 'g_dataB'), ('int', 'pitch'), ('int', 'width')]",
+    "8660, 5, matmulKernel, runs, [('float *', 'mat1'), ('float *', 'mat2'), ('float *', 'matP'), ('int', 'dim')]"
+  ],
+  "Elementwise Operations": [
+    "866, 1, arrayFill, runs, [('float *', 'data'), ('float', 'value'), ('int', 'size')]",
+    "866, 2, hardTanh, runs, [('float *', 'in'), ('float *', 'out'), ('float', 'min_val'), ('float', 'max_val'), ('int', 'size')]",
+    "866, 3, hardTanh_grad, runs, [('float *', 'in_x'), ('float *', 'in_d'), ('float *', 'out_d'), ('float', 'min_val'), ('float', 'max_val'), ('int', 'size'), ('bool', 'inplace')]",
+    "866, 4, nllLoss, runs, [('float *', 'x'), ('int', 'x_stride'), ('float *', 'y'), ('int *', 'target')]",
+    "866, 5, nllLoss_grad, runs, [('int', 'x_stride'), ('float *', 'yGrad'), ('int *', 'target'), ('float *', 'xGrad')]",
+    "866, 11, adagrad_update_1D_1D, runs, [('float *', 'x'), ('float *', 'd'), ('float *', 'm'), ('float', 'clip'), ('float', 'lr'), ('int', 'size')]",
+    "866, 12, momentum_update_1D_1D, runs, [('float *', 'x'), ('float *', 'd'), ('float *', 'm'), ('float', 'learning_rate'), ('float', 'momentum'), ('float', 'gradClip'), ('bool', 'nesterov'), ('int', 'size')]",
+    "866, 13, addScalar, runs, [('float *', 'in'), ('float *', 'out'), ('float', 'add'), ('int', 'size')]",
+    "866, 14, minusScalar, runs, [('float *', 'in'), ('float *', 'out'), ('float', 'minus'), ('int', 'size')]",
+    "866, 15, multScalar, runs, [('float *', 'in'), ('float *', 'out'), ('float', 'mult'), ('int', 'size')]",
+    "866, 16, divScalar, runs, [('float *', 'in'), ('float *', 'out'), ('float', 'div'), ('int', 'size')]",
+    "866, 17, elementwise_1D_1D_mul, runs, [('float *', 'in1'), ('float *', 'in2'), ('float *', 'out'), ('int', 'size')]",
+    "866, 18, elementwise_1D_1D_mul_mutate, runs, [('float *', 'in1'), ('float *', 'in2'), ('float *', 'out'), ('int', 'size')]",
+    "866, 19, elementwise_1D_1D_add, runs, [('float *', 'in1'), ('float *', 'in2'), ('float *', 'out'), ('int', 'size')]",
+    "866, 20, elementwise_1D_1D_minus, runs, [('float *', 'in1'), ('float *', 'in2'), ('float *', 'out'), ('int', 'size')]",
+    "866, 21, elementwise_1D_1D_div, runs, [('float *', 'in1'), ('float *', 'in2'), ('float *', 'out'), ('int', 'size')]",
+    "866, 22, elementwise_1D_1D_exp, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'size')]",
+    "866, 23, elementwise_1D_1D_log, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'size')]",
+    "866, 24, elementwise_1D_1D_sqrt, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'size')]",
+    "866, 25, elementwise_1D_1D_square, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'size')]",
+    "866, 26, elementwise_1D_1D_exp_grad, runs, [('float *', 'in_x'), ('float *', 'in_d'), ('float *', 'out_x'), ('float *', 'out_d'), ('int', 'size')]",
+    "866, 27, elementwise_1D_1D_log_grad, runs, [('float *', 'in_x'), ('float *', 'in_d'), ('float *', 'out_x'), ('float *', 'out_d'), ('int', 'size')]",
+    "866, 28, elementwise_1D_1D_sqrt_grad, runs, [('float *', 'in_x'), ('float *', 'in_d'), ('float *', 'out_x'), ('float *', 'out_d'), ('int', 'size')]",
+    "866, 29, elementwise_1D_1D_square_grad, runs, [('float *', 'in_x'), ('float *', 'in_d'), ('float *', 'out_x'), ('float *', 'out_d'), ('int', 'size')]",
+    "866, 30, clipAt, runs, [('float *', 'in'), ('float', 'bound'), ('int', 'size')]",
+    "866, 31, mask4D, runs, [('float *', 'in'), ('int *', 'mask'), ('int', 'xstrides0'), ('int', 'xstrides1'), ('int', 'xstrides2'), ('int', 'xstrides3'), ('int', 'scalarCount')]",
+    "866, 32, mul_sub, runs, [('float *', 'in1'), ('float *', 'in2'), ('float *', 'out'), ('int', 'in1ScalarCount'), ('int', 'in2ScalarCount')]",
+    "866, 33, mul_sub_grad, runs, [('float *', 'in1_x'), ('float *', 'in1_d'), ('float *', 'in2_x'), ('float *', 'in2_d'), ('float *', 'out'), ('int', 'in1ScalarCount'), ('int', 'in2ScalarCount')]"
+  ],
+  "Sobel Edge Detection": [
+    "8588, 7, sobelEdgeDetection, runs, [('int *', 'input'), ('int *', 'output'), ('int', 'width'), ('int', 'height'), ('int', 'thresh')]",
+    "8588, 8, sobelEdgeDetectionWithRegisters, runs, [('int *', 'input'), ('int *', 'output'), ('int', 'width'), ('int', 'height'), ('int', 'thresh')]",
+    "8588, 9, sobelEdgeDetectionSharedMem, runs, [('int *', 'input'), ('int *', 'output'), ('int', 'width'), ('int', 'height'), ('int', 'thresh')]",
+    "8588, 10, sobelEdgeDetectionSharedMem2, runs, [('int *', 'input'), ('int *', 'output'), ('int', 'width'), ('int', 'height'), ('int', 'thresh')]",
+    "8588, 11, sobelEdgeDetectionSharedMemUnrollControlFlow, runs, [('int *', 'input'), ('int *', 'output'), ('int', 'width'), ('int', 'height'), ('int', 'thresh')]",
+    "8588, 12, sobelEdgeDetectionSharedMemUnroll, runs, [('int *', 'input'), ('int *', 'output'), ('int', 'width'), ('int', 'height'), ('int', 'thresh')]",
+    "8588, 13, sobelEdgeDetectionSharedMemOverlap, runs, [('int *', 'input'), ('int *', 'output'), ('int', 'width'), ('int', 'height'), ('int', 'thresh')]",
+    "8588, 14, sobelEdgeDetectionSharedMemUnrollCoalsed, runs, [('int *', 'input'), ('int *', 'output'), ('int', 'width'), ('int', 'height'), ('int', 'thresh')]"
+  ],
+  "Convolution Kernels": [
+    "8552, 21, sync_deconv_groups, runs, []",
+    "8552, 37, sync_conv_groups, runs, []",
+    "8593, 40, sync_conv_groups, runs, []"
+  ],
+  "Utility Kernels": [
+    "856, 0, sort, runs, [('int *', 'd_arr'), ('int', 'n'), ('bool', 'isEven')]",
+    "8660, 6, shift_cypher, runs, [('unsigned int *', 'input_array'), ('unsigned int *', 'output_array'), ('unsigned int', 'shift_amount'), ('unsigned int', 'alphabet_max'), ('unsigned int', 'array_length')]",
+    "8660, 7, force_eval, runs, [('float4 *', 'set_A'), ('float4 *', 'set_B'), ('int *', 'indices'), ('float4 *', 'force_vectors'), ('int', 'array_length')]",
+    "8660, 23, adjacent_difference_simple, runs, [('int *', 'result'), ('int *', 'input')]",
+    "8660, 25, inclusive_scan, runs, [('const unsigned int *', 'input'), ('unsigned int *', 'result')]"
+  ],
+  "Gradient Kernels": [
+    "8656, 303, softmax_gradient_kernel, runs, [('const int', 'dim'), ('const float *', 'Y'), ('const float *', 'dY'), ('float *', 'dX')]",
+    "8656, 311, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]"
+  ]
+}
+```

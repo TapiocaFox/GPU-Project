@@ -1,0 +1,89 @@
+```json
+{
+  "Backpropagation Kernels": [
+    "1213, 9, bp_weight_fc, runs, [('float *', 'd_weight'), ('float *', 'd_preact'), ('float *', 'p_output'), ('const int', 'size'), ('const int', 'in_channel'), ('const int', 'out_channel')]",
+    "1213, 11, bp_output_conv, runs, [('float *', 'd_output'), ('float *', 'weight'), ('float *', 'nd_preact'), ('const int', 'size'), ('const int', 'kernel_size'), ('const int', 'n_size'), ('const int', 'in_channel'), ('const int', 'out_channel'), ('bool', 'CONV'), ('bool', 'SAME')]",
+    "1213, 13, bp_weight_conv, runs, [('float *', 'd_weight'), ('float *', 'd_preact'), ('float *', 'p_output'), ('const int', 'kernel_size'), ('const int', 'size'), ('const int', 'n_size'), ('const int', 'in_channel'), ('const int', 'out_channel'), ('bool', 'SAME')]",
+    "1213, 16, bp_maxpool, runs, [('float *', 'd_preact'), ('float *', 'preact'), ('float *', 'p_output'), ('float *', 'nd_output'), ('const int', 'kernel_size'), ('const int', 'size'), ('const int', 'n_size'), ('const int', 'in_channel'), ('bool', 'SAME')]",
+    "1213, 17, bp_output_fc, runs, [('float *', 'd_output'), ('float *', 'd_preact'), ('float *', 'weight'), ('const int', 'size'), ('const int', 'in_channel'), ('const int', 'out_channel')]",
+    "1213, 30, bp_weight_fc, runs, [('float *', 'd_weight'), ('float *', 'd_preact'), ('float *', 'p_output'), ('const int', 'size'), ('const int', 'in_channel'), ('const int', 'out_channel')]",
+    "1213, 32, bp_output_conv, runs, [('float *', 'd_output'), ('float *', 'weight'), ('float *', 'nd_preact'), ('const int', 'size'), ('const int', 'kernel_size'), ('const int', 'n_size'), ('const int', 'in_channel'), ('const int', 'out_channel'), ('bool', 'CONV'), ('bool', 'SAME')]",
+    "1213, 34, bp_weight_conv, runs, [('float *', 'd_weight'), ('float *', 'd_preact'), ('float *', 'p_output'), ('const int', 'kernel_size'), ('const int', 'size'), ('const int', 'n_size'), ('const int', 'in_channel'), ('const int', 'out_channel'), ('bool', 'SAME')]",
+    "1213, 38, bp_output_fc, runs, [('float *', 'd_output'), ('float *', 'd_preact'), ('float *', 'weight'), ('const int', 'size'), ('const int', 'in_channel'), ('const int', 'out_channel')]",
+    "1213, 37, bp_maxpool, runs, [('float *', 'd_preact'), ('float *', 'preact'), ('float *', 'p_output'), ('float *', 'nd_output'), ('const int', 'kernel_size'), ('const int', 'size'), ('const int', 'n_size'), ('const int', 'in_channel'), ('bool', 'SAME')]"
+  ],
+  "Forward Propagation Kernels": [
+    "1213, 26, fp_conv, runs, [('float *', 'output'), ('float *', 'input'), ('float *', 'weight'), ('const int', 'kernel_size'), ('const int', 'size'), ('const int', 'n_size'), ('const int', 'in_channel'), ('const int', 'out_channel'), ('bool', 'SAME')]",
+    "1213, 27, fp_bias_conv, runs, [('float *', 'preact'), ('float *', 'bias'), ('const int', 'size'), ('const int', 'n_channel')]",
+    "1213, 28, fp_preact_fc, runs, [('float *', 'input'), ('float *', 'preact'), ('float *', 'weight'), ('const int', 'size'), ('const int', 'in_channel'), ('const int', 'out_channel')]",
+    "1213, 29, fp_bias_fc, runs, [('float *', 'preact'), ('float *', 'bias'), ('const int', 'n_channel')]",
+    "1213, 15, fp_maxpool, runs, [('float *', 'output'), ('float *', 'input'), ('const int', 'kernel_size'), ('const int', 'size'), ('const int', 'n_size'), ('const int', 'in_channel'), ('bool', 'SAME')]"
+  ],
+  "Loss Calculation Kernels": [
+    "1213, 22, calcLoss, runs, [('float *', 'err'), ('float *', 'output'), ('unsigned int', 'Y'), ('const int', 'N')]",
+    "1213, 41, sumGrad, runs, [('float *', 'input1'), ('float *', 'input2'), ('float *', 'input3'), ('float *', 'input4'), ('float *', 'output'), ('const int', 'numElem')]",
+    "1213, 18, sumGrad, runs, [('float *', 'output'), ('float *', 'input1'), ('float *', 'input2'), ('float *', 'input3'), ('float *', 'input4'), ('const int', 'numElem')]",
+    "12176, 79, softmax_gradient_kernel, runs, [('const int', 'dim'), ('const float *', 'Y'), ('const float *', 'dY'), ('float *', 'dX')]",
+    "12368, 76, softmax_gradient_kernel, runs, [('const int', 'dim'), ('const float *', 'Y'), ('const float *', 'dY'), ('float *', 'dX')]",
+    "12439, 105, ForwardWarpKernel_PSF2x2, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'normalization_factor'), ('float *', 'dst')]"
+  ],
+  "Concatenation and De-concatenation Kernels": [
+    "1213, 24, concat, runs, [('float *', 'output'), ('float *', 'input1'), ('float *', 'input2'), ('float *', 'input3'), ('float *', 'input4'), ('const int', 'size'), ('const int', 'in_channel1'), ('const int', 'in_channel2'), ('const int', 'in_channel3'), ('const int', 'in_channel4')]",
+    "1213, 25, decat, runs, [('float *', 'input'), ('float *', 'output1'), ('float *', 'output2'), ('float *', 'output3'), ('float *', 'output4'), ('const int', 'size'), ('const int', 'out_channel1'), ('const int', 'out_channel2'), ('const int', 'out_channel3'), ('const int', 'out_channel4')]",
+    "1213, 39, concat, runs, [('float *', 'input1'), ('float *', 'input2'), ('float *', 'input3'), ('float *', 'input4'), ('size_t', 'num1'), ('size_t', 'num2'), ('size_t', 'num3'), ('size_t', 'num4'), ('size_t', 'maxNum'), ('float *', 'output'), ('const int', 'numPerBatch')]",
+    "1213, 40, decat, runs, [('float *', 'output1'), ('float *', 'output2'), ('float *', 'output3'), ('float *', 'output4'), ('size_t', 'num1'), ('size_t', 'num2'), ('size_t', 'num3'), ('size_t', 'num4'), ('size_t', 'maxNum'), ('float *', 'input'), ('const int', 'numPerBatch')]"
+  ],
+  "Matrix Operations Kernels": [
+    "12202, 0, MatrixMulKernel, runs, [('int', 'ARows'), ('int', 'ACols'), ('int', 'BRows'), ('int', 'BCols'), ('int', 'CRows'), ('int', 'CCols'), ('unsigned int *', 'A_d'), ('unsigned int *', 'B_d'), ('unsigned int *', 'C_d')]",
+    "12202, 1, matrixTranspose, runs, [('unsigned int *', 'A_d'), ('unsigned int *', 'T_d'), ('int', 'rowCount'), ('int', 'colCount')]",
+    "12202, 2, matrixTranspose, runs, [('unsigned int *', 'A_d'), ('unsigned int *', 'T_d'), ('int', 'n')]",
+    "12202, 3, vecAdd, runs, [('unsigned int *', 'A_d'), ('unsigned int *', 'B_d'), ('unsigned int *', 'C_d'), ('int', 'WORK_SIZE')]",
+    "12506, 0, MatrixMult, runs, [('int', 'm'), ('int', 'n'), ('int', 'k'), ('double *', 'a'), ('double *', 'b'), ('double *', 'c')]",
+    "12506, 1, matrixMultiplySharedMem, runs, [('double *', 'A'), ('double *', 'B'), ('double *', 'C'), ('int', 'numARows'), ('int', 'numAColumns'), ('int', 'numBRows'), ('int', 'numBColumns'), ('int', 'numCRows'), ('int', 'numCColumns')]"
+  ],
+  "Utility Kernels": [
+    "1213, 18, sumGrad, runs, [('float *', 'output'), ('float *', 'input1'), ('float *', 'input2'), ('float *', 'input3'), ('float *', 'input4'), ('const int', 'numElem')]",
+    "1213, 42, FillOnes, runs, [('float *', 'vec'), ('int', 'size')]",
+    "1213, 43, SoftmaxLossBackprop, runs, [('const float *', 'label'), ('int', 'num_labels'), ('int', 'batch_size'), ('float *', 'diff')]",
+    "12139, 33, sync_conv_groups, runs, []",
+    "12224, 168, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "1240, 4, correctBounds, runs, [('double *', 'd_ub'), ('double *', 'd_lb'), ('int', 'nRxns'), ('double *', 'd_prevPoint'), ('double', 'alpha'), ('double', 'beta'), ('double *', 'd_centerPoint'), ('double *', 'points'), ('int', 'pointsPerFile'), ('int', 'pointCount'), ('int', 'index')]"
+  ],
+  "Sorting Kernels": [
+    "1237, 10, bitonic_sort_step, runs, [('float *', 'dev_values'), ('int', 'j'), ('int', 'k')]"
+  ],
+  "Image Processing Kernels": [
+    "12491, 2, rgb_to_xyY, runs, [('float *', 'd_r'), ('float *', 'd_g'), ('float *', 'd_b'), ('float *', 'd_x'), ('float *', 'd_y'), ('float *', 'd_log_Y'), ('float', 'delta'), ('int', 'num_pixels_y'), ('int', 'num_pixels_x')]",
+    "12491, 3, normalize_cdf, runs, [('unsigned int *', 'd_input_cdf'), ('float *', 'd_output_cdf'), ('int', 'n')]",
+    "12491, 4, tonemap, runs, [('float *', 'd_x'), ('float *', 'd_y'), ('float *', 'd_log_Y'), ('float *', 'd_cdf_norm'), ('float *', 'd_r_new'), ('float *', 'd_g_new'), ('float *', 'd_b_new'), ('float', 'min_log_Y'), ('float', 'max_log_Y'), ('float', 'log_Y_range'), ('int', 'num_bins'), ('int', 'num_pixels_y'), ('int', 'num_pixels_x')]"
+  ],
+  "Random Number Generation Kernels": [
+    "1217, 2, generate_sources, runs, [('curandState *', 'state'), ('int', 'n'), ('uint32_t *', 'verts')]",
+    "1217, 3, generate_destinations, runs, [('curandState *', 'state'), ('int', 'n'), ('const uint32_t *', 'sources'), ('uint32_t *', 'destinations')]"
+  ],
+  "Kernel Initialization Kernels": [
+    "12224, 230, kSetupCurand, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]"
+  ],
+  "Kernel Synchronization Kernels": [
+    "12305, 36, sync_conv_groups, runs, []",
+    "12343, 27, sync_conv_groups, runs, []",
+    "12409, 35, sync_conv_groups, runs, []",
+    "12447, 33, sync_conv_groups, runs, []",
+    "12439, 186, mergeLocation, runs, [('const short2 *', 'loc_'), ('float *', 'x'), ('float *', 'y'), ('const int', 'npoints'), ('float', 'scale')]"
+  ],
+  "Kernel Memory Management Kernels": [
+    "1232, 0, device_only_copy, runs, [('float *', 'output'), ('float *', 'input'), ('size_t', 'total_size')]",
+    "1232, 1, device_apply_scale, runs, [('float *', 'coords'), ('float', 'scale'), ('size_t', 'total_size')]",
+    "1232, 2, recenter_2D, runs, [('float *', 'coords'), ('size_t', 'dim_y'), ('size_t', 'dim_x')]",
+    "1232, 3, recenter_3D, runs, [('float *', 'coords'), ('size_t', 'dim_z'), ('size_t', 'dim_y'), ('size_t', 'dim_x')]",
+    "1232, 4, flip_2D, runs, [('float *', 'coords'), ('size_t', 'dim_y'), ('size_t', 'dim_x'), ('int', 'do_y'), ('int', 'do_x')]",
+    "1232, 5, flip_3D, runs, [('float *', 'coords'), ('size_t', 'dim_z'), ('size_t', 'dim_y'), ('size_t', 'dim_x'), ('int', 'do_z'), ('int', 'do_y'), ('int', 'do_x')]",
+    "1232, 6, translate_3D, runs, [('float *', 'coords'), ('size_t', 'dim_z'), ('size_t', 'dim_y'), ('size_t', 'dim_x'), ('float', 'seg_z'), ('float', 'seg_y'), ('float', 'seg_x')]",
+    "1232, 7, translate_2D, runs, [('float *', 'coords'), ('size_t', 'dim_y'), ('size_t', 'dim_x'), ('float', 'seg_y'), ('float', 'seg_x')]",
+    "1232, 8, rotate_2D, runs, [('float *', 'coords'), ('size_t', 'dim_y'), ('size_t', 'dim_x'), ('float', 'cos_angle'), ('float', 'sin_angle')]",
+    "1232, 9, rotate_3D, runs, [('float *', 'coords'), ('size_t', 'dim_z'), ('size_t', 'dim_y'), ('size_t', 'dim_x'), ('float *', 'rot_matrix')]",
+    "1232, 10, scale_random, runs, [('float *', 'random'), ('size_t', 'total_size')]",
+    "1232, 11, plus_offsets, runs, [('float *', 'coords'), ('float *', 'random'), ('size_t', 'total_size'), ('float', 'alpha')]"
+  ]
+}
+```

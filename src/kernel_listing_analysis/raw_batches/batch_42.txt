@@ -1,0 +1,88 @@
+```json
+{
+  "Transformation Kernels": [
+    "4156, 21, transform2d, runs, [('float *', 'points3d_after'), ('float', 'fov_scale')]",
+    "4156, 22, render_depth, runs, [('float *', 'points3d_polar'), ('unsigned int *', 'depth_render')]",
+    "4156, 25, render_final, runs, [('float *', 'points3d_polar'), ('float *', 'selection'), ('float *', 'depth_render'), ('int *', 'img'), ('int *', 'render'), ('int', 'oh'), ('int', 'ow')]",
+    "4184, 0, generateImg, runs, [('unsigned char *', 'data'), ('unsigned char *', 'img'), ('unsigned char *', 'tabDepth'), ('int4 *', '_tabParents'), ('int', 'i'), ('int', 'tailleTab')]"
+  ],
+  "Image Processing Kernels": [
+    "4156, 23, get_average, runs, [('unsigned char *', 'img'), ('int *', 'nz'), ('int *', 'average'), ('int', 'scale')]",
+    "4156, 24, fill_with_average, runs, [('unsigned char *', 'img'), ('int *', 'nz'), ('int *', 'average'), ('int', 'scale')]",
+    "4223, 4, forward_avgpool_layer_kernel, runs, [('int', 'n'), ('int', 'w'), ('int', 'h'), ('int', 'c'), ('float *', 'input'), ('float *', 'output')]",
+    "4223, 5, backward_avgpool_layer_kernel, runs, [('int', 'n'), ('int', 'w'), ('int', 'h'), ('int', 'c'), ('float *', 'in_delta'), ('float *', 'out_delta')]",
+    "4240, 5, forward_avgpool_layer_kernel, runs, [('int', 'n'), ('int', 'w'), ('int', 'h'), ('int', 'c'), ('float *', 'input'), ('float *', 'output')]",
+    "4240, 6, backward_avgpool_layer_kernel, runs, [('int', 'n'), ('int', 'w'), ('int', 'h'), ('int', 'c'), ('float *', 'in_delta'), ('float *', 'out_delta')]"
+  ],
+  "Matrix Operations Kernels": [
+    "4199, 2, matrix_matrix_mul_old, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'n_row'), ('int', 'n_col'), ('int', 'n_comm')]",
+    "4199, 3, matrix_matrix_new, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'n_row'), ('int', 'n_col'), ('int', 'n_comm')]",
+    "4201, 10, matrix_multiply_kernel, runs, [('double *', 'matrix'), ('double *', 'vector_in'), ('double *', 'vector_out'), ('long', 'dim_mn')]",
+    "426, 0, convolution_1D_tiled, runs, [('float *', 'N'), ('float *', 'M'), ('float *', 'P')]"
+  ],
+  "Reduction Kernels": [
+    "4173, 21, analyze, runs, [('const float *', 'input'), ('float *', 'sum'), ('int', 'numElements')]",
+    "4173, 22, sum, runs, [('const float *', 'input'), ('float *', 'output'), ('int', 'numElements')]",
+    "4201, 4, reduction, runs, [('int *', 'input'), ('int *', 'output')]"
+  ],
+  "Activation Functions Kernels": [
+    "4178, 89, relu_gpu_forward, runs, [('float *', 'out'), ('float *', 'in'), ('int64_t', 'N')]",
+    "4178, 90, relu_gpu_backward, runs, [('float *', 'ingrad'), ('float *', 'outgrad'), ('float *', 'indata'), ('int64_t', 'N')]"
+  ],
+  "Utility Kernels": [
+    "4173, 5, init, runs, [('uint32_t *', 'v'), ('uint32_t', 'val'), ('uint32_t', 'n')]",
+    "42, 2, FlushKernel, runs, []",
+    "42, 6, splitNodes, runs, [('int *', 'octree'), ('int *', 'numNodes'), ('int', 'poolSize'), ('int', 'startNode')]",
+    "42, 11, extractValues, runs, [('void *', 'fb'), ('int *', 'voxels'), ('int', 'num_voxels'), ('int *', 'values')]",
+    "4200, 0, addAry, runs, [('int *', 'ary1'), ('int *', 'ary2')]",
+    "4201, 0, simple_add, runs, [('float *', 'a'), ('float *', 'b'), ('int', 'n')]",
+    "424, 16, uniformAdd, runs, [('int *', 'g_data'), ('int *', 'uniforms'), ('int', 'n'), ('int', 'blockOffset'), ('int', 'baseIndex')]"
+  ],
+  "Kernel Testing Kernels": [
+    "4212, 16, kernel_move_inv_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'pattern')]",
+    "4212, 19, kernel_test0_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'pattern'), ('unsigned int *', 'err'), ('unsigned long *', 'err_addr'), ('unsigned long *', 'err_expect'), ('unsigned long *', 'err_current'), ('unsigned long *', 'err_second_read')]",
+    "4212, 21, kernel_test0_global_write, runs, [('char *', '_ptr'), ('char *', '_end_ptr')]",
+    "4212, 23, kernel_test0_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "4212, 25, kernel_test1_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int *', 'err')]"
+  ],
+  "Binarization Kernels": [
+    "4240, 0, binarize_kernel, runs, [('float *', 'x'), ('int', 'n'), ('float *', 'binary')]",
+    "4240, 1, binarize_input_kernel, runs, [('float *', 'input'), ('int', 'n'), ('int', 'size'), ('float *', 'binary')]",
+    "4240, 2, binarize_weights_kernel, runs, [('float *', 'weights'), ('int', 'n'), ('int', 'size'), ('float *', 'binary')]"
+  ],
+  "Point Cloud Processing Kernels": [
+    "4223, 65, make_pillar_histo_kernel, runs, [('const float *', 'dev_points'), ('float *', 'dev_pillar_x_in_coors'), ('float *', 'dev_pillar_y_in_coors'), ('float *', 'dev_pillar_z_in_coors'), ('float *', 'dev_pillar_i_in_coors'), ('int *', 'pillar_count_histo'), ('const int', 'num_points'), ('const int', 'max_points_per_pillar'), ('const int', 'GRID_X_SIZE'), ('const int', 'GRID_Y_SIZE'), ('const int', 'GRID_Z_SIZE'), ('const float', 'MIN_X_RANGE'), ('const float', 'MIN_Y_RANGE'), ('const float', 'MIN_Z_RANGE'), ('const float', 'PILLAR_X_SIZE'), ('const float', 'PILLAR_Y_SIZE'), ('const float', 'PILLAR_Z_SIZE'), ('const int', 'NUM_BOX_CORNERS')]",
+    "4223, 66, make_pillar_index_kernel, runs, [('int *', 'dev_pillar_count_histo'), ('int *', 'dev_counter'), ('int *', 'dev_pillar_count'), ('int *', 'dev_x_coors'), ('int *', 'dev_y_coors'), ('float *', 'dev_x_coors_for_sub'), ('float *', 'dev_y_coors_for_sub'), ('float *', 'dev_num_points_per_pillar'), ('int *', 'dev_sparse_pillar_map'), ('const int', 'max_pillars'), ('const int', 'max_points_per_pillar'), ('const int', 'GRID_X_SIZE'), ('const float', 'PILLAR_X_SIZE'), ('const float', 'PILLAR_Y_SIZE'), ('const int', 'NUM_INDS_FOR_SCAN')]",
+    "4223, 67, make_pillar_feature_kernel, runs, [('float *', 'dev_pillar_x_in_coors'), ('float *', 'dev_pillar_y_in_coors'), ('float *', 'dev_pillar_z_in_coors'), ('float *', 'dev_pillar_i_in_coors'), ('float *', 'dev_pillar_x'), ('float *', 'dev_pillar_y'), ('float *', 'dev_pillar_z'), ('float *', 'dev_pillar_i'), ('int *', 'dev_x_coors'), ('int *', 'dev_y_coors'), ('float *', 'dev_num_points_per_pillar'), ('const int', 'max_points'), ('const int', 'GRID_X_SIZE')]"
+  ],
+  "Gradient Kernels": [
+    "4223, 78, computePointGradients1, runs, [('float *', 'x'), ('float *', 'y'), ('float *', 'z'), ('int', 'points_num'), ('int *', 'valid_points'), ('int', 'valid_points_num'), ('double *', 'dj_ang'), ('double *', 'pg24'), ('double *', 'pg05'), ('double *', 'pg15'), ('double *', 'pg25')]",
+    "4223, 79, computePointHessian0, runs, [('float *', 'x'), ('float *', 'y'), ('float *', 'z'), ('int', 'points_num'), ('int *', 'valid_points'), ('int', 'valid_points_num'), ('double *', 'dh_ang'), ('double *', 'ph93'), ('double *', 'ph103'), ('double *', 'ph113'), ('double *', 'ph123'), ('double *', 'ph94'), ('double *', 'ph133'), ('double *', 'ph104'), ('double *', 'ph143'), ('double *', 'ph114'), ('double *', 'ph153'), ('double *', 'ph95'), ('double *', 'ph163'), ('double *', 'ph105'), ('double *', 'ph173'), ('double *', 'ph115')]",
+    "4223, 80, computePointHessian1, runs, [('float *', 'x'), ('float *', 'y'), ('float *', 'z'), ('int', 'points_num'), ('int *', 'valid_points'), ('int', 'valid_points_num'), ('double *', 'dh_ang'), ('double *', 'ph124'), ('double *', 'ph134'), ('double *', 'ph144'), ('double *', 'ph154'), ('double *', 'ph125'), ('double *', 'ph164'), ('double *', 'ph135'), ('double *', 'ph174'), ('double *', 'ph145')]",
+    "4223, 81, computePointHessian2, runs, [('float *', 'x'), ('float *', 'y'), ('float *', 'z'), ('int', 'points_num'), ('int *', 'valid_points'), ('int', 'valid_points_num'), ('double *', 'dh_ang'), ('double *', 'ph155'), ('double *', 'ph165'), ('double *', 'ph175')]"
+  ],
+  "Sorting Kernels": [
+    "4223, 70, sort_boxes_by_indexes_kernel, runs, [('float *', 'filtered_box'), ('int *', 'filtered_dir'), ('float *', 'box_for_nms'), ('int *', 'indexes'), ('int', 'filter_count'), ('float *', 'sorted_filtered_boxes'), ('int *', 'sorted_filtered_dir'), ('float *', 'sorted_box_for_nms'), ('const int', 'NUM_BOX_CORNERS'), ('const int', 'NUM_OUTPUT_BOX_FEATURE')]"
+  ],
+  "Normalization Kernels": [
+    "4223, 13, adam_kernel, runs, [('int', 'N'), ('float *', 'x'), ('float *', 'm'), ('float *', 'v'), ('float', 'B1'), ('float', 'B2'), ('float', 'rate'), ('float', 'eps'), ('int', 't')]",
+    "4223, 14, normalize_kernel, runs, [('int', 'N'), ('float *', 'x'), ('float *', 'mean'), ('float *', 'variance'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial')]",
+    "4223, 15, normalize_delta_kernel, runs, [('int', 'N'), ('float *', 'x'), ('float *', 'mean'), ('float *', 'variance'), ('float *', 'mean_delta'), ('float *', 'variance_delta'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial'), ('float *', 'delta')]",
+    "4223, 16, variance_delta_kernel, runs, [('float *', 'x'), ('float *', 'delta'), ('float *', 'mean'), ('float *', 'variance'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial'), ('float *', 'variance_delta')]"
+  ],
+  "Cholesky Decomposition Kernels": [
+    "43, 1, chol_kernel_cudaUFMG_division, runs, [('float *', 'U'), ('int', 'elem_per_thr')]",
+    "43, 2, chol_kernel_cudaUFMG_elimination, runs, [('float *', 'U'), ('int', 'k')]",
+    "43, 3, chol_kernel_cudaUFMG_zero, runs, [('float *', 'U'), ('int', 'elem_per_thr')]",
+    "43, 4, chol_kernel, runs, [('float *', 'U'), ('int', 'ops_per_thread')]",
+    "43, 5, chol_kernel_optimized_div_old, runs, [('float *', 'U'), ('int', 'k'), ('int', 'stride')]",
+    "43, 6, chol_kernel_optimized_div, runs, [('float *', 'U'), ('int', 'k'), ('int', 'stride')]",
+    "43, 7, chol_kernel_optimized, runs, [('float *', 'U'), ('int', 'k'), ('int', 'stride')]",
+    "43, 8, chol_kernel_optimized_no_stride, runs, [('float *', 'U'), ('int', 'k'), ('int', 'stride')]"
+  ],
+  "Miscellaneous Kernels": [
+    "430, 0, sayHi, []",
+    "4231, 33, sync_conv_groups, []"
+  ]
+}
+```

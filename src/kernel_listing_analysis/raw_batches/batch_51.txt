@@ -1,0 +1,80 @@
+```json
+{
+  "Reduction Kernels": [
+    "5994, 11, reduceUnroll2, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "5994, 12, reduceUnrollWarp8, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "5994, 13, reduceCompleteUnrollWarp8, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "6, 1, reduction_KernelOptimized, runs, [('int', 'numElements'), ('float *', 'dataIn'), ('float *', 'dataOut')]",
+    "6, 4, reduction, runs, [('float *', 'g_odata'), ('float *', 'g_idata')]"
+  ],
+  "Downscale Kernels": [
+    "5998, 196, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "6015, 180, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "6019, 165, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "6095, 176, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "6138, 197, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "6173, 170, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "6243, 170, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "6252, 188, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "6205, 172, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]"
+  ],
+  "Matrix Multiplication Kernels": [
+    "6, 3, shMatMul_Kernel, runs, [('int', 'matrixSize'), ('float *', 'matrixA'), ('float *', 'matrixB'), ('float *', 'matrixC')]",
+    "6226, 1, gpu_matrix_mult, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'm'), ('int', 'n'), ('int', 'k')]",
+    "6226, 2, gpu_square_matrix_mult, runs, [('int *', 'd_a'), ('int *', 'd_b'), ('int *', 'd_result'), ('int', 'n')]",
+    "6226, 3, gpu_matrix_transpose, runs, [('int *', 'mat_in'), ('int *', 'mat_out'), ('unsigned int', 'rows'), ('unsigned int', 'cols')]"
+  ],
+  "Convolution Kernels": [
+    "6011, 24, convolve_gpu_kernel, runs, [('float *', 'input'), ('float *', 'weights'), ('float *', 'output'), ('int', 'in_w'), ('int', 'in_h'), ('int', 'in_c'), ('int', 'n'), ('int', 'size'), ('int', 'pad')]",
+    "6011, 25, convolve_bin_gpu_kernel, runs, [('float *', 'input'), ('float *', 'weights'), ('float *', 'output'), ('int', 'in_w'), ('int', 'in_h'), ('int', 'in_c'), ('int', 'n'), ('int', 'size'), ('int', 'pad'), ('int', 'new_lda'), ('float *', 'mean_arr_gpu')]"
+  ],
+  "Activation Kernels": [
+    "6159, 93, relu_gpu_forward, runs, [('float *', 'out'), ('float *', 'in'), ('int64_t', 'N')]",
+    "6159, 94, relu_gpu_backward, runs, [('float *', 'ingrad'), ('float *', 'outgrad'), ('float *', 'indata'), ('int64_t', 'N')]"
+  ],
+  "Utility Kernels": [
+    "6, 5, globalMemStrideKernel, runs, []",
+    "6, 6, globalMemOffsetKernel, runs, []",
+    "6, 10, SharedMem2globalMem, runs, [('float *', 'd_memoryA'), ('int', 'iSize')]",
+    "6, 11, SharedMem2Registers, runs, [('float *', 'outFloat'), ('int', 'iSize')]",
+    "6, 12, Registers2SharedMem, runs, [('float *', 'outFloat'), ('int', 'iSize')]",
+    "6, 13, bankConflictsRead, runs, [('float *', 'outFloat'), ('int', 'iStride'), ('unsigned long long *', 'ullTime')]",
+    "6, 16, updatePosition_Kernel, runs, [('int', 'numElements'), ('float4 *', 'bodyPos'), ('float3 *', 'bodySpeed')]",
+    "6054, 11, init_array, runs, [('int *', 'g_data'), ('int *', 'factor'), ('int', 'num_iterations')]",
+    "6054, 1, VecAdd, runs, [('const float *', 'A'), ('const float *', 'B'), ('float *', 'C'), ('int', 'N')]",
+    "6054, 4, square, runs, [('int *', 'array'), ('int', 'arrayCount')]",
+    "6054, 5, addForces_k, runs, [('float2 *', 'v'), ('int', 'dx'), ('int', 'dy'), ('int', 'spx'), ('int', 'spy'), ('float', 'fx'), ('float', 'fy'), ('int', 'r'), ('size_t', 'pitch')]"
+  ],
+  "Distance Kernels": [
+    "6115, 0, NmDistanceKernel, runs, [('int', 'b'), ('int', 'n'), ('const float *', 'xyz'), ('int', 'm'), ('const float *', 'xyz2'), ('float *', 'result'), ('int *', 'result_i')]",
+    "6115, 1, NmDistanceGradKernel, runs, [('int', 'b'), ('int', 'n'), ('const float *', 'xyz1'), ('int', 'm'), ('const float *', 'xyz2'), ('const float *', 'grad_dist1'), ('const int *', 'idx1'), ('float *', 'grad_xyz1'), ('float *', 'grad_xyz2')]"
+  ],
+  "Softmax Kernels": [
+    "6011, 59, softmax_x_ent_kernel, runs, [('int', 'n'), ('float *', 'pred'), ('float *', 'truth'), ('float *', 'delta'), ('float *', 'error')]",
+    "6011, 64, softmax_kernel, runs, [('int', 'n'), ('int', 'offset'), ('int', 'batch'), ('float *', 'input'), ('float', 'temp'), ('float *', 'output')]",
+    "6011, 65, softmax_kernel_new_api, runs, [('float *', 'input'), ('int', 'n'), ('int', 'batch'), ('int', 'batch_offset'), ('int', 'groups'), ('int', 'group_offset'), ('int', 'stride'), ('float', 'temp'), ('float *', 'output')]"
+  ],
+  "Debug Kernels": [
+    "6068, 204, cuda_debug_kernel, runs, []",
+    "6190, 204, cuda_debug_kernel, runs, []",
+    "6220, 204, cuda_debug_kernel, runs, []"
+  ],
+  "Setup Kernels": [
+    "6020, 2, setup_state, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "6057, 2, setup_state, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "6109, 2, setup_state, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "628, 0, setup_kernel, runs, [('long long', 'seed'), ('curandState_t *', 'devStates'), ('ushort', 'N')]",
+    "628, 4, setup_kernel, runs, [('long long', 'seed'), ('curandState_t *', 'devStates'), ('ushort', 'N')]"
+  ],
+  "Kernel Print Kernels": [
+    "6069, 132, kernel_print, runs, [('int const *', 'p'), ('int', 'n')]",
+    "6069, 133, kernel_print, runs, [('long const *', 'p'), ('int', 'n')]",
+    "6069, 134, kernel_print, runs, [('size_t const *', 'p'), ('int', 'n')]"
+  ],
+  "Miscellaneous Kernels": [
+    "6011, 7, im2col_gpu_kernel, runs, [('const int', 'n'), ('const float *', 'data_im'), ('const int', 'height'), ('const int', 'width'), ('const int', 'ksize'), ('const int', 'pad'), ('const int', 'stride'), ('const int', 'height_col'), ('const int', 'width_col'), ('float *', 'data_col')]",
+    "6011, 9, im2col_align_gpu_kernel, runs, [('const int', 'n'), ('const float *', 'data_im'), ('const int', 'height'), ('const int', 'width'), ('const int', 'ksize'), ('const int', 'pad'), ('const int', 'stride'), ('const int', 'height_col'), ('const int', 'width_col'), ('float *', 'data_col'), ('const int', 'bit_align')]",
+    "6011, 70, col2im_gpu_kernel, runs, [('const int', 'n'), ('const float *', 'data_col'), ('const int', 'height'), ('const int', 'width'), ('const int', 'ksize'), ('const int', 'pad'), ('const int', 'stride'), ('const int', 'height_col'), ('const int', 'width_col'), ('float *', 'data_im')]"
+  ]
+}
+```

@@ -1,0 +1,98 @@
+```json
+{
+  "Weight Kernels": [
+    "178, 5, _weightLeftkernel_cuda, runs, [('int', 'num_slices'), ('int', 'num_grid'), ('float', 'beta'), ('float *', 'dev_F'), ('float *', 'dev_G'), ('float *', 'dev_wg5'), ('float *', 'dev_recon')]",
+    "178, 6, _weightRightkernel_cuda, runs, [('int', 'num_slices'), ('int', 'num_grid'), ('float', 'beta'), ('float *', 'dev_F'), ('float *', 'dev_G'), ('float *', 'dev_wg5'), ('float *', 'dev_recon')]",
+    "178, 7, _weightTLeftkernel_cuda, runs, [('int', 'num_slices'), ('int', 'num_grid'), ('float', 'beta'), ('float *', 'dev_F'), ('float *', 'dev_G'), ('float *', 'dev_wg3'), ('float *', 'dev_recon')]",
+    "178, 8, _weightTRightkernel_cuda, runs, [('int', 'num_slices'), ('int', 'num_grid'), ('float', 'beta'), ('float *', 'dev_F'), ('float *', 'dev_G'), ('float *', 'dev_wg3'), ('float *', 'dev_recon')]",
+    "178, 9, _weightBLeftkernel_cuda, runs, [('int', 'num_slices'), ('int', 'num_grid'), ('float', 'beta'), ('float *', 'dev_F'), ('float *', 'dev_G'), ('float *', 'dev_wg3'), ('float *', 'dev_recon')]",
+    "178, 10, _weightBRightkernel_cuda, runs, [('int', 'num_slices'), ('int', 'num_grid'), ('float', 'beta'), ('float *', 'dev_F'), ('float *', 'dev_G'), ('float *', 'dev_wg3'), ('float *', 'dev_recon')]"
+  ],
+  "Kernel Operations": [
+    "178, 11, _kernelpp_cuda, runs, [('int', 'num_projections'), ('float', 'mov'), ('int', 'num_pixels'), ('int', 'num_grid'), ('int', 'num_slices'), ('float *', 'dev_gridx'), ('float *', 'dev_gridy'), ('float *', 'dev_suma'), ('float *', 'dev_E'), ('float *', 'dev_data'), ('float *', 'dev_recon'), ('float *', 'dev_theta')]",
+    "178, 12, _kernel_clearsuma_cuda, runs, [('int', 'num_grid'), ('float *', 'dev_suma')]",
+    "178, 13, _kernel_clearsuna_EFG, runs, [('int', 'num_slices'), ('int', 'num_grid'), ('float *', 'dev_EFG')]"
+  ],
+  "Downscale Kernels": [
+    "17803, 196, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "17829, 197, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "17871, 196, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "17876, 196, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "17963, 187, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "17989, 196, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "18151, 197, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "18154, 197, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "18197, 199, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "18199, 197, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]"
+  ],
+  "Accuracy Kernels": [
+    "17803, 337, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "17829, 338, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "17871, 337, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "17876, 337, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "17963, 328, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "17989, 337, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "18151, 338, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "18154, 338, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "18197, 344, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "18199, 338, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]"
+  ],
+  "Matrix Operations": [
+    "17825, 31, square_matrix_kernel, runs, [('int32_t', 'num_rows'), ('int32_t', 'num_cols'), ('const float *', 'feats'), ('int32_t', 'ldf'), ('float *', 'feats_sq'), ('int32_t', 'lds')]",
+    "17825, 34, update_linear_and_quadratic_terms_kernel, runs, [('int32_t', 'n'), ('float', 'old_num_frames'), ('float', 'prior_offset'), ('float *', 'cur_tot_weight'), ('int32_t', 'max_count'), ('float *', 'quadratic'), ('float *', 'linear')]",
+    "17825, 46, apply_lifter_and_floor_energy, runs, [('int', 'num_frames'), ('int', 'num_cols'), ('float', 'cepstral_lifter'), ('bool', 'use_energy'), ('float', 'energy_floor'), ('float *', 'log_energy'), ('float *', 'lifter_coeffs'), ('float *', 'features'), ('int32_t', 'ldf')]",
+    "17825, 47, power_spectrum_kernel, runs, [('int', 'row_length'), ('float *', 'A_in'), ('int32_t', 'ldi'), ('float *', 'A_out'), ('int32_t', 'ldo'), ('bool', 'use_power')]",
+    "17825, 58, power_spectrum_kernel, runs, [('int', 'row_length'), ('const float *', 'A_in'), ('int32_t', 'ldi'), ('float *', 'A_out'), ('int32_t', 'ldo'), ('bool', 'use_power')]",
+    "17964, 31, square_matrix_kernel, runs, [('int32_t', 'num_rows'), ('int32_t', 'num_cols'), ('const float *', 'feats'), ('int32_t', 'ldf'), ('float *', 'feats_sq'), ('int32_t', 'lds')]",
+    "17964, 34, update_linear_and_quadratic_terms_kernel, runs, [('int32_t', 'n'), ('float', 'old_num_frames'), ('float', 'prior_offset'), ('float *', 'cur_tot_weight'), ('int32_t', 'max_count'), ('float *', 'quadratic'), ('float *', 'linear')]",
+    "17964, 46, apply_lifter_and_floor_energy, runs, [('int', 'num_frames'), ('int', 'num_cols'), ('float', 'cepstral_lifter'), ('bool', 'use_energy'), ('float', 'energy_floor'), ('float *', 'log_energy'), ('float *', 'lifter_coeffs'), ('float *', 'features'), ('int32_t', 'ldf')]",
+    "17964, 47, power_spectrum_kernel, runs, [('int', 'row_length'), ('float *', 'A_in'), ('int32_t', 'ldi'), ('float *', 'A_out'), ('int32_t', 'ldo'), ('bool', 'use_power')]",
+    "17964, 58, power_spectrum_kernel, runs, [('int', 'row_length'), ('const float *', 'A_in'), ('int32_t', 'ldi'), ('float *', 'A_out'), ('int32_t', 'ldo'), ('bool', 'use_power')]"
+  ],
+  "Convolution Kernels": [
+    "18004, 5, Convolution_2D_globalMemory, runs, [('unsigned char *', 'imgInput'), ('unsigned char *', 'imgOutput'), ('const float *', 'mask'), ('int', 'height'), ('int', 'width'), ('int', 'channels')]",
+    "18004, 6, Convolution_2D_globalMemory, runs, [('unsigned char *', 'imgInput'), ('unsigned char *', 'imgOutput'), ('const float *', 'mask'), ('int', 'height'), ('int', 'width'), ('int', 'channels')]",
+    "18004, 7, Convolution_2D_globalMemory, runs, [('unsigned char *', 'imgInput'), ('unsigned char *', 'imgOutput'), ('const float *', 'mask'), ('int', 'height'), ('int', 'width'), ('int', 'channels')]",
+    "18004, 8, convolve, runs, [('unsigned char *', 'imgInput'), ('float *', 'mask'), ('int', 'width'), ('int', 'height'), ('int', 'paddingX'), ('int', 'paddingY'), ('int', 'kWidth'), ('int', 'kHeight'), ('unsigned char *', 'imgOutput')]",
+    "18004, 11, convolve, runs, [('unsigned char *', 'imgInput'), ('float *', 'mask'), ('int', 'width'), ('int', 'height'), ('int', 'paddingX'), ('int', 'paddingY'), ('int', 'kWidth'), ('int', 'kHeight'), ('unsigned char *', 'imgOutput')]",
+    "18004, 17, convolve, runs, [('unsigned char *', 'imgInput'), ('int', 'width'), ('int', 'height'), ('int', 'paddingX'), ('int', 'paddingY'), ('int', 'kWidth'), ('int', 'kHeight'), ('unsigned int', 'offset'), ('unsigned char *', 'imgOutput')]"
+  ],
+  "Activation Functions": [
+    "18038, 93, relu_gpu_forward, runs, [('float *', 'out'), ('float *', 'in'), ('int64_t', 'N')]",
+    "18038, 94, relu_gpu_backward, runs, [('float *', 'ingrad'), ('float *', 'outgrad'), ('float *', 'indata'), ('int64_t', 'N')]"
+  ],
+  "Utility Kernels": [
+    "17806, 6, set_volume_to_constant, runs, [('float *', 'out'), ('float', 'value')]",
+    "17806, 19, kernel_normalize_and_add_to_output, runs, [('float *', 'dev_vol_in'), ('float *', 'dev_vol_out'), ('float *', 'dev_accumulate_weights'), ('float *', 'dev_accumulate_values')]",
+    "17806, 30, magnitude_threshold_kernel, runs, [('float *', 'grad_x'), ('float *', 'grad_y'), ('float *', 'grad_z'), ('float', 'gamma')]",
+    "17806, 31, gradient_and_subtract_kernel, runs, [('float *', 'in'), ('float *', 'grad_x'), ('float *', 'grad_y'), ('float *', 'grad_z')]",
+    "17806, 32, multiply_by_beta_kernel, runs, [('float *', 'input'), ('float *', 'output'), ('float', 'beta')]",
+    "17806, 33, subtract_kernel, runs, [('float *', 'in1'), ('float *', 'in2'), ('float *', 'out')]",
+    "17807, 0, BFS_UNIFIED, runs, [('int', 'source'), ('int *', 'edges'), ('int *', 'dest'), ('int *', 'label'), ('int *', 'visited'), ('int *', 'c_frontier_tail'), ('int *', 'c_frontier'), ('int *', 'p_frontier_tail'), ('int *', 'p_frontier')]",
+    "17807, 1, device_BFS, runs, [('const int *', 'edges'), ('const int *', 'dests'), ('int *', 'labels'), ('int *', 'visited'), ('int *', 'c_frontier_tail'), ('int *', 'c_frontier'), ('int *', 'p_frontier_tail'), ('int *', 'p_frontier')]",
+    "17807, 2, frontier_init_kernel, runs, [('int *', 'p_frontier_tail_d'), ('int *', 'c_frontier_tail_d'), ('int *', 'p_frontier_d'), ('int *', 'visited_d'), ('int *', 'label_d'), ('int', 'source')]",
+    "17807, 3, frontier_tail_swap_kernel, runs, [('int *', 'p_frontier_tail_d'), ('int *', 'c_frontier_tail_d')]",
+    "17807, 4, BFS_Bqueue_kernel, runs, [('int *', 'p_frontier'), ('int *', 'p_frontier_tail'), ('int *', 'c_frontier'), ('int *', 'c_frontier_tail'), ('int *', 'edges'), ('int *', 'dest'), ('int *', 'label'), ('int *', 'visited')]"
+  ],
+  "Test Kernels": [
+    "17908, 16, kernel_move_inv_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'pattern')]",
+    "17908, 19, kernel_test0_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'pattern'), ('unsigned int *', 'err'), ('unsigned long *', 'err_addr'), ('unsigned long *', 'err_expect'), ('unsigned long *', 'err_current'), ('unsigned long *', 'err_second_read')]",
+    "17908, 21, kernel_test0_global_write, runs, [('char *', '_ptr'), ('char *', '_end_ptr')]",
+    "17908, 23, kernel_test0_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "17908, 25, kernel_test1_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int *', 'err')]",
+    "17908, 27, kernel_test5_init, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "17908, 28, kernel_test5_move, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "17908, 30, kernel_movinv32_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'pattern'), ('unsigned int', 'lb'), ('unsigned int', 'sval'), ('unsigned int', 'offset')]",
+    "17908, 33, kernel_test7_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('char *', '_start_ptr'), ('unsigned int *', 'err')]",
+    "17908, 36, kernel_modtest_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'offset'), ('unsigned int', 'p1'), ('unsigned int', 'p2')]"
+  ],
+  "Image Processing Kernels": [
+    "18004, 4, greyConvertor, runs, [('unsigned char *', 'output'), ('uchar3 const *', 'input'), ('const uint', 'height'), ('const uint', 'width')]",
+    "18004, 5, Convolution_2D_globalMemory, runs, [('unsigned char *', 'imgInput'), ('unsigned char *', 'imgOutput'), ('const float *', 'mask'), ('int', 'height'), ('int', 'width'), ('int', 'channels')]",
+    "18004, 6, Convolution_2D_globalMemory, runs, [('unsigned char *', 'imgInput'), ('unsigned char *', 'imgOutput'), ('const float *', 'mask'), ('int', 'height'), ('int', 'width'), ('int', 'channels')]",
+    "18004, 7, Convolution_2D_globalMemory, runs, [('unsigned char *', 'imgInput'), ('unsigned char *', 'imgOutput'), ('const float *', 'mask'), ('int', 'height'), ('int', 'width'), ('int', 'channels')]",
+    "18004, 8, convolve, runs, [('unsigned char *', 'imgInput'), ('float *', 'mask'), ('int', 'width'), ('int', 'height'), ('int', 'paddingX'), ('int', 'paddingY'), ('int', 'kWidth'), ('int', 'kHeight'), ('unsigned char *', 'imgOutput')]",
+    "18004, 11, convolve, runs, [('unsigned char *', 'imgInput'), ('float *', 'mask'), ('int', 'width'), ('int', 'height'), ('int', 'paddingX'), ('int', 'paddingY'), ('int', 'kWidth'), ('int', 'kHeight'), ('unsigned char *', 'imgOutput')]"
+  ]
+}
+```

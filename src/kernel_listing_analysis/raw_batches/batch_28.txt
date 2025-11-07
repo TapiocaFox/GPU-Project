@@ -1,0 +1,99 @@
+```json
+{
+  "Arithmetic Kernels": [
+    "17526, 0, square, runs, [('int *', 'array'), ('int', 'n')]",
+    "1753, 3, add_img, runs, [('float *', 'image_padded'), ('float *', 'ave1'), ('float *', 'ave2'), ('int', 'nx'), ('int', 'ny'), ('int', 'nima')]",
+    "1753, 4, mul_ctf, runs, [('float *', 'image'), ('int', 'nx'), ('int', 'ny'), ('float', 'defocus'), ('float', 'cs'), ('float', 'voltage'), ('float', 'apix'), ('float', 'bfactor'), ('float', 'ampcont')]",
+    "1753, 17, mult_kernel, runs, [('float *', 'data'), ('const float', 'scale'), ('const int', 'realtc')]",
+    "1753, 18, mult_complex_eff_kernal, runs, [('float *', 'data'), ('const float *', 'src_data'), ('const int', 'nx'), ('const int', 'nxy'), ('const int', 'size')]",
+    "1753, 26, subtract_kernal, runs, [('float *', 'data'), ('float', 'f'), ('const int', 'totaltc')]",
+    "1753, 28, column_sum, runs, [('const float *', 'data'), ('float *', 'sum'), ('int', 'nx'), ('int', 'ny'), ('int', 'num_threads'), ('int', 'offset')]",
+    "1753, 30, mean_kernal, runs, [('const float *', 'data'), ('float *', 'device_stats'), ('const int', 'size'), ('const int', 'num_calcs'), ('const int', 'num_threads'), ('const int', 'offset')]",
+    "1753, 31, meansquare_kernal, runs, [('const float *', 'data'), ('float *', 'device_stats'), ('const int', 'size'), ('const int', 'num_calcs'), ('const int', 'num_threads'), ('const int', 'offset')]",
+    "1753, 32, sumup_kernal, runs, [('const float *', 'data'), ('float *', 'device_stats'), ('const int', 'size'), ('const int', 'dim2size'), ('const int', 'num_threads'), ('const int', 'offset')]",
+    "1753, 34, dot_cmp_kernal, runs, [('const float *', 'data1'), ('const float *', 'data2'), ('float *', 'device_soln'), ('const int', 'size'), ('const int', 'num_threads'), ('const int', 'offset')]",
+    "1753, 35, dot_cmp_kernaldm, runs, [('const float *', 'data1'), ('const float *', 'data2'), ('const float *', 'dm'), ('float *', 'device_soln'), ('const int', 'size'), ('const int', 'num_threads'), ('const int', 'offset')]",
+    "1753, 36, kernal_reduce, runs, [('float *', 'g_idata'), ('float *', 'g_odata')]",
+    "1753, 39, ccc_cmp_kernaldm, runs, [('const float *', 'data1'), ('const float *', 'data2'), ('const float *', 'dm'), ('float *', 'device_soln'), ('const int', 'size'), ('const int', 'num_calcs'), ('const int', 'num_threads'), ('const int', 'offset')]",
+    "1753, 40, ccc_cmp_kernal, runs, [('const float *', 'data1'), ('const float *', 'data2'), ('float *', 'device_soln'), ('const int', 'size'), ('const int', 'num_calcs'), ('const int', 'num_threads'), ('const int', 'offset')]",
+    "1753, 41, fsc_tomo_cmp_kernal, runs, [('const float *', 'data1'), ('const float *', 'data2'), ('float *', 'device_soln'), ('const float', 'data1threshold'), ('const float', 'data2threshold'), ('const int', 'nx'), ('const int', 'ny'), ('const int', 'nz'), ('const int', 'offset')]",
+    "1753, 43, tovalue_kernal, runs, [('float *', 'data'), ('const float', 'value'), ('const int', 'totaltc')]",
+    "1753, 47, dsa_sumup_kernal, runs, [('float *', 'results'), ('const int', 'inx'), ('const int', 'iny')]",
+    "17550, 0, calculateDotProductsAndReduceGPU, runs, [('int *', 'vec1'), ('int *', 'vec2'), ('int *', 'reduced'), ('int', 'numElements')]",
+    "17563, 0, matrixMul, runs, [('int *', 'A'), ('int *', 'B'), ('int *', 'C'), ('int', 'aF'), ('int', 'aC'), ('int', 'bF'), ('int', 'bC'), ('int', 'cF'), ('int', 'cC')]",
+    "17563, 1, addKernel, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]",
+    "17575, 0, addArrayGPU, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "17575, 5, addTen, runs, [('float *', 'd'), ('int', 'count')]",
+    "17763, 5, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "17763, 6, addKernel, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b'), ('int', 'size')]",
+    "17763, 7, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'n')]",
+    "17763, 8, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "17763, 9, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "17733, 10, add, runs, [('int', 'a'), ('int', 'b'), ('int *', 'c')]",
+    "17733, 11, add, runs, [('int', 'a'), ('int', 'b'), ('int *', 'c')]",
+    "17733, 17, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]"
+  ],
+  "Distance Kernels": [
+    "1753, 12, complexmult_kernal, runs, [('float *', 'afft'), ('const float *', 'bfft'), ('int', 'totaltc')]",
+    "1753, 19, mcfauto_kernal, runs, [('const float *', 'data1'), ('float *', 'data2'), ('const int', 'totaltc')]",
+    "17576, 0, dist_calc, runs, [('float *', 'coord'), ('int *', 'close_num'), ('int *', 'close_flag'), ('int *', 'close_idx'), ('int', 'num_atom'), ('int', 'num_atom2')]",
+    "17617, 3, NmDistanceGradKernel, runs, [('int', 'b'), ('int', 'n'), ('const float *', 'xyz1'), ('int', 'm'), ('const float *', 'xyz2'), ('const float *', 'grad_dist1'), ('const int *', 'idx1'), ('float *', 'grad_xyz1'), ('float *', 'grad_xyz2')]"
+  ],
+  "Kernel Initialization": [
+    "17541, 0, initCurandStates, runs, [('curandState *', 'randStates'), ('int', 'numThreads'), ('int', 'seed')]",
+    "17632, 2, setup_state, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "17718, 2, setup_state, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "17781, 2, setup_state, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]"
+  ],
+  "Reduction Kernels": [
+    "1753, 35, dot_cmp_kernal_reduce, runs, [('float *', 'g_idata1'), ('float *', 'g_idata2'), ('float *', 'g_odata')]",
+    "1753, 36, kernal_reduce, runs, [('float *', 'g_idata'), ('float *', 'g_odata')]",
+    "17697, 9, reduce_sum_partial, runs, [('const float *', 'input'), ('float *', 'output'), ('unsigned int', 'len')]",
+    "17697, 10, reduce_sum_final, runs, [('const float *', 'x'), ('float *', 'y'), ('unsigned int', 'len')]"
+  ],
+  "Image Processing Kernels": [
+    "1753, 11, complexmult_conj_kernal, runs, [('float *', 'afft'), ('const float *', 'bfft'), ('int', 'totaltc')]",
+    "17543, 5, Subtract, runs, [('float *', 'd_Result'), ('float *', 'd_Data1'), ('float *', 'd_Data2'), ('int', 'width'), ('int', 'pitch'), ('int', 'height')]",
+    "17543, 10, SubtractMulti, runs, [('float *', 'd_Result'), ('float *', 'd_Data'), ('int', 'width'), ('int', 'pitch'), ('int', 'height')]",
+    "17543, 12, LowPassRowMulti, runs, [('float *', 'd_Result'), ('float *', 'd_Data'), ('int', 'width'), ('int', 'pitch'), ('int', 'height')]",
+    "17543, 13, LowPassColMulti, runs, [('float *', 'd_Result'), ('float *', 'd_Data'), ('int', 'width'), ('int', 'pitch'), ('int', 'height')]",
+    "17543, 15, FindMinMax, runs, [('float *', 'd_MinMax'), ('float *', 'd_Data'), ('int', 'width'), ('int', 'pitch'), ('int', 'height')]",
+    "17543, 19, ComputeOrientations, runs, [('float *', 'g_Data'), ('int *', 'd_Ptrs'), ('float *', 'd_Orient'), ('int', 'maxPts'), ('int', 'w'), ('int', 'h')]",
+    "17581, 6, sharpeningFilter, runs, [('unsigned char *', 'srcImage'), ('unsigned char *', 'dstImage'), ('unsigned int', 'width'), ('unsigned int', 'height'), ('int', 'channel')]",
+    "17581, 17, boxFilter, runs, [('unsigned char *', 'srcImage'), ('unsigned char *', 'dstImage'), ('unsigned int', 'width'), ('unsigned int', 'height'), ('int', 'channel')]",
+    "17581, 19, medianFilter, runs, [('unsigned char *', 'srcImage'), ('unsigned char *', 'dstImage'), ('unsigned int', 'width'), ('unsigned int', 'height'), ('int', 'channel')]",
+    "17761, 1, CudaImageSmooth, runs, [('unsigned char *', 'In'), ('unsigned char *', 'Out'), ('int', 'width'), ('int', 'height'), ('int', 'fsize')]"
+  ],
+  "Sorting Kernels": [
+    "17655, 8, selection_sort_gpu, runs, [('int', 'b'), ('int', 'n'), ('int', 'm'), ('int', 'k'), ('const float *', 'dist'), ('int *', 'outi'), ('float *', 'out')]",
+    "17659, 8, selection_sort_gpu, runs, [('int', 'b'), ('int', 'n'), ('int', 'm'), ('int', 'k'), ('const float *', 'dist'), ('int *', 'outi'), ('float *', 'out')]"
+  ],
+  "Utility Kernels": [
+    "17567, 0, helloFromGPU, runs, []",
+    "17547, 204, cuda_debug_kernel, runs, []",
+    "176, 43, kTile, runs, [('const float *', 'src'), ('float *', 'tgt'), ('const uint', 'srcWidth'), ('const uint', 'srcHeight'), ('const uint', 'tgtWidth'), ('const uint', 'tgtHeight')]",
+    "176, 44, kDotProduct_r, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'target'), ('const uint', 'numElements')]",
+    "176, 45, kSetupCurand, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "176, 46, kArgMaxColumnwise, runs, [('float *', 'mat'), ('float *', 'target'), ('unsigned int', 'width'), ('unsigned int', 'height')]",
+    "176, 47, kArgMaxRowwise, runs, [('float *', 'mat'), ('float *', 'target'), ('unsigned int', 'width'), ('unsigned int', 'height')]",
+    "176, 48, kArgMinColumnwise, runs, [('float *', 'mat'), ('float *', 'target'), ('unsigned int', 'width'), ('unsigned int', 'height')]",
+    "176, 49, kArgMinRowwise, runs, [('float *', 'mat'), ('float *', 'target'), ('unsigned int', 'width'), ('unsigned int', 'height')]",
+    "176, 50, kMultiSoftmaxCost, runs, [('float *', 'probs'), ('float *', 'labels'), ('float *', 'maxProbs'), ('float *', 'labelLogProbs'), ('float *', 'correctProbs'), ('float *', 'top5Probs'), ('const int', 'numCases'), ('const int', 'numOut'), ('const int', 'setSize')]",
+    "176, 54, kLogregCost, runs, [('float *', 'probs'), ('float *', 'labels'), ('float *', 'maxProbs'), ('float *', 'labelLogProbs'), ('float *', 'correctProbs'), ('const int', 'numCases'), ('const int', 'numOut')]",
+    "1772, 0, matrixAddKernel, runs, [('double *', 'c'), ('const double *', 'a'), ('const double *', 'b')]",
+    "1772, 1, matrixSubtractKernel, runs, [('double *', 'c'), ('const double *', 'a'), ('const double *', 'b')]",
+    "1772, 2, matrixMultiplyKernel, runs, [('double *', 'c'), ('const double *', 'a'), ('const double *', 'b')]",
+    "1772, 3, matrixDivideKernel, runs, [('double *', 'c'), ('const double *', 'a'), ('const double *', 'b')]"
+  ],
+  "Surface Kernels": [
+    "17758, 11, write_to_surface, runs, [('const float *', 'data'), ('cudaSurfaceObject_t', 'surface'), ('const int', 'width'), ('const int', 'height')]"
+  ],
+  "Kernel Execution": [
+    "17771, 19, kernel_normalize_and_add_to_output, runs, [('float *', 'dev_vol_in'), ('float *', 'dev_vol_out'), ('float *', 'dev_accumulate_weights'), ('float *', 'dev_accumulate_values')]",
+    "17771, 30, magnitude_threshold_kernel, runs, [('float *', 'grad_x'), ('float *', 'grad_y'), ('float *', 'grad_z'), ('float', 'gamma')]",
+    "17771, 31, gradient_and_subtract_kernel, runs, [('float *', 'in'), ('float *', 'grad_x'), ('float *', 'grad_y'), ('float *', 'grad_z')]",
+    "17771, 32, multiply_by_beta_kernel, runs, [('float *', 'input'), ('float *', 'output'), ('float', 'beta')]",
+    "17771, 33, subtract_kernel, runs, [('float *', 'in1'), ('float *', 'in2'), ('float *', 'out')]"
+  ]
+}
+```

@@ -1,0 +1,86 @@
+```json
+{
+  "Gradient Kernels": [
+    "141, 17, subgradweight, runs, [('float *', 'input'), ('float *', 'gradOutput'), ('float *', 'gradWeight'), ('float *', 'gradBias'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'kH'), ('int', 'kW'), ('int', 'dH'), ('int', 'dW'), ('float', 'scale')]",
+    "141, 18, subgradinput, runs, [('float *', 'gradInput'), ('float *', 'gradOutput'), ('float *', 'weight'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'kH'), ('int', 'kW'), ('int', 'dH'), ('int', 'dW')]",
+    "141, 19, subgradinputAtomic, runs, [('float *', 'gradInput'), ('float *', 'gradOutput'), ('float *', 'weight'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'kH'), ('int', 'kW'), ('int', 'dH'), ('int', 'dW')]",
+    "141, 21, cunn_MSECriterion_updateGradInput_kernel, runs, [('float *', 'gradInput'), ('float *', 'input'), ('float *', 'target'), ('float', 'norm'), ('int', 'nframe'), ('int', 'dim')]",
+    "141, 27, max_gradInput, runs, [('float *', 'input'), ('float *', 'output'), ('float *', 'indices'), ('long', 'nrows'), ('long', 'ncols')]",
+    "141, 29, subgradinput, runs, [('float *', 'gradInput'), ('float *', 'gradOutput'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'kH'), ('int', 'kW'), ('int', 'dH'), ('int', 'dW')]",
+    "141, 30, subgradinputAtomic, runs, [('float *', 'gradInput'), ('float *', 'gradOutput'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'kH'), ('int', 'kW'), ('int', 'dH'), ('int', 'dW')]",
+    "141, 35, adaptivemaxgradinput, runs, [('float *', 'gradInput'), ('float *', 'gradOutput'), ('float *', 'indices_x'), ('float *', 'indices_y'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'output_h'), ('int', 'output_w')]",
+    "141, 36, atomicadaptivemaxgradinput, runs, [('float *', 'gradInput'), ('float *', 'gradOutput'), ('float *', 'indices_x'), ('float *', 'indices_y'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'output_h'), ('int', 'output_w')]",
+    "14142, 8, cunn_SpatialLogSoftMax_updateGradInput_kernel, runs, [('float *', 'gradInput'), ('float *', 'output'), ('float *', 'gradOutput'), ('int', 'classSize'), ('int', 'height'), ('int', 'width')]"
+  ],
+  "Loss Kernels": [
+    "141, 20, cunn_MSECriterion_updateOutput_kernel, runs, [('float *', 'output'), ('float *', 'input'), ('float *', 'target'), ('int', 'nframe'), ('int', 'dim'), ('int', 'sizeAverage')]",
+    "14253, 20, cunn_MSECriterion_updateGradInput_kernel, runs, [('float *', 'gradInput'), ('float *', 'input'), ('float *', 'target'), ('float', 'norm'), ('int', 'nframe'), ('int', 'dim')]",
+    "14253, 13, cunn_ClassNLLCriterion_updateGradInput_kernel, runs, [('float *', 'gradInput'), ('float *', 'target'), ('int', 'nframe'), ('int', 'ndim'), ('float', 'grad'), ('int', 'ntarget')]"
+  ],
+  "Pooling Kernels": [
+    "141, 26, max_output, runs, [('float *', 'input'), ('float *', 'output'), ('float *', 'indices'), ('long', 'nrows'), ('long', 'ncols')]",
+    "141, 32, cunn_TemporalMaxPooling_updateGradInputKernel, runs, [('float *', 'gradInput'), ('float *', 'gradOutput'), ('float *', 'indices'), ('int', 'input_w'), ('int', 'input_n'), ('int', 'output_w'), ('int', 'kW'), ('int', 'dW')]",
+    "141, 33, cunn_TemporalMaxPooling_updateGradInputKernelAtomic, runs, [('float *', 'gradInput'), ('float *', 'gradOutput'), ('float *', 'indices'), ('int', 'input_w'), ('int', 'input_n'), ('int', 'output_w'), ('int', 'kW'), ('int', 'dW')]",
+    "14142, 58, cunn_TemporalMaxPooling_updateGradInputKernel, runs, [('float *', 'gradInput'), ('float *', 'gradOutput'), ('float *', 'indices'), ('int', 'input_w'), ('int', 'input_n'), ('int', 'output_w'), ('int', 'kW'), ('int', 'dW')]",
+    "14142, 59, cunn_TemporalMaxPooling_updateGradInputKernelAtomic, runs, [('float *', 'gradInput'), ('float *', 'gradOutput'), ('float *', 'indices'), ('int', 'input_w'), ('int', 'input_n'), ('int', 'output_w'), ('int', 'kW'), ('int', 'dW')]"
+  ],
+  "Convolution Kernels": [
+    "14116, 4, conv2genericrev, runs, [('float *', 'input'), ('float *', 'kernel'), ('float *', 'output'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'kernel_n'), ('int', 'kernel_h'), ('int', 'kernel_w'), ('float', 'alpha'), ('int', 'stride_h'), ('int', 'stride_w')]",
+    "14129, 2, conv2genericrev, runs, [('float *', 'input'), ('float *', 'kernel'), ('float *', 'output'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'kernel_n'), ('int', 'kernel_h'), ('int', 'kernel_w'), ('float', 'alpha'), ('int', 'stride_h'), ('int', 'stride_w')]"
+  ],
+  "Matrix Operations": [
+    "14163, 0, matrixMultiplyShared, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'numARows'), ('int', 'numAColumns'), ('int', 'numBRows'), ('int', 'numBColumns'), ('int', 'numCRows'), ('int', 'numCColumns')]",
+    "14352, 0, MatrixMulKernel, runs, [('int *', '_matrixA'), ('int *', '_matrixB'), ('int *', '_result'), ('int', '_width')]"
+  ],
+  "Reduction Kernels": [
+    "14132, 0, gpuSummationReduce, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'n')]",
+    "14291, 20, global_reduce_kernel, runs, [('float *', 'd_out'), ('float *', 'd_in')]",
+    "14291, 21, shmem_reduce_kernel, runs, [('float *', 'd_out'), ('const float *', 'd_in')]",
+    "14324, 2, block_sum, runs, [('const int *', 'input'), ('int *', 'per_block_results'), ('const size_t', 'n')]",
+    "14345, 5, reduceSingle, runs, [('int *', 'idata'), ('int *', 'single'), ('int', 'nrows')]",
+    "14345, 9, reduceSum, runs, [('int *', 'idata'), ('int *', 'odata'), ('unsigned int', 'ncols')]"
+  ],
+  "Sorting Kernels": [
+    "14254, 0, kernel_quicksort, runs, [('int *', 'values'), ('int', 'n')]",
+    "14291, 0, batcherBitonicMergesort64, runs, [('float *', 'd_out'), ('const float *', 'd_in')]"
+  ],
+  "Utility Kernels": [
+    "1411, 21, sync_deconv_groups, runs, []",
+    "1411, 37, sync_conv_groups, runs, []",
+    "14142, 7, emptyKernel, runs, []",
+    "142, 3, splitKernel, runs, [('const unsigned int *', 'd_In'), ('unsigned int *', 'd_Out'), ('size_t', 'size'), ('unsigned int', 'bitPos'), ('unsigned int *', 'lastValue')]",
+    "142, 4, scatterKernel, runs, [('const unsigned int *', 'd_In'), ('const unsigned int *', 'd_FalseKeyAddresses'), ('unsigned int *', 'd_Out'), ('const unsigned int', 'totalFalses'), ('size_t', 'size'), ('unsigned int', 'bitPos')]",
+    "142, 5, addKernel, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]",
+    "142, 6, scanKernelInclusive, runs, [('int *', 'c'), ('const int *', 'a'), ('size_t', 'size'), ('size_t', 'offset')]",
+    "1420, 197, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "1420, 338, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "14322, 2, kernelVersionShim, runs, []",
+    "14324, 0, sum, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "14324, 1, sum, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]"
+  ],
+  "Image Processing Kernels": [
+    "14174, 3, laplacian, runs, [('float *', 'dst'), ('const float *', 'src'), ('const size_t', 'width'), ('const size_t', 'height'), ('const size_t', 'pixelsPerThread')]",
+    "14174, 4, huber, runs, [('float *', 'a'), ('const size_t', 'width'), ('const size_t', 'height'), ('const float', 'alpha'), ('const float', 'strength'), ('const size_t', 'pixelsPerThread'), ('float *', 'f')]",
+    "14174, 10, elementwiseDiv, runs, [('float *', 'a'), ('const float *', 'b'), ('const size_t', 'len')]",
+    "14174, 11, divideByCSCColSums, runs, [('const float *', 'values'), ('const int *', 'colPointers'), ('float *', 'pixels'), ('const size_t', 'n')]"
+  ],
+  "Distance Kernels": [
+    "1412, 5, query_ball_point_gpu, runs, [('int', 'b'), ('int', 'n'), ('int', 'm'), ('float', 'radius'), ('int', 'nsample'), ('const float *', 'xyz1'), ('const float *', 'xyz2'), ('int *', 'idx'), ('int *', 'pts_cnt')]",
+    "1412, 6, group_point_gpu, runs, [('int', 'b'), ('int', 'n'), ('int', 'c'), ('int', 'm'), ('int', 'nsample'), ('const float *', 'points'), ('const int *', 'idx'), ('float *', 'out')]",
+    "1412, 7, group_point_grad_gpu, runs, [('int', 'b'), ('int', 'n'), ('int', 'c'), ('int', 'm'), ('int', 'nsample'), ('const float *', 'grad_out'), ('const int *', 'idx'), ('float *', 'grad_points')]"
+  ],
+  "Normalization Kernels": [
+    "14262, 0, matrixMean, runs, [('float *', 'd_in'), ('float *', 'd_mean'), ('int', 'N')]",
+    "14262, 1, matrixSD, runs, [('float *', 'd_in'), ('float *', 'd_mean'), ('float *', 'd_sd'), ('int', 'N')]",
+    "14262, 2, matrixNorm, runs, [('float *', 'd_in'), ('float *', 'd_out'), ('float *', 'd_mean'), ('float *', 'd_sd'), ('int', 'N')]"
+  ],
+  "Kernel Testing": [
+    "14322, 3, kernel_test0_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'pattern'), ('unsigned int *', 'err'), ('unsigned long *', 'err_addr'), ('unsigned long *', 'err_expect'), ('unsigned long *', 'err_current'), ('unsigned long *', 'err_second_read')]",
+    "14322, 5, kernel_test0_global_write, runs, [('char *', '_ptr'), ('char *', '_end_ptr')]",
+    "14322, 7, kernel_test0_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "14322, 9, kernel_test1_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int *', 'err')]",
+    "14322, 11, kernel_test5_init, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "14322, 12, kernel_test5_move, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]"
+  ]
+}
+```

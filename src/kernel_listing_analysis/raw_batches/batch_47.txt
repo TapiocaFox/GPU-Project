@@ -1,0 +1,84 @@
+```json
+{
+  "Weight Update Kernels": [
+    "5182, 29, ChangeInputWeightsKernel, runs, [('float *', 'inputWeights'), ('float *', 'inputWeightDeltas'), ('float *', 'outputWeights'), ('float *', 'outputDeltas'), ('float *', 'inputWeightRTRLDerivatives'), ('float', 'trainingRate'), ('float', 'momentum')]",
+    "5182, 30, ChangeRecurrentWeightsKernel, runs, [('float *', 'recurrentWeights'), ('float *', 'recurrentWeightDeltas'), ('float *', 'outputWeights'), ('float *', 'outputDeltas'), ('float *', 'recurrentWeightRTRLDerivatives'), ('float', 'trainingRate'), ('float', 'momentum')]",
+    "5182, 31, ChangeOutputWeightsKernel, runs, [('float *', 'outputWeights'), ('float *', 'outputWeightDeltas'), ('float *', 'outputDeltas'), ('float *', 'hiddenActivations'), ('float', 'trainingRate'), ('float', 'momentum')]",
+    "5182, 43, LSTMDeltaKernelBPTT, runs, [('float *', 'deltas'), ('float *', 'cellStates'), ('float *', 'previousCellStates'), ('float *', 'cellStateErrors'), ('float *', 'nextCellStateErrors'), ('float *', 'outputGateDeltas'), ('float *', 'forgetGateDeltas'), ('float *', 'nextForgetGateDeltas'), ('float *', 'inputGateDeltas'), ('float *', 'nextInputGateDeltas'), ('float *', 'cellInputDeltas'), ('float *', 'cellInputActivations'), ('float *', 'cellStateActivations'), ('float *', 'outputGateActivations'), ('float *', 'nextForgetGateActivations'), ('float *', 'inputGateActivations'), ('float *', 'cellInputActivationDerivatives'), ('float *', 'cellStateActivationDerivatives'), ('float *', 'outputGateActivationDerivatives'), ('float *', 'forgetGateActivationDerivatives'), ('float *', 'inputGateActivationDerivatives'), ('float *', 'cellInputWeights'), ('float *', 'outputGateWeights'), ('float *', 'forgetGateWeights'), ('float *', 'inputGateWeights'), ('int', 'inputCount'), ('int', 'cellCount'), ('int', 'cellsPerBlock')]",
+    "5182, 44, LSTMGateGradientKernelBPTT, runs, [('float *', 'input'), ('float *', 'previousOutput'), ('float *', 'cellStates'), ('float *', 'inputGateDeltas'), ('float *', 'forgetGateDeltas'), ('float *', 'outputGateDeltas'), ('float *', 'outputGateWeightGradient'), ('float *', 'inputGateWeightGradient'), ('float *', 'forgetGateWeightGradient'), ('int', 'inputCount'), ('int', 'previousOutputCount'), ('int', 'cellsPerBlock')]",
+    "5182, 45, LSTMCellInputGradientKernelBPTT, runs, [('float *', 'input'), ('float *', 'previousOutput'), ('float *', 'cellInputDeltas'), ('float *', 'cellInputWeightGradient'), ('int', 'inputCount'), ('int', 'previousOutputCount'), ('int', 'cellsPerBlock')]",
+    "5182, 47, LSTMDeltaKernel, runs, [('float *', 'cellStateErrors'), ('float *', 'outputGateDeltas'), ('float *', 'cellStates'), ('float *', 'outputGateActivations'), ('float *', 'outputGateActivationDerivatives'), ('float *', 'deltas'), ('int', 'cellCount'), ('int', 'cellsPerBlock')]"
+  ],
+  "Distance Kernels": [
+    "5182, 33, ComputeEuklidianDistancesKernel, runs, [('float *', 'inputImg'), ('int', 'imgWidth'), ('int', 'imgHeight'), ('float *', 'centroidCoordinates'), ('float *', 'distanceMatrix'), ('int', 'centroids'), ('int', 'inputSize')]",
+    "5182, 35, SumNewCentroidCoordinatesKernel, runs, [('float *', 'input'), ('int', 'imgWidth'), ('int', 'imgHeight'), ('float *', 'centroidCoordinates'), ('int *', 'nearestCentroid'), ('float *', 'pointsWeight'), ('int', 'inputSize')]",
+    "5182, 36, AvgCentroidCoordinatesKernel, runs, [('float *', 'centroidCoordinates'), ('float *', 'pointsWeight'), ('int', 'inputSize'), ('int', 'centroids')]",
+    "5182, 194, ComputeDistanceKernel, runs, [('int', 'inputSize'), ('float *', 'distance'), ('float *', 'dimensionWeight'), ('int', 'maxCells'), ('float *', 'difference')]",
+    "5182, 199, ComputeBiasedDistanceKernel, runs, [('float *', 'distance'), ('float *', 'biasedDistance'), ('float *', 'biasTerm'), ('int', 'maxCells')]"
+  ],
+  "Copy Kernels": [
+    "5182, 37, CopyInputToVisFieldKernel, runs, [('float *', 'input'), ('float *', 'visField'), ('int', 'inputSize')]",
+    "5182, 64, CopyRectangleKernel, runs, [('float *', 'src'), ('int', 'srcOffset'), ('int', 'srcWidth'), ('int', 'srcRectX'), ('int', 'srcRectY'), ('int', 'rectWidth'), ('int', 'rectHeight'), ('float *', 'dest'), ('int', 'destOffset'), ('int', 'destWidth'), ('int', 'destRectX'), ('int', 'destRectY')]",
+    "5182, 65, CopyRectangleCheckBoundsKernel, runs, [('float *', 'src'), ('int', 'srcOffset'), ('int', 'srcWidth'), ('int', 'srcHeight'), ('int', 'srcRectX'), ('int', 'srcRectY'), ('int', 'rectWidth'), ('int', 'rectHeight'), ('float *', 'dest'), ('int', 'destOffset'), ('int', 'destWidth'), ('int', 'destRectX'), ('int', 'destRectY'), ('float', 'defaultValue')]",
+    "5182, 210, CopyVectorKernel, runs, [('float *', 'from'), ('int', 'fromOffset'), ('float *', 'to'), ('int', 'toOffset'), ('int', 'vectorSize')]",
+    "5182, 283, Copy_A_to_B, runs, [('float *', 'A'), ('float *', 'B'), ('int', 'size')]"
+  ],
+  "Matrix Operations": [
+    "5182, 96, MatMultipl_naive, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'nColsA'), ('int', 'nColsB'), ('int', 'sizeC')]",
+    "5182, 231, MatrixCopy_naive, runs, [('const float *', 'A'), ('int', 'Acount'), ('int', 'Acols'), ('float *', 'out0'), ('int', 'out0count')]",
+    "5182, 232, Matrix_getRow_FloatId_naive, runs, [('const float *', 'A'), ('int', 'Acount'), ('int', 'Acols'), ('float *', 'out0'), ('int', 'out0count'), ('int', 'out0cols'), ('const float', 'row_id')]",
+    "5182, 233, Matrix_getRow_FloatPointer_naive, runs, [('const float *', 'A'), ('int', 'Acount'), ('int', 'Acols'), ('const float *', 'rowId'), ('int', 'empty_par1'), ('int', 'empty_par2'), ('float *', 'out0'), ('int', 'out0count'), ('int', 'out0cols')]",
+    "5182, 234, Matrix_getCol_FloatId_naive, runs, [('const float *', 'A'), ('int', 'Acount'), ('int', 'Acols'), ('float *', 'out0'), ('int', 'out0count'), ('int', 'out0cols'), ('float', 'col_id')]",
+    "5182, 235, Matrix_getCol_FloatPointer_naive, runs, [('const float *', 'A'), ('int', 'Acount'), ('int', 'Acols'), ('const float *', 'colId'), ('int', 'empty_par1'), ('int', 'empty_par2'), ('float *', 'out0'), ('int', 'out0count'), ('int', 'out0cols')]",
+    "5182, 238, Matrix_transposeFromSVDnodeCOPY, runs, [('const float *', 'A'), ('int', 'Acount'), ('int', 'Acols'), ('float *', 'out0')]",
+    "5182, 239, Matrix_MultiplElementWise_naiveOLD, runs, [('const float *', 'A'), ('int', 'Acount'), ('int', 'Acols'), ('const float *', 'B'), ('int', 'Bcount'), ('int', 'Bcols'), ('float *', 'out0'), ('int', 'out0count'), ('int', 'out0cols')]"
+  ],
+  "Activation Functions": [
+    "5239, 90, relu_gpu_forward, runs, [('float *', 'out'), ('float *', 'in'), ('int64_t', 'N')]",
+    "5239, 91, relu_gpu_backward, runs, [('float *', 'ingrad'), ('float *', 'outgrad'), ('float *', 'indata'), ('int64_t', 'N')]"
+  ],
+  "Image Processing Kernels": [
+    "5182, 374, BilinearResampleKernel, runs, [('float *', 'input'), ('float *', 'output'), ('int', 'inputWidth'), ('int', 'inputHeight'), ('int', 'outputWidth'), ('int', 'outputHeight')]",
+    "5182, 375, ExactResampleKernel_1toN, runs, [('float *', 'input'), ('float *', 'output'), ('int', 'inputWidth'), ('int', 'inputHeight'), ('int', 'outputWidth'), ('int', 'outputHeight')]",
+    "5182, 376, ExactResampleKernel_Nto1, runs, [('float *', 'input'), ('float *', 'output'), ('int', 'inputWidth'), ('int', 'inputHeight'), ('int', 'outputWidth'), ('int', 'outputHeight')]",
+    "5182, 377, NNResampleKernel, runs, [('float *', 'input'), ('float *', 'output'), ('int', 'inputWidth'), ('int', 'inputHeight'), ('int', 'outputWidth'), ('int', 'outputHeight')]",
+    "5182, 378, CutSubImageKernel_SingleParams, runs, [('float *', 'input'), ('float *', 'output'), ('float', 'subImageX'), ('float', 'subImageY'), ('float', 'subImageDiameter'), ('bool', 'safeBounds'), ('int', 'inputWidth'), ('int', 'inputHeight'), ('int', 'outputWidth'), ('int', 'outputHeight')]"
+  ],
+  "Utility Kernels": [
+    "5182, 148, DropoutMaskKernel, runs, [('float *', 'dropoutMaskPtr'), ('float', 'dropout'), ('int', 'inputSize')]",
+    "5182, 149, FullyConnectedCurvatureKernel, runs, [('float *', 'weightsGradPtr'), ('float *', 'biasGradPtr'), ('float *', 'shiftedWeightsPtr'), ('float *', 'shiftedBiasPtr'), ('float *', 'avgWeightGradPtr'), ('float *', 'avgBiasGradPtr'), ('float *', 'weightGradCurvePtr'), ('float *', 'biasGradCurvePtr'), ('float *', 'dropoutMaskPtr'), ('int', 'prevLayerSize'), ('int', 'thisLayerSize')]",
+    "5182, 150, FullyConnectedEstimateLearningRateKernel, runs, [('float *', 'weightLearningRatePtr'), ('float *', 'biasLearningRatePtr'), ('float *', 'avgWeightGradPtr'), ('float *', 'avgBiasGradPtr'), ('float *', 'avgWeightGradVarPtr'), ('float *', 'avgBiasGradVarPtr'), ('float *', 'avgWeightGradCurvePtr'), ('float *', 'avgBiasGradCurvePtr'), ('float *', 'avgWeightGradCurveVarPtr'), ('float *', 'avgBiasGradCurveVarPtr'), ('float *', 'dropoutMaskPtr'), ('int', 'prevLayerSize'), ('int', 'thisLayerSize')]",
+    "5182, 152, FullyConnectedAdjustMemoryKernel, runs, [('float *', 'weightsGradPtr'), ('float *', 'biasGradPtr'), ('float *', 'weightGradCurvePtr'), ('float *', 'biasGradCurvePtr'), ('float *', 'avgWeightGradPtr'), ('float *', 'avgBiasGradPtr'), ('float *', 'avgWeightGradVarPtr'), ('float *', 'avgBiasGradVarPtr'), ('float *', 'avgWeightGradCurvePtr'), ('float *', 'avgBiasGradCurvePtr'), ('float *', 'avgWeightGradCurveVarPtr'), ('float *', 'avgBiasGradCurveVarPtr'), ('float *', 'weightMemorySizePtr'), ('float *', 'biasMemorySizePtr'), ('float *', 'dropoutMaskPtr'), ('int', 'prevLayerSize'), ('int', 'thisLayerSize')]",
+    "5182, 153, FullyConnectedUpdateMemoryKernel, runs, [('float *', 'avgWeightGradPtr'), ('float *', 'avgBiasGradPtr'), ('float *', 'avgWeightGradVarPtr'), ('float *', 'avgBiasGradVarPtr'), ('float *', 'weightMemorySizePtr'), ('float *', 'biasMemorySizePtr'), ('float *', 'dropoutMaskPtr'), ('int', 'prevLayerSize'), ('int', 'thisLayerSize')]"
+  ],
+  "Randomization Kernels": [
+    "5182, 102, RBMRandomActivationKernel, runs, [('float *', 'outputPtr'), ('float *', 'randomPtr'), ('int', 'size')]",
+    "5182, 111, implantCoeffs, runs, [('float *', 'matrices'), ('float *', 'coeffArray'), ('int', 'savedCoeffs'), ('int', 'dimsize')]",
+    "5182, 130, GaussianSamplePrior, runs, [('float *', 'input'), ('int', 'inputCount'), ('float *', 'mins'), ('float *', 'maxes'), ('float *', 'randomUniform')]"
+  ],
+  "Kernel Initialization": [
+    "5182, 32, InitCentroidsKernel, runs, [('float *', 'centroidCoordinates'), ('float *', 'randomNumbers'), ('float', 'minX'), ('float', 'maxX'), ('float', 'minY'), ('float', 'maxY'), ('int', 'centroids')]",
+    "5183, 0, add_kernel, runs, [('Para *', 'para'), ('int', 'size')]",
+    "5203, 1, render_init, runs, [('int', 'max_x'), ('int', 'max_y'), ('curandState *', 'rand_state')]"
+  ],
+  "Matrix Operations (Double Precision)": [
+    "5226, 1, vectorAddition, runs, [('const double *', 'A'), ('const double *', 'B'), ('double *', 'C'), ('int', 'numElements')]",
+    "5226, 2, vectorSubtraction, runs, [('const double *', 'A'), ('const double *', 'B'), ('double *', 'C'), ('int', 'numElements')]",
+    "5226, 3, vectorScaling, runs, [('const double *', 'A'), ('double', 's'), ('double *', 'C'), ('int', 'numElements')]",
+    "5226, 5, matrixMultiplication, runs, [('double *', 'M'), ('double *', 'N'), ('double *', 'P'), ('int', 'widthAHeightB'), ('int', 'heightA'), ('int', 'widthB')]",
+    "5226, 6, matrixTransposeSqr, runs, [('double *', 'P'), ('double *', 'M'), ('int', 'width'), ('int', 'height')]"
+  ],
+  "Testing Kernels": [
+    "520, 4, testKernel, runs, [('int *', 's'), ('const int *', 're')]",
+    "520, 5, minValue, runs, [('int *', 'source'), ('int *', 'val')]",
+    "520, 7, arrayReduce, runs, [('int *', 'm'), ('int *', 'ms')]",
+    "520, 8, cleanCopy, runs, [('int *', 'S'), ('int *', 'D')]",
+    "5216, 0, test_float_1D, runs, [('float *', 'output'), ('float', 'posX')]",
+    "5216, 1, test_float_2D, runs, [('float *', 'output'), ('float', 'posX'), ('float', 'posY')]",
+    "5216, 2, test_float_3D, runs, [('float *', 'output'), ('float', 'posX'), ('float', 'posY'), ('float', 'posZ')]",
+    "5216, 3, test_float4_1D, runs, [('float4 *', 'output'), ('float', 'posX')]",
+    "5216, 4, test_float4_2D, runs, [('float4 *', 'output'), ('float', 'posX'), ('float', 'posY')]",
+    "5216, 5, test_float4_3D, runs, [('float4 *', 'output'), ('float', 'posX'), ('float', 'posY'), ('float', 'posZ')]"
+  ]
+}
+```

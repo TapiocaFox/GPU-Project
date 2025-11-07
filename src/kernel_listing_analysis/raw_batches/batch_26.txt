@@ -1,0 +1,92 @@
+```json
+{
+  "Random Number Generation Kernels": [
+    "16799, 3, setup_rands, runs, [('curandState *', 'rand'), ('unsigned long', 'seed'), ('unsigned long', 'N')]",
+    "16799, 4, randomize, runs, [('float *', 'array'), ('curandState *', 'rand'), ('unsigned long', 'N')]",
+    "16884, 2, setup_state, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "16991, 2, setup_state, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "17086, 2, setup_state, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]"
+  ],
+  "Matrix Operations Kernels": [
+    "16828, 0, MatAdd, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'ROW'), ('int', 'COLUMNS')]",
+    "16828, 1, matrixMul, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'ROW'), ('int', 'COLUMNS'), ('int', 'temp')]",
+    "16828, 2, MatMulInt, runs, [('int *', 'a'), ('int', 'b'), ('int *', 'c'), ('int', 'ROW'), ('int', 'COLUMNS')]",
+    "17070, 2, matrixSum, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'size')]",
+    "17070, 3, matrixMult, runs, [('int *', 'm'), ('int *', 'n'), ('int *', 'p'), ('int', 'size')]",
+    "17070, 4, matrixMult, runs, [('int *', 'm'), ('int *', 'n'), ('int *', 'p'), ('int', 'size')]",
+    "17070, 5, matrixMult, runs, [('int *', 'm'), ('int *', 'n'), ('int *', 'p'), ('int', 'size')]",
+    "17070, 6, matrixMult, runs, [('int *', 'm'), ('int *', 'n'), ('int *', 'p'), ('int', 'size')]",
+    "17070, 8, matrixMult, runs, [('int *', 'm'), ('int *', 'n'), ('int *', 'p'), ('int', 'size')]"
+  ],
+  "Vector Addition Kernels": [
+    "16804, 0, vector_add, runs, [('float *', 'out'), ('float *', 'a'), ('float *', 'b'), ('int', 'n')]",
+    "17061, 1, vector_addition, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'n')]",
+    "17084, 1, gpu_vector_add, runs, [('float *', 'out'), ('float *', 'a'), ('float *', 'b'), ('int', 'n')]"
+  ],
+  "Reduction Kernels": [
+    "16850, 15, reduce_v0, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'n')]",
+    "16850, 16, reduce_v1, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'n')]",
+    "16850, 17, reduce_v2, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'n')]",
+    "16850, 18, reduce_v3, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'n')]",
+    "16850, 19, reduce_v4, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'n')]",
+    "16850, 20, reduce_v5, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'n')]"
+  ],
+  "Convolution Kernels": [
+    "16995, 2, Conv2D, runs, [('float *', 'd_image'), ('float *', 'kernel'), ('float *', 'd_result'), ('int', 'width'), ('int', 'height'), ('int', 'kernelSize')]",
+    "16910, 1, Conv1D, runs, [('const double *', 'Params'), ('const float *', 'data'), ('const float *', 'W'), ('float *', 'conv_sig')]",
+    "170, 1, conv_vertical_naive_output, runs, [('const int', 'n'), ('float *', 'y'), ('const float *', 'x'), ('const float *', 'w'), ('const int', 'iH'), ('const int', 'iW'), ('const int', 'kL')]"
+  ],
+  "Image Processing Kernels": [
+    "16850, 2, blur, runs, [('int *', 'B'), ('int *', 'G'), ('int *', 'R'), ('int *', 'RB'), ('int *', 'RG'), ('int *', 'RR'), ('int *', 'K'), ('int', 'rows'), ('int', 'cols'), ('int', 'krows'), ('int', 'kcols')]",
+    "1708, 1, detect_edges, runs, [('unsigned char *', 'in'), ('unsigned char *', 'out')]"
+  ],
+  "Utility Kernels": [
+    "16850, 0, foo, runs, []",
+    "17053, 0, helloWorld, runs, []",
+    "17015, 0, c_code, runs, []"
+  ],
+  "Accuracy Calculation Kernels": [
+    "1682, 340, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "16857, 338, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "16867, 328, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "16893, 312, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "16923, 328, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "17003, 326, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "17007, 337, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "17030, 328, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "17156, 328, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]"
+  ],
+  "Downscale Kernels": [
+    "1682, 199, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "16857, 197, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "16867, 187, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "17003, 185, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "17007, 196, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "17030, 187, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "17156, 187, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]"
+  ],
+  "Activation Functions Kernels": [
+    "17013, 1, _hSigmoidKer, runs, [('float const *', 'in'), ('float *', 'out'), ('int', 'size')]",
+    "17013, 2, prelu_kernel, runs, [('const float *', 'input'), ('float *', 'output'), ('int', 'num_elem'), ('int', 'input_size'), ('int', 'fm_size'), ('const float *', 'gamma')]",
+    "17013, 7, mish_kernel, runs, [('const float *', 'input'), ('float *', 'output'), ('int', 'num_elem')]",
+    "16996, 89, relu_gpu_forward, runs, [('float *', 'out'), ('float *', 'in'), ('int64_t', 'N')]",
+    "16996, 90, relu_gpu_backward, runs, [('float *', 'ingrad'), ('float *', 'outgrad'), ('float *', 'indata'), ('int64_t', 'N')]"
+  ],
+  "Sorting Kernels": [
+    "17144, 0, merge_sort, runs, [('int *', 'datas'), ('int', 'n')]",
+    "17144, 1, do_sum_merge, runs, [('int *', 'datas'), ('int', 'n')]"
+  ],
+  "Graph Processing Kernels": [
+    "17141, 0, GaussianNBSumKernel, runs, [('const float *', 'd_data'), ('const int *', 'd_labels'), ('float *', 'feature_means_'), ('int *', 'class_count_'), ('unsigned int', 'n_samples_'), ('unsigned int', 'n_classes_'), ('unsigned int', 'n_features_')]",
+    "17141, 1, GaussianNBMeanKernel, runs, [('float *', 'feature_means_'), ('int *', 'class_count_'), ('float *', 'class_priors_'), ('unsigned int', 'n_samples_'), ('unsigned int', 'n_classes_'), ('unsigned int', 'n_features_')]",
+    "17141, 2, GaussianNBVarKernel, runs, [('const float *', 'd_data'), ('const int *', 'd_labels'), ('const float *', 'feature_means_'), ('float *', 'feature_vars_'), ('const int *', 'class_count_'), ('const unsigned int', 'n_samples_'), ('const unsigned int', 'n_classes_'), ('const unsigned int', 'n_features_')]",
+    "17141, 4, MultinomialNBCalcKernel, runs, [('const float *', 'd_data'), ('const int *', 'd_labels'), ('float *', 'feature_probs'), ('float *', 'class_priors'), ('unsigned int', 'n_samples_'), ('unsigned int', 'n_classes_'), ('unsigned int', 'n_features_')]",
+    "17141, 5, MultinomialNBLearnKernel, runs, [('float *', 'feature_probs'), ('float *', 'class_priors'), ('const float *', 'd_row_sums'), ('unsigned int', 'n_samples_'), ('unsigned int', 'n_classes_'), ('unsigned int', 'n_features_')]",
+    "17141, 7, BernoulliNBCalcKernel, runs, [('const float *', 'd_data'), ('const int *', 'd_labels'), ('float *', 'feature_probs'), ('float *', 'class_count_'), ('unsigned int', 'n_samples_'), ('unsigned int', 'n_classes_'), ('unsigned int', 'n_features_')]",
+    "17141, 8, BernoulliNBLearnKernel, runs, [('float *', 'feature_probs'), ('float *', 'class_count_'), ('const float *', 'd_row_sums'), ('unsigned int', 'n_samples_'), ('unsigned int', 'n_classes_'), ('unsigned int', 'n_features_')]",
+    "17141, 10, ComplementNBCalcKernel, runs, [('const float *', 'd_data'), ('const int *', 'd_labels'), ('float *', 'per_class_feature_sum_'), ('float *', 'per_feature_sum_'), ('unsigned int', 'n_samples_'), ('unsigned int', 'n_features_')]",
+    "17141, 11, ComplementNBLearnKernel, runs, [('float *', 'feature_weights_'), ('float *', 'per_class_feature_sum_'), ('float *', 'per_feature_sum_'), ('float *', 'per_class_sum_'), ('float', 'all_sum_'), ('unsigned int', 'n_classes_'), ('unsigned int', 'n_features_')]",
+    "17141, 12, ComplementNBNormalizeKernel, runs, [('float *', 'feature_weights_'), ('float *', 'per_class_sum_'), ('unsigned int', 'n_classes_'), ('unsigned int', 'n_features_')]"
+  ]
+}
+```

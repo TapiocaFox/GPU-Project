@@ -1,0 +1,60 @@
+```json
+{
+  "Vector Operations": [
+    "459, 9, kernel_mult_vector_by_number, runs, [('double *', 'vec'), ('double', 'alpha'), ('int', 'numElements')]",
+    "459, 10, kernel_dot_product, runs, [('const double *', 'vec1'), ('const double *', 'vec2'), ('int', 'numElements'), ('double *', 'answer')]",
+    "459, 11, floatArray2doubleArray, runs, [('const float *', 'floatArray'), ('double *', 'doubleArray'), ('const int', 'size')]",
+    "459, 12, doubleArray2floatArray, runs, [('const double *', 'doubleArray'), ('float *', 'floatArray'), ('const int', 'size')]"
+  ],
+  "Matrix Operations": [
+    "4642, 0, MatrixTranspose, runs, [('float *', 'a'), ('float *', 'b'), ('int', 'nx'), ('int', 'ny')]",
+    "4642, 1, MatrixMul, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('int', 'm'), ('int', 'n'), ('int', 'k')]",
+    "4642, 2, MatAdd, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'nx'), ('int', 'ny')]",
+    "4642, 3, Mul, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'nx'), ('int', 'ny')]",
+    "4642, 4, div, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'nx'), ('int', 'ny')]",
+    "4642, 5, MatSub, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'nx'), ('int', 'ny')]"
+  ],
+  "Image Processing": [
+    "4732, 4, absoluteDifferenceCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "4732, 5, bitwiseAndCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "4732, 6, bitwiseOrCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "4732, 7, bitwiseXorCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "4732, 10, copyCuda, runs, [('const uint8_t *', 'in'), ('uint32_t', 'rowSizeIn'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "4732, 13, flipCuda, runs, [('const uint8_t *', 'in'), ('uint32_t', 'rowSizeIn'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height'), ('bool', 'horizontal'), ('bool', 'vertical')]"
+  ],
+  "Reduction Kernels": [
+    "4694, 7, redunction_neighbored_pairs_1, runs, [('int *', 'input'), ('int *', 'temp'), ('int', 'size')]",
+    "4694, 8, reduction_neighbored_pairs_improved_1, runs, [('int *', 'int_array'), ('int *', 'temp_array'), ('int', 'size')]",
+    "4694, 9, reduction_interleaved_pairs_1, runs, [('int *', 'int_array'), ('int *', 'temp_array'), ('int', 'size')]",
+    "4694, 10, reduction_interleaved_unrolling_blocks2_1, runs, [('int *', 'input'), ('int *', 'temp'), ('int', 'size')]",
+    "4694, 11, reduction_interleaved_unrolling_blocks8_1, runs, [('int *', 'input'), ('int *', 'temp'), ('int', 'size')]",
+    "4694, 12, reduction_kernel_interleaved_warp_unrolling8_1, runs, [('int *', 'input'), ('int *', 'temp_array'), ('int', 'size')]",
+    "4694, 13, reduction_kernel_complete_unrolling8_1, runs, [('int *', 'input'), ('int *', 'temp'), ('int', 'size')]"
+  ],
+  "Activation Functions": [
+    "4635, 89, relu_gpu_forward, runs, [('float *', 'out'), ('float *', 'in'), ('int64_t', 'N')]",
+    "4635, 90, relu_gpu_backward, runs, [('float *', 'ingrad'), ('float *', 'outgrad'), ('float *', 'indata'), ('int64_t', 'N')]",
+    "4746, 98, relu_gpu_forward, runs, [('float *', 'out'), ('float *', 'in'), ('int64_t', 'N')]",
+    "4746, 99, relu_gpu_backward, runs, [('float *', 'ingrad'), ('float *', 'outgrad'), ('float *', 'indata'), ('int64_t', 'N')]"
+  ],
+  "Utility Kernels": [
+    "4630, 0, calcmean, runs, [('double *', 'd_data'), ('double *', 'd_mean'), ('int', 'M'), ('int', 'N')]",
+    "4630, 1, calcdata, runs, [('double *', 'd_data'), ('double *', 'd_mean'), ('int', 'M'), ('int', 'N')]",
+    "4630, 2, calcsymmat, runs, [('double *', 'd_data'), ('double *', 'd_symmat'), ('int', 'M'), ('int', 'N')]",
+    "4630, 3, trans_norm_vector, runs, [('double *', 'A'), ('double *', 'x'), ('double *', 'y'), ('double *', 'tmp'), ('int', 'NX'), ('int', 'NY')]",
+    "4630, 4, atemp, runs, [('double *', 'A'), ('double *', 'y'), ('double *', 'tmp'), ('int', 'NX'), ('int', 'NY')]",
+    "4630, 5, Convolution, runs, [('double *', 'A'), ('double *', 'B'), ('int', 'I'), ('int', 'J')]"
+  ],
+  "Sorting Kernels": [
+    "4844, 45, KerSortDataParticles, runs, [('unsigned', 'n'), ('unsigned', 'pini'), ('const unsigned *', 'sortpart'), ('const float4 *', 'a'), ('float4 *', 'a2')]",
+    "4844, 46, KerSortDataParticles, runs, [('unsigned', 'n'), ('unsigned', 'pini'), ('const unsigned *', 'sortpart'), ('const float *', 'a'), ('const float *', 'b'), ('float *', 'a2'), ('float *', 'b2')]",
+    "4844, 47, KerSortDataParticles, runs, [('unsigned', 'n'), ('unsigned', 'pini'), ('const unsigned *', 'sortpart'), ('const double2 *', 'a'), ('const double *', 'b'), ('const float4 *', 'c'), ('double2 *', 'a2'), ('double *', 'b2'), ('float4 *', 'c2')]",
+    "4844, 49, KerSortDataParticles, runs, [('unsigned', 'n'), ('unsigned', 'pini'), ('const unsigned *', 'sortpart'), ('const float3 *', 'a'), ('float3 *', 'a2')]",
+    "4844, 50, KerSortDataParticles, runs, [('unsigned', 'n'), ('unsigned', 'pini'), ('const unsigned *', 'sortpart'), ('const float *', 'a'), ('float *', 'a2')]"
+  ],
+  "Kernel Initialization": [
+    "4672, 4, initialize, runs, [('float *', 'matrix'), ('float', 'sr'), ('int', 'numFrames'), ('int', 'length')]",
+    "4672, 71, initialize, runs, [('float *', 'matrix'), ('float', 'sr'), ('int', 'numFrames'), ('int', 'length')]"
+  ]
+}
+```

@@ -1,0 +1,103 @@
+```json
+{
+  "Utility Kernels": [
+    "8411, 9, helloGPU, runs, []",
+    "8428, 21, sync_deconv_groups, runs, []",
+    "8428, 37, sync_conv_groups, runs, []",
+    "8414, 0, calculate_tensors, runs, [('double *', 'SR'), ('const double *', 'fields'), ('const double *', 'norms'), ('const int', 'num_modes'), ('const int', 'Nx')]",
+    "8414, 1, calculate_tensors, runs, [('float *', 'SR'), ('const float *', 'fields'), ('const float *', 'norms'), ('const int', 'num_modes'), ('const int', 'Nx')]",
+    "8414, 2, calculate_sumterm_part, runs, [('float2 *', 'Up'), ('float2 *', 'Vpl'), ('const float2 *', 'A_t'), ('const float *', 'SR'), ('const unsigned char *', 'nonzero_midx1234s'), ('const unsigned int', 'N'), ('const unsigned int', 'M'), ('const float', 'SK_factor'), ('const unsigned int', 'NUM_NONZERO'), ('const unsigned int', 'NUM_MODES')]",
+    "8414, 3, calculate_sumterm_part, runs, [('double2 *', 'Up'), ('double2 *', 'Vpl'), ('const double2 *', 'A_t'), ('const double *', 'SR'), ('const unsigned char *', 'nonzero_midx1234s'), ('const unsigned int', 'N'), ('const unsigned int', 'M'), ('const double', 'SK_factor'), ('const unsigned int', 'NUM_NONZERO'), ('const unsigned int', 'NUM_MODES')]",
+    "8429, 230, kSetupCurand, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "843, 36, assignColIds, runs, [('int *', 'colIds'), ('const int *', 'colOffsets')]",
+    "8484, 48, sync_conv_groups, runs, []",
+    "8464, 2, kernelVersionShim, runs, []"
+  ],
+  "Elementwise Kernels": [
+    "8438, 11, adagrad_update_1D_1D, runs, [('float *', 'x'), ('float *', 'd'), ('float *', 'm'), ('float', 'clip'), ('float', 'lr'), ('int', 'size')]",
+    "8438, 12, momentum_update_1D_1D, runs, [('float *', 'x'), ('float *', 'd'), ('float *', 'm'), ('float', 'learning_rate'), ('float', 'momentum'), ('float', 'gradClip'), ('bool', 'nesterov'), ('int', 'size')]",
+    "8438, 13, elementwise_1D_1D_mul, runs, [('float *', 'in1'), ('float *', 'in2'), ('float *', 'out'), ('int', 'size')]",
+    "8438, 14, elementwise_1D_1D_mul_mutate, runs, [('float *', 'in1'), ('float *', 'in2'), ('float *', 'out'), ('int', 'size')]",
+    "8438, 15, elementwise_1D_1D_add, runs, [('float *', 'in1'), ('float *', 'in2'), ('float *', 'out'), ('int', 'size')]",
+    "8438, 16, elementwise_1D_1D_minus, runs, [('float *', 'in1'), ('float *', 'in2'), ('float *', 'out'), ('int', 'size')]",
+    "8438, 17, elementwise_1D_1D_div, runs, [('float *', 'in1'), ('float *', 'in2'), ('float *', 'out'), ('int', 'size')]",
+    "8438, 18, elementwise_1D_1D_exp, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'size')]",
+    "8438, 19, elementwise_1D_1D_log, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'size')]",
+    "8438, 20, elementwise_1D_1D_sqrt, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'size')]",
+    "8438, 21, elementwise_1D_1D_square, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'size')]",
+    "8438, 22, elementwise_1D_1D_exp_grad, runs, [('float *', 'in_x'), ('float *', 'in_d'), ('float *', 'out_x'), ('float *', 'out_d'), ('int', 'size')]",
+    "8438, 23, elementwise_1D_1D_log_grad, runs, [('float *', 'in_x'), ('float *', 'in_d'), ('float *', 'out_x'), ('float *', 'out_d'), ('int', 'size')]",
+    "8438, 24, elementwise_1D_1D_sqrt_grad, runs, [('float *', 'in_x'), ('float *', 'in_d'), ('float *', 'out_x'), ('float *', 'out_d'), ('int', 'size')]",
+    "8438, 25, elementwise_1D_1D_square_grad, runs, [('float *', 'in_x'), ('float *', 'in_d'), ('float *', 'out_x'), ('float *', 'out_d'), ('int', 'size')]"
+  ],
+  "Matrix Operations": [
+    "8448, 2, sum, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c')]",
+    "8448, 3, tiled_matrix_multiplication, runs, [('int *', 'A'), ('int *', 'B'), ('int *', 'C')]",
+    "8448, 4, add, runs, [('float *', 'cudaA'), ('float *', 'kernel'), ('float *', 'cudaResult')]",
+    "8448, 5, histogram_creation, runs, [('int *', 'A'), ('int *', 'hist'), ('int', 'no_of_threads')]",
+    "848, 0, add_matrices, runs, [('float *', 'ad'), ('float *', 'bd'), ('float *', 'cd'), ('int', 'N')]",
+    "848, 1, add_number, runs, [('float *', 'ad'), ('float *', 'bd')]",
+    "848, 2, matrix_mul, runs, [('float *', 'ad'), ('float *', 'bd'), ('float *', 'cd'), ('int', 'N')]",
+    "848, 3, matrix_mul_shared, runs, [('float *', 'ad'), ('float *', 'bd'), ('float *', 'cd'), ('int', 'N')]",
+    "848, 4, square_array, runs, [('float *', 'ad'), ('int', 'N')]",
+    "848, 5, add_vectors, runs, [('float *', 'ad'), ('float *', 'bd'), ('int', 'N')]",
+    "851, 0, matrixMultiplyShared, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'numARows'), ('int', 'numAColumns'), ('int', 'numBRows'), ('int', 'numBColumns'), ('int', 'numCRows'), ('int', 'numCColumns')]"
+  ],
+  "Image Processing Kernels": [
+    "8431, 1, bgr_to_gray_kernel, runs, [('unsigned char *', 'input'), ('unsigned char *', 'output'), ('int', 'width'), ('int', 'height'), ('int', 'colorWidthStep'), ('int', 'grayWidthStep')]",
+    "8523, 0, RgbToGray_Kernel, runs, [('unsigned char *', 'RGB_Image'), ('unsigned char *', 'Gray_Image'), ('int', 'Width'), ('int', 'Height')]",
+    "8523, 2, Census_Kernel, runs, [('unsigned char *', 'MemSrc'), ('unsigned int *', 'MemDst'), ('int', 'eps'), ('int', 'Width'), ('int', 'Height')]",
+    "8535, 0, gray, runs, [('unsigned char *', 'src'), ('unsigned char *', 'dest'), ('int', 'width'), ('int', 'heigth'), ('int', 'step'), ('int', 'channels')]",
+    "8535, 1, sobel, runs, [('unsigned char *', 'src'), ('unsigned char *', 'dest'), ('int', 'width'), ('int', 'heigth'), ('int', 'step'), ('int', 'channels')]"
+  ],
+  "Reduction Kernels": [
+    "846, 3, ReductionMin, runs, [('unsigned int *', 'sdata'), ('unsigned int *', 'results'), ('int', 'n')]",
+    "8459, 15, FindMinMax, runs, [('float *', 'd_MinMax'), ('float *', 'd_Data'), ('int', 'width'), ('int', 'pitch'), ('int', 'height')]",
+    "8459, 16, Find3DMinMax, runs, [('int *', 'd_Result'), ('float *', 'd_Data1'), ('float *', 'd_Data2'), ('float *', 'd_Data3'), ('int', 'width'), ('int', 'pitch'), ('int', 'height')]",
+    "8459, 25, FindMinMax, runs, [('float *', 'd_MinMax'), ('float *', 'd_Data'), ('int', 'width'), ('int', 'height')]",
+    "8459, 26, Find3DMinMax, runs, [('int *', 'd_Result'), ('float *', 'd_Data1'), ('float *', 'd_Data2'), ('float *', 'd_Data3'), ('int', 'width'), ('int', 'height')]"
+  ],
+  "Downscale Kernels": [
+    "8447, 170, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "8490, 10, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "8497, 168, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "8511, 197, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]"
+  ],
+  "Sorting Kernels": [
+    "8494, 8, selection_sort_gpu, runs, [('int', 'b'), ('int', 'n'), ('int', 'm'), ('int', 'k'), ('const float *', 'dist'), ('int *', 'outi'), ('float *', 'out')]"
+  ],
+  "Statistical Kernels": [
+    "8459, 9, ComputeOrientations, runs, [('float *', 'g_Data'), ('float *', 'd_Sift'), ('int', 'maxPts'), ('int', 'w'), ('int', 'h')]",
+    "8459, 19, ComputeOrientations, runs, [('float *', 'g_Data'), ('int *', 'd_Ptrs'), ('float *', 'd_Orient'), ('int', 'maxPts'), ('int', 'w'), ('int', 'h')]"
+  ],
+  "Gradient Kernels": [
+    "8438, 3, hardTanh_grad, runs, [('float *', 'in_x'), ('float *', 'in_d'), ('float *', 'out_d'), ('float', 'min_val'), ('float', 'max_val'), ('int', 'size'), ('bool', 'inplace')]",
+    "8438, 5, nllLoss_grad, runs, [('int', 'x_stride'), ('float *', 'yGrad'), ('int *', 'target'), ('float *', 'xGrad')]",
+    "8438, 6, sum_grad, runs, [('float *', 'in'), ('int', 'inSize0'), ('int', 'inSize1'), ('int', 'inSize2'), ('int', 'inSize3'), ('int', 'nElement'), ('float *', 'out'), ('int', 'outStride0'), ('int', 'outStride1'), ('int', 'outStride2'), ('int', 'dim')]",
+    "8438, 39, repeat0, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'outStride0'), ('int', 'outStride1'), ('int', 'outScalarCount')]",
+    "8438, 40, shift0, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'inDim0'), ('int', 'inStride0'), ('int', 'inStride1'), ('int', 'inScalarCount')]"
+  ],
+  "Convolution Kernels": [
+    "8447, 301, softmax_gradient_kernel, runs, [('const int', 'dim'), ('const float *', 'Y'), ('const float *', 'dY'), ('float *', 'dX')]",
+    "8447, 306, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]"
+  ],
+  "Activation Functions": [
+    "8504, 0, kSigmoid, runs, [('const int', 'nThreads'), ('float const *', 'input'), ('float *', 'output')]",
+    "8504, 1, kTanh, runs, [('const int', 'nThreads'), ('float const *', 'input'), ('float *', 'output')]",
+    "8504, 2, kTanhDerivative, runs, [('const int', 'nThreads'), ('float const *', 'input'), ('float *', 'output')]",
+    "8504, 3, kSigmoid_d, runs, [('const int', 'nThreads'), ('float const *', 'input'), ('float *', 'output')]"
+  ],
+  "Hashing Kernels": [
+    "8455, 2, g_countCellOcc, runs, [('uint *', '_hash'), ('uint *', '_cellOcc'), ('uint', '_pixCount'), ('uint', '_hashCellCount')]"
+  ],
+  "Distance Kernels": [
+    "8494, 5, query_ball_point_gpu, runs, [('int', 'b'), ('int', 'n'), ('int', 'm'), ('float', 'radius'), ('int', 'nsample'), ('const float *', 'xyz1'), ('const float *', 'xyz2'), ('int *', 'idx'), ('int *', 'pts_cnt')]",
+    "8494, 6, group_point_gpu, runs, [('int', 'b'), ('int', 'n'), ('int', 'c'), ('int', 'm'), ('int', 'nsample'), ('const float *', 'points'), ('const int *', 'idx'), ('float *', 'out')]",
+    "8494, 7, group_point_grad_gpu, runs, [('int', 'b'), ('int', 'n'), ('int', 'c'), ('int', 'm'), ('int', 'nsample'), ('const float *', 'grad_out'), ('const int *', 'idx'), ('float *', 'grad_points')]"
+  ],
+  "Matrix Operations with Gradients": [
+    "8459, 10, SubtractMulti, runs, [('float *', 'd_Result'), ('float *', 'd_Data'), ('int', 'width'), ('int', 'pitch'), ('int', 'height')]",
+    "8459, 24, MultiplyAdd, runs, [('float *', 'd_Result'), ('float *', 'd_Data'), ('int', 'width'), ('int', 'height')]"
+  ]
+}
+```

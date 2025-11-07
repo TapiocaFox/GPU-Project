@@ -1,0 +1,64 @@
+```json
+{
+  "Matrix Operations": [
+    "3884, 0, MatrixMulKernel, runs, [('float *', 'd_M'), ('float *', 'd_N'), ('float *', 'd_P'), ('int', 'Width')]",
+    "3909, 5, mm, runs, [('float *', 'dA'), ('float *', 'dB'), ('float *', 'dC'), ('int', 'DIM'), ('int', 'N'), ('int', 'GPUN')]",
+    "3909, 6, mm_tiled, runs, [('float *', 'dA'), ('float *', 'dB'), ('float *', 'dC'), ('int', 'DIM'), ('int', 'N'), ('int', 'GPUN')]",
+    "3909, 7, mm, runs, [('float *', 'dA'), ('float *', 'dB'), ('float *', 'dC'), ('int', 'DIM'), ('int', 'N'), ('int', 'GPUN')]",
+    "4024, 0, matrixMulOptimized, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "4024, 1, matrixMul, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]"
+  ],
+  "Vector Operations": [
+    "4016, 0, AddVector, runs, [('int', 'vecSize'), ('const float *', 'vecA'), ('const float *', 'vecB'), ('float *', 'vecC')]",
+    "4037, 50, add, runs, [('int', 'n'), ('float *', 'x'), ('float *', 'y')]",
+    "4037, 52, add, runs, [('int', 'n'), ('float *', 'x'), ('float *', 'y')]"
+  ],
+  "Convolution Kernels": [
+    "3939, 0, convolution_kernel, runs, [('int', 'h'), ('int', 'w'), ('int', 'd'), ('double *', 'gpu_in'), ('int', 'k_h'), ('int', 'k_w'), ('int', 'k_d'), ('double *', 'kernel_weights'), ('double *', 'kernel_biases'), ('int', 'num_kernels'), ('int', 'op_h'), ('int', 'op_w'), ('int', 'op_d'), ('double *', 'gpu_out')]",
+    "4012, 0, convolutionParallel, runs, [('unsigned char *', 'image'), ('unsigned char *', 'new_image'), ('unsigned', 'height'), ('unsigned', 'width'), ('int', 'thread_count'), ('int', 'convolution_size')]"
+  ],
+  "Activation Functions": [
+    "4013, 89, relu_gpu_forward, runs, [('float *', 'out'), ('float *', 'in'), ('int64_t', 'N')]",
+    "4013, 90, relu_gpu_backward, runs, [('float *', 'ingrad'), ('float *', 'outgrad'), ('float *', 'indata'), ('int64_t', 'N')]"
+  ],
+  "Reduction Kernels": [
+    "397, 2, gpu_reduce, runs, [('int *', 'c'), ('int', 'size')]",
+    "415, 0, reduceInterleaved, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "415, 1, reduceUnrolling, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n'), ('unsigned int', 'q')]"
+  ],
+  "Downscale Kernels": [
+    "3901, 196, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "3983, 187, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "4063, 170, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]"
+  ],
+  "Binarization Kernels": [
+    "3916, 0, binarize_kernel, runs, [('float *', 'x'), ('int', 'n'), ('float *', 'binary')]",
+    "3916, 1, binarize_input_kernel, runs, [('float *', 'input'), ('int', 'n'), ('int', 'size'), ('float *', 'binary')]",
+    "3916, 2, binarize_weights_kernel, runs, [('float *', 'weights'), ('int', 'n'), ('int', 'size'), ('float *', 'binary')]"
+  ],
+  "Utility Kernels": [
+    "3879, 16, kernel_init_column_matrix, runs, [('int *', 'matrix'), ('size_t', 'pitch')]",
+    "3879, 17, kernel_incerement, runs, [('int *', 'matrix'), ('size_t', 'pitch')]",
+    "3906, 46, sync_conv_groups, runs, []",
+    "392, 2, map_index_to_prefix, runs, [('uint8_t *', 'hashes'), ('uint32_t *', 'sort_indices'), ('uint32_t *', 'comb_count'), ('uint32_t *', 'comb_sum'), ('uint32_t *', 'comb_prefix'), ('uint32_t', 'r'), ('uint32_t', 'size')]"
+  ],
+  "Image Processing Kernels": [
+    "4012, 0, convolutionParallel, runs, [('unsigned char *', 'image'), ('unsigned char *', 'new_image'), ('unsigned', 'height'), ('unsigned', 'width'), ('int', 'thread_count'), ('int', 'convolution_size')]",
+    "4012, 2, rectify, runs, [('unsigned char *', 'image'), ('unsigned', 'height'), ('unsigned', 'width'), ('int', 'thread_count')]",
+    "4012, 3, pool, runs, [('unsigned char *', 'image'), ('unsigned char *', 'new_image'), ('unsigned', 'height'), ('unsigned', 'width'), ('int', 'thread_count')]"
+  ],
+  "Sorting Kernels": [
+    "4037, 0, batcherBitonicMergesort64, runs, [('float *', 'd_out'), ('const float *', 'd_in')]",
+    "4037, 1, reduce, runs, [('unsigned int *', 'd_out_shared'), ('const unsigned int *', 'd_in')]"
+  ],
+  "Normalization Kernels": [
+    "4085, 1, normalize_kernel, runs, [('int', 'N'), ('float *', 'x'), ('float *', 'mean'), ('float *', 'variance'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial')]",
+    "4085, 10, softmax_kernel, runs, [('int', 'n'), ('int', 'offset'), ('int', 'batch'), ('float *', 'input'), ('float', 'temp'), ('float *', 'output')]"
+  ],
+  "Miscellaneous Kernels": [
+    "397, 0, gpu_init, runs, [('int *', 'mapad'), ('int', 'max'), ('int', 'size')]",
+    "397, 2, gpu_reduce, runs, [('int *', 'c'), ('int', 'size')]",
+    "397, 3, gpu_init, runs, [('int *', 'mapad'), ('int', 'max'), ('int', 'size')]"
+  ]
+}
+```

@@ -1,0 +1,110 @@
+```json
+{
+  "Memory Management Kernels": [
+    "14714, 7, kernel_test0_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "14714, 9, kernel_test1_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int *', 'err')]",
+    "14714, 11, kernel_test5_init, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "14714, 12, kernel_test5_move, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "14714, 14, kernel_movinv32_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'pattern'), ('unsigned int', 'lb'), ('unsigned int', 'sval'), ('unsigned int', 'offset')]",
+    "14714, 17, kernel_test7_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('char *', '_start_ptr'), ('unsigned int *', 'err')]",
+    "14714, 20, kernel_modtest_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'offset'), ('unsigned int', 'p1'), ('unsigned int', 'p2')]",
+    "14775, 0, kernel_move_inv_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'pattern')]",
+    "14775, 3, kernel_test0_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'pattern'), ('unsigned int *', 'err'), ('unsigned long *', 'err_addr'), ('unsigned long *', 'err_expect'), ('unsigned long *', 'err_current'), ('unsigned long *', 'err_second_read')]",
+    "14775, 5, kernel_test0_global_write, runs, [('char *', '_ptr'), ('char *', '_end_ptr')]",
+    "14775, 7, kernel_test0_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "14775, 9, kernel_test1_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int *', 'err')]",
+    "14775, 11, kernel_test5_init, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "14775, 12, kernel_test5_move, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "14775, 14, kernel_movinv32_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'pattern'), ('unsigned int', 'lb'), ('unsigned int', 'sval'), ('unsigned int', 'offset')]",
+    "14775, 17, kernel_test7_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('char *', '_start_ptr'), ('unsigned int *', 'err')]",
+    "14775, 20, kernel_modtest_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'offset'), ('unsigned int', 'p1'), ('unsigned int', 'p2')]"
+  ],
+  "Tensor Operations Kernels": [
+    "14716, 2, THCudaTensor_kernel_renorm, runs, [('float *', 'data'), ('const float', 'value'), ('const long', 'size'), ('const float', 'maxnorm')]",
+    "14716, 17, THCudaTensor_kernel_indexFill, runs, [('float *', 'tensor'), ('long *', 'stride'), ('float *', 'index'), ('long', 'src_nDim'), ('int', 'dim'), ('long', 'idx_size'), ('long', 'tensor_size'), ('long', 'size_dim'), ('float', 'val')]",
+    "14716, 18, THCudaTensor_kernel_indexCopy, runs, [('float *', 'res'), ('float *', 'src'), ('long *', 'res_stride'), ('float *', 'index'), ('long', 'res_nDim'), ('int', 'dim'), ('long', 'idx_size'), ('long', 'src_size'), ('long', 'size_dim')]",
+    "14716, 19, THCudaTensor_kernel_indexAdd, runs, [('float *', 'res'), ('float *', 'src'), ('long *', 'res_stride'), ('float *', 'index'), ('long', 'res_nDim'), ('int', 'dim'), ('long', 'idx_size'), ('long', 'src_size'), ('long', 'size_dim')]",
+    "14716, 20, THCudaTensor_kernel_indexSelect_contiguous, runs, [('float *', 'tensor'), ('float *', 'src'), ('long', 'stride'), ('float *', 'index'), ('long', 'idxSize')]",
+    "14716, 22, THCudaTensor_copyUpperSymmetric, runs, [('float *', 'input'), ('int', 'n'), ('int', 'len')]",
+    "14762, 13, cunn_ClassNLLCriterion_updateOutput_kernel, runs, [('float *', 'output'), ('float *', 'input'), ('float *', 'target'), ('int', 'nframe'), ('int', 'ndim'), ('int', 'sizeAverage'), ('int', 'ntarget')]",
+    "14762, 14, cunn_ClassNLLCriterion_updateGradInput_kernel, runs, [('float *', 'gradInput'), ('float *', 'target'), ('int', 'nframe'), ('int', 'ndim'), ('float', 'grad'), ('int', 'ntarget')]",
+    "14762, 19, cunn_OneVsAllMultiMarginCriterion_updateOutput_kernel, runs, [('float *', 'output'), ('float *', 'input'), ('float *', 'target'), ('int', 'nframe'), ('int', 'dim'), ('int', 'sizeaverage'), ('float *', 'positiveWeight')]",
+    "14762, 20, cunn_OneVsAllMultiMarginCriterion_updateGradInput_kernel, runs, [('float *', 'gradInput'), ('float *', 'input'), ('float *', 'target'), ('int', 'nframe'), ('int', 'dim'), ('int', 'sizeaverage'), ('float *', 'positiveWeight')]",
+    "14762, 21, cunn_MSECriterion_updateOutput_kernel, runs, [('float *', 'output'), ('float *', 'input'), ('float *', 'target'), ('int', 'nframe'), ('int', 'dim'), ('int', 'sizeAverage')]",
+    "14762, 22, cunn_MSECriterion_updateGradInput_kernel, runs, [('float *', 'gradInput'), ('float *', 'input'), ('float *', 'target'), ('float', 'norm'), ('int', 'nframe'), ('int', 'dim')]",
+    "14923, 24, cunn_MSECriterion_updateOutput_kernel, runs, [('float *', 'output'), ('float *', 'input'), ('float *', 'target'), ('int', 'nframe'), ('int', 'dim'), ('int', 'sizeAverage')]",
+    "14923, 25, cunn_MSECriterion_updateGradInput_kernel, runs, [('float *', 'gradInput'), ('float *', 'input'), ('float *', 'target'), ('float', 'norm'), ('int', 'nframe'), ('int', 'dim')]"
+  ],
+  "Convolution Kernels": [
+    "14716, 4, conv2genericrev, runs, [('float *', 'input'), ('float *', 'kernel'), ('float *', 'output'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'kernel_n'), ('int', 'kernel_h'), ('int', 'kernel_w'), ('float', 'alpha'), ('int', 'stride_h'), ('int', 'stride_w')]",
+    "14835, 4, conv2genericrev, runs, [('float *', 'input'), ('float *', 'kernel'), ('float *', 'output'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'kernel_n'), ('int', 'kernel_h'), ('int', 'kernel_w'), ('float', 'alpha'), ('int', 'stride_h'), ('int', 'stride_w')]"
+  ],
+  "Random Number Generation Kernels": [
+    "14716, 9, set_rngstate_kernel, runs, [('curandStateMtgp32 *', 'state'), ('mtgp32_kernel_params *', 'kernel')]",
+    "14716, 15, sampleMultinomialWithReplacement, runs, [('curandStateMtgp32 *', 'state'), ('int', 'totalSamples'), ('float *', 'dest'), ('long', 'distributions'), ('int', 'categories'), ('float *', 'normDistPrefixSum')]",
+    "14716, 16, sampleMultinomialWithoutReplacement, runs, [('curandStateMtgp32 *', 'state'), ('int', 'totalSamples'), ('int', 'sample'), ('float *', 'dest'), ('long', 'distributions'), ('int', 'categories'), ('float *', 'origDist'), ('float *', 'normDistPrefixSum')]",
+    "14835, 9, set_rngstate_kernel, runs, [('curandStateMtgp32 *', 'state'), ('mtgp32_kernel_params *', 'kernel')]",
+    "14835, 15, sampleMultinomialWithReplacement, runs, [('curandStateMtgp32 *', 'state'), ('int', 'totalSamples'), ('float *', 'dest'), ('long', 'distributions'), ('int', 'categories'), ('float *', 'normDistPrefixSum')]",
+    "14835, 16, sampleMultinomialWithoutReplacement, runs, [('curandStateMtgp32 *', 'state'), ('int', 'totalSamples'), ('int', 'sample'), ('float *', 'dest'), ('long', 'distributions'), ('int', 'categories'), ('float *', 'origDist'), ('float *', 'normDistPrefixSum')]"
+  ],
+  "Image Processing Kernels": [
+    "1474, 161, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "1474, 220, kTile, runs, [('const float *', 'src'), ('float *', 'tgt'), ('const uint', 'srcWidth'), ('const uint', 'srcHeight'), ('const uint', 'tgtWidth'), ('const uint', 'tgtHeight')]",
+    "1474, 221, kDotProduct_r, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'target'), ('const uint', 'numElements')]",
+    "1474, 227, kLogregCost, runs, [('float *', 'probs'), ('float *', 'labels'), ('float *', 'maxProbs'), ('float *', 'labelLogProbs'), ('float *', 'correctProbs'), ('const int', 'numCases'), ('const int', 'numOut')]",
+    "1474, 333, softmax_gradient_kernel, runs, [('const int', 'dim'), ('const float *', 'Y'), ('const float *', 'dY'), ('float *', 'dX')]",
+    "1474, 338, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "14745, 94, ForwardWarpKernel_PSF2x2, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'normalization_factor'), ('float *', 'dst')]",
+    "14745, 95, ForwardWarpKernel_PSF1x1, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'dst')]",
+    "14745, 96, NormalizeKernel, runs, [('const float *', 'normalization_factor'), ('int', 'w'), ('int', 'h'), ('int', 's'), ('float *', 'image')]",
+    "14745, 97, MemsetKernel, runs, [('const float', 'value'), ('int', 'w'), ('int', 'h'), ('float *', 'image')]",
+    "14745, 164, mergeLocation, runs, [('const short2 *', 'loc_'), ('float *', 'x'), ('float *', 'y'), ('const int', 'npoints'), ('float', 'scale')]",
+    "14809, 95, ForwardWarpKernel_PSF2x2, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'normalization_factor'), ('float *', 'dst')]",
+    "14809, 96, ForwardWarpKernel_PSF1x1, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'dst')]",
+    "14809, 97, NormalizeKernel, runs, [('const float *', 'normalization_factor'), ('int', 'w'), ('int', 'h'), ('int', 's'), ('float *', 'image')]",
+    "14809, 98, MemsetKernel, runs, [('const float', 'value'), ('int', 'w'), ('int', 'h'), ('float *', 'image')]",
+    "14809, 169, mergeLocation, runs, [('const short2 *', 'loc_'), ('float *', 'x'), ('float *', 'y'), ('const int', 'npoints'), ('float', 'scale')]"
+  ],
+  "Reduction Kernels": [
+    "14887, 0, batcherBitonicMergesort64, runs, [('float *', 'd_out'), ('const float *', 'd_in')]",
+    "14887, 1, reduce, runs, [('unsigned int *', 'd_out_shared'), ('const unsigned int *', 'd_in')]",
+    "14887, 34, global_reduce_kernel, runs, [('float *', 'd_out'), ('float *', 'd_in')]",
+    "14887, 35, shmem_reduce_kernel, runs, [('float *', 'd_out'), ('const float *', 'd_in')]",
+    "14977, 0, reduceKernel, runs, [('float *', 'array'), ('const size_t', 'array_size'), ('const unsigned int', 'op'), ('const size_t', 'step')]",
+    "14982, 0, reduce, runs, [('float *', 'g_idata'), ('float *', 'g_odata'), ('unsigned int', 'n')]"
+  ],
+  "Sorting Kernels": [
+    "14768, 2, enumsort, runs, [('int *', 'deva'), ('int *', 'devn')]",
+    "14768, 4, quickSort, runs, [('int *', 'x'), ('int *', 'dfirst'), ('int *', 'dlast'), ('int *', 'list')]",
+    "14931, 31, kTile, runs, [('const float *', 'src'), ('float *', 'tgt'), ('const uint', 'srcWidth'), ('const uint', 'srcHeight'), ('const uint', 'tgtWidth'), ('const uint', 'tgtHeight')]",
+    "14931, 32, kDotProduct_r, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'target'), ('const uint', 'numCols'), ('const uint', 'numElements')]",
+    "14931, 33, kSetupCurand, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]"
+  ],
+  "Utility Kernels": [
+    "14804, 7, emptyKernel, runs, []",
+    "14826, 31, kTile, runs, [('const float *', 'src'), ('float *', 'tgt'), ('const uint', 'srcWidth'), ('const uint', 'srcHeight'), ('const uint', 'tgtWidth'), ('const uint', 'tgtHeight')]",
+    "14826, 32, kDotProduct_r, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'target'), ('const uint', 'numCols'), ('const uint', 'numElements')]",
+    "14826, 33, kSetupCurand, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "14970, 12, mykernel, runs, []",
+    "14970, 26, mykernel, runs, []"
+  ],
+  "Matrix Operations Kernels": [
+    "14888, 0, transGPU, runs, [('const float *', 'inMatrix'), ('float *', 'outMatrix'), ('const size_t', 'row'), ('const size_t', 'column')]",
+    "14888, 1, searchGPU, runs, [('float *', 'data'), ('const float', 'x'), ('int *', 'result')]",
+    "14888, 2, calcIntegralGPU, runs, [('float *', 'array'), ('const float', 'h'), ('const long', 'stepCount'), ('const int', 'threads'), ('const int', 'blocks')]",
+    "14888, 3, multMatrixGPU, runs, [('const float *', 'matrixA'), ('const size_t', 'rowA'), ('const size_t', 'columnA'), ('const float *', 'matrixB'), ('const size_t', 'rowB'), ('const size_t', 'columnB'), ('float *', 'matrixC')]"
+  ],
+  "Kernel Initialization Kernels": [
+    "15, 0, SweHInit, runs, [('double *', 'var_in1'), ('double *', 'var_in2'), ('double *', 'var_out'), ('int', 'size')]",
+    "15, 5, CopyVariable, runs, [('double *', 'var_in'), ('double *', 'var_out'), ('int', 'size')]",
+    "15, 6, TopForcing, runs, [('double', 'ppt'), ('double *', 'eff_rain'), ('int', 'size')]",
+    "15, 7, PondHeadInit, runs, [('double *', 'ph'), ('int', 'size')]",
+    "15, 8, TopBottomBound2D, runs, [('double *', 'Hs'), ('double *', 'Ztopo'), ('double *', 'K2n'), ('double *', 'K2s'), ('int', 'BC2D'), ('int', 'M'), ('int', 'N')]",
+    "15, 9, LeftRightBound2D, runs, [('double *', 'Hs'), ('double *', 'Ztopo'), ('double *', 'K2e'), ('double *', 'K2w'), ('int', 'BC2D'), ('int', 'M'), ('int', 'N')]",
+    "15, 11, GetOutlet, runs, [('double *', 'h'), ('double *', 'houtlet'), ('double *', 'u'), ('double *', 'uout'), ('double *', 'v'), ('double *', 'vout'), ('int', 'M'), ('int', 'N'), ('int', 't')]",
+    "15, 12, getqss, runs, [('double *', 'IN'), ('double *', 'qss'), ('int', 'N'), ('int', 't')]",
+    "15, 13, VarPrint, runs, [('double *', 'Var'), ('int', 'M'), ('int', 'N'), ('int', 'P')]",
+    "15, 14, vanGenuchtenIntial, runs, [('double *', 'theta'), ('double *', 'K'), ('double *', 'Ksat'), ('double *', 'h'), ('int', 'size')]"
+  ]
+}
+```

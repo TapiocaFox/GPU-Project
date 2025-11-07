@@ -1,0 +1,82 @@
+```json
+{
+  "Distance Kernels": [
+    "6630, 1, matrixEuclideanDistanceKernelFast, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'n'), ('int', 'm')]",
+    "6630, 2, matrixEuclideanDistanceKernelFastPartialOut, runs, [('float *', 'in'), ('float *', 'out'), ('int_least64_t', 'n'), ('int_least64_t', 'm'), ('int_least64_t', 'start_out'), ('int_least64_t', 'end_out')]",
+    "6630, 3, matrixEuclideanDistanceKernelFastPartialOut, runs, [('float *', 'in_X'), ('float *', 'in_Y'), ('float *', 'out'), ('int_least64_t', 'n'), ('int_least64_t', 'm'), ('int_least64_t', 'start_out'), ('int_least64_t', 'end_out')]",
+    "6630, 4, matrixEuclideanDistanceKernel, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'n'), ('int', 'm')]"
+  ],
+  "Binary Kernels": [
+    "6562, 24, axpy_kernel, runs, [('int', 'N'), ('float', 'ALPHA'), ('float *', 'X'), ('int', 'OFFX'), ('int', 'INCX'), ('float *', 'Y'), ('int', 'OFFY'), ('int', 'INCY')]",
+    "6562, 25, pow_kernel, runs, [('int', 'N'), ('float', 'ALPHA'), ('float *', 'X'), ('int', 'INCX'), ('float *', 'Y'), ('int', 'INCY')]",
+    "6562, 26, const_kernel, runs, [('int', 'N'), ('float', 'ALPHA'), ('float *', 'X'), ('int', 'INCX')]",
+    "6562, 27, constrain_kernel, runs, [('int', 'N'), ('float', 'ALPHA'), ('float *', 'X'), ('int', 'INCX')]",
+    "6562, 28, supp_kernel, runs, [('int', 'N'), ('float', 'ALPHA'), ('float *', 'X'), ('int', 'INCX')]",
+    "6562, 29, add_kernel, runs, [('int', 'N'), ('float', 'ALPHA'), ('float *', 'X'), ('int', 'INCX')]",
+    "6562, 30, scal_kernel, runs, [('int', 'N'), ('float', 'ALPHA'), ('float *', 'X'), ('int', 'INCX')]",
+    "6562, 31, fill_kernel, runs, [('int', 'N'), ('float', 'ALPHA'), ('float *', 'X'), ('int', 'INCX')]",
+    "6562, 32, copy_kernel, runs, [('int', 'N'), ('float *', 'X'), ('int', 'OFFX'), ('int', 'INCX'), ('float *', 'Y'), ('int', 'OFFY'), ('int', 'INCY')]",
+    "6562, 33, mul_kernel, runs, [('int', 'N'), ('float *', 'X'), ('int', 'INCX'), ('float *', 'Y'), ('int', 'INCY')]"
+  ],
+  "Dot Kernels": [
+    "6562, 12, dot_kernel, runs, [('float *', 'output'), ('float', 'scale'), ('int', 'batch'), ('int', 'n'), ('int', 'size'), ('float *', 'delta')]",
+    "6705, 3, dot, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c')]",
+    "6705, 5, dot, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c')]"
+  ],
+  "Utility Kernels": [
+    "657, 0, hello_from_gpu, runs, []",
+    "657, 1, hello_from_gpu, runs, []",
+    "657, 2, hello_from_gpu, runs, []",
+    "6600, 2, setup_state, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]",
+    "670, 30, hello, runs, []",
+    "670, 34, hello, runs, []"
+  ],
+  "Image Processing Kernels": [
+    "655, 1, img2gray, runs, [('unsigned char *', 'imageInput'), ('int', 'width'), ('int', 'height'), ('unsigned char *', 'imageOutput')]",
+    "6562, 0, binarize_kernel, runs, [('float *', 'x'), ('int', 'n'), ('float *', 'binary')]",
+    "6562, 1, binarize_input_kernel, runs, [('float *', 'input'), ('int', 'n'), ('int', 'size'), ('float *', 'binary')]",
+    "6562, 2, binarize_weights_kernel, runs, [('float *', 'weights'), ('int', 'n'), ('int', 'size'), ('float *', 'binary')]",
+    "6580, 0, transpose_tanh, runs, [('float *', 'odata'), ('float *', 'idata'), ('int', 'width'), ('int', 'height')]",
+    "6580, 1, matrixMultiplyAndTanh, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('float *', 'b'), ('int', 'numARows'), ('int', 'numAColumns'), ('int', 'numBRows'), ('int', 'numBColumns'), ('int', 'numCRows'), ('int', 'numCColumns')]",
+    "6683, 165, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]"
+  ],
+  "Normalization Kernels": [
+    "6562, 14, normalize_kernel, runs, [('int', 'N'), ('float *', 'x'), ('float *', 'mean'), ('float *', 'variance'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial')]",
+    "6562, 15, normalize_delta_kernel, runs, [('int', 'N'), ('float *', 'x'), ('float *', 'mean'), ('float *', 'variance'), ('float *', 'mean_delta'), ('float *', 'variance_delta'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial'), ('float *', 'delta')]",
+    "6562, 16, variance_delta_kernel, runs, [('float *', 'x'), ('float *', 'delta'), ('float *', 'mean'), ('float *', 'variance'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial'), ('float *', 'variance_delta')]"
+  ],
+  "Activation Kernels": [
+    "6580, 32, tanhActivationForward, runs, [('float *', 'Z'), ('float *', 'A'), ('int', 'Z_x_dim'), ('int', 'Z_y_dim')]",
+    "6580, 33, tanhActivationBackprop, runs, [('float *', 'Z'), ('float *', 'dA'), ('float *', 'dZ'), ('int', 'Z_x_dim'), ('int', 'Z_y_dim')]",
+    "6580, 51, reluActivationForward, runs, [('float *', 'Z'), ('float *', 'A'), ('int', 'Z_x_dim'), ('int', 'Z_y_dim')]",
+    "6580, 52, reluActivationBackprop, runs, [('float *', 'Z'), ('float *', 'dA'), ('float *', 'dZ'), ('int', 'Z_x_dim'), ('int', 'Z_y_dim')]",
+    "6580, 50, SigmoidBackKernel, runs, [('float *', 'Z'), ('float *', 'dZ'), ('int', 'size')]"
+  ],
+  "Pooling Kernels": [
+    "6562, 4, forward_avgpool_layer_kernel, runs, [('int', 'n'), ('int', 'w'), ('int', 'h'), ('int', 'c'), ('float *', 'input'), ('float *', 'output')]",
+    "6562, 5, backward_avgpool_layer_kernel, runs, [('int', 'n'), ('int', 'w'), ('int', 'h'), ('int', 'c'), ('float *', 'in_delta'), ('float *', 'out_delta')]",
+    "6562, 59, forward_maxpool_layer_kernel, runs, [('int', 'n'), ('int', 'in_h'), ('int', 'in_w'), ('int', 'in_c'), ('int', 'stride'), ('int', 'size'), ('int', 'pad'), ('float *', 'input'), ('float *', 'output'), ('int *', 'indexes')]",
+    "6562, 60, backward_maxpool_layer_kernel, runs, [('int', 'n'), ('int', 'in_h'), ('int', 'in_w'), ('int', 'in_c'), ('int', 'stride'), ('int', 'size'), ('int', 'pad'), ('float *', 'delta'), ('float *', 'prev_delta'), ('int *', 'indexes')]"
+  ],
+  "Convolution Kernels": [
+    "6565, 19, calcConvolutionForwardPaddedInGPU, runs, [('float *', 'in'), ('float *', 'padded_in'), ('int', 'batch_size'), ('int', 'in_size_x'), ('int', 'in_size_y'), ('int', 'in_size_z'), ('int', 'padding')]",
+    "6565, 20, calcConvolutionForwardGPU, runs, [('float *', 'out'), ('float *', 'padded_in'), ('float *', 'filters'), ('int', 'padded_in_size_x'), ('int', 'padded_in_size_y'), ('int', 'padded_in_size_z'), ('int', 'batch_size'), ('int', 'out_size_x'), ('int', 'out_size_y'), ('int', 'out_size_z'), ('int', 'kernel_size'), ('int', 'stride'), ('int', 'filter_size')]",
+    "6565, 21, calcConvolutionUpdateWeightsGPU, runs, [('float *', 'filters'), ('float *', 'filter_grads'), ('int', 'in_size_z'), ('int', 'number_filters'), ('int', 'kernel_size'), ('float', 'momentum'), ('float', 'decay'), ('float', 'learning_rate'), ('int', 'elements')]"
+  ],
+  "Weight Update Kernels": [
+    "6565, 10, calcDenseUpdateWeightsGPU, runs, [('float *', 'weights'), ('float *', 'biases'), ('float *', 'gradients'), ('float *', 'dW'), ('float *', 'dB'), ('int', 'batch_size'), ('int', 'in_size_x'), ('int', 'in_size_y'), ('int', 'in_size_z'), ('int', 'out_size_x'), ('int', 'out_size_y'), ('int', 'out_size_z'), ('float', 'learning_rate'), ('float', 'momentum')]",
+    "6565, 11, calcDenseBackwardGPU, runs, [('float *', 'dz_in'), ('float *', 'dz'), ('float *', 'in'), ('float *', 'weights'), ('float *', 'biases'), ('float *', 'gradients'), ('float *', 'dW'), ('float *', 'dB'), ('int', 'batch_size'), ('int', 'in_size_x'), ('int', 'in_size_y'), ('int', 'in_size_z'), ('int', 'out_size_x'), ('int', 'out_size_y'), ('int', 'out_size_z'), ('float', 'momentum'), ('float', 'decay')]"
+  ],
+  "Debug Kernels": [
+    "6597, 204, cuda_debug_kernel, runs, []"
+  ],
+  "Hashing Kernels": [
+    "6704, 5, quark_filter_gpu_sm2, runs, [('const uint32_t', 'threads'), ('const uint32_t *', 'd_hash'), ('uint32_t *', 'd_branch2'), ('uint32_t *', 'd_NonceBranch')]",
+    "6704, 19, lyra2Z_gpu_hash_32_sm2, runs, [('uint32_t', 'threads'), ('uint32_t', 'startNounce'), ('uint64_t *', 'g_hash'), ('uint32_t *', 'resNonces')]",
+    "6704, 21, lyra2Z_gpu_hash_32_2, runs, [('uint32_t', 'threads'), ('uint32_t', 'startNounce'), ('uint64_t *', 'g_hash')]",
+    "6704, 22, lyra2Z_gpu_hash_32_3, runs, [('uint32_t', 'threads'), ('uint32_t', 'startNounce'), ('uint2 *', 'g_hash'), ('uint32_t *', 'resNonces')]",
+    "6704, 26, lyra2_gpu_hash_32_2, runs, [('uint32_t', 'threads'), ('uint32_t', 'startNounce'), ('uint64_t *', 'g_hash')]",
+    "6704, 27, lyra2_gpu_hash_32_3, runs, [('uint32_t', 'threads'), ('uint32_t', 'startNounce'), ('uint2 *', 'g_hash')]"
+  ]
+}
+```

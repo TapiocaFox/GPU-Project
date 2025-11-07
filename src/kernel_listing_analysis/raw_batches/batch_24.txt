@@ -1,0 +1,102 @@
+```json
+{
+  "Distance Kernels": [
+    "161, 6, canberra_kernel, runs, [('const float *', 'vg_a'), ('size_t', 'pitch_a'), ('size_t', 'n_a'), ('const float *', 'vg_b'), ('size_t', 'pitch_b'), ('size_t', 'n_b'), ('size_t', 'k'), ('float *', 'd'), ('size_t', 'pitch_d'), ('float', 'p')]",
+    "161, 10, minkowski_kernel, runs, [('const float *', 'vg_a'), ('size_t', 'pitch_a'), ('size_t', 'n_a'), ('const float *', 'vg_b'), ('size_t', 'pitch_b'), ('size_t', 'n_b'), ('size_t', 'k'), ('float *', 'd'), ('size_t', 'pitch_d'), ('float', 'p')]",
+    "161, 12, dot_kernel, runs, [('const float *', 'vg_a'), ('size_t', 'pitch_a'), ('size_t', 'n_a'), ('const float *', 'vg_b'), ('size_t', 'pitch_b'), ('size_t', 'n_b'), ('size_t', 'k'), ('float *', 'd'), ('size_t', 'pitch_d'), ('float', 'p')]",
+    "161, 19, gpuKendall, runs, [('const float *', 'a'), ('size_t', 'na'), ('const float *', 'b'), ('size_t', 'nb'), ('size_t', 'sampleSize'), ('double *', 'results')]",
+    "161, 36, gpuMeans, runs, [('const float *', 'vectsA'), ('size_t', 'na'), ('const float *', 'vectsB'), ('size_t', 'nb'), ('size_t', 'dim'), ('float *', 'means'), ('float *', 'numPairs')]",
+    "161, 37, gpuSD, runs, [('const float *', 'vectsA'), ('size_t', 'na'), ('const float *', 'vectsB'), ('size_t', 'nb'), ('size_t', 'dim'), ('const float *', 'means'), ('const float *', 'numPairs'), ('float *', 'sds')]",
+    "161, 38, gpuPMCC, runs, [('const float *', 'vectsa'), ('size_t', 'na'), ('const float *', 'vectsb'), ('size_t', 'nb'), ('size_t', 'dim'), ('const float *', 'numPairs'), ('const float *', 'means'), ('const float *', 'sds'), ('float *', 'correlations')]"
+  ],
+  "Binary Kernels": [
+    "161, 8, binary_kernel, runs, [('const float *', 'vg_a'), ('size_t', 'pitch_a'), ('size_t', 'n_a'), ('const float *', 'vg_b'), ('size_t', 'pitch_b'), ('size_t', 'n_b'), ('size_t', 'k'), ('float *', 'd'), ('size_t', 'pitch_d'), ('float', 'p')]",
+    "161, 9, binary_kernel_same, runs, [('const float *', 'vg_a'), ('size_t', 'pitch_a'), ('size_t', 'n_a'), ('const float *', 'vg_b'), ('size_t', 'pitch_b'), ('size_t', 'n_b'), ('size_t', 'k'), ('float *', 'd'), ('size_t', 'pitch_d'), ('float', 'p')]"
+  ],
+  "Dot Kernels": [
+    "161, 12, dot_kernel, runs, [('const float *', 'vg_a'), ('size_t', 'pitch_a'), ('size_t', 'n_a'), ('const float *', 'vg_b'), ('size_t', 'pitch_b'), ('size_t', 'n_b'), ('size_t', 'k'), ('float *', 'd'), ('size_t', 'pitch_d'), ('float', 'p')]",
+    "161, 13, dot_kernel_same, runs, [('const float *', 'vg_a'), ('size_t', 'pitch_a'), ('size_t', 'n_a'), ('const float *', 'vg_b'), ('size_t', 'pitch_b'), ('size_t', 'n_b'), ('size_t', 'k'), ('float *', 'd'), ('size_t', 'pitch_d'), ('float', 'p')]"
+  ],
+  "Utility Kernels": [
+    "161, 14, getColNorms, runs, [('int', 'rows'), ('int', 'cols'), ('float *', 'da'), ('int', 'lda'), ('float *', 'colNorms')]",
+    "161, 15, gpuFindMax, runs, [('int', 'n'), ('float *', 'data'), ('int', 'threadWorkLoad'), ('int *', 'maxIndex')]",
+    "161, 16, gpuSwapCol, runs, [('int', 'rows'), ('float *', 'dArray'), ('int', 'coli'), ('int *', 'dColj'), ('int *', 'dPivot')]",
+    "161, 17, makeHVector, runs, [('int', 'rows'), ('float *', 'input'), ('float *', 'output')]",
+    "161, 18, UpdateHHNorms, runs, [('int', 'cols'), ('float *', 'dV'), ('float *', 'dNorms')]",
+    "161, 20, getRestricted, runs, [('int', 'countx'), ('int', 'county'), ('int', 'rows'), ('int', 'cols'), ('float *', 'mX'), ('int', 'mXdim'), ('float *', 'vY'), ('int', 'vYdim'), ('float *', 'mQ'), ('int', 'mQdim'), ('float *', 'mR'), ('int', 'mRdim'), ('float *', 'vectB'), ('int', 'vectBdim')]",
+    "161, 21, getUnrestricted, runs, [('int', 'countx'), ('int', 'county'), ('int', 'rows'), ('int', 'cols'), ('float *', 'mX'), ('int', 'mXdim'), ('float *', 'vY'), ('int', 'vYdim'), ('float *', 'mQ'), ('int', 'mQdim'), ('float *', 'mR'), ('int', 'mRdim'), ('float *', 'vectB'), ('int', 'vectBdim')]",
+    "161, 22, ftest, runs, [('int', 'diagFlag'), ('int', 'p'), ('int', 'rows'), ('int', 'colsx'), ('int', 'colsy'), ('int', 'rCols'), ('int', 'unrCols'), ('float *', 'obs'), ('int', 'obsDim'), ('float *', 'rCoeffs'), ('int', 'rCoeffsDim'), ('float *', 'unrCoeffs'), ('int', 'unrCoeffsDim'), ('float *', 'rdata'), ('int', 'rdataDim'), ('float *', 'unrdata'), ('int', 'unrdataDim'), ('float *', 'dfStats')]"
+  ],
+  "Reduction Kernels": [
+    "1610, 3, SumReduction, runs, [('int *', 'input'), ('int', 'n')]",
+    "1620, 0, reduce1, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('int', 'g_size')]",
+    "1620, 1, reduce2, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('int', 'g_size')]",
+    "1620, 2, reduce3, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('int', 'g_size')]",
+    "1620, 3, reduce4, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('int', 'g_size')]",
+    "1620, 4, reduce5, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('int', 'g_size')]"
+  ],
+  "Activation Functions": [
+    "16102, 93, relu_gpu_forward, runs, [('float *', 'out'), ('float *', 'in'), ('int64_t', 'N')]",
+    "16102, 94, relu_gpu_backward, runs, [('float *', 'ingrad'), ('float *', 'outgrad'), ('float *', 'indata'), ('int64_t', 'N')]",
+    "16151, 89, relu_gpu_forward, runs, [('float *', 'out'), ('float *', 'in'), ('int64_t', 'N')]",
+    "16151, 90, relu_gpu_backward, runs, [('float *', 'ingrad'), ('float *', 'outgrad'), ('float *', 'indata'), ('int64_t', 'N')]",
+    "16159, 89, relu_gpu_forward, runs, [('float *', 'out'), ('float *', 'in'), ('int64_t', 'N')]",
+    "16159, 90, relu_gpu_backward, runs, [('float *', 'ingrad'), ('float *', 'outgrad'), ('float *', 'indata'), ('int64_t', 'N')]"
+  ],
+  "Matrix Operations": [
+    "1614, 0, NmDistanceKernel, runs, [('int', 'b'), ('int', 'n'), ('const float *', 'xyz'), ('int', 'm'), ('const float *', 'xyz2'), ('float *', 'result'), ('int *', 'result_i')]",
+    "1614, 1, NmDistanceGradKernel, runs, [('int', 'b'), ('int', 'n'), ('const float *', 'xyz1'), ('int', 'm'), ('const float *', 'xyz2'), ('const float *', 'grad_dist1'), ('const int *', 'idx1'), ('float *', 'grad_xyz1'), ('float *', 'grad_xyz2')]",
+    "16252, 3, MatrixMultiplication__CudaKernel, runs, [('int *', 'in_tabA'), ('int *', 'in_tabB'), ('int *', 'out_tabC'), ('int', 'outTabWidth')]"
+  ],
+  "Image Processing Kernels": [
+    "1633, 4, absoluteDifferenceCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "1633, 5, bitwiseAndCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "1633, 6, bitwiseOrCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "1633, 7, bitwiseXorCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "1633, 10, copyCuda, runs, [('const uint8_t *', 'in'), ('uint32_t', 'rowSizeIn'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "1633, 13, flipCuda, runs, [('const uint8_t *', 'in'), ('uint32_t', 'rowSizeIn'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height'), ('bool', 'horizontal'), ('bool', 'vertical')]",
+    "1633, 14, histogramCuda, runs, [('const uint8_t *', 'data'), ('uint32_t', 'rowSize'), ('uint32_t', 'width'), ('uint32_t', 'height'), ('uint32_t *', 'histogram')]",
+    "1633, 15, invertCuda, runs, [('const uint8_t *', 'in'), ('uint32_t', 'rowSizeIn'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "1633, 16, isEqualCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint32_t', 'width'), ('uint32_t', 'height'), ('uint32_t *', 'isEqual')]",
+    "1633, 17, lookupTableCuda, runs, [('const uint8_t *', 'in'), ('uint32_t', 'rowSizeIn'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height'), ('uint8_t *', 'table')]",
+    "1633, 18, maximumCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "1633, 19, minimumCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "1633, 20, projectionProfileHorizontalCuda, runs, [('const uint8_t *', 'image'), ('uint32_t', 'rowSize'), ('uint32_t', 'width'), ('uint32_t', 'height'), ('uint32_t *', 'projection')]",
+    "1633, 21, projectionProfileVerticalCuda, runs, [('const uint8_t *', 'image'), ('uint32_t', 'rowSize'), ('uint32_t', 'width'), ('uint32_t', 'height'), ('uint32_t *', 'projection')]",
+    "1633, 22, rotateCuda, runs, [('const uint8_t *', 'in'), ('uint32_t', 'rowSizeIn'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('float', 'inXStart'), ('float', 'inYStart'), ('uint32_t', 'width'), ('uint32_t', 'height'), ('float', 'cosAngle'), ('float', 'sinAngle')]",
+    "1633, 24, setPixelCuda, runs, [('uint8_t *', 'in'), ('uint32_t', 'rowSize'), ('uint32_t', 'width'), ('uint32_t', 'height'), ('uint32_t *', 'pointX'), ('uint32_t *', 'pointY'), ('uint32_t', 'pointSize'), ('uint32_t', 'value')]",
+    "1633, 25, subtractCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "1633, 29, isAnyEqualCuda, runs, [('const uint8_t *', 'image'), ('uint8_t *', 'value'), ('size_t', 'valueCount'), ('uint32_t', 'width'), ('uint32_t', 'height'), ('uint32_t *', 'differenceCount')]"
+  ],
+  "Kernel Testing": [
+    "16178, 0, hello_world, runs, []",
+    "162, 6, entrySearch_max_int_kernel, runs, [('int *', 'g_iarr'), ('int *', 'g_maxarr'), ('int', 'size')]",
+    "162, 205, init, runs, [('int *', 'vector'), ('int', 'N'), ('int', 'val')]",
+    "162, 208, bin_start, runs, [('int *', 'binStart'), ('int *', 'binEnd'), ('int *', 'partBin'), ('int', 'nparts')]",
+    "16322, 0, test, runs, []"
+  ],
+  "Kernel Examples": [
+    "16114, 0, kernel_example, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]",
+    "16117, 0, kernel, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "16117, 1, kernel, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "16117, 2, kernel, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "16117, 9, kernel, runs, []",
+    "16117, 10, add, runs, [('int', 'a'), ('int', 'b'), ('int *', 'c')]",
+    "16117, 11, add, runs, [('int', 'a'), ('int', 'b'), ('int *', 'c')]",
+    "16117, 15, kernel, runs, [('uchar4 *', 'ptr'), ('int', 'ticks')]",
+    "16117, 16, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "16117, 18, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "16117, 19, histo_kernel, runs, [('unsigned char *', 'buffer'), ('long', 'size'), ('unsigned int *', 'histo')]",
+    "16117, 20, histo_kernel, runs, [('unsigned char *', 'buffer'), ('long', 'size'), ('unsigned int *', 'histo')]",
+    "16117, 21, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "16117, 22, dot, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c')]",
+    "16117, 23, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "16117, 25, kernel, runs, [('unsigned char *', 'ptr'), ('int', 'ticks')]",
+    "16117, 28, dot, runs, [('int', 'size'), ('float *', 'a'), ('float *', 'b'), ('float *', 'c')]",
+    "16117, 29, dot, runs, [('int', 'size'), ('float *', 'a'), ('float *', 'b'), ('float *', 'c')]",
+    "16117, 30, dot, runs, [('int', 'size'), ('float *', 'a'), ('float *', 'b'), ('float *', 'c')]",
+    "16117, 31, add, runs, [('int', 'a'), ('int', 'b'), ('int *', 'c')]",
+    "16117, 33, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]"
+  ]
+}
+```

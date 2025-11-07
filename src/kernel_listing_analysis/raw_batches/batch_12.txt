@@ -1,0 +1,124 @@
+```json
+{
+  "Warp Kernels": [
+    "12705, 94, ForwardWarpKernel_PSF2x2, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'normalization_factor'), ('float *', 'dst')]",
+    "12705, 95, ForwardWarpKernel_PSF1x1, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'dst')]",
+    "12722, 94, ForwardWarpKernel_PSF2x2, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'normalization_factor'), ('float *', 'dst')]",
+    "12722, 95, ForwardWarpKernel_PSF1x1, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'dst')]",
+    "12757, 96, ForwardWarpKernel_PSF2x2, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'normalization_factor'), ('float *', 'dst')]",
+    "12757, 97, ForwardWarpKernel_PSF1x1, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'dst')]",
+    "12837, 95, ForwardWarpKernel_PSF2x2, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'normalization_factor'), ('float *', 'dst')]",
+    "12837, 96, ForwardWarpKernel_PSF1x1, runs, [('const float *', 'u'), ('const float *', 'v'), ('const float *', 'src'), ('const int', 'w'), ('const int', 'h'), ('const int', 'flow_stride'), ('const int', 'image_stride'), ('const float', 'time_scale'), ('float *', 'dst')]"
+  ],
+  "Normalization Kernels": [
+    "12705, 96, NormalizeKernel, runs, [('const float *', 'normalization_factor'), ('int', 'w'), ('int', 'h'), ('int', 's'), ('float *', 'image')]",
+    "12722, 96, NormalizeKernel, runs, [('const float *', 'normalization_factor'), ('int', 'w'), ('int', 'h'), ('int', 's'), ('float *', 'image')]",
+    "12757, 98, NormalizeKernel, runs, [('const float *', 'normalization_factor'), ('int', 'w'), ('int', 'h'), ('int', 's'), ('float *', 'image')]",
+    "12906, 98, NormalizeKernel, runs, [('const float *', 'normalization_factor'), ('int', 'w'), ('int', 'h'), ('int', 's'), ('float *', 'image')]"
+  ],
+  "Memory Management Kernels": [
+    "12705, 97, MemsetKernel, runs, [('const float', 'value'), ('int', 'w'), ('int', 'h'), ('float *', 'image')]",
+    "12722, 97, MemsetKernel, runs, [('const float', 'value'), ('int', 'w'), ('int', 'h'), ('float *', 'image')]",
+    "12757, 99, MemsetKernel, runs, [('const float', 'value'), ('int', 'w'), ('int', 'h'), ('float *', 'image')]",
+    "12906, 99, MemsetKernel, runs, [('const float', 'value'), ('int', 'w'), ('int', 'h'), ('float *', 'image')]"
+  ],
+  "Matrix Multiplication Kernels": [
+    "12709, 0, matMul_CUDA_double, runs, [('double *', 'sum'), ('int', 'size'), ('double *', 'vector1'), ('double *', 'vector2')]",
+    "12709, 1, matMul_CUDA_float, runs, [('float *', 'sum'), ('int', 'size'), ('float *', 'vector1'), ('float *', 'vector2')]",
+    "12782, 1, KernelMM, runs, [('int', 'N'), ('int', 'M'), ('int', 'P'), ('float *', 'A'), ('float *', 'B'), ('float *', 'C')]",
+    "12782, 2, KernelMM, runs, [('int', 'N'), ('int', 'M'), ('int', 'P'), ('float *', 'A'), ('float *', 'B'), ('float *', 'C')]",
+    "12782, 3, KernelMM, runs, [('int', 'N'), ('int', 'M'), ('int', 'P'), ('float *', 'A'), ('float *', 'B'), ('float *', 'C')]",
+    "12828, 2, matrixMultiply, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('int', 'n')]",
+    "12917, 0, matrixMultiplicationKernel, runs, [('long *', 'A'), ('long *', 'B'), ('long *', 'C'), ('long', 'N')]"
+  ],
+  "Reduction Kernels": [
+    "12708, 1, oneReduction, runs, [('int *', 'tab'), ('int', 'len'), ('int', 'mod')]",
+    "12709, 3, cal_pi, runs, [('float *', 'sum'), ('int', 'nbin'), ('float', 'step'), ('int', 'nthreads'), ('int', 'nblocks')]",
+    "12709, 15, cal_pi, runs, [('float *', 'sum'), ('int', 'nbin'), ('float', 'step'), ('int', 'nthreads'), ('int', 'nblocks')]",
+    "12709, 16, cal_pi_d, runs, [('double *', 'sum'), ('int', 'nbin'), ('double', 'step'), ('int', 'nthreads'), ('int', 'nBLOCKS')]",
+    "12709, 20, cal_pi_d, runs, [('double *', 'sum'), ('int', 'nbin'), ('double', 'step'), ('int', 'nthreads'), ('int', 'nBLOCKS')]",
+    "12741, 44, cunn_TemporalMaxPooling_updateGradInputKernel, runs, [('float *', 'gradInput'), ('float *', 'gradOutput'), ('float *', 'indices'), ('int', 'input_w'), ('int', 'input_n'), ('int', 'output_w'), ('int', 'kW'), ('int', 'dW')]",
+    "12741, 45, cunn_TemporalMaxPooling_updateGradInputKernelAtomic, runs, [('float *', 'gradInput'), ('float *', 'gradOutput'), ('float *', 'indices'), ('int', 'input_w'), ('int', 'input_n'), ('int', 'output_w'), ('int', 'kW'), ('int', 'dW')]"
+  ],
+  "Image Processing Kernels": [
+    "1278, 0, imageBlur, runs, [('float *', 'input'), ('float *', 'output'), ('int', 'width'), ('int', 'height')]",
+    "1278, 1, sobelFilter, runs, [('float *', 'input'), ('float *', 'output'), ('int', 'width'), ('int', 'height')]",
+    "12922, 0, calc_histogram, runs, [('int *', 'hist_out'), ('unsigned char *', 'img_in'), ('int', 'img_size'), ('int', 'nbr_bin')]",
+    "12922, 1, calc_lut, runs, [('int *', 'lut'), ('int *', 'hist_in'), ('int', 'img_size'), ('int', 'nbr_bin')]",
+    "12922, 2, calc_output, runs, [('unsigned char *', 'img_out'), ('unsigned char *', 'img_in'), ('int *', 'lut'), ('int', 'img_size')]",
+    "12922, 3, calc_histogram, runs, [('int *', 'hist_out'), ('unsigned char *', 'img_in'), ('int', 'img_size'), ('int', 'nbr_bin')]",
+    "12922, 4, calc_lut, runs, [('int *', 'lut'), ('int *', 'hist_in'), ('int', 'img_size'), ('int', 'nbr_bin')]",
+    "12922, 5, calc_output, runs, [('unsigned char *', 'img_out'), ('unsigned char *', 'img_in'), ('int *', 'lut'), ('int', 'img_size')]",
+    "12922, 8, calc_output, runs, [('unsigned char *', 'img_out'), ('unsigned char *', 'img_in'), ('int *', 'lut'), ('int', 'img_size')]"
+  ],
+  "Utility Kernels": [
+    "12708, 0, init, runs, [('int *', 'tab'), ('int', 'len')]",
+    "12764, 1, kernelSetDoubleBuffer, runs, [('float *', 'gpuBuffPtr'), ('float', 'v'), ('size_t', 'size')]",
+    "12764, 2, kernelProcessEventsBatchAsync, runs, [('uint8_t *', 'gpuEventsX'), ('uint8_t *', 'gpuEventsY'), ('int', 'gpuEventListSize'), ('float *', 'gpuFilter'), ('int', 'fsx'), ('int', 'fsy'), ('int', 'fsz'), ('float *', 'gpuBuffer'), ('int', 'ringBufferIdx'), ('int', 'bsx'), ('int', 'bsy'), ('int', 'bsz'), ('int', 'fs_xy'), ('int', 'fn')]",
+    "12764, 3, kernelReadMotionEnergyAsync, runs, [('float *', 'gpuConvBufferl1'), ('float *', 'gpuConvBufferl2'), ('int', 'ringBufferIdx'), ('int', 'bsx'), ('int', 'bsy'), ('int', 'n'), ('float *', 'gpuEnergyBuffer')]",
+    "12764, 4, kernelNormalizeMotionEnergyAsync, runs, [('int', 'bsx'), ('int', 'bsy'), ('int', 'n'), ('float', 'alphaPNorm'), ('float', 'alphaQNorm'), ('float', 'betaNorm'), ('float', 'sigmaNorm'), ('float *', 'gpuEnergyBuffer')]"
+  ],
+  "Sorting Kernels": [
+    "12746, 0, sortRows, runs, [('int *', 'image'), ('int', 'imageHeight'), ('int', 'imageWidth'), ('int', 'colorMode')]",
+    "12746, 1, optimizedSortRows, runs, [('int *', 'image'), ('int', 'imageHeight'), ('int', 'imageWidth'), ('int', 'colorMode')]",
+    "12941, 1, bitonicSort2, runs, [('int *', 'inputArray'), ('const unsigned int', 'stage'), ('const unsigned int', 'passOfStage'), ('const unsigned int', 'width')]",
+    "12941, 2, bitonic_sort_step, runs, [('unsigned int *', 'dev_values'), ('int', 'j'), ('int', 'k')]"
+  ],
+  "Convolution Kernels": [
+    "12885, 5, conv2genericrev, runs, [('float *', 'input'), ('float *', 'kernel'), ('float *', 'output'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'kernel_n'), ('int', 'kernel_h'), ('int', 'kernel_w'), ('float', 'alpha'), ('int', 'stride_h'), ('int', 'stride_w')]"
+  ],
+  "Sampling Kernels": [
+    "12709, 2, gpu_monte_carlo, runs, [('float *', 'estimate'), ('curandState *', 'states')]",
+    "12709, 5, gpu_monte_carlo, runs, [('float *', 'estimate'), ('curandState *', 'states')]",
+    "12709, 6, gpu_monte_carlo_d, runs, [('double *', 'estimate'), ('curandState *', 'states')]",
+    "12709, 7, gpu_monte_carlo, runs, [('float *', 'estimate'), ('curandState *', 'states')]",
+    "12709, 8, gpu_monte_carlo_d, runs, [('double *', 'estimate'), ('curandState *', 'states')]",
+    "12709, 9, gpu_monte_carlo, runs, [('float *', 'estimate'), ('curandState *', 'states')]",
+    "12709, 10, gpu_monte_carlo_d, runs, [('double *', 'estimate'), ('curandState *', 'states')]",
+    "12709, 13, gpu_monte_carlo_curand, runs, [('float *', 'estimate'), ('curandState *', 'states')]",
+    "12709, 14, gpu_monte_carlo_curand_d, runs, [('double *', 'estimate'), ('curandState *', 'states')]",
+    "12756, 8, randomNumbering, runs, [('curandState *', 'globalState'), ('int *', 'degreeCount'), ('int', 'n'), ('int', 'limit')]",
+    "12756, 11, randomColouring, runs, [('curandState *', 'globalState'), ('int *', 'degreeCount'), ('int', 'n'), ('int', 'limit')]",
+    "12756, 16, randomNumbering, runs, [('curandState *', 'globalState'), ('int *', 'degreeCount'), ('int', 'n'), ('int', 'limit')]",
+    "12756, 20, randomColouring, runs, [('curandState *', 'globalState'), ('int *', 'degreeCount'), ('int', 'n'), ('int', 'limit')]",
+    "12756, 25, randomNumbering, runs, [('curandState *', 'globalState'), ('int *', 'degreeCount'), ('int', 'n'), ('int', 'limit')]",
+    "12756, 29, randomNumbering, runs, [('curandState *', 'globalState'), ('int *', 'degreeCount'), ('int', 'n'), ('int', 'limit')]",
+    "12756, 34, randomNumbering, runs, [('curandState *', 'globalState'), ('int *', 'degreeCount'), ('int', 'n'), ('int', 'limit')]",
+    "12756, 39, randomNumbering, runs, [('curandState *', 'globalState'), ('int *', 'degreeCount'), ('int', 'n'), ('int', 'limit')]",
+    "12756, 44, randomNumbering, runs, [('curandState *', 'globalState'), ('int *', 'degreeCount'), ('int', 'n'), ('int', 'limit')]",
+    "12756, 49, randomNumbering, runs, [('curandState *', 'globalState'), ('int *', 'degreeCount'), ('int', 'n'), ('int', 'limit')]",
+    "12756, 54, randomNumbering, runs, [('curandState *', 'globalState'), ('int *', 'degreeCount'), ('int', 'n'), ('int', 'limit')]",
+    "12756, 59, randomNumbering, runs, [('curandState *', 'globalState'), ('int *', 'degreeCount'), ('int', 'n'), ('int', 'limit')]",
+    "12756, 64, randomNumbering, runs, [('curandState *', 'globalState'), ('int *', 'degreeCount'), ('int', 'n'), ('int', 'limit')]"
+  ],
+  "Gradient Kernels": [
+    "12776, 6, Ecalc2, runs, [('float *', 'out'), ('const float *', 'label')]",
+    "12776, 8, Bprop2, runs, [('const float *', 'layer1'), ('float *', 'dsyn2'), ('const float *', 'out'), ('const float', 'alpha')]",
+    "12776, 10, Bprop1, runs, [('const float *', 'in'), ('float *', 'dsyn1'), ('const float *', 'dlayer1'), ('const float', 'alpha')]",
+    "12776, 17, Bprop2, runs, [('const float *', 'layer1'), ('float *', 'dsyn2'), ('const float *', 'out'), ('const int', 'count'), ('const float', 'alpha')]",
+    "12776, 31, BpropH, runs, [('const float *', 'layer1'), ('float *', 'dlayer1'), ('const float *', 'synH'), ('float *', 'dsynH'), ('const float', 'alpha'), ('const int', 'offset')]"
+  ],
+  "Miscellaneous Kernels": [
+    "12708, 3, oneMove, runs, [('int *', 'tab'), ('int', 'dist'), ('int', 'pow'), ('int', 'blocksPerTask'), ('int', 'period')]",
+    "12708, 4, prefixSum, runs, [('int *', 'input_T'), ('int *', 'prefix_T'), ('int *', 'prefix_helper_T'), ('int', 'n'), ('int', 'k'), ('int', 'blockPower')]",
+    "12708, 5, replace, runs, [('int *', 'input_T'), ('int *', 'output_T'), ('int *', 'prefix_T'), ('int *', 'prefix_helper_T'), ('int', 'n'), ('int', 'k'), ('int', 'blockPower')]",
+    "12741, 8, upscale, runs, [('float *', 'input'), ('float *', 'output'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "12741, 9, downscale, runs, [('float *', 'gradInput_data'), ('float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "12741, 23, subsample, runs, [('float *', 'input'), ('float *', 'output'), ('float *', 'weight'), ('float *', 'bias'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'kH'), ('int', 'kW'), ('int', 'dH'), ('int', 'dW')]",
+    "12741, 25, subgradinput, runs, [('float *', 'gradInput'), ('float *', 'gradOutput'), ('float *', 'weight'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'kH'), ('int', 'kW'), ('int', 'dH'), ('int', 'dW')]",
+    "12741, 26, subgradinputAtomic, runs, [('float *', 'gradInput'), ('float *', 'gradOutput'), ('float *', 'weight'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'kH'), ('int', 'kW'), ('int', 'dH'), ('int', 'dW')]",
+    "12741, 44, cunn_TemporalMaxPooling_updateGradInputKernel, runs, [('float *', 'gradInput'), ('float *', 'gradOutput'), ('float *', 'indices'), ('int', 'input_w'), ('int', 'input_n'), ('int', 'output_w'), ('int', 'kW'), ('int', 'dW')]",
+    "12741, 45, cunn_TemporalMaxPooling_updateGradInputKernelAtomic, runs, [('float *', 'gradInput'), ('float *', 'gradOutput'), ('float *', 'indices'), ('int', 'input_w'), ('int', 'input_n'), ('int', 'output_w'), ('int', 'kW'), ('int', 'dW')]",
+    "12741, 49, adaptivemaxgradinput, runs, [('float *', 'gradInput'), ('float *', 'gradOutput'), ('float *', 'indices_x'), ('float *', 'indices_y'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'output_h'), ('int', 'output_w')]",
+    "12741, 50, atomicadaptivemaxgradinput, runs, [('float *', 'gradInput'), ('float *', 'gradOutput'), ('float *', 'indices_x'), ('float *', 'indices_y'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'output_h'), ('int', 'output_w')]",
+    "12741, 52, cunn_LookupTable_accGradParametersKernel, runs, [('float *', 'input'), ('float *', 'indices'), ('float *', 'gradOutput'), ('float *', 'gradWeight'), ('float *', 'count'), ('float', 'defaultScale'), ('long', 'numel'), ('long', 'stride'), ('int', 'paddingValue')]",
+    "12862, 0, generateData, runs, [('int', 'dimension'), ('int', 'rseed'), ('double *', 'rotation'), ('int', 'number_of_peaks'), ('double *', 'peak_values'), ('double *', 'x_local'), ('double *', 'arr_scales')]",
+    "12862, 14, kernelUpdateParticle, runs, [('double *', 'positions'), ('double *', 'velocities'), ('double *', 'pBests'), ('double *', 'gBest'), ('int', 'particlesCount'), ('int', 'dimensionsCount'), ('double', 'r1'), ('double', 'r2')]",
+    "12862, 20, kernelUpdateParticle, runs, [('double *', 'positions'), ('double *', 'velocities'), ('double *', 'pBests'), ('double *', 'gBest'), ('int', 'particlesCount'), ('int', 'dimensionsCount'), ('double', 'r1'), ('double', 'r2')]",
+    "12862, 26, kernelUpdateParticle, runs, [('double *', 'positions'), ('double *', 'velocities'), ('double *', 'pBests'), ('double *', 'gBest'), ('int', 'particlesCount'), ('int', 'dimensionsCount'), ('double', 'r1'), ('double', 'r2')]",
+    "12864, 0, square_array, runs, [('float *', 'a'), ('int', 'N')]",
+    "12867, 5, vectorAddGPU, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('int', 'N')]",
+    "12867, 11, vectorAddGPU, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('int', 'N')]"
+  ]
+}
+```

@@ -1,0 +1,130 @@
+```json
+{
+  "Matrix Multiplication Kernels": [
+    "5299, 17, MatrixMulKernel, runs, [('float *', 'M'), ('float *', 'N'), ('float *', 'P'), ('int', 'Width')]",
+    "5299, 18, MatrixMulKernel, runs, [('float *', 'M'), ('float *', 'N'), ('float *', 'P'), ('int', 'Width')]",
+    "5339, 10, matrix_multiply_kernel, runs, [('double *', 'matrix'), ('double *', 'vector_in'), ('double *', 'vector_out'), ('long', 'dim_mn')]",
+    "5351, 10, matrix_multiply_kernel, runs, [('double *', 'matrix'), ('double *', 'vector_in'), ('double *', 'vector_out'), ('long', 'dim_mn')]"
+  ],
+  "Array Manipulation Kernels": [
+    "5313, 0, square_array, runs, [('float *', 'a'), ('int', 'N')]",
+    "5339, 0, simple_add, runs, [('float *', 'a'), ('float *', 'b'), ('int', 'n')]",
+    "5351, 0, simple_add, runs, [('float *', 'a'), ('float *', 'b'), ('int', 'n')]",
+    "536, 0, addKernel, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]",
+    "5415, 0, addKernel, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]",
+    "5500, 0, addKernel, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]"
+  ],
+  "Reduction Kernels": [
+    "5339, 4, reduction, runs, [('int *', 'input'), ('int *', 'output')]",
+    "5351, 4, reduction, runs, [('int *', 'input'), ('int *', 'output')]",
+    "5391, 2, normalize_cdf, runs, [('unsigned int *', 'd_input_cdf'), ('float *', 'd_output_cdf'), ('int', 'n')]",
+    "55, 6, normalize_cdf, runs, [('unsigned int *', 'd_input_cdf'), ('float *', 'd_output_cdf'), ('int', 'n')]",
+    "55, 20, global_reduce_kernel, runs, [('float *', 'd_out'), ('float *', 'd_in')]",
+    "55, 21, shmem_reduce_kernel, runs, [('float *', 'd_out'), ('const float *', 'd_in')]"
+  ],
+  "Distance Kernels": [
+    "5433, 14, cuComputeDistanceGlobal, runs, [('float *', 'A'), ('int', 'wA'), ('float *', 'B'), ('int', 'wB'), ('int', 'dim'), ('float *', 'AB')]"
+  ],
+  "Image Processing Kernels": [
+    "5492, 4, absoluteDifferenceCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "5492, 5, bitwiseAndCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "5492, 6, bitwiseOrCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "5492, 7, bitwiseXorCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "5492, 10, copyCuda, runs, [('const uint8_t *', 'in'), ('uint32_t', 'rowSizeIn'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "5492, 13, flipCuda, runs, [('const uint8_t *', 'in'), ('uint32_t', 'rowSizeIn'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height'), ('bool', 'horizontal'), ('bool', 'vertical')]",
+    "5492, 14, histogramCuda, runs, [('const uint8_t *', 'data'), ('uint32_t', 'rowSize'), ('uint32_t', 'width'), ('uint32_t', 'height'), ('uint32_t *', 'histogram')]",
+    "5492, 15, invertCuda, runs, [('const uint8_t *', 'in'), ('uint32_t', 'rowSizeIn'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "5492, 16, isEqualCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint32_t', 'width'), ('uint32_t', 'height'), ('uint32_t *', 'isEqual')]",
+    "5492, 17, lookupTableCuda, runs, [('const uint8_t *', 'in'), ('uint32_t', 'rowSizeIn'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height'), ('uint8_t *', 'table')]",
+    "5492, 18, maximumCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "5492, 19, minimumCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]",
+    "5492, 20, projectionProfileHorizontalCuda, runs, [('const uint8_t *', 'image'), ('uint32_t', 'rowSize'), ('uint32_t', 'width'), ('uint32_t', 'height'), ('uint32_t *', 'projection')]",
+    "5492, 21, projectionProfileVerticalCuda, runs, [('const uint8_t *', 'image'), ('uint32_t', 'rowSize'), ('uint32_t', 'width'), ('uint32_t', 'height'), ('uint32_t *', 'projection')]",
+    "5492, 22, rotateCuda, runs, [('const uint8_t *', 'in'), ('uint32_t', 'rowSizeIn'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('float', 'inXStart'), ('float', 'inYStart'), ('uint32_t', 'width'), ('uint32_t', 'height'), ('float', 'cosAngle'), ('float', 'sinAngle')]",
+    "5492, 24, setPixelCuda, runs, [('uint8_t *', 'in'), ('uint32_t', 'rowSize'), ('uint32_t', 'width'), ('uint32_t', 'height'), ('uint32_t *', 'pointX'), ('uint32_t *', 'pointY'), ('uint32_t', 'pointSize'), ('uint32_t', 'value')]",
+    "5492, 25, subtractCuda, runs, [('const uint8_t *', 'in1'), ('uint32_t', 'rowSizeIn1'), ('const uint8_t *', 'in2'), ('uint32_t', 'rowSizeIn2'), ('uint8_t *', 'out'), ('uint32_t', 'rowSizeOut'), ('uint32_t', 'width'), ('uint32_t', 'height')]"
+  ],
+  "Kernel Testing Kernels": [
+    "5335, 204, cuda_debug_kernel, runs, []",
+    "544, 9, WriteClockValues, runs, [('unsigned int *', 'completionTimes'), ('unsigned int *', 'threadIDs')]",
+    "5484, 0, kernel_move_inv_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'pattern')]",
+    "5484, 19, kernel_test0_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'pattern'), ('unsigned int *', 'err'), ('unsigned long *', 'err_addr'), ('unsigned long *', 'err_expect'), ('unsigned long *', 'err_current'), ('unsigned long *', 'err_second_read')]",
+    "5484, 21, kernel_test0_global_write, runs, [('char *', '_ptr'), ('char *', '_end_ptr')]",
+    "5484, 23, kernel_test0_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "5484, 25, kernel_test1_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int *', 'err')]",
+    "5484, 27, kernel_test5_init, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "5484, 28, kernel_test5_move, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "5484, 30, kernel_movinv32_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'pattern'), ('unsigned int', 'lb'), ('unsigned int', 'sval'), ('unsigned int', 'offset')]",
+    "5484, 33, kernel_test7_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('char *', '_start_ptr'), ('unsigned int *', 'err')]",
+    "5484, 36, kernel_modtest_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'offset'), ('unsigned int', 'p1'), ('unsigned int', 'p2')]"
+  ],
+  "Neural Network Kernels": [
+    "5330, 0, ca_forward_kernel, runs, [('const float *', 't'), ('const float *', 'f'), ('float *', 'weight'), ('int', 'num'), ('int', 'chn'), ('int', 'height'), ('int', 'width')]",
+    "5330, 1, ca_backward_kernel_t, runs, [('const float *', 'dw'), ('const float *', 't'), ('const float *', 'f'), ('float *', 'dt'), ('int', 'num'), ('int', 'chn'), ('int', 'height'), ('int', 'width')]",
+    "5330, 2, ca_backward_kernel_f, runs, [('const float *', 'dw'), ('const float *', 't'), ('const float *', 'f'), ('float *', 'df'), ('int', 'num'), ('int', 'chn'), ('int', 'height'), ('int', 'width')]",
+    "5330, 3, ca_map_forward_kernel, runs, [('const float *', 'weight'), ('const float *', 'g'), ('float *', 'out'), ('int', 'num'), ('int', 'chn'), ('int', 'height'), ('int', 'width')]",
+    "5330, 4, ca_map_backward_kernel_w, runs, [('const float *', 'dout'), ('const float *', 'weight'), ('const float *', 'g'), ('float *', 'dw'), ('int', 'num'), ('int', 'chn'), ('int', 'height'), ('int', 'width')]",
+    "5330, 5, ca_map_backward_kernel_g, runs, [('const float *', 'dout'), ('const float *', 'weight'), ('const float *', 'g'), ('float *', 'dg'), ('int', 'num'), ('int', 'chn'), ('int', 'height'), ('int', 'width')]",
+    "5330, 7, forward_kernel, runs, [('const float *', 'x'), ('const float *', 'mean'), ('const float *', 'var'), ('const float *', 'weight'), ('const float *', 'bias'), ('float *', 'y'), ('float *', 'z'), ('float', 'eps'), ('int', 'N'), ('int', 'C'), ('int', 'S')]",
+    "5330, 9, backward_kernel, runs, [('const float *', 'dz'), ('const float *', 'z'), ('const float *', 'var'), ('const float *', 'weight'), ('const float *', 'bias'), ('const float *', 'edz'), ('const float *', 'eydz'), ('float *', 'dx'), ('float *', 'dweight'), ('float *', 'dbias'), ('float', 'eps'), ('int', 'N'), ('int', 'C'), ('int', 'S')]",
+    "5366, 0, ForwardCrossEntropy, runs, [('float *', 'output'), ('float *', 'labels'), ('int', 'nColsOutput'), ('float *', 'loss')]",
+    "5366, 1, BackwardCrossEntropy, runs, [('float *', 'output'), ('float *', 'labels'), ('int', 'nColsOutput'), ('float *', 'dOutput')]",
+    "5366, 2, ForwardSigmoid, runs, [('float *', 'Z'), ('int', 'nRowsZ'), ('int', 'nColsZ'), ('float *', 'A')]",
+    "5366, 3, BackwardSigmoid, runs, [('float *', 'Z'), ('float *', 'dA'), ('int', 'nRowsdZ'), ('int', 'nColsdZ'), ('float *', 'dZ')]",
+    "5366, 4, ForwardLinear, runs, [('float *', 'A'), ('float *', 'W'), ('float *', 'b'), ('int', 'nRowsW'), ('int', 'nColsW'), ('int', 'nColsA'), ('float *', 'Z')]",
+    "5366, 5, BackwardLinear, runs, [('float *', 'dZ'), ('float *', 'W'), ('int', 'nColsW'), ('int', 'nRowsW'), ('int', 'nColsdZ'), ('float *', 'dA')]",
+    "5366, 6, UpdateParamsLinear, runs, [('float *', 'dZ'), ('float *', 'A'), ('int', 'nRowsdZ'), ('int', 'nColsdZ'), ('int', 'nRowsA'), ('float', 'lr'), ('float *', 'W'), ('float *', 'b')]",
+    "5366, 7, ForwardReLU, runs, [('float *', 'Z'), ('int', 'nRowsZ'), ('int', 'nColsZ'), ('float *', 'A')]",
+    "5366, 8, BackwardReLU, runs, [('float *', 'Z'), ('float *', 'dA'), ('int', 'nRowsdZ'), ('int', 'nColsdZ'), ('float *', 'dZ')]",
+    "5366, 9, ForwardSoftmax, runs, [('float *', 'Z'), ('int', 'nColsZ'), ('float *', 'sumExp'), ('float *', 'A')]",
+    "5366, 10, BackwardSoftmax, runs, [('float *', 'A'), ('float *', 'dA'), ('int', 'nColsdZ'), ('float *', 'dZ')]",
+    "5473, 4, forward_avgpool_layer_kernel, runs, [('int', 'n'), ('int', 'w'), ('int', 'h'), ('int', 'c'), ('float *', 'input'), ('float *', 'output')]",
+    "5473, 5, backward_avgpool_layer_kernel, runs, [('int', 'n'), ('int', 'w'), ('int', 'h'), ('int', 'c'), ('float *', 'in_delta'), ('float *', 'out_delta')]",
+    "5473, 59, forward_maxpool_layer_kernel, runs, [('int', 'n'), ('int', 'in_h'), ('int', 'in_w'), ('int', 'in_c'), ('int', 'stride'), ('int', 'size'), ('int', 'pad'), ('float *', 'input'), ('float *', 'output'), ('int *', 'indexes')]",
+    "5473, 60, backward_maxpool_layer_kernel, runs, [('int', 'n'), ('int', 'in_h'), ('int', 'in_w'), ('int', 'in_c'), ('int', 'stride'), ('int', 'size'), ('int', 'pad'), ('float *', 'delta'), ('float *', 'prev_delta'), ('int *', 'indexes')]"
+  ],
+  "Utility Kernels": [
+    "5324, 0, multiplyDigits, runs, [('char *', 'd_str1'), ('char *', 'd_str2'), ('int *', 'd_matrix'), ('int', 'str1_len'), ('int', 'str2_len')]",
+    "5324, 1, propagateCarries, runs, [('int *', 'd_matrix'), ('int', 'numCols')]",
+    "5324, 2, sumCols, runs, [('int *', 'd_matrix'), ('int *', 'd_result'), ('int', 'numRows'), ('int', 'numCols')]",
+    "5325, 197, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "5325, 338, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "5373, 0, set_array_double, runs, [('double *', 'a'), ('double', 'value'), ('size_t', 'len')]",
+    "5373, 1, STREAM_Copy, runs, [('float *', 'a'), ('float *', 'b'), ('size_t', 'len')]",
+    "5373, 2, STREAM_Copy_double, runs, [('double *', 'a'), ('double *', 'b'), ('size_t', 'len')]",
+    "5373, 3, STREAM_Copy_Optimized, runs, [('float *', 'a'), ('float *', 'b'), ('size_t', 'len')]",
+    "5373, 4, STREAM_Copy_Optimized_double, runs, [('double *', 'a'), ('double *', 'b'), ('size_t', 'len')]",
+    "5373, 5, STREAM_Scale, runs, [('float *', 'a'), ('float *', 'b'), ('float', 'scale'), ('size_t', 'len')]",
+    "5373, 6, STREAM_Scale_double, runs, [('double *', 'a'), ('double *', 'b'), ('double', 'scale'), ('size_t', 'len')]",
+    "5373, 7, STREAM_Scale_Optimized, runs, [('float *', 'a'), ('float *', 'b'), ('float', 'scale'), ('size_t', 'len')]",
+    "5373, 8, STREAM_Scale_Optimized_double, runs, [('double *', 'a'), ('double *', 'b'), ('double', 'scale'), ('size_t', 'len')]",
+    "5373, 9, STREAM_Add, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('size_t', 'len')]",
+    "5373, 10, STREAM_Add_double, runs, [('double *', 'a'), ('double *', 'b'), ('double *', 'c'), ('size_t', 'len')]",
+    "5373, 11, STREAM_Add_Optimized, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('size_t', 'len')]",
+    "5373, 12, STREAM_Add_Optimized_double, runs, [('double *', 'a'), ('double *', 'b'), ('double *', 'c'), ('size_t', 'len')]",
+    "5373, 13, STREAM_Triad, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('float', 'scalar'), ('size_t', 'len')]",
+    "5373, 14, STREAM_Triad_double, runs, [('double *', 'a'), ('double *', 'b'), ('double *', 'c'), ('double', 'scalar'), ('size_t', 'len')]",
+    "5373, 15, STREAM_Triad_Optimized, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('float', 'scalar'), ('size_t', 'len')]",
+    "5373, 16, STREAM_Triad_Optimized_double, runs, [('double *', 'a'), ('double *', 'b'), ('double *', 'c'), ('double', 'scalar'), ('size_t', 'len')]",
+    "5473, 0, binarize_kernel, runs, [('float *', 'x'), ('int', 'n'), ('float *', 'binary')]",
+    "5473, 1, binarize_input_kernel, runs, [('float *', 'input'), ('int', 'n'), ('int', 'size'), ('float *', 'binary')]",
+    "5473, 2, binarize_weights_kernel, runs, [('float *', 'weights'), ('int', 'n'), ('int', 'size'), ('float *', 'binary')]",
+    "5473, 3, smooth_kernel, runs, [('float *', 'x'), ('int', 'n'), ('int', 'w'), ('int', 'h'), ('int', 'c'), ('int', 'size'), ('float', 'rate'), ('float *', 'delta')]",
+    "5473, 6, im2col_gpu_kernel, runs, [('const int', 'n'), ('const float *', 'data_im'), ('const int', 'height'), ('const int', 'width'), ('const int', 'ksize'), ('const int', 'pad'), ('const int', 'stride'), ('const int', 'height_col'), ('const int', 'width_col'), ('float *', 'data_col')]",
+    "5473, 12, dot_kernel, runs, [('float *', 'output'), ('float', 'scale'), ('int', 'batch'), ('int', 'n'), ('int', 'size'), ('float *', 'delta')]",
+    "5473, 13, adam_kernel, runs, [('int', 'N'), ('float *', 'x'), ('float *', 'm'), ('float *', 'v'), ('float', 'B1'), ('float', 'B2'), ('float', 'rate'), ('float', 'eps'), ('int', 't')]",
+    "5473, 21, mean_delta_kernel, runs, [('float *', 'delta'), ('float *', 'variance'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial'), ('float *', 'mean_delta')]",
+    "5473, 22, variance_kernel, runs, [('float *', 'x'), ('float *', 'mean'), ('int', 'batch'), ('int', 'filters'), ('int', 'spatial'), ('float *', 'variance')]"
+  ],
+  "Sorting Kernels": [
+    "5433, 15, cuInsertionSort, runs, [('float *', 'dist'), ('long *', 'ind'), ('int', 'width'), ('int', 'height'), ('int', 'k')]",
+    "55, 0, batcherBitonicMergesort64, runs, [('float *', 'd_out'), ('const float *', 'd_in')]"
+  ],
+  "Kernel Initialization Kernels": [
+    "5415, 1, render_init, runs, [('int', 'max_x'), ('int', 'max_y'), ('curandState *', 'rand_state')]"
+  ],
+  "Kernel Testing and Debugging Kernels": [
+    "5335, 204, cuda_debug_kernel, runs, []"
+  ]
+}
+```

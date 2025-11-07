@@ -1,0 +1,110 @@
+```json
+{
+  "Reduction Kernels": [
+    "2824, 245, reduceSmemUnrollDyn, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "2824, 246, reduceNeighboredGmem, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "2824, 247, reduceNeighboredSmem, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "2873, 0, reduce0, runs, [('int *', 'g_idata'), ('int *', 'g_odata')]",
+    "297, 0, run_reduction, runs, [('int *', 'con'), ('int *', 'blockCon'), ('int *', 'ActiveList'), ('int', 'nActiveBlock'), ('int *', 'blockSizes')]"
+  ],
+  "Copy Kernels": [
+    "2824, 248, copyGmem, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "2850, 0, NaiveMMKernel, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('int', 'size')]",
+    "2850, 1, OptimizedMMKernel_0, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('int', 'size')]",
+    "2850, 2, OptimizedMMKernel_1, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('int', 'size')]",
+    "2850, 3, OptimizedMMKernel_2_4, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('int', 'size')]",
+    "2850, 4, OptimizedMMKernel_2_8, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('int', 'size')]",
+    "2850, 5, OptimizedMMKernel_2_16, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('int', 'size')]",
+    "2850, 6, OptimizedMMKernel_2_32, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('int', 'size')]"
+  ],
+  "Transpose Kernels": [
+    "2824, 251, transposeSmemUnroll, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "2824, 252, transposeSmemUnrollPad, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "2824, 253, transposeSmemUnrollPadDyn, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "2824, 254, transposeSmem, runs, [('float *', 'out'), ('float *', 'in'), ('int', 'nx'), ('int', 'ny')]",
+    "2824, 255, transposeSmemPad, runs, [('float *', 'out'), ('float *', 'in'), ('int', 'nx'), ('int', 'ny')]",
+    "2824, 256, transposeSmemDyn, runs, [('float *', 'out'), ('float *', 'in'), ('int', 'nx'), ('int', 'ny')]",
+    "2824, 257, transposeSmemPadDyn, runs, [('float *', 'out'), ('float *', 'in'), ('int', 'nx'), ('int', 'ny')]"
+  ],
+  "Matrix Multiplication Kernels": [
+    "2850, 0, NaiveMMKernel, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('int', 'size')]",
+    "2850, 1, OptimizedMMKernel_0, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('int', 'size')]",
+    "2850, 2, OptimizedMMKernel_1, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('int', 'size')]",
+    "2850, 3, OptimizedMMKernel_2_4, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('int', 'size')]",
+    "2850, 4, OptimizedMMKernel_2_8, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('int', 'size')]",
+    "2850, 5, OptimizedMMKernel_2_16, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('int', 'size')]",
+    "2850, 6, OptimizedMMKernel_2_32, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('int', 'size')]"
+  ],
+  "Element-wise Operations": [
+    "2824, 262, sumArrays, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('const int', 'N')]",
+    "2824, 267, sumArrays, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('const int', 'N')]",
+    "285, 1, fillKernel, runs, [('int *', 'a'), ('int', 'n')]",
+    "285, 2, dot, runs, [('float *', 'val'), ('int *', 'row_ind'), ('int *', 'col_ind'), ('int', 'nnz'), ('float *', 'ret'), ('float *', 'w')]",
+    "285, 3, vec_sigmoid, runs, [('float *', 'd'), ('int', 'num')]",
+    "285, 4, grad, runs, [('float *', 'val'), ('int *', 'row_ind'), ('int *', 'col_ind'), ('float *', 'mat_err'), ('int', 'nnz'), ('float *', 'act'), ('float *', 'label'), ('float *', 'w'), ('float', 'learning_rate')]",
+    "285, 5, fill, runs, [('float *', 'w'), ('float', 'val'), ('int', 'size')]",
+    "285, 6, fill, runs, [('float *', 'w'), ('float', 'val'), ('int', 'size')]"
+  ],
+  "Utility Kernels": [
+    "2824, 280, kernel, runs, [('float *', 'g_data'), ('float', 'value')]",
+    "2831, 1, cuda_kernel_initRND, runs, [('unsigned long', 'seed'), ('curandState *', 'States')]",
+    "2853, 6, printVal, runs, []",
+    "287, 0, KernelVersionShim, runs, []",
+    "291, 0, vector_add, runs, [('float *', 'c'), ('const float *', 'a'), ('const float *', 'b'), ('const int', 'n')]",
+    "2917, 90, scaleVector, runs, [('float *', 'd_res'), ('const float *', 'd_src'), ('float', 'scale'), ('const int', 'len')]",
+    "2917, 106, MemsetKernel, runs, [('const float', 'value'), ('int', 'w'), ('int', 'h'), ('float *', 'image')]",
+    "2991, 1, do_nothing, runs, []"
+  ],
+  "Image Processing Kernels": [
+    "2851, 176, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "2851, 317, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "2881, 31, square_matrix_kernel, runs, [('int32_t', 'num_rows'), ('int32_t', 'num_cols'), ('const float *', 'feats'), ('int32_t', 'ldf'), ('float *', 'feats_sq'), ('int32_t', 'lds')]",
+    "2884, 13, ComputeHomographies, runs, [('float *', 'coord'), ('int *', 'randPts'), ('float *', 'homo'), ('int', 'numPts')]",
+    "2884, 28, ScaleDownDense, runs, [('float *', 'd_Result'), ('float *', 'd_Data'), ('int', 'width'), ('int', 'pitch'), ('int', 'height'), ('int', 'newpitch')]",
+    "2884, 29, ScaleDown, runs, [('float *', 'd_Result'), ('float *', 'd_Data'), ('int', 'width'), ('int', 'pitch'), ('int', 'height'), ('int', 'newpitch')]",
+    "2884, 30, ScaleUp, runs, [('float *', 'd_Result'), ('float *', 'd_Data'), ('int', 'width'), ('int', 'pitch'), ('int', 'height'), ('int', 'newpitch')]"
+  ],
+  "Mathematical Functions": [
+    "2890, 0, Compute_psi_phi_Kernel, runs, [('float *', 'psi'), ('float *', 'phi'), ('const float *', 'gAbsIx'), ('const float *', 'gAbsIy'), ('const float *', 'gIx'), ('const float *', 'gIy'), ('int', 'nPixels'), ('float', 'norm_for_contrast_num'), ('float', 'norm_for_contrast_denom'), ('float', 'eps')]",
+    "2890, 1, Compute_weightdata_Kernel, runs, [('float *', 'weightdata'), ('const float *', 'I'), ('const float *', 'input'), ('int', 'nPixels'), ('int', 'nChannels'), ('int', 'c'), ('float', 'norm_for_data_term'), ('float', 'eps')]",
+    "2890, 2, Compute_weightx_weighty1_Kernel, runs, [('float *', 'weightx'), ('float *', 'weighty'), ('const float *', 'psi'), ('const float *', 'phi'), ('const float *', 'absIx'), ('const float *', 'absIy'), ('int', 'nPixels'), ('float', 'norm_for_smooth_term'), ('float', 'eps')]",
+    "2890, 3, Compute_weightx_weighty1_norm2_Kernel, runs, [('float *', 'weightx'), ('float *', 'weighty'), ('const float *', 'psi'), ('const float *', 'phi'), ('const float *', 'absIx'), ('const float *', 'absIy'), ('int', 'nPixels'), ('float', 'norm_for_smooth_term'), ('float', 'eps')]",
+    "2890, 4, Compute_weightx_weighty1_norm1_Kernel, runs, [('float *', 'weightx'), ('float *', 'weighty'), ('const float *', 'psi'), ('const float *', 'phi'), ('const float *', 'absIx'), ('const float *', 'absIy'), ('int', 'nPixels'), ('float', 'norm_for_smooth_term'), ('float', 'eps')]",
+    "2890, 5, Compute_weightx_weighty1_norm0_Kernel, runs, [('float *', 'weightx'), ('float *', 'weighty'), ('const float *', 'psi'), ('const float *', 'phi'), ('const float *', 'absIx'), ('const float *', 'absIy'), ('int', 'nPixels'), ('float', 'norm_for_smooth_term'), ('float', 'eps')]",
+    "2890, 6, Compute_weightx_weighty1_normother_Kernel, runs, [('float *', 'weightx'), ('float *', 'weighty'), ('const float *', 'psi'), ('const float *', 'phi'), ('const float *', 'absIx'), ('const float *', 'absIy'), ('int', 'nPixels'), ('float', 'norm_for_smooth_term'), ('float', 'eps')]",
+    "2890, 7, Compute_weightx_weighty2_Kernel, runs, [('float *', 'weightx'), ('float *', 'weighty'), ('const float *', 'absIx'), ('const float *', 'absIy'), ('int', 'nPixels'), ('float', 'norm_for_smooth_term'), ('float', 'eps')]",
+    "2890, 8, Compute_weightx_weighty2_norm2_Kernel, runs, [('float *', 'weightx'), ('float *', 'weighty'), ('const float *', 'absIx'), ('const float *', 'absIy'), ('int', 'nPixels'), ('float', 'norm_for_smooth_term'), ('float', 'eps')]",
+    "2890, 9, Compute_weightx_weighty2_norm1_Kernel, runs, [('float *', 'weightx'), ('float *', 'weighty'), ('const float *', 'absIx'), ('const float *', 'absIy'), ('int', 'nPixels'), ('float', 'norm_for_smooth_term'), ('float', 'eps')]",
+    "2890, 10, Compute_weightx_weighty2_norm0_Kernel, runs, [('float *', 'weightx'), ('float *', 'weighty'), ('const float *', 'absIx'), ('const float *', 'absIy'), ('int', 'nPixels'), ('float', 'norm_for_smooth_term'), ('float', 'eps')]",
+    "2890, 11, Compute_weightx_weighty2_normother_Kernel, runs, [('float *', 'weightx'), ('float *', 'weighty'), ('const float *', 'absIx'), ('const float *', 'absIy'), ('int', 'nPixels'), ('float', 'norm_for_smooth_term'), ('float', 'eps')]"
+  ],
+  "Random Number Generation Kernels": [
+    "294, 1, init, runs, [('unsigned int', 'seed'), ('curandState_t *', 'states')]",
+    "294, 2, randomizePopulation, runs, [('curandState_t *', 'states'), ('unsigned char *', 'population')]",
+    "29, 48, kSetupCurand, runs, [('curandState *', 'state'), ('unsigned long long', 'seed')]"
+  ],
+  "Mandelbrot Kernels": [
+    "2829, 2, mandel, runs, [('float *', 'buffer'), ('float', 'xMin'), ('float', 'xMax'), ('float', 'yMin'), ('float', 'yMax'), ('unsigned int', 'maxDepth')]",
+    "2922, 11, mandelbrot, runs, [('int *', 'A'), ('const int', 'N'), ('const int', 'largeur'), ('const int', 'hauteur'), ('const int', 'start_hauteur'), ('const int', 'end_hauteur')]",
+    "2922, 12, mandelbrot, runs, [('int *', 'A'), ('const int', 'N'), ('const int', 'largeur'), ('const int', 'hauteur')]",
+    "2922, 14, mandelbrot, runs, [('int *', 'A'), ('const int', 'N'), ('const int', 'largeur'), ('const int', 'hauteur')]"
+  ],
+  "Vector Operations": [
+    "2922, 0, vec_add, runs, [('const float *', 'A'), ('const float *', 'B'), ('float *', 'C'), ('int', 'N')]",
+    "2922, 1, vec_mult, runs, [('const float *', 'A'), ('const float *', 'B'), ('float *', 'C'), ('int', 'N')]",
+    "2922, 2, vec_div, runs, [('const float *', 'A'), ('const float *', 'B'), ('float *', 'C'), ('int', 'N')]",
+    "2922, 3, vec_sub, runs, [('const float *', 'A'), ('const float *', 'B'), ('float *', 'C'), ('int', 'N')]",
+    "2922, 4, vec_fma, runs, [('const float *', 'A'), ('const float *', 'B'), ('float *', 'C'), ('float *', 'D'), ('int', 'N')]",
+    "2922, 5, vec_add_64, runs, [('const double *', 'A'), ('const double *', 'B'), ('double *', 'C'), ('int', 'N')]",
+    "2922, 8, sum, runs, [('int *', 'vec1'), ('int *', 'result'), ('int *', 'tmp1'), ('const int', 'count')]",
+    "2922, 9, spoc_max, runs, [('const double *', 'input'), ('double *', 'output'), ('const int', 'size')]",
+    "2922, 10, int_bubble_filter, runs, [('int *', 'input'), ('const int *', 'vec1'), ('int *', 'output'), ('const int', 'count')]"
+  ],
+  "Geometric Kernels": [
+    "291, 5, cn_pnpoly_reference_kernel, runs, [('int *', 'bitmap'), ('float2 *', 'points'), ('float2 *', 'vertices'), ('int', 'n')]",
+    "2922, 3, vec_mult, runs, [('const float *', 'A'), ('const float *', 'B'), ('float *', 'C'), ('int', 'N')]",
+    "2922, 4, vec_div, runs, [('const float *', 'A'), ('const float *', 'B'), ('float *', 'C'), ('int', 'N')]",
+    "2922, 5, vec_sub, runs, [('const float *', 'A'), ('const float *', 'B'), ('float *', 'C'), ('int', 'N')]"
+  ]
+}
+```

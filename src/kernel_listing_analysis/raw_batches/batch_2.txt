@@ -1,0 +1,67 @@
+```json
+{
+  "Histogram Kernels": [
+    "10383, 22, naive_histo, runs, [('int *', 'd_bins'), ('const int *', 'd_in'), ('const int', 'BIN_COUNT')]",
+    "10383, 23, simple_histo, runs, [('int *', 'd_bins'), ('const int *', 'd_in'), ('const int', 'BIN_COUNT')]",
+    "1047, 7, histogram, runs, [('unsigned char *', 'utime'), ('unsigned int *', 'histo'), ('size_t', 'n')]",
+    "10652, 0, histo_kernel, runs, [('unsigned char *', 'buffer'), ('int', 'size'), ('unsigned int *', 'histo')]",
+    "10652, 1, histo_kernel_optimization, runs, [('unsigned char *', 'buffer'), ('int', 'size'), ('unsigned int *', 'histo')]"
+  ],
+  "Addition Kernels": [
+    "10387, 0, addArrays, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "10387, 1, addKernel, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]",
+    "104, 1, vecAdd, runs, [('float *', 'in1'), ('float *', 'in2'), ('float *', 'out'), ('int', 'len')]",
+    "1046, 1, vecAdd, runs, [('int *', 'A'), ('int *', 'B'), ('int *', 'C')]",
+    "10499, 0, add, runs, [('int', 'n'), ('float *', 'a'), ('float *', 'b'), ('float *', 'sum')]",
+    "1052, 0, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'tpb')]",
+    "1066, 0, addKernel, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]"
+  ],
+  "Matrix Multiplication Kernels": [
+    "10426, 9, MatrixMul, runs, [('float *', 'Md'), ('float *', 'Nd'), ('float *', 'Pd'), ('const int', 'WIDTH')]",
+    "10426, 10, MatrixMulSh, runs, [('float *', 'Md'), ('float *', 'Nd'), ('float *', 'Pd'), ('const int', 'WIDTH')]",
+    "10483, 3, matrixMultiplicationKernelNaive, runs, [('const float *', 'A'), ('const float *', 'B'), ('float *', 'C'), ('int', 'a'), ('int', 'b'), ('int', 'c'), ('int', 'd')]",
+    "10483, 5, matrixMultiplicationKernel, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'a'), ('int', 'b'), ('int', 'd')]"
+  ],
+  "Fourier Transform Kernels": [
+    "10389, 5, fourier_transform, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'height'), ('int', 'width'), ('int', 'blockConfig')]",
+    "10389, 6, inverse_transform, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'height'), ('int', 'width')]"
+  ],
+  "Matrix Operations Kernels": [
+    "10393, 0, slice_sparse_dense_row, runs, [('double *', 'inVal'), ('int *', 'inRowPtr'), ('int *', 'colInd'), ('double *', 'ret'), ('int', 'rl'), ('int', 'ru'), ('int', 'cl'), ('int', 'cu'), ('int', 'retClen')]",
+    "10393, 1, slice_sparse_dense_nnz, runs, [('double *', 'inVal'), ('int *', 'inRowPtr'), ('int *', 'colInd'), ('double *', 'ret'), ('int', 'rl'), ('int', 'ru'), ('int', 'cl'), ('int', 'cu'), ('int', 'retClen')]",
+    "10393, 2, slice_dense_dense, runs, [('double *', 'in'), ('double *', 'ret'), ('int', 'rl'), ('int', 'ru'), ('int', 'cl'), ('int', 'cu'), ('int', 'inClen'), ('int', 'retRlen'), ('int', 'retClen')]",
+    "10393, 8, daxpy_matrix_vector, runs, [('double *', 'A'), ('double *', 'B'), ('double', 'alpha'), ('double *', 'ret'), ('int', 'rlenA'), ('int', 'clenA'), ('int', 'rlenB'), ('int', 'clenB')]"
+  ],
+  "Utility Kernels": [
+    "10395, 4, bfsCheck, runs, [('bool *', 'd_graph_mask'), ('bool *', 'd_updating_graph_mask'), ('bool *', 'd_graph_visited'), ('int', 'no_of_nodes'), ('bool *', 'stop')]",
+    "1040, 2, init_vectors, runs, [('int *', 'vec'), ('const int', 'vec_length')]",
+    "1040, 3, get_largest_value, runs, [('int *', 'vec'), ('const int', 'vec_length'), ('int *', 'max')]",
+    "1040, 4, find_index, runs, [('int *', 'vec'), ('const int', 'vec_length'), ('int *', 'value'), ('int *', 'index')]",
+    "1040, 6, check_existance_of_candidate_rows, runs, [('int *', 'deleted_rows'), ('int *', 'row_group'), ('const int', 'search_depth'), ('int *', 'token'), ('int *', 'selected_row_id'), ('const int', 'total_dl_matrix_row_num')]"
+  ],
+  "Activation Functions Kernels": [
+    "10413, 27, sigmoid64, runs, [('double *', 'A'), ('int', 'size')]",
+    "10413, 28, sigmoid32, runs, [('float *', 'A'), ('int', 'size')]",
+    "10653, 10, cuda_activateTanh, runs, [('double *', 'pA'), ('int', 'n')]",
+    "10653, 11, cuda_deactivateTanh, runs, [('double *', 'pE'), ('const double *', 'pA'), ('int', 'n')]",
+    "10653, 15, cuda_conv2D_deactivate, runs, [('double *', 'err'), ('const double *', 'net'), ('const double *', 'activation'), ('size_t', 'outputs')]"
+  ],
+  "Sorting Kernels": [
+    "10483, 36, cuInsertionSort, runs, [('float *', 'dist'), ('int', 'dist_pitch'), ('int *', 'ind'), ('int', 'ind_pitch'), ('int', 'width'), ('int', 'height'), ('int', 'k')]",
+    "10516, 2, cuInsertionSort, runs, [('float *', 'dist'), ('int *', 'ind'), ('int', 'width'), ('int', 'height'), ('int', 'k')]"
+  ],
+  "Distance Kernels": [
+    "10483, 32, cuComputeDistanceGlobal, runs, [('float *', 'A'), ('int', 'wA'), ('int', 'pA'), ('float *', 'B'), ('int', 'wB'), ('int', 'pB'), ('int', 'dim'), ('float *', 'AB')]",
+    "10516, 1, cuComputeDistanceGlobal, runs, [('float *', 'A'), ('int', 'wA'), ('float *', 'B'), ('int', 'wB'), ('int', 'dim'), ('float *', 'AB')]"
+  ],
+  "Convolution Kernels": [
+    "1044, 0, conv_kernel, runs, [('const float *', 'gm'), ('float *', 'convolved'), ('int', 'bh'), ('int', 'bw'), ('int', 'ih'), ('int', 'iw'), ('int', 'ch'), ('int', 'cw'), ('int', 'smH'), ('int', 'smW'), ('int', 'k')]",
+    "10653, 14, cuda_conv2D_ff, runs, [('double *', 'pA'), ('double *', 'pNet'), ('const double *', 'in'), ('const double *', 'pKernels'), ('const double *', 'pBias'), ('size_t', 'kernelCount'), ('size_t', 'kernelRows'), ('size_t', 'kernelCols'), ('size_t', 'outputRows'), ('size_t', 'outputCols'), ('size_t', 'inputRows'), ('size_t', 'inputCols'), ('size_t', 'inputChannels'), ('size_t', 'padding'), ('size_t', 'stride')]"
+  ],
+  "Image Processing Kernels": [
+    "10615, 9, PictureKernell, runs, [('unsigned char *', 'imageInput'), ('int', 'width'), ('int', 'height'), ('unsigned char *', 'imageOutput')]",
+    "10615, 14, img2gray, runs, [('unsigned char *', 'imageInput'), ('int', 'width'), ('int', 'height'), ('unsigned char *', 'imageOutput')]",
+    "10615, 16, img2gray, runs, [('unsigned char *', 'imageInput'), ('int', 'width'), ('int', 'height'), ('unsigned char *', 'imageOutput')]"
+  ]
+}
+```

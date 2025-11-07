@@ -1,0 +1,141 @@
+```json
+{
+  "Transpose Kernels": [
+    "11832, 144, transposeSmemUnroll, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "11832, 145, transposeSmemUnrollPad, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "11832, 146, transposeSmemUnrollPadDyn, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "11832, 147, transposeSmem, runs, [('float *', 'out'), ('float *', 'in'), ('int', 'nx'), ('int', 'ny')]",
+    "11832, 148, transposeSmemPad, runs, [('float *', 'out'), ('float *', 'in'), ('int', 'nx'), ('int', 'ny')]",
+    "11832, 149, transposeSmemDyn, runs, [('float *', 'out'), ('float *', 'in'), ('int', 'nx'), ('int', 'ny')]",
+    "11832, 150, transposeSmemPadDyn, runs, [('float *', 'out'), ('float *', 'in'), ('int', 'nx'), ('int', 'ny')]",
+    "11832, 216, transposeNaiveRow, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "11832, 217, transposeNaiveCol, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "11832, 218, transposeUnroll4Row, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "11832, 219, transposeRow, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "11832, 220, transposeUnroll8Row, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "11832, 221, transposeUnroll4Col, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "11832, 222, transposeDiagonalRow, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "11832, 223, transposeDiagonalCol, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "11832, 224, transposeDiagonalColUnroll4, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]"
+  ],
+  "Sum Kernels": [
+    "11832, 155, sumArrays, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('const int', 'N')]",
+    "11832, 160, sumArrays, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('const int', 'N')]",
+    "11832, 178, sumMatrixOnGPUMix, runs, [('float *', 'MatA'), ('float *', 'MatB'), ('float *', 'MatC'), ('int', 'nx'), ('int', 'ny')]",
+    "11832, 179, sumMatrixOnGPU2D, runs, [('int *', 'MatA'), ('int *', 'MatB'), ('int *', 'MatC'), ('int', 'nx'), ('int', 'ny')]",
+    "11832, 225, sumArrays, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('const int', 'N')]",
+    "11832, 226, sumArraysZeroCopy, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('const int', 'N')]",
+    "11832, 227, sumArraysZeroCopyWithUVA, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('const int', 'N')]",
+    "11832, 236, sumArraysZeroCopyOffset, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('const int', 'N'), ('int', 'offset')]"
+  ],
+  "Reduction Kernels": [
+    "11832, 183, reduceCompleteUnrollWarps8, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 184, reduceCompleteUnrollWarps8Sync, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 185, reduceCompleteUnrollWarps8SyncVolatile, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 186, reduceNeighbored, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 187, reduceNeighboredLess, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 188, reduceInterleaved, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 189, reduceUnrolling2, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 190, reduceUnrolling4, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 191, reduceUnrolling8, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 192, reduceUnrolling16, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 193, reduceUnrollWarps8, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 194, reduceCompleteUnrollWarps8, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 196, reduceUnrollWarps, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 197, reduceNeighbored, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 198, reduceNeighboredLess, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 199, reduceInterleaved, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 200, reduceUnrolling2, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 201, reduceUnrolling4, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 202, reduceUnrolling8, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 203, reduceUnrolling8New, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 204, reduceUnrolling16, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 205, reduceUnrollWarps8, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 206, reduceCompleteUnrollWarps8, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 208, reduceUnrollWarps, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 209, reduceInterleaved, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 210, reduceInterleavedFloat, runs, [('float *', 'g_idata'), ('float *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 211, reduceCompleteUnrollWarps8, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 212, reduceCompleteUnrollWarps8Float, runs, [('float *', 'g_idata'), ('float *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 289, reduceGmem, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 290, reduceSmem, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 291, reduceSmemDyn, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 292, reduceGmemUnroll, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 293, reduceSmemUnroll, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 294, reduceSmemUnrollDyn, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 295, reduceNeighboredGmem, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]",
+    "11832, 296, reduceNeighboredSmem, runs, [('int *', 'g_idata'), ('int *', 'g_odata'), ('unsigned int', 'n')]"
+  ],
+  "Matrix Multiplication Kernels": [
+    "11846, 13, gpuMatMul, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c'), ('int', 'm'), ('int', 'n'), ('int', 'p')]",
+    "11919, 1, MatrixMulKernel, runs, [('float *', 'Md'), ('float *', 'Nd'), ('float *', 'Pd'), ('int', 'Width')]",
+    "11957, 9, MatrixMul, runs, [('float *', 'Md'), ('float *', 'Nd'), ('float *', 'Pd'), ('const int', 'WIDTH')]",
+    "11957, 10, MatrixMulSh, runs, [('float *', 'Md'), ('float *', 'Nd'), ('float *', 'Pd'), ('const int', 'WIDTH')]"
+  ],
+  "Copy Kernels": [
+    "11832, 214, copyRow, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "11832, 215, copyCol, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "11832, 239, readWriteOffset, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('const int', 'n'), ('int', 'offset')]",
+    "11832, 240, warmup, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('const int', 'n'), ('int', 'offset')]",
+    "11890, 8, copy, runs, [('int *', 'dst'), ('int *', 'input_itemsets'), ('int', 'max_rows'), ('int', 'max_cols'), ('int', 'lb0'), ('int', 'lb1'), ('int', 'ub0'), ('int', 'ub1')]",
+    "11890, 21, copy, runs, [('int *', 'dst'), ('int *', 'input_itemsets'), ('int', 'max_rows'), ('int', 'max_cols'), ('int', 'lb0'), ('int', 'lb1'), ('int', 'ub0'), ('int', 'ub1')]"
+  ],
+  "Utility Kernels": [
+    "11832, 182, warmup, runs, [('int *', 'out'), ('int', 'N')]",
+    "11832, 213, warmup, runs, [('float *', 'out'), ('float *', 'in'), ('const int', 'nx'), ('const int', 'ny')]",
+    "11832, 232, warmup, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('const int', 'n'), ('int', 'offset')]",
+    "11832, 235, warmup, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('const int', 'N')]",
+    "11832, 243, warmup, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('const int', 'N')]",
+    "11876, 19, device_len_dot, runs, []",
+    "11876, 24, device_transpose, runs, []",
+    "11876, 36, device_mse, runs, []",
+    "11876, 37, device_ll, runs, []"
+  ],
+  "Distance Kernels": [
+    "11861, 8, computeSphereVertexDistancesKernel, runs, [('float4 *', 'V'), ('float *', 'dist'), ('unsigned int *', 'NEIGHBOR'), ('unsigned int *', 'NBOFFSETS'), ('unsigned int *', 'nNeighbors'), ('unsigned int', 'nVertices'), ('float', 'circumference')]",
+    "11861, 9, GradientAverageKernel, runs, [('float4 *', 'D'), ('float4 *', 'TD'), ('unsigned int *', 'NEIGHBOR'), ('unsigned int *', 'NBOFFSETS'), ('unsigned int *', 'nNeighbors'), ('unsigned int', 'nVertices')]",
+    "11861, 10, updateGradientsKernel, runs, [('float4 *', 'D'), ('float4 *', 'TD'), ('unsigned int', 'nVertices')]"
+  ],
+  "Image Processing Kernels": [
+    "11840, 4, MotionVec, runs, [('float *', 'new_image_dev'), ('float *', 'old_image_dev'), ('uchar4 *', 'Image_dev'), ('int', 'w'), ('int', 'h')]",
+    "11940, 3, blend, runs, [('float *', 'cmap'), ('float *', 'oldd'), ('float *', 'newd'), ('float', 'weight'), ('int *', 'params')]",
+    "11942, 1, downSampleKernel, runs, [('unsigned char *', 'd_in'), ('unsigned char *', 'd_out'), ('size_t', 'skip')]",
+    "11991, 46, forward_maxpool_layer_kernel, runs, [('int', 'n'), ('int', 'in_h'), ('int', 'in_w'), ('int', 'in_c'), ('int', 'stride'), ('int', 'size'), ('int', 'pad'), ('float *', 'input'), ('float *', 'output'), ('int *', 'indexes')]",
+    "11991, 47, backward_maxpool_layer_kernel, runs, [('int', 'n'), ('int', 'in_h'), ('int', 'in_w'), ('int', 'in_c'), ('int', 'stride'), ('int', 'size'), ('int', 'pad'), ('float *', 'delta'), ('float *', 'prev_delta'), ('int *', 'indexes')]"
+  ],
+  "Kernel Operations": [
+    "11851, 0, fillSpaceTSteps, runs, [('int', 'N'), ('int', 'T'), ('float', 'c'), ('float', 'dt'), ('float', 'dd'), ('float *', 'waveSpace'), ('float *', 'waveSpaceTMin1'), ('float *', 'waveSpaceTMin2')]",
+    "11851, 1, add, runs, [('float *', 'c'), ('float *', 'a'), ('float *', 'b'), ('int', 'values')]",
+    "11851, 2, hello2D, runs, []",
+    "11855, 2, conv2genericrev, runs, [('float *', 'input'), ('float *', 'kernel'), ('float *', 'output'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'kernel_n'), ('int', 'kernel_h'), ('int', 'kernel_w'), ('float', 'alpha'), ('int', 'stride_h'), ('int', 'stride_w')]",
+    "11957, 0, gaxpymm, runs, [('double *', 'y'), ('double *', 'a'), ('double *', 'b'), ('int', 'm'), ('int', 'n'), ('int', 'p')]",
+    "11957, 1, gaxpy, runs, [('double *', 'y'), ('double *', 'a'), ('double *', 'x'), ('int', 'm'), ('int', 'n')]",
+    "11957, 2, multMatriz, runs, [('float *', 'da'), ('float *', 'db'), ('float *', 'dc'), ('int', 'num')]",
+    "11957, 3, multMatriz, runs, [('float *', 'da'), ('float *', 'db'), ('float *', 'dc'), ('int', 'num')]",
+    "11957, 4, indices, runs, []",
+    "11957, 7, func, runs, []",
+    "11957, 8, suma, runs, [('int', 'a'), ('int', 'b'), ('int *', 'c')]"
+  ],
+  "Activation Functions": [
+    "11934, 93, relu_gpu_forward, runs, [('float *', 'out'), ('float *', 'in'), ('int64_t', 'N')]",
+    "11934, 94, relu_gpu_backward, runs, [('float *', 'ingrad'), ('float *', 'outgrad'), ('float *', 'indata'), ('int64_t', 'N')]",
+    "11991, 41, softmax_kernel, runs, [('int', 'n'), ('int', 'offset'), ('int', 'batch'), ('float *', 'input'), ('float', 'temp'), ('float *', 'output')]"
+  ],
+  "Miscellaneous Kernels": [
+    "11846, 10, atbashGPU, runs, [('char const *', 'in'), ('char *', 'out'), ('int', 'n')]",
+    "11846, 11, hello, runs, [('char *', 'a'), ('int *', 'b')]",
+    "11846, 12, gpuTranspose, runs, [('float *', 'a'), ('float *', 'b'), ('int', 'm'), ('int', 'n')]",
+    "1186, 2, gpu_rBRIEF_Loop, runs, [('int', 'N'), ('float4 *', 'patches'), ('int4 *', 'pattern')]",
+    "1186, 3, gpu_rBRIEF_naive, runs, [('float4 *', 'workload'), ('int *', 'output'), ('int4 *', 'pattern'), ('int4 *', 'train_bin_vec'), ('int', 'K'), ('int', 'P'), ('int', 'I')]",
+    "11909, 1, cudaTIGammaKernel, runs, [('double *', 'extEV'), ('double *', 'x2'), ('double *', 'x3'), ('unsigned char *', 'tipX1'), ('unsigned char *', 'tipX2'), ('double *', 'r'), ('double *', 'uX1'), ('double *', 'uX2')]",
+    "11909, 2, cudaIIGammaKernel, runs, [('double *', 'extEV'), ('double *', 'x1'), ('double *', 'x2'), ('double *', 'x3'), ('double *', 'left'), ('double *', 'right')]",
+    "11909, 3, cudaPreTTGammaKernel, runs, [('double *', 'tipVector'), ('double *', 'l'), ('double *', 'r'), ('double *', 'umpX1'), ('double *', 'umpX2')]",
+    "11909, 4, cudaPreTIGammaKernel, runs, [('double *', 'tipVector'), ('double *', 'l'), ('double *', 'ump')]",
+    "11909, 5, cudaEvaluateLeftGammaKernel, runs, [('int *', 'wptr'), ('double *', 'x2'), ('double *', 'tipVector'), ('unsigned char *', 'tipX1'), ('double *', 'diagptable'), ('double *', 'output'), ('const int', 'limit')]",
+    "11909, 6, cudaEvaluateRightGammaKernel, runs, [('int *', 'wptr'), ('double *', 'x1'), ('double *', 'x2'), ('double *', 'diagptable'), ('double *', 'output'), ('const int', 'limit')]",
+    "11909, 7, cudaSumTTGammaKernel, runs, [('unsigned char *', 'tipX1'), ('unsigned char *', 'tipX2'), ('double *', 'tipVector'), ('double *', 'sumtable'), ('int', 'limit')]",
+    "11909, 8, cudaSumTIGammaKernel, runs, [('unsigned char *', 'tipX1'), ('double *', 'x2'), ('double *', 'tipVector'), ('double *', 'sumtable'), ('int', 'limit')]",
+    "11909, 9, cudaSumIIGammaKernel, runs, [('double *', 'x1'), ('double *', 'x2'), ('double *', 'sumtable'), ('int', 'limit')]"
+  ]
+}
+```

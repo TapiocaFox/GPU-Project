@@ -1,0 +1,80 @@
+```json
+{
+  "Basic Kernels": [
+    "7668, 1, helloFromGPU, runs, []",
+    "7683, 0, add, runs, [('int', 'a'), ('int', 'b'), ('int *', 'c')]",
+    "7685, 89, uniformAdd, runs, [('int *', 'g_data'), ('int *', 'uniforms'), ('int', 'n'), ('int', 'blockOffset'), ('int', 'baseIndex')]",
+    "7690, 2, vectorAdd, runs, [('const float *', 'A'), ('const float *', 'B'), ('float *', 'C'), ('int', 'numElements')]",
+    "7690, 3, matrixMultiplyShared, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'numARows'), ('int', 'numAColumns'), ('int', 'numBRows'), ('int', 'numBColumns'), ('int', 'numCRows'), ('int', 'numCColumns')]",
+    "7697, 0, gcd_vector, runs, [('int *', 'd_out'), ('int', 'integer_m')]",
+    "7697, 5, square, runs, [('int *', 'd_num_steps'), ('unsigned long long *', 'd_fact'), ('double *', 'd_out')]",
+    "7697, 6, square, runs, [('float *', 'd_out'), ('float *', 'd_in')]",
+    "775, 0, histogram_kernel, runs, [('int *', 'PartialHist'), ('int *', 'DeviceData'), ('int', 'dataCount'), ('int *', 'timer')]",
+    "775, 10, VecReduce, runs, [('float *', 'g_idata'), ('float *', 'g_odata'), ('int', 'N')]",
+    "775, 11, VecReduce, runs, [('float *', 'g_idata'), ('float *', 'g_odata'), ('int', 'N')]"
+  ],
+  "Image Processing Kernels": [
+    "7690, 0, blurKernel, runs, [('float *', 'out'), ('float *', 'in'), ('int', 'width'), ('int', 'height')]",
+    "7690, 1, rgb2gray, runs, [('float *', 'grayImage'), ('float *', 'rgbImage'), ('int', 'channels'), ('int', 'width'), ('int', 'height')]",
+    "7805, 0, toOneChannel, runs, [('unsigned char *', 'data'), ('int', 'width'), ('int', 'height'), ('int', 'components')]",
+    "7805, 1, toGrayScale, runs, [('unsigned char *', 'output'), ('unsigned char *', 'input'), ('int', 'width'), ('int', 'height'), ('int', 'components')]",
+    "7805, 2, sobel, runs, [('unsigned char *', 'output'), ('unsigned char *', 'input'), ('int', 'width'), ('int', 'height')]",
+    "7805, 3, toGrayScale, runs, [('unsigned char *', 'output'), ('unsigned char *', 'input'), ('int', 'width'), ('int', 'height'), ('int', 'components')]",
+    "7805, 4, sobel, runs, [('unsigned char *', 'output'), ('unsigned char *', 'input'), ('int', 'width'), ('int', 'height')]",
+    "7805, 5, histogramm, runs, [('float *', 'hist'), ('unsigned char *', 'input'), ('int', 'width'), ('int', 'height'), ('int', 'stride')]"
+  ],
+  "Matrix Operations": [
+    "7676, 1, getMeanImage, runs, [('const double *', 'images'), ('double *', 'meanImage'), ('std::size_t', 'imageNum'), ('std::size_t', 'pixelNum')]",
+    "7676, 2, subtractMean, runs, [('double *', 'images'), ('const double *', 'meanImage'), ('std::size_t', 'imageNum'), ('std::size_t', 'pixelNum')]",
+    "7676, 3, getLowerAAt, runs, [('const double *', 'A'), ('double *', 'S'), ('std::size_t', 'imageNum'), ('std::size_t', 'pixelNum')]",
+    "7676, 4, getSufficientComponentNum, runs, [('const double *', 'eigenvalues'), ('std::size_t *', 'componentNum'), ('std::size_t', 'eigenRows'), ('double', 'epsilon')]",
+    "7676, 5, restoreEigenvectors, runs, [('const double *', 'meanSubtractedImages'), ('const double *', 'reducedEigenvectors'), ('double *', 'restoredEigenvectors'), ('std::size_t', 'imageNum'), ('std::size_t', 'pixelNum'), ('std::size_t', 'componentNum')]",
+    "7676, 7, getWeights, runs, [('const double *', 'restoredEigenvectors'), ('const double *', 'meanSubtractedImages'), ('double *', 'weights'), ('std::size_t', 'imageNum'), ('std::size_t', 'pixelNum'), ('std::size_t', 'componentNum')]",
+    "7676, 8, getTestWeights, runs, [('const double *', 'restoredEigenvectors'), ('const double *', 'meanImage'), ('const double *', 'testImages'), ('double *', 'testWeights'), ('std::size_t', 'testImageNum'), ('std::size_t', 'pixelNum'), ('std::size_t', 'componentNum')]",
+    "7676, 9, getDistances, runs, [('const double *', 'trainingWeights'), ('const double *', 'testWeights'), ('double *', 'distances'), ('std::size_t', 'trainImageNum'), ('std::size_t', 'testImageNum'), ('std::size_t', 'componentNum')]",
+    "7733, 1, matrixTrans, runs, [('double *', 'M'), ('double *', 'MT'), ('int', 'rows'), ('int', 'cols')]",
+    "7733, 3, matrixMul, runs, [('double *', 'a'), ('double *', 'b'), ('double *', 'C'), ('int', 'cols'), ('int', 'rows'), ('int', 'cols2')]",
+    "7733, 8, matrixSum, runs, [('const double *', 'M1'), ('const double *', 'M2'), ('double *', 'Msum'), ('double', 'alpha'), ('double', 'beta'), ('int', 'rows'), ('int', 'cols')]"
+  ],
+  "Distance Kernels": [
+    "769, 0, Evolve, runs, [('bool *', 'field'), ('float *', 'scores'), ('double', 'b'), ('int', 'size'), ('bool *', 'next_field')]",
+    "7702, 170, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "7702, 293, softmax_gradient_kernel, runs, [('const int', 'dim'), ('const float *', 'Y'), ('const float *', 'dY'), ('float *', 'dX')]",
+    "7702, 298, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "7722, 170, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2')]",
+    "7722, 312, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]"
+  ],
+  "Gradient Kernels": [
+    "77, 3, cunn_SoftMax_updateGradInput_kernel, runs, [('float *', 'gradInput'), ('float *', 'output'), ('float *', 'gradOutput'), ('int', 'nframe'), ('int', 'dim')]",
+    "77, 10, atomicmaxgradinput, runs, [('float *', 'gradInput'), ('float *', 'gradOutput'), ('float *', 'indices_x'), ('float *', 'indices_y'), ('int', 'input_n'), ('int', 'input_h'), ('int', 'input_w'), ('int', 'kH'), ('int', 'kW'), ('int', 'dH'), ('int', 'dW')]",
+    "77, 20, cunn_MSECriterion_updateOutput_kernel, runs, [('float *', 'output'), ('float *', 'input'), ('float *', 'target'), ('int', 'nframe'), ('int', 'dim'), ('int', 'sizeAverage')]",
+    "77, 21, cunn_MSECriterion_updateGradInput_kernel, runs, [('float *', 'gradInput'), ('float *', 'input'), ('float *', 'target'), ('float', 'norm'), ('int', 'nframe'), ('int', 'dim')]",
+    "7729, 15, gSoftmaxGrad, runs, [('float *', 'grad'), ('const float *', 'adj'), ('const float *', 'val'), ('const int', 'rows'), ('const int', 'cols')]",
+    "7729, 16, gLogSoftmaxGrad, runs, [('float *', 'grad'), ('const float *', 'adj'), ('const float *', 'val'), ('const int', 'rows'), ('const int', 'cols')]"
+  ],
+  "Atomic Operations": [
+    "7775, 0, increment_kernel, runs, [('int *', 'g_data'), ('int', 'inc_value')]",
+    "7775, 2, increment_kernel, runs, [('int *', 'g_data'), ('int', 'inc_value')]",
+    "7762, 3, atomicScatter, runs, [('int', 'type1'), ('int', 'type2'), ('int', 'size_K'), ('double *', 'occ'), ('double *', 'beq'), ('double *', 'K'), ('double *', 'a'), ('double *', 'b'), ('double *', 'c'), ('double *', 'ffoobb')]"
+  ],
+  "Kernel Synchronization": [
+    "7761, 36, sync_conv_groups, runs, []",
+    "7761, 55, sync_ndconv_groups, runs, []",
+    "7810, 21, sync_deconv_groups, runs, []",
+    "7810, 37, sync_conv_groups, runs, []",
+    "7810, 61, sync_ndconv_groups, runs, []"
+  ],
+  "Utility Kernels": [
+    "7801, 0, vec_setf, runs, [('size_t', 'n'), ('float *', 'result'), ('float', 'value')]",
+    "7801, 1, vec_addf, runs, [('size_t', 'n'), ('float *', 'result'), ('float *', 'x'), ('float *', 'y')]",
+    "7801, 2, vec_subf, runs, [('size_t', 'n'), ('float *', 'result'), ('float *', 'x'), ('float *', 'y')]",
+    "7801, 3, vec_mulf, runs, [('size_t', 'n'), ('float *', 'result'), ('float *', 'x'), ('float *', 'y')]",
+    "7801, 4, vec_divf, runs, [('size_t', 'n'), ('float *', 'result'), ('float *', 'x'), ('float *', 'y')]",
+    "7801, 5, vec_negatef, runs, [('size_t', 'n'), ('float *', 'result'), ('float *', 'x')]",
+    "7801, 6, vec_addScalarf, runs, [('size_t', 'n'), ('float *', 'result'), ('float *', 'x'), ('float', 'y')]",
+    "7801, 7, vec_subScalarf, runs, [('size_t', 'n'), ('float *', 'result'), ('float *', 'x'), ('float', 'y')]",
+    "7801, 8, vec_mulScalarf, runs, [('size_t', 'n'), ('float *', 'result'), ('float *', 'x'), ('float', 'y')]",
+    "7801, 9, vec_divScalarf, runs, [('size_t', 'n'), ('float *', 'result'), ('float *', 'x'), ('float', 'y')]"
+  ]
+}
+```

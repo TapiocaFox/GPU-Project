@@ -1,0 +1,90 @@
+```json
+{
+  "Arithmetic Kernels": [
+    "719, 5, Subtract, runs, [('float *', 'd_Result'), ('float *', 'd_Data1'), ('float *', 'd_Data2'), ('int', 'width'), ('int', 'pitch'), ('int', 'height')]",
+    "719, 10, SubtractMulti, runs, [('float *', 'd_Result'), ('float *', 'd_Data'), ('int', 'width'), ('int', 'pitch'), ('int', 'height')]",
+    "719, 24, MultiplyAdd, runs, [('float *', 'd_Result'), ('float *', 'd_Data'), ('int', 'width'), ('int', 'height')]",
+    "720, 3, rho, runs, [('float *', 'x'), ('int', 'size'), ('float', 'lambda')]",
+    "720, 19, Normalize_get_norm_, runs, [('float *', 'input'), ('float *', 'norm'), ('int', 'size1'), ('int', 'size23'), ('int', 'size023')]",
+    "720, 30, copy_fill, runs, [('float *', 'in'), ('float *', 'out'), ('int', 'size'), ('int', 'in_size2'), ('int', 'in_size3'), ('int', 'out_size2'), ('int', 'out_size3')]",
+    "721, 3, addArray, runs, [('float *', 'd_a'), ('float *', 'd_b'), ('float *', 'd_c'), ('int', 'size')]",
+    "721, 12, addVectors, runs, [('float *', 'd_A'), ('float *', 'd_B'), ('float *', 'd_C'), ('int', 'size')]",
+    "721, 34, addVectors, runs, [('int', 'size'), ('float *', 'd_a'), ('float *', 'd_b'), ('float *', 'd_c')]",
+    "7264, 33, addValue_i32, runs, [('int *', 'vector'), ('int', 'value'), ('int *', 'output'), ('int', 'len')]",
+    "7264, 34, addValue_f32, runs, [('float *', 'vector'), ('float', 'value'), ('float *', 'output'), ('int', 'len')]",
+    "7264, 37, add_i32, runs, [('int *', 'left_op'), ('int *', 'right_op'), ('int *', 'output'), ('int', 'len')]",
+    "7264, 38, add_f32, runs, [('float *', 'left_op'), ('float *', 'right_op'), ('float *', 'output'), ('int', 'len')]",
+    "7355, 0, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]"
+  ],
+  "Reduction Kernels": [
+    "737, 7, global_reduce_kernel, runs, [('float *', 'd_out'), ('float *', 'd_in')]",
+    "737, 8, shmem_reduce_kernel, runs, [('float *', 'd_out'), ('const float *', 'd_in')]",
+    "737, 9, global_reduce_kernel, runs, [('float *', 'd_out'), ('float *', 'd_in')]",
+    "737, 10, shmem_reduce_kernel, runs, [('float *', 'd_out'), ('const float *', 'd_in')]",
+    "737, 11, naive_histo, runs, [('int *', 'd_bins'), ('const int *', 'd_in'), ('const int', 'BIN_COUNT')]",
+    "737, 12, simple_histo, runs, [('int *', 'd_bins'), ('const int *', 'd_in'), ('const int', 'BIN_COUNT')]",
+    "737, 14, normalize_cdf, runs, [('unsigned int *', 'd_input_cdf'), ('float *', 'd_output_cdf'), ('int', 'n')]",
+    "737, 15, tonemap, runs, [('float *', 'd_x'), ('float *', 'd_y'), ('float *', 'd_log_Y'), ('float *', 'd_cdf_norm'), ('float *', 'd_r_new'), ('float *', 'd_g_new'), ('float *', 'd_b_new'), ('float', 'min_log_Y'), ('float', 'max_log_Y'), ('float', 'log_Y_range'), ('int', 'num_bins'), ('int', 'num_pixels_y'), ('int', 'num_pixels_x')]"
+  ],
+  "Image Processing Kernels": [
+    "7194, 165, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+    "720, 17, subpixel_enchancement, runs, [('float *', 'd0'), ('float *', 'c2'), ('float *', 'out'), ('int', 'size'), ('int', 'dim23'), ('int', 'disp_max')]",
+    "720, 28, remove_occluded, runs, [('float *', 'y'), ('int', 'size'), ('int', 'size3')]",
+    "720, 29, remove_white, runs, [('float *', 'x'), ('float *', 'y'), ('int', 'size')]",
+    "720, 31, cunn_SpatialLogSoftMax_updateOutput_kernel, runs, [('float *', 'output'), ('float *', 'input'), ('int', 'feature_size'), ('int', 'spatial_size'), ('int', 'data_size'), ('float', 'constant')]",
+    "720, 32, cunn_SpatialLogSoftMax_updateGradInput_kernel, runs, [('float *', 'gradInput'), ('float *', 'output'), ('float *', 'gradOutput'), ('int', 'feature_size'), ('int', 'spatial_size'), ('int', 'data_size')]",
+    "7355, 3, rgb2gray, runs, [('float *', 'input'), ('float *', 'output'), ('int', 'height'), ('int', 'width')]",
+    "7355, 4, blur, runs, [('float *', 'input'), ('float *', 'output'), ('int', 'height'), ('int', 'width')]"
+  ],
+  "Normalization Kernels": [
+    "719, 15, FindMinMax, runs, [('float *', 'd_MinMax'), ('float *', 'd_Data'), ('int', 'width'), ('int', 'pitch'), ('int', 'height')]",
+    "719, 25, FindMinMax, runs, [('float *', 'd_MinMax'), ('float *', 'd_Data'), ('int', 'width'), ('int', 'height')]",
+    "721, 29, histo_kernel, runs, [('unsigned char *', 'buffer1'), ('long', 'size1'), ('unsigned int *', 'histo1')]",
+    "721, 30, histo_kernel, runs, [('unsigned char *', 'buffer1'), ('long', 'size1'), ('unsigned int *', 'histo1')]",
+    "721, 46, histo_kernel, runs, [('unsigned char *', 'buffer1'), ('long', 'size1'), ('unsigned int *', 'histo1')]",
+    "721, 47, histo_kernel, runs, [('unsigned char *', 'buffer1'), ('long', 'size1'), ('unsigned int *', 'histo1')]",
+    "7318, 19, kernel_normalize_and_add_to_output, runs, [('float *', 'dev_vol_in'), ('float *', 'dev_vol_out'), ('float *', 'dev_accumulate_weights'), ('float *', 'dev_accumulate_values')]"
+  ],
+  "Utility Kernels": [
+    "719, 16, Find3DMinMax, runs, [('int *', 'd_Result'), ('float *', 'd_Data1'), ('float *', 'd_Data2'), ('float *', 'd_Data3'), ('int', 'width'), ('int', 'pitch'), ('int', 'height')]",
+    "719, 17, UnpackPointers, runs, [('int *', 'minmax'), ('int *', 'ptrs'), ('int', 'w'), ('int', 'h'), ('int', 'maxPts')]",
+    "7206, 2, Vector_Addition, runs, [('const int *', 'dev_a'), ('const int *', 'dev_b'), ('int *', 'dev_c')]",
+    "7206, 4, cu_init, runs, [('unsigned long long', 'seed'), ('curandState_t *', 'states_d'), ('size_t', 'size')]",
+    "7206, 5, cugen_curand_array, runs, [('curandState_t *', 'states_d'), ('int *', 'array_d'), ('size_t', 'size')]",
+    "721, 1, europeanOption, runs, [('int', 'size'), ('int', 'iterations'), ('float *', 'd_price'), ('float', 'initialPrice'), ('float', 'strikePrice'), ('curandState_t *', 'd_state')]",
+    "721, 2, init, runs, [('unsigned int', 'seed'), ('curandState_t *', 'd_state')]",
+    "721, 16, init, runs, [('unsigned int', 'seed'), ('curandState_t *', 'states'), ('unsigned int', 'size')]",
+    "721, 23, curandINIT, runs, [('int', 'size'), ('curandState_t *', 'd_states'), ('unsigned int', 'seed')]",
+    "7222, 0, Test, runs, [('double *', 'training_in_d'), ('double *', 'training_out_d'), ('double *', 'data_range_d'), ('double *', 'weights_in_d'), ('double *', 'weights_out_d'), ('double *', 'weights_h_d'), ('double *', 'h_out_d'), ('double *', 'outputs_d'), ('int', 'inputs'), ('int', 'samples'), ('int', 'height')]",
+    "740, 4, hotspotOpt1, runs, [('float *', 'p'), ('float *', 'tIn'), ('float *', 'tOut'), ('float', 'sdc'), ('int', 'nx'), ('int', 'ny'), ('int', 'nz'), ('float', 'ce'), ('float', 'cw'), ('float', 'cn'), ('float', 'cs'), ('float', 'ct'), ('float', 'cb'), ('float', 'cc')]"
+  ],
+  "Kernel Initialization": [
+    "7206, 4, cu_init, runs, [('unsigned long long', 'seed'), ('curandState_t *', 'states_d'), ('size_t', 'size')]",
+    "721, 2, init, runs, [('unsigned int', 'seed'), ('curandState_t *', 'd_state')]",
+    "721, 16, init, runs, [('unsigned int', 'seed'), ('curandState_t *', 'states'), ('unsigned int', 'size')]",
+    "721, 23, curandINIT, runs, [('int', 'size'), ('curandState_t *', 'd_states'), ('unsigned int', 'seed')]",
+    "7341, 6, init_prng, runs, [('curandState *', 'states'), ('const unsigned long int', 'seed')]"
+  ],
+  "Graph Processing Kernels": [
+    "740, 75, BFS_kernel_warp, runs, [('unsigned int *', 'levels'), ('unsigned int *', 'edgeArray'), ('unsigned int *', 'edgeArrayAux'), ('int', 'W_SZ'), ('int', 'CHUNK_SZ'), ('unsigned int', 'numVertices'), ('int', 'curr'), ('int *', 'flag')]",
+    "740, 76, BFS_kernel_one_block, runs, [('volatile unsigned int *', 'frontier'), ('unsigned int', 'frontier_len'), ('volatile unsigned int *', 'cost'), ('volatile int *', 'visited'), ('unsigned int *', 'edgeArray'), ('unsigned int *', 'edgeArrayAux'), ('unsigned int', 'numVertices'), ('unsigned int', 'numEdges'), ('volatile unsigned int *', 'frontier_length'), ('unsigned int', 'num_p_per_mp'), ('unsigned int', 'w_q_size')]",
+    "740, 77, BFS_kernel_SM_block, runs, [('volatile unsigned int *', 'frontier'), ('volatile unsigned int *', 'frontier2'), ('unsigned int', 'frontier_len'), ('volatile unsigned int *', 'cost'), ('volatile int *', 'visited'), ('unsigned int *', 'edgeArray'), ('unsigned int *', 'edgeArrayAux'), ('unsigned int', 'numVertices'), ('unsigned int', 'numEdges'), ('volatile unsigned int *', 'frontier_length'), ('unsigned int', 'num_p_per_mp'), ('unsigned int', 'w_q_size')]",
+    "740, 81, BFS_kernel_one_block_spill, runs, [('volatile unsigned int *', 'frontier'), ('unsigned int', 'frontier_len'), ('volatile unsigned int *', 'cost'), ('volatile int *', 'visited'), ('unsigned int *', 'edgeArray'), ('unsigned int *', 'edgeArrayAux'), ('unsigned int', 'numVertices'), ('unsigned int', 'numEdges'), ('volatile unsigned int *', 'frontier_length'), ('const unsigned int', 'max_mem')]",
+    "740, 82, BFS_kernel_SM_block_spill, runs, [('volatile unsigned int *', 'frontier'), ('volatile unsigned int *', 'frontier2'), ('unsigned int', 'frontier_len'), ('volatile unsigned int *', 'cost'), ('volatile int *', 'visited'), ('unsigned int *', 'edgeArray'), ('unsigned int *', 'edgeArrayAux'), ('unsigned int', 'numVertices'), ('unsigned int', 'numEdges'), ('volatile unsigned int *', 'frontier_length'), ('const unsigned int', 'max_mem')]"
+  ],
+  "Machine Learning Kernels": [
+    "7214, 1, kLogregCost, runs, [('float *', 'probs'), ('float *', 'labels'), ('float *', 'maxProbs'), ('float *', 'labelLogProbs'), ('float *', 'correctProbs'), ('const int', 'numCases'), ('const int', 'numOut')]",
+    "7214, 2, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "7222, 8, back, runs, [('double *', 'h_out_d'), ('double *', 'weights_out_d'), ('double *', 'weights_h_d'), ('double *', 'weights_in_d'), ('double *', 'outputs_d'), ('double *', 'deltas_h_d'), ('double *', 'deltas_h_new_d'), ('double *', 'deltas_o_d'), ('double *', 'weights_in_delta_d'), ('double *', 'weights_out_delta_d'), ('double *', 'weights_h_delta_d'), ('int', 'height'), ('int', 'inputs'), ('int', 'samples')]",
+    "740, 84, kernelUpdateBiases, runs, [('float *', 'nabla_b'), ('float *', 'biases'), ('float', 'eta'), ('float', 'mini_batch_size')]",
+    "740, 90, kernelBackprop3a, runs, [('float *', 'delta_nabla_b'), ('int', 'b_off'), ('int', 'bound'), ('int', 'b_off_old'), ('float *', 'weights'), ('int', 'w_off_old')]",
+    "740, 91, kernelBackprop3b, runs, [('float *', 'delta_nabla_b'), ('int', 'b_off'), ('float *', 'zs')]"
+  ],
+  "Testing Kernels": [
+    "7222, 0, Test, runs, [('double *', 'training_in_d'), ('double *', 'training_out_d'), ('double *', 'data_range_d'), ('double *', 'weights_in_d'), ('double *', 'weights_out_d'), ('double *', 'weights_h_d'), ('double *', 'h_out_d'), ('double *', 'outputs_d'), ('int', 'inputs'), ('int', 'samples'), ('int', 'height')]",
+    "728, 0, testDrive, runs, []",
+    "730, 0, testDrive, runs, []",
+    "7402, 29, test, runs, []"
+  ]
+}
+```

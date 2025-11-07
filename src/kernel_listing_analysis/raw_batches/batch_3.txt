@@ -1,0 +1,91 @@
+```json
+{
+  "Initialization Kernels": [
+    "1069, 3, InitializeMatrix_kernel, runs, [('int8_t *', 'matrix'), ('int', 'ldm'), ('int', 'rows'), ('int', 'columns')]"
+  ],
+  "Knapsack Kernels": [
+    "10692, 0, knapsackKernel, runs, [('int *', 'profits'), ('int *', 'weights'), ('int *', 'f'), ('int', 'capacity'), ('int', 'i')]",
+    "10692, 1, knapsackKernel, runs, [('int *', 'profits'), ('int *', 'weights'), ('int *', 'input_f'), ('int *', 'output_f'), ('int', 'capacity'), ('int', 'c_min'), ('int', 'k')]",
+    "10692, 2, knapsackKernel, runs, [('int *', 'profits'), ('int *', 'weights'), ('int *', 'input_f'), ('int *', 'output_f'), ('int', 'capacity'), ('int', 'c_min'), ('int', 'k')]"
+  ],
+  "Matrix Multiplication Kernels": [
+    "10693, 0, gaxpymm, runs, [('double *', 'y'), ('double *', 'a'), ('double *', 'b'), ('int', 'm'), ('int', 'n'), ('int', 'p')]",
+    "10716, 0, gaxpymm, runs, [('double *', 'y'), ('double *', 'a'), ('double *', 'b'), ('int', 'm'), ('int', 'n'), ('int', 'p')]"
+  ],
+  "Vector Operations Kernels": [
+    "10693, 1, gaxpy, runs, [('double *', 'y'), ('double *', 'a'), ('double *', 'x'), ('int', 'm'), ('int', 'n')]",
+    "10716, 1, gaxpy, runs, [('double *', 'y'), ('double *', 'a'), ('double *', 'x'), ('int', 'm'), ('int', 'n')]",
+    "1073, 42, kDotProduct_r, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'target'), ('const uint', 'numElements')]",
+    "1073, 44, kMultiSoftmaxCost, runs, [('float *', 'probs'), ('float *', 'labels'), ('float *', 'maxProbs'), ('float *', 'labelLogProbs'), ('float *', 'correctProbs'), ('float *', 'top5Probs'), ('const int', 'numCases'), ('const int', 'numOut'), ('const int', 'setSize')]",
+    "1073, 48, kLogregCost, runs, [('float *', 'probs'), ('float *', 'labels'), ('float *', 'maxProbs'), ('float *', 'labelLogProbs'), ('float *', 'correctProbs'), ('const int', 'numCases'), ('const int', 'numOut')]"
+  ],
+  "Scaling Kernels": [
+    "10695, 1, do_scale, runs, [('uint8_t *', 'inBuffer'), ('uint8_t *', 'outBuffer'), ('uint32_t', 'inWidth'), ('uint32_t', 'inHeight'), ('uint32_t', 'outWidth'), ('uint32_t', 'outHeight'), ('double', 'ratioHeight'), ('double', 'ratioWidth'), ('double', 'xRatio'), ('double', 'yRatio'), ('uint32_t', 'outHeightOffset'), ('uint32_t', 'outWidthOffset'), ('uint32_t', 'inStep'), ('uint32_t', 'outStep')]"
+  ],
+  "Value Setting Kernels": [
+    "10706, 15, setValue, runs, [('float *', 'data'), ('int', 'idx'), ('float', 'value')]",
+    "10706, 31, setValue, runs, [('float *', 'data'), ('int', 'idx'), ('float', 'value')]",
+    "10706, 35, setValueSomestupidlylongnamefoobarfoobarfoobar, runs, [('float *', 'data'), ('int', 'idx'), ('float', 'value')]",
+    "10706, 47, setValue, runs, [('float *', 'data'), ('int', 'idx'), ('float', 'value')]",
+    "10706, 77, setValue, runs, [('float *', 'data'), ('int', 'idx'), ('float', 'value')]",
+    "10706, 78, setValue, runs, [('float *', 'data'), ('int', 'idx'), ('float', 'value')]"
+  ],
+  "Value Getting Kernels": [
+    "10706, 40, getValue, runs, [('float *', 'outdata'), ('float *', 'indata')]",
+    "10706, 44, getValue, runs, [('float *', 'outdata'), ('float *', 'indata')]",
+    "10706, 69, getValue, runs, [('float *', 'outdata'), ('float *', 'indata')]",
+    "10706, 70, getValueChar, runs, [('char *', 'outdata'), ('char *', 'indata')]"
+  ],
+  "Long Kernels": [
+    "10706, 61, longKernel, runs, [('float *', 'data'), ('int', 'N'), ('float', 'value')]",
+    "10706, 67, longKernel, runs, [('float *', 'data'), ('int', 'N'), ('float', 'value')]",
+    "10706, 71, longKernel, runs, [('float *', 'data'), ('int', 'N'), ('float', 'value')]"
+  ],
+  "Addition Kernels": [
+    "10738, 8, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c'), ('int', 'columns'), ('int', 'rows')]",
+    "10738, 9, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "10738, 10, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "10817, 4, daxpy_matrix_vector, runs, [('double *', 'A'), ('double *', 'B'), ('double', 'alpha'), ('double *', 'ret'), ('int', 'rlenA'), ('int', 'clenA'), ('int', 'rlenB'), ('int', 'clenB')]",
+    "10879, 2, sumMatrixOnGPU2D, runs, [('int *', 'MatA'), ('int *', 'MatB'), ('int *', 'MatC'), ('int', 'nx'), ('int', 'ny')]",
+    "10879, 4, sumArraysOnGPU, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C')]",
+    "109, 3, cunnx_WindowGate2_updateOutput_kernel, runs, [('float *', 'output'), ('float *', 'centroids'), ('float *', 'normalizedCentroids'), ('float *', 'inputIndice'), ('float *', 'outputIndice'), ('const float *', 'input'), ('const float *', 'noise'), ('int', 'inputSize'), ('int', 'outputSize'), ('int', 'inputWindowSize'), ('int', 'outputWindowSize'), ('int', 'windowStride'), ('int', 'train')]"
+  ],
+  "Reduction Kernels": [
+    "10946, 0, reduce, runs, [('int *', 'g_idata'), ('int', 'l1'), ('int', 'l2')]",
+    "10946, 2, reduce, runs, [('int *', 'g_idata'), ('int', 'l1'), ('int', 'l2')]"
+  ],
+  "Image Processing Kernels": [
+    "10725, 1, gain, runs, [('int', 'width'), ('int', 'height'), ('float', 'rGain'), ('float', 'gGain'), ('float', 'bGain'), ('float *', 'input'), ('float *', 'output')]",
+    "10764, 0, cvlUnit, runs, [('const char *', 'imgR'), ('const char *', 'imgG'), ('const char *', 'imgB'), ('const char *', 'core'), ('char *', 'outR'), ('char *', 'outG'), ('char *', 'outB'), ('int', 'lenX'), ('int', 'lenY'), ('int', 'lenCore')]",
+    "10764, 2, cvlUnit, runs, [('const char *', 'imgR'), ('const char *', 'imgG'), ('const char *', 'imgB'), ('const char *', 'core'), ('char *', 'outR'), ('char *', 'outG'), ('char *', 'outB'), ('int', 'lenX'), ('int', 'lenY'), ('int', 'lenCore')]"
+  ],
+  "Kernel Testing Kernels": [
+    "10910, 0, kernel_move_inv_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'pattern')]",
+    "10910, 3, kernel_test0_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'pattern'), ('unsigned int *', 'err'), ('unsigned long *', 'err_addr'), ('unsigned long *', 'err_expect'), ('unsigned long *', 'err_current'), ('unsigned long *', 'err_second_read')]",
+    "10910, 5, kernel_test0_global_write, runs, [('char *', '_ptr'), ('char *', '_end_ptr')]",
+    "10910, 7, kernel_test0_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "10910, 9, kernel_test1_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int *', 'err')]",
+    "10910, 11, kernel_test5_init, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "10910, 12, kernel_test5_move, runs, [('char *', '_ptr'), ('char *', 'end_ptr')]",
+    "10910, 14, kernel_movinv32_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'pattern'), ('unsigned int', 'lb'), ('unsigned int', 'sval'), ('unsigned int', 'offset')]",
+    "10910, 17, kernel_test7_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('char *', '_start_ptr'), ('unsigned int *', 'err')]",
+    "10910, 20, kernel_modtest_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'offset'), ('unsigned int', 'p1'), ('unsigned int', 'p2')]"
+  ],
+  "Empty Kernels": [
+    "10785, 7, emptyKernel, runs, []",
+    "1085, 0, kernel, runs, []",
+    "1085, 1, helloFromGPU, runs, []",
+    "1085, 2, kernel, runs, []",
+    "10980, 0, kernel, runs, []"
+  ],
+  "Miscellaneous Kernels": [
+    "10802, 3, Histogram_kernel, runs, [('int', 'size'), ('int', 'bins'), ('int', 'cpu_bins'), ('unsigned int *', 'data'), ('unsigned int *', 'histo')]",
+    "10802, 7, non_max_supp_kernel, runs, [('unsigned char *', 'data'), ('unsigned char *', 'out'), ('unsigned char *', 'theta'), ('int', 'rows'), ('int', 'cols')]",
+    "10802, 8, hyst_kernel, runs, [('unsigned char *', 'data'), ('unsigned char *', 'out'), ('int', 'rows'), ('int', 'cols')]",
+    "11022, 3, vsub, runs, [('const float *', 'a'), ('const float *', 'b'), ('float *', 'c')]",
+    "11022, 4, vmul, runs, [('const float *', 'a'), ('const float *', 'b'), ('float *', 'c')]",
+    "11022, 5, vdiv, runs, [('const float *', 'a'), ('const float *', 'b'), ('float *', 'c')]",
+    "11022, 6, dummy, runs, []"
+  ]
+}
+```

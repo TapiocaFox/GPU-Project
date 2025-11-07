@@ -1,0 +1,77 @@
+```json
+{
+  "Memory Manipulation Kernels": [
+    "11288, 14, kernel_movinv32_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'pattern'), ('unsigned int', 'lb'), ('unsigned int', 'sval'), ('unsigned int', 'offset')]",
+    "11288, 17, kernel_test7_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('char *', '_start_ptr'), ('unsigned int *', 'err')]",
+    "11288, 20, kernel_modtest_write, runs, [('char *', '_ptr'), ('char *', 'end_ptr'), ('unsigned int', 'offset'), ('unsigned int', 'p1'), ('unsigned int', 'p2')]",
+    "11307, 4, kernel, runs, [('uchar4 *', 'ptr'), ('int', 'ticks')]",
+    "11307, 9, kernal, runs, []",
+    "11307, 18, kernel, runs, [('unsigned char *', 'ptr'), ('int', 'ticks')]",
+    "11474, 39, longKernel, runs, [('float *', 'data'), ('int', 'N'), ('float', 'value')]",
+    "11474, 61, longKernel, runs, [('float *', 'data'), ('int', 'N'), ('float', 'value')]",
+    "11474, 67, longKernel, runs, [('float *', 'data'), ('int', 'N'), ('float', 'value')]"
+  ],
+  "Convolution Kernels": [
+    "1129, 16, convolutionGlobal, runs, [('float *', 'imgIn'), ('float *', 'kernel'), ('float *', 'imgOut'), ('int', 'w'), ('int', 'h'), ('int', 'nc'), ('int', 'kernelSize')]",
+    "11344, 1, convolutionNoTiling, runs, [('float *', 'I'), ('float *', 'P'), ('int', 'channels'), ('int', 'width'), ('int', 'height')]",
+    "11486, 13, convKernelFullNaiveSepKernel, runs, [('float *', 'd_Input'), ('float *', 'd_Output'), ('float *', 'd_Kernel'), ('int', 'imageW'), ('int', 'imageH'), ('int', 'kernelR')]",
+    "11486, 14, convKernelFullNaive, runs, [('float *', 'd_Input'), ('float *', 'd_Output'), ('float *', 'd_Kernel'), ('int', 'imageW'), ('int', 'imageH'), ('int', 'kernelR')]"
+  ],
+  "Vector Addition Kernels": [
+    "11296, 0, vectorAdd, runs, [('const float *', 'A'), ('const float *', 'B'), ('float *', 'C'), ('int', 'numElements')]",
+    "11307, 3, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "11307, 5, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "11307, 7, addKernel, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]",
+    "11307, 11, addKernel, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]",
+    "11353, 5, add, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "11500, 1, VecAdd, runs, [('const float *', 'A'), ('const float *', 'B'), ('float *', 'C'), ('int', 'N')]",
+    "11580, 2, VecAdd, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'N')]",
+    "11580, 8, VecAdd, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'N')]",
+    "11580, 9, VecAdd, runs, [('float *', 'A'), ('float *', 'B'), ('float *', 'C'), ('int', 'N')]"
+  ],
+  "Matrix Multiplication Kernels": [
+    "1129, 1, createLaplacianKernel, runs, [('float *', 'grid'), ('float *', 'kernel'), ('int', 'nrDimensions'), ('int', 'nrGridElements')]",
+    "11386, 1, matrixMulGPU, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "11386, 2, matrixMulGPU, runs, [('int *', 'a'), ('int *', 'b'), ('int *', 'c')]",
+    "11405, 7, MatrixMulKernel, runs, [('float *', 'd_x'), ('float *', 'd_y'), ('float *', 'd_z'), ('int', 'Width')]",
+    "11405, 8, MatrixMulKernel, runs, [('int *', 'd_x'), ('int *', 'd_y'), ('int *', 'd_z'), ('int', 'Block_Width'), ('int', 'M'), ('int', 'N')]",
+    "11506, 2, Product, runs, [('float *', 'a'), ('float *', 'b'), ('float *', 'c')]",
+    "11506, 3, Matrix_Product, runs, [('double *', 'A'), ('double *', 'g'), ('double *', 'C')]",
+    "11574, 4, MatrixMul, runs, [('float *', 'Md'), ('float *', 'Nd'), ('float *', 'Pd'), ('const int', 'WIDTH')]",
+    "11574, 5, MatrixMulSh, runs, [('float *', 'Md'), ('float *', 'Nd'), ('float *', 'Pd'), ('const int', 'WIDTH')]"
+  ],
+  "Distance Kernels": [
+    "1138, 0, NmDistanceKernel, runs, [('int', 'b'), ('int', 'n'), ('const float *', 'xyz'), ('int', 'm'), ('const float *', 'xyz2'), ('float *', 'result'), ('int *', 'result_i')]",
+    "1138, 1, NmDistanceGradKernel, runs, [('int', 'b'), ('int', 'n'), ('const float *', 'xyz1'), ('int', 'm'), ('const float *', 'xyz2'), ('const float *', 'grad_dist1'), ('const int *', 'idx1'), ('float *', 'grad_xyz1'), ('float *', 'grad_xyz2')]"
+  ],
+  "Gradient Kernels": [
+    "11331, 21, softmax_gradient_kernel, runs, [('const int', 'dim'), ('const float *', 'Y'), ('const float *', 'dY'), ('float *', 'dX')]",
+    "11331, 23, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]",
+    "11538, 350, softmax_gradient_kernel, runs, [('const int', 'dim'), ('const float *', 'Y'), ('const float *', 'dY'), ('float *', 'dX')]",
+    "11538, 355, AccuracyDivideKernel, runs, [('const int', 'N'), ('float *', 'accuracy')]"
+  ],
+  "Utility Kernels": [
+    "11296, 6, float4toUchar4, runs, [('float4 *', 'inputImage'), ('uchar4 *', 'outputImage'), ('int', 'width'), ('int', 'height')]",
+    "11296, 7, float2toUchar4, runs, [('float2 *', 'inputImage'), ('uchar4 *', 'outputImage'), ('int', 'width'), ('int', 'height'), ('int', 'index')]",
+    "11296, 8, float2toUchar1, runs, [('float2 *', 'inputImage'), ('uchar1 *', 'outputImage'), ('int', 'width'), ('int', 'height'), ('int', 'index')]",
+    "11296, 9, float1toUchar4, runs, [('float1 *', 'inputImage'), ('uchar4 *', 'outputImage'), ('int', 'width'), ('int', 'height')]",
+    "11296, 10, float1toUchar1, runs, [('float1 *', 'inputImage'), ('uchar1 *', 'outputImage'), ('int', 'width'), ('int', 'height')]",
+    "11296, 11, uchar4tofloat4, runs, [('uchar4 *', 'inputImage'), ('float4 *', 'outputImage'), ('int', 'width'), ('int', 'height')]",
+    "11417, 0, setup_kernel, runs, [('curandState *', 'state'), ('unsigned long', 'seed')]",
+    "11590, 0, reciprocalKernel, runs, [('float *', 'data'), ('unsigned', 'vectorSize')]",
+    "11592, 0, addKernel, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]",
+    "11592, 1, addKernel2, runs, [('int *', 'c'), ('const int *', 'a'), ('const int *', 'b')]"
+  ],
+  "Image Processing Kernels": [
+    "11511, 2, threshKernel, runs, [('unsigned char *', 'image'), ('unsigned char *', 'moddedimage'), ('int', 'size'), ('int', 'threshold')]",
+    "1161, 2, convolution_kernel, runs, [('unsigned char *', 'input_img'), ('unsigned char *', 'output_img'), ('int', 'height'), ('int', 'width')]",
+    "1161, 4, rgbToGreyKernel, runs, [('int', 'height'), ('int', 'width'), ('unsigned char *', 'input_img'), ('unsigned char *', 'output_img')]"
+  ],
+  "Sparse-Dense Kernels": [
+    "11563, 1, ker_dense_to_sparse_subtract, runs, [('int', 'n'), ('const unsigned int *', 'idx'), ('float *', 'src'), ('float *', 'trg')]",
+    "11563, 2, ker_sparse_to_dense_assign, runs, [('int', 'n'), ('const unsigned int *', 'idx'), ('float *', 'src'), ('float *', 'trg')]",
+    "11563, 3, ker_sparse_to_dense_block_assign_and_multiply, runs, [('int', 'n'), ('const unsigned *', 'idx'), ('int', 'bsize'), ('float', 'mult'), ('float *', 'src'), ('float *', 'trg')]",
+    "11563, 6, ker_dense_to_sparse_block_add, runs, [('int', 'n'), ('const unsigned *', 'idx'), ('int', 'bsize'), ('float *', 'src'), ('float *', 'trg')]"
+  ]
+}
+```
