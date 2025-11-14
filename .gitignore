@@ -6,3 +6,4 @@
 *.fatbin
 *.secret
 */venv
+.DS_store
