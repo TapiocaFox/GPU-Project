@@ -41,30 +41,46 @@ find "$SOURCE_DIR" -type f -name "kernel" | while read kernel_path; do
     # Define output file path
     output_file="$output_subdir/nvdisasm.txt"
     
-    # Temporary ELF file
-    temp_elf="$output_subdir/temp.elf"
+    # Convert kernel_path to absolute path
+    kernel_abs_path=$(realpath "$kernel_path")
     
     echo "Processing: $relative_path"
     
-    # Step 1: Extract ELF from the kernel binary
-    cuobjdump --extract-elf all "$kernel_path" -o "$temp_elf" 2>&1
+    # Change to output subdirectory (cuobjdump creates files in current directory)
+    cd "$output_subdir"
     
-    if [ $? -eq 0 ] && [ -f "$temp_elf" ]; then
-        # Step 2: Disassemble the ELF file
-        nvdisasm "$temp_elf" > "$output_file" 2>&1
+    # Step 1: Extract ELF from the kernel binary
+    # cuobjdump creates files with names like "kernel.sm_60.cubin.elf" in current directory
+    cuobjdump --extract-elf all "$kernel_abs_path" 2>&1
+    
+    if [ $? -eq 0 ]; then
+        # Find the extracted cubin file(s) - cuobjdump extracts .cubin files
+        cubin_file=$(find . -maxdepth 1 -name "*.cubin" | head -n 1)
         
-        if [ $? -eq 0 ]; then
-            echo "  ✓ Successfully disassembled to $output_file"
-            # Clean up temporary ELF file
-            rm -f "$temp_elf"
+        if [ -n "$cubin_file" ]; then
+            # Step 2: Disassemble the cubin file
+            nvdisasm "$cubin_file" > "nvdisasm.txt" 2>&1
+            
+            if [ $? -eq 0 ]; then
+                echo "  ✓ Successfully disassembled to $output_file"
+            else
+                echo "  ✗ Error: nvdisasm failed for $relative_path"
+                echo "  See $output_file for error details"
+            fi
+            
+            # Clean up all cubin files
+            rm -f *.cubin
         else
-            echo "  ✗ Error: nvdisasm failed for $relative_path"
-            echo "  See $output_file for error details"
+            echo "  ✗ Error: No cubin file extracted for $relative_path"
+            echo "No cubin file extracted" > "nvdisasm.txt"
         fi
     else
         echo "  ✗ Error: cuobjdump failed to extract ELF for $relative_path"
-        echo "cuobjdump error" > "$output_file"
+        echo "cuobjdump error" > "nvdisasm.txt"
     fi
+    
+    # Return to script directory
+    cd - > /dev/null
     
     # Increment counter
     ((processed++))
