@@ -23,7 +23,8 @@ SRC = cuda_microbenchmark.cu
 # NVCCFLAGS = -O3 -arch=sm_86 -lineinfo  # Ampere (RTX 3090)
 # NVCCFLAGS = -O3 -arch=sm_89 -lineinfo  # Ada Lovelace (RTX 4090)
 
-NVCCFLAGS = -O3 -arch=sm_70 -lineinfo -std=c++11  # Titan V (add -std=c++11 for C++ features)
+# NVCCFLAGS = -O3 -arch=sm_70 -lineinfo -std=c++11  # Titan V (add -std=c++11 for C++ features)
+NVCCFLAGS = -O0 -arch=sm_75 -lineinfo -std=c++11
 
 # Default target
 all: $(TARGET)

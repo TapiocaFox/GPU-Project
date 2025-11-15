@@ -79,15 +79,15 @@ __global__ void latency_fadd(float *input, float *output, int counter_iterations
         
         // Outer counter loop
         for (int counter = 0; counter < counter_iterations; counter++) {
-            clock_t start = clock();
+            unsigned long long start = clock64();
             
             // Inner loop: exactly 256 dependent instructions
-            #pragma unroll 1
+            // #pragma unroll 1
             for (int i = 0; i < 256; i++) {
                 result = result + 1.0f;  // Dependent chain
             }
             
-            clock_t end = clock();
+            unsigned long long end = clock64();
             total_time += (end - start);
         }
         
@@ -105,15 +105,15 @@ __global__ void latency_fmul(float *input, float *output, int counter_iterations
         
         // Outer counter loop
         for (int counter = 0; counter < counter_iterations; counter++) {
-            clock_t start = clock();
+            unsigned long long start = clock64();
             
             // Inner loop: exactly 256 dependent instructions
-            #pragma unroll 1
+            // #pragma unroll 1
             for (int i = 0; i < 256; i++) {
                 result = result * 1.000001f;  // Dependent chain
             }
             
-            clock_t end = clock();
+            unsigned long long end = clock64();
             total_time += (end - start);
         }
         
@@ -131,15 +131,15 @@ __global__ void latency_fma(float *input, float *output, int counter_iterations)
         
         // Outer counter loop
         for (int counter = 0; counter < counter_iterations; counter++) {
-            clock_t start = clock();
+            unsigned long long start = clock64();
             
             // Inner loop: exactly 256 dependent instructions
-            #pragma unroll 1
+            // #pragma unroll 1
             for (int i = 0; i < 256; i++) {
                 result = result * 1.000001f + 0.5f;  // Dependent chain
             }
             
-            clock_t end = clock();
+            unsigned long long end = clock64();
             total_time += (end - start);
         }
         
@@ -157,15 +157,15 @@ __global__ void latency_iadd(int *input, int *output, int counter_iterations) {
         
         // Outer counter loop
         for (int counter = 0; counter < counter_iterations; counter++) {
-            clock_t start = clock();
+            unsigned long long start = clock64();
             
             // Inner loop: exactly 256 dependent instructions
-            #pragma unroll 1
+            // #pragma unroll 1
             for (int i = 0; i < 256; i++) {
                 result = result + 1;  // Dependent chain
             }
             
-            clock_t end = clock();
+            unsigned long long end = clock64();
             total_time += (end - start);
         }
         
@@ -183,15 +183,15 @@ __global__ void latency_imul(int *input, int *output, int counter_iterations) {
         
         // Outer counter loop
         for (int counter = 0; counter < counter_iterations; counter++) {
-            clock_t start = clock();
+            unsigned long long start = clock64();
             
             // Inner loop: exactly 256 dependent instructions
-            #pragma unroll 1
+            // #pragma unroll 1
             for (int i = 0; i < 256; i++) {
                 result = result * 3;  // Dependent chain
             }
             
-            clock_t end = clock();
+            unsigned long long end = clock64();
             total_time += (end - start);
         }
         
@@ -209,15 +209,15 @@ __global__ void latency_global_load(float *input, float *output, int counter_ite
         
         // Outer counter loop
         for (int counter = 0; counter < counter_iterations; counter++) {
-            clock_t start = clock();
+            unsigned long long start = clock64();
             
             // Inner loop: exactly 256 dependent loads
-            #pragma unroll 1
+            // #pragma unroll 1
             for (int i = 0; i < 256; i++) {
                 result += input[i % 1024];  // Dependent loads
             }
             
-            clock_t end = clock();
+            unsigned long long end = clock64();
             total_time += (end - start);
         }
         
@@ -244,15 +244,15 @@ __global__ void latency_shared_load(float *output, int counter_iterations) {
         
         // Outer counter loop
         for (int counter = 0; counter < counter_iterations; counter++) {
-            clock_t start = clock();
+            unsigned long long start = clock64();
             
             // Inner loop: exactly 256 dependent loads
-            #pragma unroll 1
+            // #pragma unroll 1
             for (int i = 0; i < 256; i++) {
                 result += shared_data[i % 1024];
             }
             
-            clock_t end = clock();
+            unsigned long long end = clock64();
             total_time += (end - start);
         }
         
@@ -272,15 +272,15 @@ __global__ void throughput_fadd_ilp1(float *input, float *output, int iterations
     
     float a = input[tid];
     
-    clock_t start = clock();
+    unsigned long long start = clock64();
     
     // ILP=1: Only one variable, fully dependent operations
-    #pragma unroll 1
+    // #pragma unroll 1
     for (int i = 0; i < iterations; i++) {
         a = a + 1.0f;  // Dependent chain
     }
     
-    clock_t end = clock();
+    unsigned long long end = clock64();
     
     output[tid] = a;
     if (tid == 0) {
@@ -295,16 +295,17 @@ __global__ void throughput_fadd_ilp2(float *input, float *output, int iterations
     float a = input[tid];
     float b = input[tid] + 1.0f;
     
-    clock_t start = clock();
+    // clock_t start = clock();
+    unsigned long long start = clock64();
     
     // ILP=2: Two independent variables
-    #pragma unroll 2
+    // #pragma unroll 2
     for (int i = 0; i < iterations; i++) {
-        a = a + 1.0f;  // Independent from b
-        b = b + 1.0f;  // Independent from a
+        a += 1.0f;  // Independent from b
+        b += 1.0f;  // Independent from a
     }
     
-    clock_t end = clock();
+    unsigned long long end = clock64();
     
     output[tid] = a + b;
     if (tid == 0) {
@@ -320,17 +321,18 @@ __global__ void throughput_fadd_ilp3(float *input, float *output, int iterations
     float b = input[tid] + 1.0f;
     float c = input[tid] + 2.0f;
     
-    clock_t start = clock();
+    // clock_t start = clock();
+    unsigned long long start = clock64();
     
     // ILP=3: Three independent variables
-    #pragma unroll 3
+    // #pragma unroll 3
     for (int i = 0; i < iterations; i++) {
-        a = a + 1.0f;  // Independent
-        b = b + 1.0f;  // Independent
-        c = c + 1.0f;  // Independent
+        a += 1.0f;  // Independent
+        b += 1.0f;  // Independent
+        c += 1.0f;  // Independent
     }
     
-    clock_t end = clock();
+    unsigned long long end = clock64();
     
     output[tid] = a + b + c;
     if (tid == 0) {
@@ -344,15 +346,15 @@ __global__ void throughput_fmul_ilp1(float *input, float *output, int iterations
     
     float a = input[tid];
     
-    clock_t start = clock();
+    unsigned long long start = clock64();
     
     // ILP=1: Only one variable, fully dependent operations
-    #pragma unroll 1
+    // #pragma unroll 1
     for (int i = 0; i < iterations; i++) {
         a = a * 1.000001f;  // Dependent chain
     }
     
-    clock_t end = clock();
+    unsigned long long end = clock64();
     
     output[tid] = a;
     if (tid == 0) {
@@ -367,16 +369,16 @@ __global__ void throughput_fmul_ilp2(float *input, float *output, int iterations
     float a = input[tid];
     float b = input[tid] + 1.0f;
     
-    clock_t start = clock();
+    unsigned long long start = clock64();
     
     // ILP=2: Two independent variables
-    #pragma unroll 2
+    // #pragma unroll 2
     for (int i = 0; i < iterations; i++) {
         a = a * 1.000001f;  // Independent from b
         b = b * 1.000002f;  // Independent from a
     }
     
-    clock_t end = clock();
+    unsigned long long end = clock64();
     
     output[tid] = a + b;
     if (tid == 0) {
@@ -392,17 +394,17 @@ __global__ void throughput_fmul_ilp3(float *input, float *output, int iterations
     float b = input[tid] + 1.0f;
     float c = input[tid] + 2.0f;
     
-    clock_t start = clock();
+    unsigned long long start = clock64();
     
     // ILP=3: Three independent variables
-    #pragma unroll 3
+    // #pragma unroll 3
     for (int i = 0; i < iterations; i++) {
         a = a * 1.000001f;  // Independent
         b = b * 1.000002f;  // Independent
         c = c * 1.000003f;  // Independent
     }
     
-    clock_t end = clock();
+    unsigned long long end = clock64();
     
     output[tid] = a + b + c;
     if (tid == 0) {
@@ -421,10 +423,10 @@ __global__ void throughput_fmul(float *input, float *output, int iterations) {
     float d = 1.000003f;
     float e = 1.000004f;
     
-    clock_t start = clock();
+    unsigned long long start = clock64();
     
     // Independent operations to maximize ILP
-    #pragma unroll 4
+    // #pragma unroll 4
     for (int i = 0; i < iterations; i++) {
         a = a * b;
         c = c * d;
@@ -432,7 +434,7 @@ __global__ void throughput_fmul(float *input, float *output, int iterations) {
         a = a * c;
     }
     
-    clock_t end = clock();
+    unsigned long long end = clock64();
     
     output[tid] = a + c + e;
     if (tid == 0) {
@@ -448,15 +450,15 @@ __global__ void throughput_fma_ilp1(float *input, float *output, int iterations)
     float b = 1.000001f;
     float c = 1.000002f;
     
-    clock_t start = clock();
+    unsigned long long start = clock64();
     
     // ILP=1: Only one variable, fully dependent operations
-    #pragma unroll 1
+    // #pragma unroll 1
     for (int i = 0; i < iterations; i++) {
         a = a * b + c;  // Dependent chain
     }
     
-    clock_t end = clock();
+    unsigned long long end = clock64();
     
     output[tid] = a;
     if (tid == 0) {
@@ -473,16 +475,16 @@ __global__ void throughput_fma_ilp2(float *input, float *output, int iterations)
     float c = 1.000001f;
     float d = 1.000002f;
     
-    clock_t start = clock();
+    unsigned long long start = clock64();
     
     // ILP=2: Two independent variables
-    #pragma unroll 2
+    // #pragma unroll 2
     for (int i = 0; i < iterations; i++) {
         a = a * c + d;  // Independent from b
         b = b * d + c;  // Independent from a
     }
     
-    clock_t end = clock();
+    unsigned long long end = clock64();
     
     output[tid] = a + b;
     if (tid == 0) {
@@ -497,20 +499,21 @@ __global__ void throughput_fma_ilp3(float *input, float *output, int iterations)
     float a = input[tid];
     float b = input[tid] + 1.0f;
     float c = input[tid] + 2.0f;
-    float d = 1.000001f;
-    float e = 1.000002f;
+
+    // Use completely independent constants
+    float d1 = 1.000001f, e1 = 1.000002f;
+    float d2 = 1.000003f, e2 = 1.000004f;  
+    float d3 = 1.000005f, e3 = 1.000006f;
     
-    clock_t start = clock();
+    unsigned long long start = clock64();
     
-    // ILP=3: Three independent variables
-    #pragma unroll 3
     for (int i = 0; i < iterations; i++) {
-        a = a * d + e;  // Independent
-        b = b * e + d;  // Independent
-        c = c * d + e;  // Independent
+        a = a * d1 + e1;  // Completely independent
+        b = b * d2 + e2;  // Completely independent
+        c = c * d3 + e3;  // Completely independent
     }
     
-    clock_t end = clock();
+    unsigned long long end = clock64();
     
     output[tid] = a + b + c;
     if (tid == 0) {
@@ -528,9 +531,9 @@ __global__ void throughput_fma(float *input, float *output, int iterations) {
     float c = 1.000002f;
     float d = 1.000003f;
     
-    clock_t start = clock();
+    unsigned long long start = clock64();
     
-    #pragma unroll 4
+    // #pragma unroll 4
     for (int i = 0; i < iterations; i++) {
         a = a * b + c;
         b = b * c + d;
@@ -538,7 +541,7 @@ __global__ void throughput_fma(float *input, float *output, int iterations) {
         d = d * a + b;
     }
     
-    clock_t end = clock();
+    unsigned long long end = clock64();
     
     output[tid] = a + b + c + d;
     if (tid == 0) {
@@ -555,9 +558,9 @@ __global__ void throughput_iadd(int *input, int *output, int iterations) {
     int c = 2;
     int d = 3;
     
-    clock_t start = clock();
+    unsigned long long start = clock64();
     
-    #pragma unroll 4
+    // #pragma unroll 4
     for (int i = 0; i < iterations; i++) {
         a = a + b;
         c = c + d;
@@ -565,7 +568,7 @@ __global__ void throughput_iadd(int *input, int *output, int iterations) {
         b = b + d;
     }
     
-    clock_t end = clock();
+    unsigned long long end = clock64();
     
     output[tid] = a + b + c + d;
     if (tid == 0) {
@@ -585,16 +588,16 @@ __global__ void peakwarps_fmul(float *input, float *output, int iterations, int 
     float b = 1.000001f;
     float c = 1.000002f;
     
-    clock_t start = clock();
+    unsigned long long start = clock64();
     
-    #pragma unroll 4
+    // #pragma unroll 4
     for (int i = 0; i < iterations; i++) {
         a = a * b;
         c = c * b;
         a = a * c;
     }
     
-    clock_t end = clock();
+    unsigned long long end = clock64();
     
     output[tid] = a + c;
     
@@ -1105,12 +1108,12 @@ ComputeDelayModel calibrate_compute_delay_model(
             continue;
         }
         
-        float measured_delay = safe_divide(measurement.total_cycles, measurement.total_ops, 0.0f);
+        float measured_delay = safe_divide(measurement.total_cycles, measurement.total_ops, 0.0f); // total_cycles / total_ops <- measured delay
         if (measured_delay <= 0.0f) {
             continue;
         }
         
-        float base_delay = latency_result.latency_cycles / concurrency;
+        float base_delay = latency_result.latency_cycles / concurrency; // latency / (ILP * TLP) <- base delay derived from a single thread
         float diff = fabsf(measured_delay - base_delay);
         float rel_diff = diff / base_delay;
         
@@ -1118,7 +1121,7 @@ ComputeDelayModel calibrate_compute_delay_model(
             if (concurrency > max_base_concurrency) {
                 max_base_concurrency = concurrency;
             }
-        } else if (measured_delay > base_delay) {
+        } else if (measured_delay > base_delay) { // otherwise case
             float extra = measured_delay - base_delay;
             stall_weighted_sum += extra * measurement.total_ops;
             stall_weight += measurement.total_ops;
@@ -1246,7 +1249,7 @@ std::vector<ILPThroughputMeasurement> measure_instruction_throughput(
         }
         
         // Test different warp counts
-        for (int num_warps = 1; num_warps <= max_warps_per_block; num_warps *= 2) {
+        for (int num_warps = 1; num_warps <= max_warps_per_block; num_warps += 1) {  // ISSUE here! warps step should be 1, *=2 is too aggresive!
             int num_threads = num_warps * WARP_SIZE;
             
             float *d_input, *d_output;
@@ -1318,11 +1321,13 @@ int calculate_peak_warps(const std::vector<ILPThroughputMeasurement> &measuremen
     
     // If multiple warps have the same max throughput, return the maximum warps
     // This handles the case where throughput plateaus
+    // ISSUE here! I think the original paper use the minimal warps number instead of the max warps!
+    // Check Fig 3. and Table II.
     for (const auto &m : measurements) {
         if (m.instruction == instruction_name && m.ilp == ilp) {
             // Allow small floating point differences (0.1%)
             if (fabsf(m.throughput_ops_per_cycle - max_throughput) / max_throughput < 0.001f) {
-                if (m.warps > peak_warps) {
+                if (m.warps <= peak_warps) {
                     peak_warps = m.warps;
                 }
             }
@@ -1440,7 +1445,7 @@ int main() {
         2,  // ops per iteration ILP=2
         3,  // ops per iteration ILP=3
         gpu_clock_mhz,
-        false  // verbose
+        true  // verbose
     );
     
     // FMUL throughput measurements
@@ -1453,7 +1458,7 @@ int main() {
         2,  // ops per iteration ILP=2
         3,  // ops per iteration ILP=3
         gpu_clock_mhz,
-        false  // verbose
+        true  // verbose
     );
     
     // FMA throughput measurements
@@ -1466,7 +1471,7 @@ int main() {
         2,  // ops per iteration ILP=2
         3,  // ops per iteration ILP=3
         gpu_clock_mhz,
-        false  // verbose
+        true  // verbose
     );
     
     // Combine all throughput results
