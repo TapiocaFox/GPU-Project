@@ -1,5 +1,7 @@
 #include "includes.h"
-#define max(a, b) ((a > b)?a:b)
+#ifndef MAX_MACRO
+#define MAX_MACRO(a, b) ((a) > (b) ? (a) : (b))
+#endif
 
 #define THREADSPERDIM   16
 
