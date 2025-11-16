@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <cuda_runtime.h>
+#include <cuda.h>
 #ifndef GPU_TIMER_H__
 #define GPU_TIMER_H__
 
