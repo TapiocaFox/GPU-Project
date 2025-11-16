@@ -110,7 +110,7 @@
         "10357, 0, nlm_kernel, runs, [('float const *', 'image'), ('float *', 'filtered_image'), ('int', 'm'), ('int', 'n'), ('float', 'patch_sigma'), ('int *', 'patchSize'), ('float', 'filter_sigma')]"
     ],
     "Downscale Kernels": [
-        "15824, 176, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
+        "15872, 175, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]",
         "15917, 197, downscale, runs, [('float *', 'gradInput_data'), ('const float *', 'gradOutput_data'), ('long', 'no_elements'), ('int', 'scale_factor'), ('int', 'd1'), ('int', 'd2'), ('int', 'd3')]"
     ],
     "Miscellaneous": [
