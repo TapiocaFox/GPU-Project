@@ -1,2 +1,1 @@
-100 original kernel data
-standardized across experiment for ablation study
+100 original kernel data for all experiment
