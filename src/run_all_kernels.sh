@@ -15,6 +15,7 @@ Options:
   -m, --max <count>      Limit the number of kernels to run
   -k, --kernels-dir <p>  Override the kernels directory (default: ./kernels_src)
   -o, --output-dir <p>   Directory to store logs (default: ./kernel_execution_runs_<timestamp>)
+  -t, --timeout <sec>    Timeout for each kernel execution in seconds (default: 60)
       --dry-run          Print which kernels would run without executing them
   -h, --help             Show this help
 
@@ -35,6 +36,7 @@ NODE_FILTER=""
 MAX_KERNELS=0
 OUTPUT_DIR=""
 DRY_RUN=0
+TIMEOUT_SECONDS=60
 TIME_CMD="${TIME_CMD:-/usr/bin/time}"
 
 while [[ $# -gt 0 ]]; do
@@ -64,6 +66,11 @@ while [[ $# -gt 0 ]]; do
             OUTPUT_DIR="$2"
             shift 2
             ;;
+        -t|--timeout)
+            [[ $# -lt 2 ]] && { error "Missing value for $1"; usage; exit 1; }
+            TIMEOUT_SECONDS="$2"
+            shift 2
+            ;;
         --dry-run)
             DRY_RUN=1
             shift
@@ -88,6 +95,16 @@ fi
 if [[ -n "$TIME_CMD" && ! -x "$TIME_CMD" ]]; then
     warn "Configured time command '$TIME_CMD' is not executable; falling back to internal timer"
     TIME_CMD=""
+fi
+
+# Check if timeout command is available
+if ! command -v timeout >/dev/null 2>&1; then
+    warn "timeout command not found; timeout feature will use Python subprocess timeout instead"
+    # Force use of Python fallback if timeout is not available
+    if [[ -n "$TIME_CMD" ]]; then
+        warn "Falling back to Python timer since timeout command is not available"
+        TIME_CMD=""
+    fi
 fi
 
 if ! command -v python3 >/dev/null 2>&1; then
@@ -132,37 +149,114 @@ run_kernel() {
     started_at=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
     if [[ -n "$TIME_CMD" ]]; then
-        if (cd "$workdir" && "$TIME_CMD" -f "%e" -o "$time_path" "$exe_path" "${exe_args[@]}") \
+        # Quote arguments properly for sh -c
+        local quoted_args=""
+        for arg in "${exe_args[@]}"; do
+            quoted_args+=" $(printf %q "$arg")"
+        done
+        if timeout "$TIMEOUT_SECONDS" sh -c "cd $(printf %q "$workdir") && $(printf %q "$TIME_CMD") -f '%e' -o $(printf %q "$time_path") $(printf %q "$exe_path")$quoted_args" \
             >"$stdout_path" 2>"$stderr_path"; then
             exit_code=0
         else
             exit_code=$?
+            # Check if timeout occurred (exit code 124 means timeout)
+            if (( exit_code == 124 )) || (( exit_code >= 128 && exit_code < 128 + 15 )); then
+                echo "Kernel execution timed out after ${TIMEOUT_SECONDS}s" >> "$stderr_path"
+                # If timeout occurred, set duration to timeout value
+                if [[ ! -f "$time_path" ]] || [[ ! -s "$time_path" ]]; then
+                    echo "$TIMEOUT_SECONDS" > "$time_path"
+                fi
+            fi
         fi
         if [[ -f "$time_path" ]]; then
             duration=$(tr -d $'\r\n' < "$time_path")
         fi
     else
-        python3 - "$exe_path" "$stdout_path" "$stderr_path" "$workdir" "$time_path" "$(IFS=$'\t'; echo "${exe_args[*]}")" <<'PY'
+        python3 - "$exe_path" "$stdout_path" "$stderr_path" "$workdir" "$time_path" "$TIMEOUT_SECONDS" "$(IFS=$'\t'; echo "${exe_args[*]}")" <<'PYTIMER' 2>/dev/null
 import os
 import subprocess
 import sys
 import time
+import re
 
-exe_path, stdout_path, stderr_path, workdir, time_path, args_str = sys.argv[1:7]
+exe_path, stdout_path, stderr_path, workdir, time_path, timeout_sec, args_str = sys.argv[1:8]
 args = args_str.split("\t") if args_str else []
+timeout_float = float(timeout_sec) if timeout_sec else None
 os.makedirs(os.path.dirname(stdout_path), exist_ok=True)
 os.makedirs(os.path.dirname(stderr_path), exist_ok=True)
 start = time.time()
 with open(stdout_path, "w") as out_file, open(stderr_path, "w") as err_file:
-    result = subprocess.run([exe_path] + args, cwd=workdir, stdout=out_file, stderr=err_file)
+    try:
+        result = subprocess.run([exe_path] + args, cwd=workdir, stdout=out_file, stderr=err_file, timeout=timeout_float)
+        exit_code = result.returncode
+    except subprocess.TimeoutExpired:
+        exit_code = 124
+        err_file.write(f"Kernel execution timed out after {timeout_sec}s\n")
 end = time.time()
 with open(time_path, "w") as f:
     f.write(f"{end-start:.6f}")
-sys.exit(result.returncode)
-PY
+sys.exit(exit_code)
+PYTIMER
         exit_code=$?
         if [[ -f "$time_path" ]]; then
             duration=$(tr -d $'\r\n' < "$time_path")
+        fi
+    fi
+
+    # Parse execution time from kernel stdout output
+    # Format: [time_in_microseconds,(blockx,blocky),(xsize,ysize)]
+    # Extract the first number from the bracket pattern (prefer last match if multiple lines)
+    if [[ -f "$stdout_path" ]] && [[ -s "$stdout_path" ]]; then
+        parsed_time=$(python3 <<PYEOF 2>/dev/null
+import sys
+import re
+
+stdout_file = "$stdout_path"
+last_match = None
+try:
+    with open(stdout_file, 'r') as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            # Match pattern [number, (e.g., [2197.64,(8,8),(240,240)])
+            match = re.search(r'\[([0-9]+\.?[0-9]*),', line)
+            if match:
+                # Convert microseconds to seconds
+                time_us = float(match.group(1))
+                time_sec = time_us / 1000000.0
+                last_match = time_sec
+    # Use the last match if found, otherwise try alternative patterns
+    if last_match is not None:
+        print(f"{last_match:.6f}")
+    else:
+        # Fallback: try to find any number pattern
+        with open(stdout_file, 'r') as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                match = re.search(r'^([0-9]+\.?[0-9]*)', line)
+                if match:
+                    time_val = float(match.group(1))
+                    # Assume microseconds if > 1000 (likely microseconds), otherwise assume seconds
+                    if time_val > 1000:
+                        time_val = time_val / 1000000.0
+                    print(f"{time_val:.6f}")
+                    break
+except Exception:
+    pass
+PYEOF
+        )
+        # Set to empty if parsing failed
+        parsed_time="${parsed_time:-}"
+        
+        # Validate parsed time is a valid positive number
+        if [[ -n "$parsed_time" ]]; then
+            # Check if it's a valid positive float using python
+            if python3 -c "float('$parsed_time') > 0" 2>/dev/null; then
+                duration="$parsed_time"
+            fi
         fi
     fi
 
@@ -243,6 +337,10 @@ for (( idx=0; idx<TOTAL_TARGET; idx++ )); do
         if [[ "$exit_code" == "0" ]]; then
             status="success"
             ((SUCCESS_COUNT++))
+        elif [[ "$exit_code" == "124" ]]; then
+            status="timeout"
+            ((FAIL_COUNT++))
+            warn "Kernel timed out after ${TIMEOUT_SECONDS}s: $rel_path"
         else
             status="failed"
             ((FAIL_COUNT++))
@@ -251,7 +349,7 @@ for (( idx=0; idx<TOTAL_TARGET; idx++ )); do
     fi
 
     # Collect JSON data (silently fail if Python script has issues)
-    python3 - "$dataset" "$folder_id" "$kernel_id" "$node_dir" "$exe" "$started_at" "$ended_at" "$duration" "$exit_code" "$status" "$stdout_log" "$stderr_log" "$JSON_LINES_FILE" 2>/dev/null <<'PY' || true
+    python3 - "$dataset" "$folder_id" "$kernel_id" "$node_dir" "$exe" "$started_at" "$ended_at" "$duration" "$exit_code" "$status" "$stdout_log" "$stderr_log" "$JSON_LINES_FILE" 2>/dev/null <<'PYJSON' || true
 import sys
 import json
 
@@ -278,15 +376,12 @@ try:
 except Exception as e:
     # Silently fail - don't block execution
     pass
-PY
+PYJSON
 done
 
 # Convert JSON lines to JSON array
 if [[ -f "$JSON_LINES_FILE" ]] && [[ -s "$JSON_LINES_FILE" ]]; then
-    if ! python3 - "$JSON_LINES_FILE" "$JSON_FILE" <<'PY' 2>/dev/null; then
-        warn "Failed to convert JSON lines to JSON array, creating empty JSON file"
-        echo "[]" > "$JSON_FILE"
-    fi
+    python3 - "$JSON_LINES_FILE" "$JSON_FILE" 2>/dev/null <<'PYEOF'
 import sys
 import json
 
@@ -324,11 +419,57 @@ try:
     os.remove(json_lines_file)
 except:
     pass
-PY
+PYEOF
+    if [[ $? -ne 0 ]]; then
+        warn "Failed to convert JSON lines to JSON array, creating empty JSON file"
+        echo "[]" > "$JSON_FILE"
+    fi
 else
     # Create empty JSON array if no results file or file is empty
     echo "[]" > "$JSON_FILE"
     [[ -f "$JSON_LINES_FILE" ]] && rm -f "$JSON_LINES_FILE"
+fi
+
+# Generate simplified JSON with filename as key and execution time as value
+SIMPLIFIED_JSON_FILE="$RESULTS_ROOT/execution_times.json"
+if [[ -f "$JSON_FILE" ]] && [[ -s "$JSON_FILE" ]]; then
+    python3 - "$JSON_FILE" "$SIMPLIFIED_JSON_FILE" 2>/dev/null <<'PYSIMPLIFY'
+import sys
+import json
+import os
+
+input_file, output_file = sys.argv[1:3]
+
+result_dict = {}
+try:
+    with open(input_file, 'r') as f:
+        results = json.load(f)
+    
+    for item in results:
+        # Extract filename from executable path
+        executable_path = item.get('executable', '')
+        filename = os.path.basename(executable_path)
+        
+        # Get execution time
+        exec_time = item.get('execution_time_seconds', 0.0)
+        
+        # Use filename as key, execution time as value
+        if filename:
+            result_dict[filename] = exec_time
+    
+    with open(output_file, 'w') as f:
+        json.dump(result_dict, f, indent=2, ensure_ascii=False)
+except Exception as e:
+    # If anything fails, create empty dict
+    with open(output_file, 'w') as f:
+        json.dump({}, f, indent=2)
+PYSIMPLIFY
+    if [[ $? -ne 0 ]]; then
+        warn "Failed to generate simplified JSON file"
+        echo "{}" > "$SIMPLIFIED_JSON_FILE"
+    fi
+else
+    echo "{}" > "$SIMPLIFIED_JSON_FILE"
 fi
 
 info "Execution summary:"
@@ -337,6 +478,7 @@ info "  Failed : $FAIL_COUNT"
 info "  Skipped: $SKIPPED_COUNT"
 info "Results stored in: $RESULTS_ROOT"
 info "Results JSON: $JSON_FILE"
+info "Execution times JSON: $SIMPLIFIED_JSON_FILE"
 
 if (( FAIL_COUNT > 0 )); then
     exit 2
