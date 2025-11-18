@@ -1,0 +1,108 @@
+
+================ CUDA KERNEL EXECUTION TIME PREDICTION TEMPLATE ================
+
+1. KERNEL WORK ANALYSIS
+-----------------------
+Given:
+  GridDim  = (Gx, Gy, Gz)
+  BlockDim = (Bx, By, Bz)
+  K        = loop upper bound
+
+1.1 Iterations per thread:
+    iters_per_thread = ceil(K / Bx)
+
+1.2 Threads per block:
+    threads_per_block = Bx * By * Bz
+
+1.3 Number of active blocks:
+    active_blocks = (adjust for boundary checks if needed)
+    e.g., if x < n_a && y < n_b
+
+1.4 Total iterations:
+    N_iters_total = iters_per_thread * threads_per_block * active_blocks
+
+
+2. FLOP COUNT
+-------------
+2.1 FLOPs per loop iteration:
+    flops_per_iter = (#subtractions + #multiplications + #additions)
+
+2.2 Total FLOPs:
+    FLOPs_total = N_iters_total * flops_per_iter
+
+
+3. MEMORY TRAFFIC
+-----------------
+3.1 Bytes per iteration:
+    - For each float load: 4 bytes
+    - For each float store: 4 bytes
+    bytes_per_iter = (#loads * 4) + (#stores * 4)
+
+3.2 Total bytes:
+    Bytes_total = N_iters_total * bytes_per_iter
+                  + extra stores outside loop (usually small)
+
+
+4. GPU SPECIFICATION INPUTS
+---------------------------
+From NVIDIA product spec:
+  Peak_FP32 (FLOPs/s)
+  Memory_Bandwidth (bytes/s)
+Typical kernel launch latency:
+  t_launch ≈ 4–6 microseconds
+
+
+5. TIME ESTIMATES
+-----------------
+5.1 Compute-bound time:
+    t_compute = FLOPs_total / Peak_FP32
+
+5.2 Memory-bound time:
+    t_mem = Bytes_total / Memory_Bandwidth
+
+5.3 Kernel body time (ignoring launch):
+    t_body = max(t_compute, t_mem)
+
+5.4 Final predicted kernel time:
+    t_total = t_body + t_launch
+
+
+6. FILL-IN TEMPLATE
+--------------------
+Kernel config:
+  Gx = ______
+  Gy = ______
+  Gz = ______
+  Bx = ______
+  By = ______
+  Bz = ______
+
+Loop:
+  iters_per_thread = ceil(K / Bx) = ______
+  threads_per_block = Bx * By * Bz = ______
+  active_blocks = ______
+
+Total iterations:
+  N_iters_total = ______
+
+FLOPs:
+  flops_per_iter = ______
+  FLOPs_total = ______
+
+Memory:
+  bytes_per_iter = ______
+  Bytes_total = ______
+
+GPU:
+  Peak_FP32 = ______ FLOPs/s
+  Bandwidth = ______ bytes/s
+  t_launch = 5e-6 s
+
+Times:
+  t_compute = ______ s
+  t_mem = ______ s
+  t_body = ______ s
+  t_total = ______ s
+  t_total_microseconds = ______ µs
+
+===============================================================================
