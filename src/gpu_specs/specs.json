@@ -1,4 +1,112 @@
 {
-    "GTX980": {},
-    "T4": {}
+    "cuda1": {
+        "hostname": "cuda1.cims.nyu.edu",
+        "cpu": {
+            "model": "Intel Xeon E5-2680",
+            "count": 2,
+            "cores_total": 24,
+            "clock_ghz": 2.50
+        },
+        "gpu": [
+            {
+                "model": "GeForce GTX TITAN Black",
+                "count": 2,
+                "memory_gb": 6,
+                "architecture": "Kepler",
+                "cuda_cores": 2880,
+                "compute_capability": "3.5"
+            }
+        ],
+        "ram_gb": 256,
+        "os": "Red Hat Enterprise Linux 9"
+    },
+
+    "cuda2": {
+        "hostname": "cuda2.cims.nyu.edu",
+        "cpu": {
+            "model": "Intel Xeon E5-2660",
+            "count": 2,
+            "cores_total": 40,
+            "clock_ghz": 2.60
+        },
+        "gpu": [
+            {
+                "model": "GeForce RTX 2080 Ti",
+                "count": 2,
+                "memory_gb": 11,
+                "architecture": "Turing",
+                "cuda_cores": 4352,
+                "compute_capability": "7.5"
+            }
+        ],
+        "ram_gb": 256,
+        "os": "Red Hat Enterprise Linux 9"
+    },
+
+    "cuda3": {
+        "hostname": "cuda3.cims.nyu.edu",
+        "cpu": {
+            "model": "Intel Xeon Gold 5118",
+            "count": 2,
+            "cores_total": 48,
+            "clock_ghz": 2.30
+        },
+        "gpu": [
+            {
+                "model": "NVIDIA TITAN V",
+                "count": 2,
+                "memory_gb": 12,
+                "architecture": "Volta",
+                "cuda_cores": 5120,
+                "tensor_cores": 640,
+                "compute_capability": "7.0"
+            }
+        ],
+        "ram_gb": 128,
+        "os": "Red Hat Enterprise Linux 9"
+    },
+
+    "cuda4": {
+        "hostname": "cuda4.cims.nyu.edu",
+        "cpu": {
+            "model": "Intel Xeon Gold 5118",
+            "count": 2,
+            "cores_total": 48,
+            "clock_ghz": 2.30
+        },
+        "gpu": [
+            {
+                "model": "GeForce GTX TITAN X",
+                "count": 2,
+                "memory_gb": 12,
+                "architecture": "Maxwell",
+                "cuda_cores": 3072,
+                "compute_capability": "5.2"
+            }
+        ],
+        "ram_gb": 128,
+        "os": "Red Hat Enterprise Linux 9"
+    },
+
+    "cuda5": {
+        "hostname": "cuda5.cims.nyu.edu",
+        "cpu": {
+            "model": "Intel Xeon E5-2650",
+            "count": 2,
+            "cores_total": 16,
+            "clock_ghz": 2.60
+        },
+        "gpu": [
+            {
+                "model": "GeForce RTX 4070",
+                "count": 1,
+                "memory_gb": 12,
+                "architecture": "Ada Lovelace",
+                "cuda_cores": 5888,
+                "compute_capability": "8.9"
+            }
+        ],
+        "ram_gb": 64,
+        "os": "Red Hat Enterprise Linux 9"
+    }
 }
