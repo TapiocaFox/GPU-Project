@@ -2501,8 +2501,11 @@ std::vector<ILPThroughputMeasurement> measure_mul_wide_s32_throughput(
         printf("\n=== Measuring %s Throughput (Mixed Types) ===\n", instruction_name.c_str());
     }
     
-    // Test different warp configurations
-    std::vector<int> warp_configs = {1, 2, 4, 8, 16, 32};
+    // Test every warp configuration from 1 to 32 for precise PeakWarps measurement
+    std::vector<int> warp_configs;
+    for (int warps = 1; warps <= 32; warps++) {
+        warp_configs.push_back(warps);
+    }
     const int iterations = 1024;
     
     // For each ILP level
@@ -2599,8 +2602,11 @@ std::vector<ILPThroughputMeasurement> measure_instruction_throughput_int64(
         printf("\n=== Measuring %s Throughput ===\n", instruction_name.c_str());
     }
     
-    // Test different warp configurations
-    std::vector<int> warp_configs = {1, 2, 4, 8, 16, 32};
+    // Test every warp configuration from 1 to 32 for precise PeakWarps measurement
+    std::vector<int> warp_configs;
+    for (int warps = 1; warps <= 32; warps++) {
+        warp_configs.push_back(warps);
+    }
     const int iterations = 1024;
     
     // For each ILP level
@@ -2697,8 +2703,11 @@ std::vector<ILPThroughputMeasurement> measure_instruction_throughput_float(
         printf("\n=== Measuring %s Throughput ===\n", instruction_name.c_str());
     }
     
-    // Test different warp configurations
-    std::vector<int> warp_configs = {1, 2, 4, 8, 16, 32};
+    // Test every warp configuration from 1 to 32 for precise PeakWarps measurement
+    std::vector<int> warp_configs;
+    for (int warps = 1; warps <= 32; warps++) {
+        warp_configs.push_back(warps);
+    }
     const int iterations = 1024;
     
     // For each ILP level
@@ -2794,8 +2803,11 @@ std::vector<ILPThroughputMeasurement> measure_instruction_throughput_int(
         printf("\n=== Measuring %s Throughput ===\n", instruction_name.c_str());
     }
     
-    // Test different warp configurations
-    std::vector<int> warp_configs = {1, 2, 4, 8, 16, 32};
+    // Test every warp configuration from 1 to 32 for precise PeakWarps measurement
+    std::vector<int> warp_configs;
+    for (int warps = 1; warps <= 32; warps++) {
+        warp_configs.push_back(warps);
+    }
     const int iterations = 1024;
     
     // For each ILP level
