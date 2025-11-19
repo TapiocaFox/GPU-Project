@@ -1,0 +1,6 @@
+| GPU_Architecture   | GPU_ID   |   MAPE |
+|:-------------------|:---------|-------:|
+| RTX_4070           | cuda5    |  62.06 |
+| TITAN_V            | cuda3    |  95.60 |
+| RTX_2080_Ti        | cuda2    | 169.97 |
+| GTX_TITAN_X        | cuda4    | 183.26 |
