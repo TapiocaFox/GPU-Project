@@ -1,0 +1,14 @@
+# Scientific computing and data handling
+numpy
+pandas
+tabulate
+
+# Plotting and visualization
+matplotlib
+seaborn
+
+# Advanced mathematical functions and optimization (used by curve_fit)
+scipy
+
+# Machine learning and metrics (used by r2_score)
+scikit-learn
