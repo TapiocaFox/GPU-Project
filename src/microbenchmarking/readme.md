@@ -2,10 +2,21 @@ How to do micro benchmarking?
 
 Instructions:
 
+**Before executing anything!**
+
+Becauase we're going to execute python, please make sure you have installed the packages required.
+
+Instructions:
+
+1. create venv: execute "python3 -m venv microbenchmarking"
+2. activate the environment (Linux/macOS): execute "source microbenchmarking/bin/activate"
+3. install requirements: execute "pip install -r requirements.txt"
+
 **To get <Latency, Throughput, PeakWarps>**
 
 Output File: 
 
+[For each cuda cluster]
 1. ins_microbenchmark.csv
 
 Instructions:
@@ -19,16 +30,23 @@ Instructions:
 
 Output File:
 
+[For each cuda cluster]
 1. launch_overhead_results.csv
 2. overhead_formula_analysis.csv
-3. 
+3. launch_overhead_analysis.txt
 
 Instructions:
 
 1. compile cu file by "nvcc -O3 launch_overhead_test.cu -o launch_overhead_test"
 2. execute "./launch_overhead_test" to two files: launch_overhead_results.csv, overhead_formula_analysis.csv
-3. execute "python3 analyze_launch_overhead.py" to extract final fitting launch overhead formula for this cuda cluster.
+3. execute "python3 analyze_launch_overhead.py > launch_overhead_analysis.txt" to extract final fitting launch overhead formula for this cuda cluster.
 4. ssh to different cuda and do step 1~3 again.
+
+**After getting all you want**
+
+Instructions:
+1. execute "deactivate" to deactivate this python venv
+
 
 Definition of latency, throughput, and peakwarps for instructions:
 * Latency(cycles per instruction): Time for single instruction execution from start to completion in a dependent chain.
