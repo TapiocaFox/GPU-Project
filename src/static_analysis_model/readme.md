@@ -17,11 +17,12 @@ Instructions:
 Output File: 
 
 1. multi_gpu_simulation_results.csv
+2. eval_result.txt
 
 Instructions:
 
 1. execute "python3 multi_gpu_batch_simulator.py --repo-root ../" to get multi_gpu_simulation_results.csv
-2. execute "python3 eval.py"
+2. execute "python3 eval.py > eval_result.txt"
 
 
 **After getting all you want**
