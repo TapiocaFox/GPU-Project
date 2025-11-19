@@ -1,0 +1,101 @@
+RTX 2080 Ti Launch Overhead Analysis
+====================================
+Loading experimental data...
+Loaded 25 comprehensive measurements
+Loaded 12 formula analysis points
+
+============================================================
+COMPREHENSIVE RESULTS ANALYSIS
+============================================================
+
+Launch Overhead Statistics (from empty kernels):
+  Mean: 2.129 μs
+  Median: 1.619 μs
+  Min: 1.383 μs
+  Max: 6.456 μs
+  Std Dev: 1.370 μs
+
+Kernel Type Comparison:
+  Empty kernel: 2.129 ± 1.370 μs
+  Single op: 4.716 ± 2.570 μs
+  Minimal: 4.583 ± 2.378 μs
+
+Correlation with thread count: 0.7771
+  → Significant correlation with thread count
+
+============================================================
+NEW FORMULA DERIVATION
+============================================================
+
+CONSTANT Formula:
+  overhead = 2.051 μs
+  R²: -0.000932
+  RMSE: 1.674 μs
+
+LINEAR Formula:
+  overhead = 7.790666e-05 * threads + 1.200 μs
+  R²: 0.776204
+  RMSE: 0.791 μs
+
+SQRT Formula:
+  overhead = 0.016485 * sqrt(threads) + 0.869 μs
+  R²: 0.561115
+  RMSE: 1.108 μs
+
+LOG Formula:
+  overhead = 0.349309 * log(threads) + -0.491 μs
+  R²: 0.249576
+  RMSE: 1.449 μs
+
+POWER Formula:
+  overhead = 0.000000 * threads^6.101 + 1.539 μs
+  R²: 0.996937
+  RMSE: 0.093 μs
+
+🏆 BEST FORMULA: POWER
+   R² = 0.996937
+
+============================================================
+COMPARISON WITH OLD FORMULA
+============================================================
+RTX 2080 Ti measured overhead: 2.051 μs
+Tesla K20 formula prediction: 42737.592 μs
+Ratio (new/old): 0.000
+Improvement: 42735.5 μs faster (100.0% reduction)
+
+For your specific configuration (~5625 threads):
+  Closest measurement: 4096.0 threads
+  Measured overhead: 1.6 μs (0.002 ms)
+  Old formula: 42670.9 μs (42.671 ms)
+  Difference: 42669.3 μs (42.669 ms faster!)
+
+Generating plots...
+Plot saved: launch_overhead_analysis.png
+
+============================================================
+UPDATED SIMULATOR CODE
+============================================================
+
+To update your enhanced PTX simulator, replace the launch overhead calculation:
+
+OLD CODE (Tesla K20):
+    def _calculate_launch_overhead(self, launch_params):
+        nt = launch_params.total_threads
+        return 1.260e-08 * nt + 4.260e-02
+
+NEW CODE (RTX 2080 Ti):
+    def _calculate_launch_overhead(self, launch_params):
+        nt = launch_params.total_threads
+        return 2.051e-6  # ~2.1 μs constant (RTX 2080 Ti)
+
+For your configuration (5625 threads):
+  Old formula: 42.671 ms
+  New formula: 0.002051 ms
+  Speedup: 20804x faster!
+
+============================================================
+ANALYSIS COMPLETE
+============================================================
+Generated files:
+  - launch_overhead_analysis.png (visualization)
+Use the updated formula in your PTX simulator for much more accurate predictions!
