@@ -7,6 +7,7 @@ Includes:
 1. Algorithm 1: Delay Computation (from your existing code)
 2. Algorithm 2: GPU Simulation with corrected wave-based scheduling
 3. Kernel execution time prediction
+4. Multi-GPU architecture support with automatic configuration
 
 Based on your corrected pseudo code that fixes the original paper's Algorithm 2.
 """
@@ -20,6 +21,220 @@ from typing import Dict, List, Tuple, Optional
 from dataclasses import dataclass
 import csv
 import math
+import os
+
+# GPU Hardware Configuration System
+@dataclass
+class GPUHardwareConfigSpec:
+    """Hardware specifications for different GPU architectures"""
+    
+    # Basic specifications
+    name: str
+    compute_capability: tuple  # (major, minor)
+    clock_mhz: float
+    boost_clock_mhz: float
+    memory_clock_mhz: float
+    
+    # SM specifications  
+    num_sms: int
+    max_blocks_per_sm: int
+    max_warps_per_sm: int
+    max_threads_per_sm: int
+    
+    # Memory specifications
+    shared_memory_per_sm_kb: int
+    shared_memory_per_block_kb: int
+    registers_per_sm: int
+    registers_per_thread_max: int
+    
+    # L1/L2 cache
+    l1_cache_kb: int
+    l2_cache_mb: float
+    
+    # Memory bandwidth
+    memory_bandwidth_gb_s: float
+    memory_bus_width: int
+    
+    # Instruction throughput (instructions per clock cycle)
+    fp32_cores_per_sm: int
+    fp64_cores_per_sm: int
+    
+    # Architecture-specific features
+    architecture: str
+    launch_overhead_us: float  # Measured launch overhead
+    
+    # Default values
+    warp_size: int = 32
+    tensor_cores_per_sm: int = 0
+
+# GPU configurations based on NVIDIA specifications and your measurements
+GPU_HARDWARE_CONFIGS: Dict[str, GPUHardwareConfigSpec] = {
+    
+    'RTX_2080_Ti': GPUHardwareConfigSpec(
+        name='RTX_2080_Ti',
+        compute_capability=(7, 5),
+        clock_mhz=1350.0,
+        boost_clock_mhz=1755.0,
+        memory_clock_mhz=7000.0,
+        
+        num_sms=68,
+        max_blocks_per_sm=16,
+        max_warps_per_sm=32,
+        max_threads_per_sm=1024,
+        
+        shared_memory_per_sm_kb=96,
+        shared_memory_per_block_kb=48,
+        registers_per_sm=65536,
+        registers_per_thread_max=255,
+        
+        l1_cache_kb=32,  # Per SM
+        l2_cache_mb=5.5,
+        
+        memory_bandwidth_gb_s=616.0,
+        memory_bus_width=352,
+        
+        fp32_cores_per_sm=64,
+        fp64_cores_per_sm=2,
+        tensor_cores_per_sm=8,
+        
+        architecture='Turing',
+        launch_overhead_us=2.287  # From your measurement
+    ),
+    
+    'TITAN_V': GPUHardwareConfigSpec(
+        name='TITAN_V',
+        compute_capability=(7, 0),
+        clock_mhz=1200.0,
+        boost_clock_mhz=1455.0,
+        memory_clock_mhz=1700.0,
+        
+        num_sms=80,
+        max_blocks_per_sm=16,
+        max_warps_per_sm=32,
+        max_threads_per_sm=1024,
+        
+        shared_memory_per_sm_kb=96,
+        shared_memory_per_block_kb=48,
+        registers_per_sm=65536,
+        registers_per_thread_max=255,
+        
+        l1_cache_kb=32,
+        l2_cache_mb=4.5,
+        
+        memory_bandwidth_gb_s=653.0,
+        memory_bus_width=3072,  # HBM2
+        
+        fp32_cores_per_sm=64,
+        fp64_cores_per_sm=32,  # Volta has more FP64 cores
+        tensor_cores_per_sm=8,
+        
+        architecture='Volta',
+        launch_overhead_us=2.051  # From your measurement
+    ),
+    
+    'GTX_TITAN_X': GPUHardwareConfigSpec(
+        name='GTX_TITAN_X',
+        compute_capability=(5, 2),
+        clock_mhz=1000.0,
+        boost_clock_mhz=1075.0,
+        memory_clock_mhz=3505.0,
+        
+        num_sms=24,
+        max_blocks_per_sm=16,
+        max_warps_per_sm=32,
+        max_threads_per_sm=1024,
+        
+        shared_memory_per_sm_kb=96,
+        shared_memory_per_block_kb=48,
+        registers_per_sm=65536,
+        registers_per_thread_max=255,
+        
+        l1_cache_kb=48,  # Maxwell has larger L1
+        l2_cache_mb=3.0,
+        
+        memory_bandwidth_gb_s=336.5,
+        memory_bus_width=384,
+        
+        fp32_cores_per_sm=128,  # Maxwell has more CUDA cores per SM
+        fp64_cores_per_sm=4,   # Maxwell has fewer FP64 cores
+        tensor_cores_per_sm=0,  # No tensor cores
+        
+        architecture='Maxwell',
+        launch_overhead_us=2.510  # From your measurement
+    ),
+    
+    'RTX_4070': GPUHardwareConfigSpec(
+        name='RTX_4070',
+        compute_capability=(8, 9),
+        clock_mhz=1920.0,
+        boost_clock_mhz=2475.0,
+        memory_clock_mhz=10500.0,
+        
+        num_sms=46,
+        max_blocks_per_sm=16,
+        max_warps_per_sm=32,
+        max_threads_per_sm=1024,
+        
+        shared_memory_per_sm_kb=128,  # Ada Lovelace has more shared memory
+        shared_memory_per_block_kb=48,
+        registers_per_sm=65536,
+        registers_per_thread_max=255,
+        
+        l1_cache_kb=32,
+        l2_cache_mb=36.0,  # Much larger L2 cache
+        
+        memory_bandwidth_gb_s=504.2,
+        memory_bus_width=192,
+        
+        fp32_cores_per_sm=128,
+        fp64_cores_per_sm=2,
+        tensor_cores_per_sm=16,  # Ada Lovelace has more tensor cores
+        
+        architecture='Ada_Lovelace',
+        launch_overhead_us=4.532  # From your measurement
+    )
+}
+
+def get_gpu_config(gpu_name: str) -> Optional[GPUHardwareConfigSpec]:
+    """Get GPU hardware configuration by name"""
+    return GPU_HARDWARE_CONFIGS.get(gpu_name)
+
+def list_supported_gpus() -> list[str]:
+    """List all supported GPU architectures"""
+    return list(GPU_HARDWARE_CONFIGS.keys())
+
+def setup_gpu_hardware_config(args):
+    """Setup GPU hardware configuration based on arguments"""
+    
+    gpu_name = args.gpu_architecture
+    
+    # Auto-detect GPU from microbenchmark filename if requested
+    if args.auto_detect_gpu and hasattr(args, 'csv') and args.csv:
+        csv_filename = os.path.basename(args.csv)
+        if 'RTX_2080_Ti' in csv_filename:
+            gpu_name = 'RTX_2080_Ti'
+        elif 'TITAN_V' in csv_filename:
+            gpu_name = 'TITAN_V'
+        elif 'GTX_TITAN_X' in csv_filename:
+            gpu_name = 'GTX_TITAN_X'
+        elif 'RTX_4070' in csv_filename:
+            gpu_name = 'RTX_4070'
+        
+        print(f"Auto-detected GPU from microbenchmark filename: {gpu_name}")
+    
+    # Get GPU configuration
+    gpu_config = get_gpu_config(gpu_name)
+    if not gpu_config:
+        print(f"Warning: Unknown GPU {gpu_name}, using RTX 2080 Ti defaults")
+        gpu_config = get_gpu_config('RTX_2080_Ti')
+    
+    print(f"Using {gpu_config.name} configuration:")
+    print(f"  SMs: {gpu_config.num_sms}")
+    print(f"  Clock: {gpu_config.boost_clock_mhz} MHz")
+    print(f"  Architecture: {gpu_config.architecture}")
+    print(f"  Launch overhead: {gpu_config.launch_overhead_us} μs")
+    
+    return gpu_config
 
 @dataclass
 class MicrobenchmarkData:
@@ -35,16 +250,21 @@ class MicrobenchmarkData:
 
 @dataclass
 class GPUHardwareConfig:
-    """GPU hardware configuration parameters"""
-    num_sms: int = 68                    # RTX 2080 Ti has 68 SMs
-    cores_per_sm: int = 64              # CUDA cores per SM
-    max_threads_per_sm: int = 1024      # Hardware limit
-    max_warps_per_sm: int = 32          # Hardware limit (1024/32)
-    max_blocks_per_sm: int = 16         # Hardware limit
-    warp_size: int = 32                 # Standard warp size
-    gpu_clock_mhz: float = 1755.0       # RTX 2080 Ti boost clock
-    memory_bandwidth_gbps: float = 616.0 # RTX 2080 Ti memory bandwidth
-    
+    """GPU hardware configuration parameters (dynamic based on architecture)"""
+    def __init__(self, gpu_config_spec: GPUHardwareConfigSpec):
+        self.name = gpu_config_spec.name
+        self.num_sms = gpu_config_spec.num_sms
+        self.cores_per_sm = gpu_config_spec.fp32_cores_per_sm
+        self.max_threads_per_sm = gpu_config_spec.max_threads_per_sm
+        self.max_warps_per_sm = gpu_config_spec.max_warps_per_sm
+        self.max_blocks_per_sm = gpu_config_spec.max_blocks_per_sm
+        self.warp_size = gpu_config_spec.warp_size
+        self.gpu_clock_mhz = gpu_config_spec.boost_clock_mhz
+        self.memory_bandwidth_gbps = gpu_config_spec.memory_bandwidth_gb_s
+        self.architecture = gpu_config_spec.architecture
+        self.launch_overhead_us = gpu_config_spec.launch_overhead_us
+        self.compute_capability = gpu_config_spec.compute_capability
+        
     def warps_issuing_per_cycle(self) -> int:
         """Number of warps that can issue instructions per cycle"""
         return self.cores_per_sm // self.warp_size
@@ -192,380 +412,300 @@ class ImprovedPTXParser:
         # Comparison and conversion
         'setp.eq.s32': 'SETP', 'setp.ne.s32': 'SETP', 'setp.lt.s32': 'SETP',
         'setp.le.s32': 'SETP', 'setp.gt.s32': 'SETP', 'setp.ge.s32': 'SETP',
-        'setp.eq.f32': 'SETP', 'setp.ne.f32': 'SETP', 'setp.lt.f32': 'SETP',
-        'cvt.s32.f32': 'CVT', 'cvt.f32.s32': 'CVT', 'cvt.s64.s32': 'CVT',
-        'cvt.rn.f32.f64': 'CVT', 'cvta.to.global.u64': 'CVT',
+        'setp.eq.u32': 'SETP', 'setp.ne.u32': 'SETP', 'setp.lt.u32': 'SETP',
+        'setp.le.u32': 'SETP', 'setp.gt.u32': 'SETP', 'setp.ge.u32': 'SETP',
+        'cvt.rn.f32.s32': 'CVT', 'cvt.rn.f32.u32': 'CVT', 'cvt.rn.f64.s32': 'CVT',
         
-        # Movement and memory
-        'mov.u32': 'MOV', 'mov.s32': 'MOV', 'mov.f32': 'MOV', 'mov.b32': 'MOV',
-        'mov.u64': 'MOV', 'mov.s64': 'MOV', 'mov.f64': 'MOV', 'mov.b64': 'MOV',
+        # Memory operations (all map to MOV for simplicity)
         'ld.global.f32': 'MOV', 'ld.global.s32': 'MOV', 'ld.global.u32': 'MOV',
+        'ld.shared.f32': 'MOV', 'ld.shared.s32': 'MOV', 'ld.shared.u32': 'MOV',
+        'ld.param.u64': 'MOV', 'ld.param.u32': 'MOV', 'ld.param.s32': 'MOV',
+        'ld.param.b32': 'MOV', 'ld.param.b64': 'MOV',
         'st.global.f32': 'MOV', 'st.global.s32': 'MOV', 'st.global.u32': 'MOV',
-        'ld.param.u64': 'MOV', 'ld.param.u32': 'MOV', 'ld.param.f32': 'MOV',
+        'st.shared.f32': 'MOV', 'st.shared.s32': 'MOV', 'st.shared.u32': 'MOV',
+        'st.param.b64': 'MOV', 'st.param.b32': 'MOV',
+        'st.local.u32': 'MOV', 'st.local.s32': 'MOV',
+        
+        # Data movement and conversion
+        'mov.u32': 'MOV.U32', 'mov.s32': 'MOV.U32', 'mov.u64': 'MOV.B64',
+        'mov.b32': 'MOV.B32', 'mov.b64': 'MOV.B64', 'mov.f32': 'MOV.F32',
+        'cvta.to.global.u64': 'CVT', 'cvta.global.u64': 'MOV',
+        'cvta.local.u64': 'MOV', 'cvta.shared.u64': 'MOV',
         
         # Bit operations
-        'shl.b64': 'ADD.S32', 'shr.u32': 'ADD.S32', 'and.b32': 'AND',
+        'shl.b32': 'MOV', 'shr.u32': 'ADD.S32', 'shr.s32': 'ADD.S32',
+        'and.b32': 'AND', 'or.b32': 'AND', 'xor.b32': 'AND',
         
-        # Special functions
-        'div.approx.f32': 'DIVF', 'div.rn.f32': 'DIVF',
-        'sqrt.approx.f32': 'SQRT', 'sqrt.rn.f32': 'SQRT',
-        'rsqrt.approx.f32': 'SQRT',
+        # Control flow and synchronization
+        'bar.sync': 'MOV', 'bra': 'MOV', 'ret': 'MOV',
+        'call.uni': 'MOV', 'call': 'MOV',
         
-        # Integer division (map to DIVS if available, else DIVF)
-        'div.s32': 'DIVS', 'div.u32': 'DIVS',
+        # Special operations
+        '.reg': 'MOV', '.local': 'MOV', '.param': 'MOV', '.shared': 'MOV',
+        'vprintf': 'MOV', 'tex.2d.v4.f32.f32': 'MOV'
     }
     
-    def parse_ptx_file(self, ptx_content: str) -> List[BasicBlock]:
-        """Parse PTX content with improved handling for real compiler output"""
-        lines = ptx_content.strip().split('\n')
+    def map_instruction_to_benchmark(self, ptx_instruction: str) -> str:
+        """Map PTX instruction to benchmark instruction"""
+        # Clean the instruction (remove operands and modifiers)
+        base_inst = ptx_instruction.split()[0] if ' ' in ptx_instruction else ptx_instruction
         
-        # Find function start - look for .visible .entry or .entry
-        function_start = -1
-        brace_count = 0
+        # Handle special cases and syntax
+        if base_inst.startswith('@'):  # Predicated execution
+            return 'MOV'
+        if base_inst in ['{', '}', '(', ')', ';', ',']:  # Syntax elements
+            return 'MOV'
+        if base_inst.endswith(',') or base_inst.endswith(';'):
+            base_inst = base_inst[:-1]
         
-        for i, line in enumerate(lines):
-            line = line.strip()
-            if '.entry' in line or ('.visible' in line and '(' in line):
-                function_start = i
-                break
+        # Direct mapping
+        if base_inst in self.INSTRUCTION_MAPPING:
+            return self.INSTRUCTION_MAPPING[base_inst]
         
-        if function_start == -1:
-            print("Warning: No .entry function found in PTX file")
-            return []
+        # Pattern-based fallbacks
+        if 'add' in base_inst.lower():
+            if 'f32' in base_inst or 'f64' in base_inst:
+                return 'FADD'
+            return 'ADD.S32'
+        elif 'sub' in base_inst.lower():
+            if 'f32' in base_inst or 'f64' in base_inst:
+                return 'FSUB'
+            return 'SUB.S32'
+        elif 'mul' in base_inst.lower():
+            if 'f32' in base_inst or 'f64' in base_inst:
+                return 'FMUL'
+            elif 'wide' in base_inst:
+                return 'MUL.WIDE.S32'
+            return 'MUL.LO.S32'
+        elif 'mad' in base_inst.lower():
+            return 'MAD.LO.S32'
+        elif any(x in base_inst.lower() for x in ['ld.', 'st.', 'mov', 'cvta']):
+            return 'MOV'
+        elif 'setp' in base_inst.lower():
+            return 'SETP'
+        elif 'cvt' in base_inst.lower():
+            return 'CVT'
         
-        # Find the opening brace of the function
-        function_body_start = -1
-        for i in range(function_start, len(lines)):
-            if '{' in lines[i]:
-                function_body_start = i + 1
-                break
-        
-        if function_body_start == -1:
-            print("Warning: No function body found")
-            return []
-        
-        # Extract function body until matching closing brace
-        body_lines = []
-        brace_count = 1
-        
-        for i in range(function_body_start, len(lines)):
-            line = lines[i].strip()
-            if not line:
-                continue
-            
-            if '{' in line:
-                brace_count += 1
-            if '}' in line:
-                brace_count -= 1
-                if brace_count == 0:
-                    break
-                    
-            body_lines.append((line, i))
-        
-        return self._parse_basic_blocks(body_lines)
+        # Unknown instruction fallback
+        return 'MOV'
     
-    def _parse_basic_blocks(self, body_lines: List[Tuple[str, int]]) -> List[BasicBlock]:
-        """Parse function body into basic blocks"""
+    def parse_ptx(self, ptx_content: str) -> List[BasicBlock]:
+        """Parse PTX content into basic blocks with instructions"""
+        lines = ptx_content.split('\n')
         basic_blocks = []
         current_block = None
-        block_counter = 0
+        line_number = 0
         
-        for line, line_num in body_lines:
+        for line in lines:
+            line_number += 1
             line = line.strip()
             
             # Skip empty lines and comments
-            if not line or line.startswith('//'):
+            if not line or line.startswith('//') or line.startswith('#'):
                 continue
-                
-            # Check if this is a label (ends with :)
-            if line.endswith(':'):
-                # Save previous block if exists
+            
+            # Skip directives that don't represent computation
+            if any(line.startswith(directive) for directive in ['.version', '.target', '.address_size', '.visible', '.entry', '.maxntid', '.reqntid']):
+                continue
+            
+            # Detect basic block labels
+            if (line.endswith(':') and not line.startswith('.')) or '$L_' in line:
+                # Save previous block
                 if current_block and current_block.instructions:
                     basic_blocks.append(current_block)
                 
                 # Start new block
-                label = line[:-1].strip()
-                current_block = BasicBlock(label, [])
+                block_label = line.replace(':', '').strip() if ':' in line else f"block_{len(basic_blocks)+1}"
+                current_block = BasicBlock(label=block_label, instructions=[])
                 continue
             
-            # If no current block, create one (unlabeled block)
+            # If no block started yet, create a default one
             if current_block is None:
-                block_counter += 1
-                current_block = BasicBlock(f"block_{block_counter}", [])
+                current_block = BasicBlock(label="block_1", instructions=[])
             
-            # Parse instruction
-            inst = self._parse_instruction(line, line_num)
-            if inst:
-                current_block.instructions.append(inst)
+            # Parse instruction line
+            # Clean up the line
+            clean_line = line.replace('\t', ' ').replace('{', ' { ').replace('}', ' } ')
+            tokens = clean_line.split()
             
-            # Check for block terminators
-            if any(term in line for term in ['ret;', 'exit;', 'bra ', '@']):
-                if current_block.instructions:
-                    basic_blocks.append(current_block)
-                current_block = None
+            # Process each meaningful token as potential instruction
+            for token in tokens:
+                if token and not token.isspace():
+                    instruction = Instruction(
+                        opcode=token,
+                        operands="",
+                        line_number=line_number
+                    )
+                    current_block.instructions.append(instruction)
         
         # Add final block
         if current_block and current_block.instructions:
             basic_blocks.append(current_block)
         
         return basic_blocks
-    
-    def _parse_instruction(self, line: str, line_num: int) -> Optional[Instruction]:
-        """Parse a single PTX instruction"""
-        # Remove comments and extra whitespace
-        if '//' in line:
-            line = line[:line.find('//')]
-        line = line.strip()
-        
-        if not line or line.endswith(':'):
-            return None
-        
-        # Split into opcode and operands
-        parts = line.split(None, 1)
-        if not parts:
-            return None
-            
-        opcode = parts[0]
-        operands = parts[1] if len(parts) > 1 else ""
-        
-        # Remove semicolon
-        operands = operands.rstrip(';')
-        
-        return Instruction(opcode=opcode, operands=operands, line_number=line_num)
-    
-    def map_instruction_to_benchmark(self, ptx_opcode: str) -> str:
-        """Map PTX opcode to microbenchmark instruction"""
-        return self.INSTRUCTION_MAPPING.get(ptx_opcode, 'MOV')  # Default to MOV
 
-class GPUSimulator:
-    """Implements corrected Algorithm 2 for GPU simulation"""
+class CorrectedAlgorithm2:
+    """Your corrected Algorithm 2 implementation"""
     
-    def __init__(self, hardware_config: GPUHardwareConfig):
-        self.hardware = hardware_config
+    def __init__(self, hardware: GPUHardwareConfig):
+        self.hardware = hardware
     
-    def can_schedule_block(self, sm_workload: int, launch_params: KernelLaunchParams) -> bool:
-        """Check if a block can be scheduled on an SM based on resource constraints"""
-        # Check maximum blocks per SM
-        if sm_workload >= self.hardware.max_blocks_per_sm:
-            return False
-        
-        # Check if there are enough warps available
-        warps_needed = launch_params.warps_per_block
-        current_warps = sm_workload * warps_needed
-        if current_warps + warps_needed > self.hardware.max_warps_per_sm:
-            return False
-        
-        # Check thread count
-        threads_needed = launch_params.threads_per_block
-        current_threads = sm_workload * threads_needed
-        if current_threads + threads_needed > self.hardware.max_threads_per_sm:
-            return False
-        
-        return True
+    def can_schedule_more_blocks(self, sm_workload: int) -> bool:
+        """Check if SM can schedule more blocks"""
+        return sm_workload < self.hardware.max_blocks_per_sm
     
-    def simulate_kernel_execution(self, dk: float, launch_params: KernelLaunchParams) -> Dict:
-        """
-        Corrected Algorithm 2: GPU Simulation with wave-based scheduling
+    def simulate_gpu_execution(self, launch_params: KernelLaunchParams, t_thread_seconds: float) -> Dict:
+        """Corrected Algorithm 2: GPU simulation with wave-based scheduling"""
         
-        Args:
-            dk: Total kernel delay from Algorithm 1 (cycles)
-            launch_params: Kernel launch parameters
-            
-        Returns:
-            Dict with simulation results
-        """
         print(f"\n=== Algorithm 2: GPU Simulation ===")
         print(f"Total blocks: {launch_params.num_blocks}")
         print(f"Threads per block: {launch_params.threads_per_block}")
         print(f"Warps per block: {launch_params.warps_per_block}")
         print(f"Hardware: {self.hardware.num_sms} SMs, {self.hardware.max_blocks_per_sm} max blocks/SM")
         
-        # Calculate single thread execution time
-        t_thread = dk / (self.hardware.gpu_clock_mhz * 1e6)  # Convert to seconds
-        
-        # Algorithm 2 implementation (corrected version)
+        # Algorithm 2 variables
         ts_kernel = 0.0
-        next_available_block = 1
-        num_blocks = launch_params.num_blocks
-        wave_number = 1
+        nextAvailableBlock = 1
+        numblocks = launch_params.num_blocks
+        wave_count = 0
         
-        while next_available_block <= num_blocks:
-            print(f"\n--- Wave {wave_number} ---")
+        while nextAvailableBlock <= numblocks:
+            wave_count += 1
+            print(f"\n--- Wave {wave_count} ---")
             
             # Reset counters for the new scheduling wave
-            blocks_scheduled_this_wave = 0
-            sm_workload = [0] * self.hardware.num_sms  # Track work assigned to each SM
+            blocksScheduledThisWave = 0
+            SM_Workload = [0] * self.hardware.num_sms  # Track work assigned to each SM
             
             # Assignment Phase: Load blocks onto SMs concurrently
             for sm_id in range(self.hardware.num_sms):
-                current_block = next_available_block
+                CurrentBlock = nextAvailableBlock
                 
                 # Greedily load blocks onto the current SM until it's full
-                while (current_block <= num_blocks and 
-                       self.can_schedule_block(sm_workload[sm_id], launch_params)):
-                    
-                    sm_workload[sm_id] += 1                     # Workload assigned to this specific SM
-                    blocks_scheduled_this_wave += 1             # Total blocks assigned in this wave
-                    next_available_block += 1                   # Move to the next waiting block
-                    current_block = next_available_block
+                while CurrentBlock <= numblocks and self.can_schedule_more_blocks(SM_Workload[sm_id]):
+                    SM_Workload[sm_id] += 1  # Workload assigned to this specific SM
+                    blocksScheduledThisWave += 1  # Total blocks assigned in this wave
+                    nextAvailableBlock += 1  # Move to the next waiting block
+                    CurrentBlock = nextAvailableBlock
                     
                     # If all blocks are assigned, break the outer SM loop
-                    if next_available_block > num_blocks:
+                    if nextAvailableBlock > numblocks:
                         break
                 
-                # If all blocks are assigned, no need to check other SMs
-                if next_available_block > num_blocks:
+                # Break outer loop if all blocks assigned
+                if nextAvailableBlock > numblocks:
                     break
             
             # Time Calculation Phase: The wave finishes when the slowest SM is done
-            max_blocks_on_sm = max(sm_workload)  # Finds the bottleneck SM
-            t_wave = max_blocks_on_sm * t_thread
+            maxBlocksOnSM = max(SM_Workload)  # Finds the bottleneck SM
+            t_wave = maxBlocksOnSM * t_thread_seconds
             
-            print(f"  Blocks scheduled: {blocks_scheduled_this_wave}")
-            print(f"  SM workloads: {sm_workload[:8]}...")  # Show first 8 SMs
-            print(f"  Bottleneck SM has: {max_blocks_on_sm} blocks")
+            print(f"  Blocks scheduled: {blocksScheduledThisWave}")
+            print(f"  SM workloads: {SM_Workload[:8]}...")  # Show first 8 SMs
+            print(f"  Bottleneck SM has: {maxBlocksOnSM} blocks")
             print(f"  Wave time: {t_wave*1e6:.3f} μs")
             
             ts_kernel += t_wave
-            wave_number += 1
         
-        # Add kernel launch overhead and memory bottleneck penalties
-        # Based on equations from paper
-        launch_overhead = self._calculate_launch_overhead(launch_params)
-        memory_penalty = self._calculate_memory_penalty(launch_params)
+        # Calculate additional metrics
+        total_waves = wave_count
+        scheduling_time = ts_kernel
+        hardware_utilization = min(launch_params.num_blocks, self.hardware.num_sms * self.hardware.max_blocks_per_sm) / (self.hardware.num_sms * self.hardware.max_blocks_per_sm)
         
-        t_kernel = ts_kernel + launch_overhead + memory_penalty
+        # Estimate sequential execution time for speedup calculation
+        sequential_time = launch_params.num_blocks * t_thread_seconds
+        speedup_vs_sequential = sequential_time / ts_kernel if ts_kernel > 0 else 0
         
-        results = {
-            'scheduling_time_seconds': ts_kernel,
-            'launch_overhead_seconds': launch_overhead,
-            'memory_penalty_seconds': memory_penalty,
-            'total_kernel_time_seconds': t_kernel,
-            'total_kernel_time_microseconds': t_kernel * 1e6,
-            'total_kernel_time_milliseconds': t_kernel * 1e3,
-            'single_thread_time_seconds': t_thread,
-            'waves_executed': wave_number - 1,
-            'speedup_vs_sequential': (launch_params.total_threads * t_thread) / t_kernel,
-            'hardware_utilization': launch_params.num_blocks / (self.hardware.num_sms * self.hardware.max_blocks_per_sm),
-            'launch_params': launch_params
+        return {
+            'waves_executed': total_waves,
+            'scheduling_time_seconds': scheduling_time,
+            'hardware_utilization': hardware_utilization,
+            'speedup_vs_sequential': speedup_vs_sequential,
+            'total_blocks_scheduled': launch_params.num_blocks
         }
-        
-        return results
-    
-    def _calculate_launch_overhead(self, launch_params: KernelLaunchParams) -> float:
-        """Calculate kernel launch overhead based on paper's linear model"""
-        # From paper: l_overhead = 1.260e-08 * nt + 4.260e-2 (in seconds)
-        nt = launch_params.total_threads
-        return 1.260e-08 * nt + 4.260e-02
-    
-    def _calculate_memory_penalty(self, launch_params: KernelLaunchParams) -> float:
-        """Calculate memory bottleneck penalty (simplified model)"""
-        # This is a placeholder - in practice this would be based on
-        # memory access patterns, stride, coalescing, etc.
-        # For now, assume a small penalty proportional to thread count
-        return launch_params.total_threads * 1e-9  # Very small penalty
 
 class EnhancedDelaySimulator:
     """Enhanced simulator with both Algorithm 1 and Algorithm 2"""
     
-    def __init__(self, csv_file: Optional[str] = None, 
-                 gpu_clock_mhz: float = 1755.0,
-                 ilp: int = 1, tlp: int = 32):
+    def __init__(self, gpu_config: GPUHardwareConfig, csv_file: str = None, 
+                 gpu_clock_mhz: float = None, ilp: int = 1, tlp: int = 32):
         
-        self.gpu_clock_mhz = gpu_clock_mhz
+        # Use provided GPU configuration
+        self.hardware = gpu_config
+        self.gpu_clock_mhz = gpu_clock_mhz or gpu_config.gpu_clock_mhz  # Allow override
         self.ilp = ilp
         self.tlp = tlp
         
         # Load microbenchmark data
-        loader = ImprovedMicrobenchmarkLoader()
-        self.benchmark_data = loader.load_csv(csv_file) if csv_file else loader._get_fallback_data()
-        
-        # Calculate d_i values
-        self.delay_calculator = DelayCalculator()
-        self.instruction_delays = self._calculate_all_delays()
+        if csv_file:
+            loader = ImprovedMicrobenchmarkLoader()
+            self.benchmark_data = loader.load_csv(csv_file)
+            print(f"Loaded {len(self.benchmark_data)} microbenchmark entries")
+        else:
+            loader = ImprovedMicrobenchmarkLoader()
+            self.benchmark_data = loader._get_fallback_data()
+            print("Using fallback microbenchmark data")
         
         # Initialize components
+        self.delay_calc = DelayCalculator()
         self.parser = ImprovedPTXParser()
-        self.hardware = GPUHardwareConfig(gpu_clock_mhz=gpu_clock_mhz)
-        self.gpu_simulator = GPUSimulator(self.hardware)
+        self.algorithm2 = CorrectedAlgorithm2(self.hardware)
         
-        print(f"Loaded {len(self.benchmark_data)} microbenchmark entries")
+        # Calculate d_i values
+        self._calculate_instruction_delays()
     
-    def _calculate_all_delays(self) -> Dict[str, float]:
-        """Calculate d_i values for all benchmark instructions"""
-        delays = {}
+    def _calculate_launch_overhead(self, launch_params: KernelLaunchParams) -> float:
+        """Calculate kernel launch overhead using measured values"""
+        return self.hardware.launch_overhead_us / 1e6  # Convert μs to seconds
+    
+    def _calculate_memory_penalty(self, launch_params: KernelLaunchParams) -> float:
+        """Estimate memory access penalty"""
+        # Simple model: penalty based on total threads accessing memory
+        # This is a simplified model - you can make this more sophisticated
+        memory_accesses_per_thread = 2  # Assume 2 memory accesses per thread on average
+        total_memory_accesses = launch_params.total_threads * memory_accesses_per_thread
         
+        # Memory penalty in seconds (rough estimate)
+        penalty_per_access = 1e-9  # 1 nanosecond per memory access
+        return total_memory_accesses * penalty_per_access * launch_params.threads_per_block / 1000.0
+    
+    def _calculate_instruction_delays(self):
+        """Calculate d_i values for all instructions using Formula (3)"""
         print(f"\nCalculating d_i values with ILP={self.ilp}, TLP={self.tlp}")
-        print("=" * 70)
+        print("="*70)
         
-        for inst_name, data in self.benchmark_data.items():
-            # Choose throughput and peak_warps based on ILP level
+        self.instruction_delays = {}
+        
+        for instruction, data in self.benchmark_data.items():
+            # Choose appropriate values based on ILP
             if self.ilp == 1:
                 throughput = data.throughput_ilp1
                 peak_warps = data.peak_warps_ilp1
             elif self.ilp == 2:
                 throughput = data.throughput_ilp2
                 peak_warps = data.peak_warps_ilp2
-            else:
+            else:  # ILP == 3
                 throughput = data.throughput_ilp3
                 peak_warps = data.peak_warps_ilp3
             
-            di = self.delay_calculator.calculate_di_formula3(
+            # Calculate d_i using Formula (3)
+            di = self.delay_calc.calculate_di_formula3(
                 data.latency, throughput, peak_warps, self.ilp, self.tlp
             )
-            delays[inst_name] = di
             
-            print(f"{inst_name:<15}: latency={data.latency:6.2f}, "
-                  f"throughput={throughput:8.1f}, peak_warps={peak_warps:2d}, "
-                  f"d_i={di:8.4f} cycles")
-        
-        return delays
+            self.instruction_delays[instruction] = di
+            print(f"{instruction:<15}: latency={data.latency:6.2f}, throughput={throughput:8.1f}, peak_warps={peak_warps:2d}, d_i={di:8.4f} cycles")
     
-    def simulate_full_kernel_execution(self, ptx_content: str, 
-                                      launch_params: KernelLaunchParams,
-                                      loop_iterations: Optional[Dict[str, int]] = None) -> Dict:
-        """
-        Full kernel execution simulation using both algorithms
+    def simulate_full_kernel_execution(self, ptx_content: str, launch_params: KernelLaunchParams, 
+                                     loop_iterations: Dict[str, int] = None) -> Dict:
+        """Complete kernel execution simulation combining Algorithm 1 and 2"""
         
-        Args:
-            ptx_content: PTX code content
-            launch_params: CUDA kernel launch parameters
-            loop_iterations: Custom loop iteration counts
-            
-        Returns:
-            Complete simulation results
-        """
-        
-        # Algorithm 1: Delay Computation
         print(f"\n{'='*80}")
-        print("FULL KERNEL EXECUTION SIMULATION")
+        print(f"FULL KERNEL EXECUTION SIMULATION")
         print(f"{'='*80}")
         
-        delay_results = self.simulate_ptx_execution(ptx_content, loop_iterations)
-        dk = delay_results['total_kernel_delay_cycles']
-        
-        # Algorithm 2: GPU Simulation
-        gpu_results = self.gpu_simulator.simulate_kernel_execution(dk, launch_params)
-        
-        # Combine results
-        combined_results = {
-            **delay_results,
-            **gpu_results,
-            'algorithm_1_delay_cycles': dk,
-            'algorithm_2_scheduling_time': gpu_results['scheduling_time_seconds'],
-            'predicted_kernel_time_seconds': gpu_results['total_kernel_time_seconds'],
-            'predicted_kernel_time_microseconds': gpu_results['total_kernel_time_microseconds'],
-            'predicted_kernel_time_milliseconds': gpu_results['total_kernel_time_milliseconds']
-        }
-        
-        return combined_results
-    
-    def simulate_ptx_execution(self, ptx_content: str, 
-                              loop_iterations: Optional[Dict[str, int]] = None) -> Dict:
-        """Algorithm 1: Delay computation (from your existing code)"""
-        
         # Parse PTX code
-        basic_blocks = self.parser.parse_ptx_file(ptx_content)
+        basic_blocks = self.parser.parse_ptx(ptx_content)
         
         if not basic_blocks:
             print("Warning: No basic blocks found in PTX file!")
@@ -611,9 +751,22 @@ class EnhancedDelaySimulator:
             dk += dB
             block_delays[block.label] = dB
         
-        # Calculate execution time
+        # Calculate single thread execution time
         tthread_seconds = dk / (self.gpu_clock_mhz * 1e6)
         
+        # Algorithm 2: GPU Simulation
+        algorithm2_results = self.algorithm2.simulate_gpu_execution(launch_params, tthread_seconds)
+        
+        # Calculate overheads
+        launch_overhead_seconds = self._calculate_launch_overhead(launch_params)
+        memory_penalty_seconds = self._calculate_memory_penalty(launch_params)
+        
+        # Final kernel execution time prediction
+        predicted_kernel_time = (algorithm2_results['scheduling_time_seconds'] + 
+                                launch_overhead_seconds + 
+                                memory_penalty_seconds)
+        
+        # Combine all results
         results = {
             'total_kernel_delay_cycles': dk,
             'single_thread_time_seconds': tthread_seconds,
@@ -624,7 +777,24 @@ class EnhancedDelaySimulator:
             'block_delays': block_delays,
             'gpu_clock_mhz': self.gpu_clock_mhz,
             'ilp': self.ilp,
-            'tlp': self.tlp
+            'tlp': self.tlp,
+            'launch_params': launch_params,
+            'gpu_hardware_config': self.hardware,
+            
+            # Algorithm 2 results
+            'waves_executed': algorithm2_results['waves_executed'],
+            'scheduling_time_seconds': algorithm2_results['scheduling_time_seconds'],
+            'hardware_utilization': algorithm2_results['hardware_utilization'],
+            'speedup_vs_sequential': algorithm2_results['speedup_vs_sequential'],
+            
+            # Overhead calculations
+            'launch_overhead_seconds': launch_overhead_seconds,
+            'memory_penalty_seconds': memory_penalty_seconds,
+            
+            # Final prediction
+            'predicted_kernel_time_seconds': predicted_kernel_time,
+            'predicted_kernel_time_microseconds': predicted_kernel_time * 1e6,
+            'predicted_kernel_time_milliseconds': predicted_kernel_time * 1e3,
         }
         
         return results
@@ -652,7 +822,7 @@ class EnhancedDelaySimulator:
         
         # Hardware configuration
         print(f"Hardware Configuration:")
-        print(f"  GPU Model:                RTX 2080 Ti")
+        print(f"  GPU Model:                {self.hardware.name}")
         print(f"  GPU Clock Frequency:      {results['gpu_clock_mhz']:8.1f} MHz") 
         print(f"  Number of SMs:            {self.hardware.num_sms:8d}")
         print(f"  Max Blocks per SM:        {self.hardware.max_blocks_per_sm:8d}")
@@ -702,9 +872,16 @@ def main():
     parser = argparse.ArgumentParser(description='Enhanced PTX Kernel Execution Time Predictor')
     parser.add_argument('ptx_file', nargs='?', help='PTX file to analyze')
     parser.add_argument('--csv', help='CSV file with microbenchmark results')
-    parser.add_argument('--gpu-clock', type=float, default=1755.0, help='GPU clock frequency in MHz (default: RTX 2080 Ti boost clock)')
+    parser.add_argument('--gpu-clock', type=float, help='GPU clock frequency in MHz (overrides architecture default)')
     parser.add_argument('--ilp', type=int, default=1, help='Instruction Level Parallelism')
     parser.add_argument('--tlp', type=int, default=32, help='Thread Level Parallelism')
+    
+    # GPU architecture selection
+    parser.add_argument('--gpu-architecture', type=str, default='RTX_2080_Ti',
+                       choices=['RTX_2080_Ti', 'TITAN_V', 'GTX_TITAN_X', 'RTX_4070'],
+                       help='GPU architecture for hardware configuration')
+    parser.add_argument('--auto-detect-gpu', action='store_true',
+                       help='Auto-detect GPU from microbenchmark filename')
     
     # Kernel launch parameters
     parser.add_argument('--num-blocks', type=int, default=256, help='Number of thread blocks')
@@ -716,10 +893,15 @@ def main():
     print("Algorithms 1 & 2 with corrected GPU simulation")
     print("="*80)
     
+    # Setup GPU hardware configuration
+    gpu_config_spec = setup_gpu_hardware_config(args)
+    gpu_hardware_config = GPUHardwareConfig(gpu_config_spec)
+    
     # Create simulator
     simulator = EnhancedDelaySimulator(
+        gpu_config=gpu_hardware_config,
         csv_file=args.csv,
-        gpu_clock_mhz=args.gpu_clock,
+        gpu_clock_mhz=args.gpu_clock,  # Can override architecture default
         ilp=args.ilp, 
         tlp=args.tlp
     )
@@ -752,7 +934,7 @@ def main():
     print(f"\n{'='*80}")
     print("Kernel Execution Time Prediction Complete!")
     print(f"Launch: {args.num_blocks} blocks × {args.threads_per_block} threads")
-    print(f"Hardware: RTX 2080 Ti @ {args.gpu_clock}MHz")
+    print(f"Hardware: {gpu_config_spec.name} @ {simulator.gpu_clock_mhz}MHz")
     print(f"Parameters: ILP={args.ilp}, TLP={args.tlp}")
     print("="*80)
 
