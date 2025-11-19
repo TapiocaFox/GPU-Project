@@ -12,7 +12,7 @@ import numpy as np
 from typing import Dict, List, Tuple, Optional
 
 # Paths
-LLM_BASELINE_PATH = Path(__file__).parent / "all_kernels_analysis_20251116_045342.json"
+LLM_BASELINE_PATH = Path(__file__).parent / "kernel_analysis_no_gpu_spec_baseline.json"
 KERNEL_EXECUTIONS_DIR = Path(__file__).parent.parent / "kernel_executions"
 OUTPUT_DIR = Path(__file__).parent
 
