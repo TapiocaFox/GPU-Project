@@ -9,4 +9,8 @@ For Three Experiment
 
    Template generated in Section 1 is in src/LLM/Data/ChatGPT/cuda_kernel_prediction_template.txt
    
+   To reproduce zero-shot results, use the notebooks in src/LLM_baseline/. Set your OpenAI API key (via environment variable OPENAI_API_KEY or Colab secrets), install dependencies (openai, pandas, matplotlib, seaborn), configure the kernel directory path, and run the notebook cells in order. Results are saved to JSON files (kernel_analysis_gpu_spec_baseline.json and kernel_analysis_no_gpu_spec_baseline.json). 
+   
+   See src/LLM_baseline/README.md for details.
+   
 4. LLM Few Shot: The data and code is in few shot directory
