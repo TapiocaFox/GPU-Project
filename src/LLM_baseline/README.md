@@ -96,7 +96,7 @@ A typical run might show something like: "Found 47 matching kernels for comparis
 - Make sure the file paths in the script match your directory structure if you've reorganized things
 
 
-### (Notice): The following results can be reproduced by Google Colab
+# (Notice): The following results can be reproduced by Google Colab
 
 ## Getting Started
 
