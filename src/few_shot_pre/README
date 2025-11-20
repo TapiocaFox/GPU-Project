@@ -1,1 +1,5 @@
-.
+log into one of cuda server
+
+module load cuda-12.4
+
+python r.py
