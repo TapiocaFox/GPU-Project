@@ -2,8 +2,9 @@ For Three Experiment
 
 1. Static Analysis Model - using microbenchmark:
    
-   1. First do microbenchmark on different GPUs. Please follow readme.md in src/microbenchmarking/readme.md
-   2. Static Analysis Model Time Prediction. Please follow readme.md in src/static_analysis_model/readme.md
+   1. Please make sure you clone the folder kernels_src, which contains kernel source code and PTX code. It will be used in the static analysis model.
+   2. First do microbenchmark on different GPUs. Please follow readme.md in src/microbenchmarking/readme.md
+   3. Static Analysis Model Time Prediction. Please follow readme.md in src/static_analysis_model/readme.md
 
 3. LLM Zero Shot:
 
