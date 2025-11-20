@@ -13,4 +13,4 @@ For Three Experiment
    
    See src/LLM_baseline/README.md for details.
    
-4. LLM Few Shot: The data and code is in few shot directory
+4. LLM Few Shot: The data and code is in few shot directory, data come from intermediate result in few_shot_pre, which is execute and compiled on 5 NYU CUDA to get the result.
